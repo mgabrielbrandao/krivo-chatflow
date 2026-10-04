@@ -1,0 +1,24 @@
+{
+	"name": "krivo-chatflow",
+	"version": "0.1.0",
+	"description": "Krivo ChatFlow - lead capture and qualification widget for WordPress (build and test tooling).",
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"build": "node bin/build.mjs",
+		"build:dev": "node bin/build.mjs --dev",
+		"watch": "node bin/build.mjs --dev --watch",
+		"test:js": "node --test tests/js/",
+		"test:e2e": "node tests/e2e/run.mjs"
+	},
+	"devDependencies": {
+		"axe-core": "^4.10.0",
+		"esbuild": "^0.25.0",
+		"jsdom": "^26.0.0",
+		"playwright-core": "^1.50.0",
+		"smtp-server": "^3.13.0"
+	}
+}

@@ -1,0 +1,23 @@
+[
+	{ "input": "1500", "expect": "1500" },
+	{ "input": "10.000", "expect": "10000" },
+	{ "input": "10.000,50", "expect": "10000.5" },
+	{ "input": "10,000.50", "expect": "10000.5" },
+	{ "input": "12,5", "expect": "12.5" },
+	{ "input": "12.5", "expect": "12.5" },
+	{ "input": "R$ 10.000,00", "expect": "10000" },
+	{ "input": "$1,250.75", "expect": "1250.75" },
+	{ "input": "1.234.567", "expect": "1234567" },
+	{ "input": "-3,5", "expect": "-3.5" },
+	{ "input": "007", "expect": "7" },
+	{ "input": "0", "expect": "0" },
+	{ "input": "0,50", "expect": "0.5" },
+	{ "input": ",5", "expect": "0.5" },
+	{ "input": "99.99", "expect": "99.99" },
+	{ "input": "12abc", "expect": null },
+	{ "input": "1,2,3", "expect": null },
+	{ "input": "", "expect": null },
+	{ "input": "1e5", "expect": null },
+	{ "input": "--5", "expect": null },
+	{ "input": "999999999999999999999999999999", "expect": null }
+]

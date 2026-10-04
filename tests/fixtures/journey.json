@@ -1,0 +1,183 @@
+[
+	{
+		"name": "form mode shows everything in one unit",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "name", "key": "nome" },
+			{ "id": "f2", "type": "email", "key": "email" }
+		] } ], "logic": { "rules": [] } },
+		"values": { "nome": "Ana", "email": "a@b.co" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": true }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "show_field hides by default and reveals when the rule matches",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "select", "key": "servico" },
+			{ "id": "f2", "type": "text", "key": "site_atual" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "when": { "match": "all", "conditions": [ { "left": "field:servico", "op": "eq", "right": "dev" } ] }, "then": [ { "do": "show_field", "target": "f2" } ] }
+		] } },
+		"values": { "servico": "dev" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": true }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "show_field stays hidden when the rule does not match",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "select", "key": "servico" },
+			{ "id": "f2", "type": "text", "key": "site_atual" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "when": { "match": "all", "conditions": [ { "left": "field:servico", "op": "eq", "right": "dev" } ] }, "then": [ { "do": "show_field", "target": "f2" } ] }
+		] } },
+		"values": { "servico": "ops" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": false }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "hide_field hides only when matched",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "select", "key": "tipo" },
+			{ "id": "f2", "type": "text", "key": "empresa" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "when": { "match": "all", "conditions": [ { "left": "field:tipo", "op": "eq", "right": "pessoa" } ] }, "then": [ { "do": "hide_field", "target": "f2" } ] }
+		] } },
+		"values": { "tipo": "pessoa" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": false }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "hide wins over show",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "text", "key": "a" },
+			{ "id": "f2", "type": "text", "key": "b" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "when": { "match": "all", "conditions": [ { "left": "field:a", "op": "not_empty", "right": "" } ] }, "then": [ { "do": "show_field", "target": "f2" } ] },
+			{ "id": "r2", "when": { "match": "all", "conditions": [ { "left": "field:a", "op": "eq", "right": "x" } ] }, "then": [ { "do": "hide_field", "target": "f2" } ] }
+		] } },
+		"values": { "a": "x" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": false }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "a rule cannot depend on a field that comes later",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "text", "key": "a" },
+			{ "id": "f2", "type": "text", "key": "b" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "when": { "match": "all", "conditions": [ { "left": "field:b", "op": "eq", "right": "go" } ] }, "then": [ { "do": "show_field", "target": "f1" } ] }
+		] } },
+		"values": { "a": "x", "b": "go" }, "ctx": {},
+		"expect": { "visible": { "f1": false, "f2": true }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "answers of hidden fields do not exist for later conditions",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "text", "key": "a" },
+			{ "id": "f2", "type": "text", "key": "b" },
+			{ "id": "f3", "type": "text", "key": "c" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "when": { "match": "all", "conditions": [ { "left": "field:a", "op": "eq", "right": "yes" } ] }, "then": [ { "do": "show_field", "target": "f2" } ] },
+			{ "id": "r2", "when": { "match": "all", "conditions": [ { "left": "field:b", "op": "eq", "right": "x" } ] }, "then": [ { "do": "show_field", "target": "f3" } ] }
+		] } },
+		"values": { "a": "no", "b": "x", "c": "z" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": false, "f3": false }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "html blocks are visible but do not feed conditions",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "html", "key": "intro" },
+			{ "id": "f2", "type": "text", "key": "a" }
+		] } ], "logic": { "rules": [] } },
+		"values": { "intro": "ignored", "a": "x" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": true }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "context conditions work in visibility rules",
+		"flow": { "mode": "form", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "text", "key": "a" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "when": { "match": "all", "conditions": [ { "left": "ctx:device", "op": "eq", "right": "mobile" } ] }, "then": [ { "do": "hide_field", "target": "f1" } ] }
+		] } },
+		"values": { "a": "x" }, "ctx": { "device": "mobile" },
+		"expect": { "visible": { "f1": false }, "visited": [ "all" ], "finished": false }
+	},
+	{
+		"name": "conversational goto skips the questions in between",
+		"flow": { "mode": "conversational", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "select", "key": "servico" },
+			{ "id": "f2", "type": "text", "key": "q2" },
+			{ "id": "f3", "type": "text", "key": "q3" },
+			{ "id": "f4", "type": "text", "key": "mensagem" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "after": "f1", "when": { "match": "all", "conditions": [ { "left": "field:servico", "op": "eq", "right": "outro" } ] }, "then": [ { "do": "goto", "target": "f4" } ] }
+		] } },
+		"values": { "servico": "outro", "mensagem": "oi" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": false, "f3": false, "f4": true }, "visited": [ "f1", "f4" ], "finished": false }
+	},
+	{
+		"name": "conversational goto not matched walks every question",
+		"flow": { "mode": "conversational", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "select", "key": "servico" },
+			{ "id": "f2", "type": "text", "key": "q2" },
+			{ "id": "f3", "type": "text", "key": "mensagem" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "after": "f1", "when": { "match": "all", "conditions": [ { "left": "field:servico", "op": "eq", "right": "outro" } ] }, "then": [ { "do": "goto", "target": "f3" } ] }
+		] } },
+		"values": { "servico": "dev" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": true, "f3": true }, "visited": [ "f1", "f2", "f3" ], "finished": false }
+	},
+	{
+		"name": "finish ends the flow early",
+		"flow": { "mode": "conversational", "steps": [ { "id": "s1", "fields": [
+			{ "id": "f1", "type": "name", "key": "nome" },
+			{ "id": "f2", "type": "select", "key": "interesse" },
+			{ "id": "f3", "type": "text", "key": "detalhe" }
+		] } ], "logic": { "rules": [
+			{ "id": "r1", "after": "f2", "when": { "match": "all", "conditions": [ { "left": "field:interesse", "op": "eq", "right": "so_olhando" } ] }, "then": [ { "do": "finish" } ] }
+		] } },
+		"values": { "nome": "Ana", "interesse": "so_olhando" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": true, "f3": false }, "visited": [ "f1", "f2" ], "finished": true }
+	},
+	{
+		"name": "steps mode jumps between steps",
+		"flow": { "mode": "steps", "steps": [
+			{ "id": "s1", "fields": [ { "id": "f1", "type": "select", "key": "tipo" } ] },
+			{ "id": "s2", "fields": [ { "id": "f2", "type": "text", "key": "empresa" } ] },
+			{ "id": "s3", "fields": [ { "id": "f3", "type": "text", "key": "mensagem" } ] }
+		], "logic": { "rules": [
+			{ "id": "r1", "after": "s1", "when": { "match": "all", "conditions": [ { "left": "field:tipo", "op": "eq", "right": "pessoa" } ] }, "then": [ { "do": "goto", "target": "s3" } ] }
+		] } },
+		"values": { "tipo": "pessoa", "mensagem": "oi" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": false, "f3": true }, "visited": [ "s1", "s3" ], "finished": false }
+	},
+	{
+		"name": "goto backwards is ignored (no loops)",
+		"flow": { "mode": "steps", "steps": [
+			{ "id": "s1", "fields": [ { "id": "f1", "type": "text", "key": "a" } ] },
+			{ "id": "s2", "fields": [ { "id": "f2", "type": "text", "key": "b" } ] }
+		], "logic": { "rules": [
+			{ "id": "r1", "after": "s2", "when": { "match": "all", "conditions": [] }, "then": [ { "do": "goto", "target": "s1" } ] }
+		] } },
+		"values": { "a": "1", "b": "2" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": true }, "visited": [ "s1", "s2" ], "finished": false }
+	},
+	{
+		"name": "goto to an unknown target is ignored",
+		"flow": { "mode": "steps", "steps": [
+			{ "id": "s1", "fields": [ { "id": "f1", "type": "text", "key": "a" } ] },
+			{ "id": "s2", "fields": [ { "id": "f2", "type": "text", "key": "b" } ] }
+		], "logic": { "rules": [
+			{ "id": "r1", "after": "s1", "when": { "match": "all", "conditions": [] }, "then": [ { "do": "goto", "target": "nope" } ] }
+		] } },
+		"values": { "a": "1" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": true }, "visited": [ "s1", "s2" ], "finished": false }
+	},
+	{
+		"name": "first matching jump rule wins",
+		"flow": { "mode": "steps", "steps": [
+			{ "id": "s1", "fields": [ { "id": "f1", "type": "text", "key": "a" } ] },
+			{ "id": "s2", "fields": [ { "id": "f2", "type": "text", "key": "b" } ] },
+			{ "id": "s3", "fields": [ { "id": "f3", "type": "text", "key": "c" } ] }
+		], "logic": { "rules": [
+			{ "id": "r1", "after": "s1", "when": { "match": "all", "conditions": [ { "left": "field:a", "op": "eq", "right": "x" } ] }, "then": [ { "do": "goto", "target": "s3" } ] },
+			{ "id": "r2", "after": "s1", "when": { "match": "all", "conditions": [] }, "then": [ { "do": "finish" } ] }
+		] } },
+		"values": { "a": "x", "c": "z" }, "ctx": {},
+		"expect": { "visible": { "f1": true, "f2": false, "f3": true }, "visited": [ "s1", "s3" ], "finished": false }
+	}
+]

@@ -1,0 +1,16 @@
+[
+	{ "name": "simple replacement", "template": "Hello {name}!", "vars": { "name": "Ana" }, "expect": "Hello Ana!" },
+	{ "name": "several variables", "template": "{name} - {email} - {phone}", "vars": { "name": "Ana", "email": "a@b.co", "phone": "+5511999998888" }, "expect": "Ana - a@b.co - +5511999998888" },
+	{ "name": "portuguese alias nome", "template": "Perfeito, {nome}.", "vars": { "name": "Gabriel" }, "expect": "Perfeito, Gabriel." },
+	{ "name": "portuguese alias telefone and pagina", "template": "{telefone} @ {pagina}", "vars": { "phone": "123", "page_url": "https://x.test/" }, "expect": "123 @ https://x.test/" },
+	{ "name": "field key beats alias of the same name", "template": "{nome}", "vars": { "name": "Role", "nome": "Field key" }, "expect": "Field key" },
+	{ "name": "unknown variable becomes empty", "template": "A{nope}B", "vars": {}, "expect": "AB" },
+	{ "name": "same variable twice", "template": "{name}/{name}", "vars": { "name": "Z" }, "expect": "Z/Z" },
+	{ "name": "values are not re-expanded", "template": "{a}", "vars": { "a": "{b}", "b": "SECRET" }, "expect": "{b}" },
+	{ "name": "braces that are not variables stay", "template": "{ \"a\": 1 } {Name} {with space} {}", "vars": { "name": "x" }, "expect": "{ \"a\": 1 } {Name} {with space} {}" },
+	{ "name": "multiline value kept as is in text mode", "template": "Msg:\n{mensagem}", "vars": { "mensagem": "line1\nline2" }, "expect": "Msg:\nline1\nline2" },
+	{ "name": "numbers as values", "template": "Total: {valor}", "vars": { "valor": "10000.5" }, "expect": "Total: 10000.5" },
+	{ "name": "unicode", "template": "Olá, {nome}! Você escolheu {servico}.", "vars": { "name": "João", "servico": "Automação" }, "expect": "Olá, João! Você escolheu Automação." },
+	{ "name": "empty template", "template": "", "vars": { "name": "x" }, "expect": "" },
+	{ "name": "digits and underscores in names", "template": "{utm_source}/{q2}", "vars": { "utm_source": "google", "q2": "yes" }, "expect": "google/yes" }
+]
