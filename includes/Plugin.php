@@ -42,6 +42,14 @@ final class Plugin {
 		\Krivo\ChatFlow\Core\Leads\PrivacyTools::register();
 		\Krivo\ChatFlow\Core\Leads\CsvExporter::register();
 
+		// Admin only: menu, assets, notices and the first-activation redirect.
+		if ( is_admin() ) {
+			\Krivo\ChatFlow\Admin\Menu::register();
+			\Krivo\ChatFlow\Admin\Assets::register();
+			\Krivo\ChatFlow\Admin\Notices::register();
+			\Krivo\ChatFlow\Admin\Activation::register();
+		}
+
 		do_action( 'krivo_chatflow_loaded' );
 	}
 }

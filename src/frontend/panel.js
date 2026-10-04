@@ -3,6 +3,7 @@ import { createApi } from './api.js';
 import { compute, units as flowUnits, collects } from '../shared/journey.js';
 import { validateField, messageFor, isBlank } from '../shared/validate.js';
 import { render as renderTemplate } from '../shared/template.js';
+import { applyBubbleStyle } from '../shared/bubble-style.js';
 
 const DAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const AUTOCOMPLETE = { name: 'name', email: 'email', phone: 'tel', whatsapp: 'tel', url: 'url' };
@@ -1137,4 +1138,4 @@ function create(opts) {
 	return controller;
 }
 
-window.KrivoChatFlowPanel = { create, version: '1' };
+window.KrivoChatFlowPanel = { create, applyBubbleStyle, version: '1' };

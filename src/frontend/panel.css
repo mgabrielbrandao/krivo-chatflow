@@ -35,6 +35,9 @@
 		animation: kcf-panel-in 0.2s ease both;
 		box-sizing: border-box;
 	}
+	&.kcf-preview .kcf-panel {
+		max-height: calc(var(--kcf-stage-h, 640px) - var(--kcf-size, 60px) - var(--kcf-oy, 24px) - 28px);
+	}
 	&.kcf-pos-bottom-right .kcf-panel {
 		right: 0;
 	}

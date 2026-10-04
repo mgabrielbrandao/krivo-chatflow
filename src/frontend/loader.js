@@ -6,6 +6,8 @@
  * Nothing here talks to third parties. Colours are applied through the CSS object model (no style
  * attribute, no style tag) so a strict Content Security Policy keeps working.
  */
+import { applyBubbleStyle } from '../shared/bubble-style.js';
+
 (function () {
 	'use strict';
 
@@ -137,18 +139,7 @@
 
 	function setupBubble(boot, root) {
 		var b = boot.bubble;
-		var style = root.style;
-		style.setProperty('--kcf-bg', b.colors.bg);
-		style.setProperty('--kcf-fg', b.colors.icon);
-		style.setProperty('--kcf-size', b.size + 'px');
-		style.setProperty('--kcf-ox', b.offset_x + 'px');
-		style.setProperty('--kcf-oy', b.offset_y + 'px');
-		if (b.colors.border) {
-			style.setProperty('--kcf-bc', b.colors.border);
-			style.setProperty('--kcf-bw', '2px');
-		}
-		var radius = { circle: '50%', squircle: '34%', pill: '999px', custom: b.radius + 'px' };
-		style.setProperty('--kcf-radius', radius[b.shape] || '50%');
+		applyBubbleStyle(root, b);
 
 		var button = root.querySelector('.kcf-bubble');
 		var tooltip = root.querySelector('.kcf-tooltip');

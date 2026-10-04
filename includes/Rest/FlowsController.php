@@ -18,6 +18,7 @@ use Krivo\ChatFlow\Core\Flow\Sanitizer;
 use Krivo\ChatFlow\Core\Flow\Templates;
 use Krivo\ChatFlow\Core\Flow\Validator;
 use Krivo\ChatFlow\Core\Leads\LeadRepository;
+use Krivo\ChatFlow\Core\Routing\RoutingRepository;
 use Krivo\ChatFlow\Core\Variables\Builder;
 use Krivo\ChatFlow\Infrastructure\Caps\Capabilities;
 use Krivo\ChatFlow\Infrastructure\Support\Clock;
@@ -141,6 +142,23 @@ final class FlowsController extends AdminController {
 				)
 			);
 		}
+
+		// A preview of a configuration that has not been saved yet (the setup wizard works before a flow exists).
+		register_rest_route(
+			self::NAMESPACE,
+			'/preview',
+			array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => array( __CLASS__, 'preview_unsaved' ),
+				'permission_callback' => self::can( Capabilities::EDIT_FLOWS ),
+				'args'                => array(
+					'config' => array(
+						'type'     => 'object',
+						'required' => true,
+					),
+				),
+			)
+		);
 
 		register_rest_route(
 			self::NAMESPACE,
@@ -330,6 +348,19 @@ final class FlowsController extends AdminController {
 	}
 
 	/**
+	 * POST /preview: the manifest of a configuration that is not stored anywhere.
+	 *
+	 * @param \WP_REST_Request $request Request.
+	 * @return \WP_REST_Response
+	 */
+	public static function preview_unsaved( \WP_REST_Request $request ): \WP_REST_Response {
+		$config                  = Sanitizer::sanitize( (array) $request['config'] );
+		$manifest                = Manifest::build( 0, 0, $config );
+		$manifest['bubble_html'] = \Krivo\ChatFlow\Frontend\Renderer::bubble( $manifest['boot'] );
+		return self::ok( $manifest );
+	}
+
+	/**
 	 * POST /flows/{id}/preview-link: a URL that shows the DRAFT on the site, to this user only.
 	 *
 	 * @param \WP_REST_Request $request Request.
@@ -390,6 +421,39 @@ final class FlowsController extends AdminController {
 					'automations' => Sanitizer::MAX_AUTOMATIONS,
 				),
 				'credit_url'  => KRIVO_CHATFLOW_CREDIT_URL,
+				// The built-in icons, rendered by PHP (the same markup the visitor gets).
+				'icons'       => array_combine(
+					\Krivo\ChatFlow\Frontend\Icons::names(),
+					array_map( array( \Krivo\ChatFlow\Frontend\Icons::class, 'svg' ), \Krivo\ChatFlow\Frontend\Icons::names() )
+				),
+				// Names only: enough to choose from, without numbers or e-mail addresses.
+				'destinations' => array_map(
+					static function ( $destination ) {
+						return array(
+							'id'       => $destination['id'],
+							'name'     => $destination['name'],
+							'whatsapp' => '' !== $destination['whatsapp'],
+							'emails'   => count( $destination['emails'] ),
+						);
+					},
+					RoutingRepository::get()['destinations']
+				),
+				'connections'  => current_user_can( Capabilities::VIEW_INTEGRATIONS )
+					? array_map(
+						static function ( $connection ) {
+							return array(
+								'id'      => $connection['id'],
+								'name'    => $connection['name'],
+								'enabled' => $connection['enabled'],
+								'preset'  => $connection['preset'],
+							);
+						},
+						\Krivo\ChatFlow\Automation\Webhook\ConnectionRepository::public_list()
+					)
+					: array(),
+				'autoresponder' => \Krivo\ChatFlow\Automation\Actions\SendEmail::autoresponder_defaults(),
+				'admin_email'  => (string) get_option( 'admin_email' ),
+				'default_dial' => (string) \Krivo\ChatFlow\Core\Settings\Settings::get( 'general.default_dial_code', '' ),
 			)
 		);
 	}

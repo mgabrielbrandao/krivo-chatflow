@@ -1,0 +1,176 @@
+import { useState } from '@wordpress/element';
+import { api, can } from '../api.js';
+import { ago, number, percent } from '../format.js';
+import { __, sprintf } from '../i18n.js';
+import { screenUrl } from '../nav.js';
+import { Badge, Button, Card, Empty, LinkButton, Notice, Spinner, useApp, useLoad } from '../ui.jsx';
+import { Onboarding } from './Onboarding.jsx';
+
+const CHECKLIST = {
+	create: [() => __('Create your first chat'), 'flows', () => '#/new', 'edit_flows'],
+	destination: [() => __('Add who receives the leads'), 'routing', () => '', 'manage_routing'],
+	publish: [() => __('Publish the chat on your site'), 'flows', () => '', 'edit_flows'],
+	email_test: [() => __('Send a test e-mail'), 'settings', () => '', 'manage_email'],
+	first_lead: [() => __('Receive your first lead'), 'leads', () => '', 'view_leads'],
+};
+
+export const STATUS_LABELS = {
+	new: () => __('New'),
+	contacted: () => __('Contacted'),
+	converted: () => __('Converted'),
+	lost: () => __('Lost'),
+	spam: () => __('Spam'),
+};
+
+export const STATUS_TONES = { new: 'brand', contacted: 'info', converted: 'ok', lost: 'neutral', spam: 'danger' };
+
+export function Dashboard() {
+	const { toast } = useApp();
+	const data = useLoad(() => api.get('dashboard'), []);
+	const onboarding = useLoad(() => api.get('onboarding'), []);
+	const templates = useLoad(() => (can('create_flows') ? api.get('templates') : Promise.resolve({ items: [] })), []);
+	const [skipped, setSkipped] = useState(false);
+
+	if ((data.loading && !data.data) || onboarding.loading || templates.loading) {
+		return <Spinner />;
+	}
+	if (data.error) {
+		return <Notice tone="error">{data.error.message}</Notice>;
+	}
+	const d = data.data;
+	const ob = onboarding.data || { completed: false, dismissed: false };
+	const noFlows = d.checklist.find((item) => item.key === 'create') && !d.checklist.find((item) => item.key === 'create').done;
+	const wizard = noFlows && !ob.completed && !ob.dismissed && !skipped && can('create_flows') && templates.data && templates.data.items.length > 0;
+
+	if (wizard) {
+		return (
+			<Onboarding
+				templates={templates.data.items}
+				onSkip={async () => {
+					setSkipped(true);
+					try {
+						await api.put('onboarding', { dismissed: true });
+					} catch (e) {
+						toast('error', e.message);
+					}
+				}}
+				onFinished={() => {
+					window.location.href = screenUrl('flows') || window.location.href;
+				}}
+			/>
+		);
+	}
+
+	const pending = d.checklist.filter((item) => !item.done);
+	const issues = d.health ? d.health.issues : [];
+
+	return (
+		<div className="kcf-stack">
+			{issues.map((issue) => (
+				<Notice key={issue.code} tone="warn" action={issue.code === 'runs_failed' && screenUrl('integrations') ? <LinkButton small href={screenUrl('integrations')}>{__('Open Integrations')}</LinkButton> : issue.code === 'smtp_untested' && screenUrl('settings') ? <LinkButton small href={screenUrl('settings')}>{__('Open Settings')}</LinkButton> : null}>
+					{issue.message}
+				</Notice>
+			))}
+
+			{d.funnel ? (
+				<Card title={__('Last 7 days')} actions={screenUrl('analytics') ? <LinkButton small href={screenUrl('analytics')}>{__('See analytics')}</LinkButton> : null}>
+					<div className="kcf-stats">
+						<Stat label={__('Visitors who saw the bubble')} value={number(d.funnel.totals.view)} />
+						<Stat label={__('Opened the chat')} value={number(d.funnel.totals.open)} note={percent(d.funnel.rates.open_rate) + ' ' + __('of visitors')} />
+						<Stat label={__('Started answering')} value={number(d.funnel.totals.start)} />
+						<Stat label={__('Leads')} value={number(d.funnel.totals.lead)} note={percent(d.funnel.rates.completion_rate) + ' ' + __('finish')} />
+						<Stat label={__('Went to WhatsApp')} value={number(d.funnel.totals.whatsapp_click)} />
+					</div>
+				</Card>
+			) : null}
+
+			<div className="kcf-grid">
+				{pending.length > 0 ? (
+					<Card title={__('First steps')}>
+						<ul className="kcf-checklist">
+							{d.checklist.map((item) => {
+								const [label, screen, hash, cap] = CHECKLIST[item.key];
+								const href = can(cap) ? screenUrl(screen, hash()) : '';
+								return (
+									<li key={item.key} className={item.done ? 'is-done' : ''}>
+										<span className="kcf-checklist__dot" aria-hidden="true">
+											{item.done ? '✓' : ''}
+										</span>
+										<span>
+											{item.done || !href ? (
+												label()
+											) : (
+												<a href={href}>{label()}</a>
+											)}
+											{item.done ? <span className="kcf-sr"> ({__('done')})</span> : null}
+										</span>
+									</li>
+								);
+							})}
+						</ul>
+					</Card>
+				) : null}
+
+				{d.leads ? (
+					<Card title={__('Latest leads')} actions={screenUrl('leads') ? <LinkButton small href={screenUrl('leads')}>{__('All leads')}</LinkButton> : null}>
+						{d.leads.latest.length === 0 ? (
+							<Empty title={__('No leads yet')}>{__('When a visitor finishes a chat, the lead appears here.')}</Empty>
+						) : (
+							<div className="kcf-table-wrap">
+								<table className="kcf-table">
+									<thead>
+										<tr>
+											<th scope="col">{__('Name')}</th>
+											<th scope="col">{__('Chat')}</th>
+											<th scope="col">{__('Status')}</th>
+											<th scope="col">{__('When')}</th>
+										</tr>
+									</thead>
+									<tbody>
+										{d.leads.latest.map((lead) => (
+											<tr key={lead.id}>
+												<td>
+													<strong>{lead.name || lead.email || lead.phone || '—'}</strong>
+												</td>
+												<td>{lead.flow}</td>
+												<td>
+													<Badge tone={STATUS_TONES[lead.status]}>{(STATUS_LABELS[lead.status] || (() => lead.status))()}</Badge>
+												</td>
+												<td>{ago(lead.created_at)}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+						)}
+					</Card>
+				) : null}
+			</div>
+
+			{d.health ? (
+				<Card title={__('System')}>
+					<dl className="kcf-dl">
+						<dt>{__('Automations queue')}</dt>
+						<dd>
+							{sprintf(__('%1$d waiting, %2$d failed in the last 24 hours'), (d.health.queue.counts.pending || 0) + (d.health.queue.counts.retrying || 0), d.health.queue.failed_24h)}
+						</dd>
+						<dt>{__('Background tasks (WP-Cron)')}</dt>
+						<dd>{d.health.cron.disabled ? __('Turned off on this site') : __('Running')}</dd>
+						<dt>{__('E-mail delivery')}</dt>
+						<dd>{d.health.email.mode === 'custom' ? __('Your own SMTP server') : __('WordPress mailer')}</dd>
+					</dl>
+				</Card>
+			) : null}
+		</div>
+	);
+}
+
+export function Stat({ label, value, note }) {
+	return (
+		<div className="kcf-stat">
+			<div className="kcf-stat__label">{label}</div>
+			<div className="kcf-stat__value">{value}</div>
+			{note ? <div className="kcf-stat__note">{note}</div> : null}
+		</div>
+	);
+}
