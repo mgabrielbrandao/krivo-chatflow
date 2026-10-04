@@ -116,7 +116,8 @@ final class LeadRepository {
 		$page     = max( 1, (int) ( $args['page'] ?? 1 ) );
 		$offset   = ( $page - 1 ) * $per_page;
 
-		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$where}", $values ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
+		$count_sql = "SELECT COUNT(*) FROM {$table} WHERE {$where}";
+		$total     = (int) $wpdb->get_var( array() === $values ? $count_sql : $wpdb->prepare( $count_sql, $values ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
 
 		$sql_values = array_merge( $values, array( $per_page, $offset ) );
 		$rows       = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching

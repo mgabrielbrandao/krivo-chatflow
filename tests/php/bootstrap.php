@@ -36,3 +36,5 @@ tests_add_filter(
 require $krivo_tests_dir . '/includes/bootstrap.php';
 
 require_once __DIR__ . '/Krivo_TestCase.php';
+require_once __DIR__ . '/FlowFactory.php';
+require_once __DIR__ . '/StubServer.php';

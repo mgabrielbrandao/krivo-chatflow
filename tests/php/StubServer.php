@@ -11,7 +11,13 @@
 final class StubServer {
 
 	public const HOST = '127.0.0.1';
-	public const PORT = 9191;
+
+	/**
+	 * Port chosen for this run.
+	 *
+	 * @var int
+	 */
+	private static $port = 0;
 
 	/**
 	 * Server process.
@@ -36,9 +42,16 @@ final class StubServer {
 		if ( null !== self::$process ) {
 			return;
 		}
+		$probe = stream_socket_server( 'tcp://' . self::HOST . ':0', $errno, $errstr );
+		if ( ! $probe ) {
+			throw new RuntimeException( 'No free port for the test webhook receiver.' );
+		}
+		self::$port = (int) substr( strrchr( (string) stream_socket_get_name( $probe, false ), ':' ), 1 );
+		fclose( $probe );
+
 		self::$log = sys_get_temp_dir() . '/krivo-stub-' . getmypid() . '.log';
 		@unlink( self::$log ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
-		$cmd           = sprintf( 'php -S %s:%d %s', self::HOST, self::PORT, escapeshellarg( __DIR__ . '/stub/receiver.php' ) );
+		$cmd           = sprintf( 'exec php -S %s:%d %s', self::HOST, self::$port, escapeshellarg( __DIR__ . '/stub/receiver.php' ) );
 		$descriptors   = array(
 			0 => array( 'file', '/dev/null', 'r' ),
 			1 => array( 'file', '/dev/null', 'w' ),
@@ -47,7 +60,7 @@ final class StubServer {
 		self::$process = proc_open( $cmd, $descriptors, $pipes, null, array_merge( $_ENV, array( 'KRIVO_STUB_LOG' => self::$log, 'PATH' => (string) getenv( 'PATH' ), 'PHP_CLI_SERVER_WORKERS' => '4' ) ) );
 
 		for ( $i = 0; $i < 50; $i++ ) {
-			$sock = @fsockopen( self::HOST, self::PORT, $errno, $errstr, 0.2 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+			$sock = @fsockopen( self::HOST, self::$port, $errno, $errstr, 0.2 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 			if ( $sock ) {
 				fclose( $sock );
 				return;
@@ -74,13 +87,22 @@ final class StubServer {
 	}
 
 	/**
+	 * Port of the receiver.
+	 *
+	 * @return int
+	 */
+	public static function port(): int {
+		return self::$port;
+	}
+
+	/**
 	 * Base URL of the receiver.
 	 *
 	 * @param string $path Path.
 	 * @return string
 	 */
 	public static function url( string $path = '/ok' ): string {
-		return 'http://' . self::HOST . ':' . self::PORT . $path;
+		return 'http://' . self::HOST . ':' . self::$port . $path;
 	}
 
 	/**

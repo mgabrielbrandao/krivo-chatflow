@@ -60,7 +60,7 @@ final class Token {
 	 * @return string One of the class constants; OK means valid.
 	 */
 	public static function verify( string $token, int $flow_id, int $min_age = 0 ): string {
-		if ( strlen( $token ) > 400 || 1 !== preg_match( '/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/', $token ) ) {
+		if ( strlen( $token ) > 400 || 1 !== preg_match( '/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/D', $token ) ) {
 			return self::MALFORMED;
 		}
 		list( $payload, $signature ) = explode( '.', $token, 2 );

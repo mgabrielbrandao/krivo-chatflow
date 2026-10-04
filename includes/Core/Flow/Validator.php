@@ -68,6 +68,9 @@ final class Validator {
 			$position[ $field['id'] ] = $index;
 		}
 		foreach ( $config['logic']['rules'] as $rule ) {
+			if ( array() === $rule['when']['conditions'] ) {
+				$warnings[] = self::item( 'rule_no_condition', __( 'A logic rule has no valid condition, so it always applies. Edit or remove it.', 'krivo-chatflow' ), $rule['id'] );
+			}
 			foreach ( $rule['when']['conditions'] as $condition ) {
 				if ( ! isset( $condition['left'] ) || 0 !== strpos( $condition['left'], 'field:' ) ) {
 					continue;

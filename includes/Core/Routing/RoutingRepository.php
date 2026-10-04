@@ -69,17 +69,22 @@ final class RoutingRepository {
 	public static function sanitize( array $raw ): array {
 		$destinations = array();
 		$used         = array();
+		$renamed      = array(); // Id typed by the client => id actually stored, so references keep working.
 		foreach ( is_array( $raw['destinations'] ?? null ) ? array_values( $raw['destinations'] ) : array() as $item ) {
 			if ( count( $destinations ) >= self::MAX_DESTINATIONS || ! is_array( $item ) ) {
 				continue;
 			}
-			$id = isset( $item['id'] ) ? (string) $item['id'] : '';
+			$typed_id = isset( $item['id'] ) ? (string) $item['id'] : '';
+			$id       = $typed_id;
 			if ( ! preg_match( '/^dst_[a-z0-9]{4,16}$/', $id ) || in_array( $id, $used, true ) ) {
 				do {
 					$id = Text::random_id( 'dst_', 6 );
 				} while ( in_array( $id, $used, true ) );
 			}
 			$used[] = $id;
+			if ( '' !== $typed_id && ! isset( $renamed[ $typed_id ] ) ) {
+				$renamed[ $typed_id ] = $id;
+			}
 
 			$dial     = substr( (string) preg_replace( '/\D+/', '', (string) ( $item['dial_code'] ?? '' ) ), 0, 4 );
 			$national = substr( (string) preg_replace( '/\D+/', '', (string) ( $item['number'] ?? '' ) ), 0, 15 );
@@ -111,8 +116,9 @@ final class RoutingRepository {
 				continue;
 			}
 			$target = isset( $item['destination'] ) ? (string) $item['destination'] : '';
+			$target = $renamed[ $target ] ?? $target;
 			if ( ! in_array( $target, $used, true ) ) {
-				continue; // A rule must point at an existing destination.
+				continue; // A rule must point at an existing destination (validate() reports it).
 			}
 			$id = isset( $item['id'] ) ? (string) $item['id'] : '';
 			if ( ! preg_match( '/^[a-z0-9_]{1,24}$/', $id ) || in_array( $id, $ruled, true ) ) {
@@ -139,6 +145,7 @@ final class RoutingRepository {
 		}
 
 		$default = isset( $raw['default_destination'] ) ? (string) $raw['default_destination'] : '';
+		$default = $renamed[ $default ] ?? $default;
 		return array(
 			'default_destination' => in_array( $default, $used, true ) ? $default : '',
 			'destinations'        => $destinations,
@@ -167,6 +174,37 @@ final class RoutingRepository {
 					/* translators: %s: e-mail typed by the user. */
 					$errors[] = sprintf( __( '"%s" is not a valid e-mail address.', 'krivo-chatflow' ), Sanitizer::str( $email, 80 ) );
 				}
+			}
+		}
+
+		// A rule that cannot be kept must say so: silently dropping it would change who receives leads.
+		// In particular a condition dropped as invalid would leave an empty group, and an empty group
+		// matches everybody, so the rule would send every lead to its destination.
+		$known = array_column( $clean['destinations'], 'id' );
+		foreach ( array_values( (array) ( $raw['destinations'] ?? array() ) ) as $item ) {
+			if ( is_array( $item ) && isset( $item['id'] ) ) {
+				$known[] = (string) $item['id'];
+			}
+		}
+		foreach ( array_values( (array) ( $raw['rules'] ?? array() ) ) as $item ) {
+			if ( ! is_array( $item ) ) {
+				continue;
+			}
+			$rule_name = Sanitizer::str( $item['name'] ?? '', 80 );
+			$label     = '' !== $rule_name ? $rule_name : __( 'Untitled rule', 'krivo-chatflow' );
+			if ( ! in_array( (string) ( $item['destination'] ?? '' ), $known, true ) ) {
+				/* translators: %s: rule name. */
+				$errors[] = sprintf( __( 'The rule "%s" sends leads to a destination that does not exist.', 'krivo-chatflow' ), $label );
+				continue;
+			}
+			$typed = is_array( $item['when']['conditions'] ?? null ) ? count( $item['when']['conditions'] ) : 0;
+			$kept  = count( Sanitizer::group( $item['when'] ?? array() )['conditions'] );
+			if ( 0 === $typed ) {
+				/* translators: %s: rule name. */
+				$errors[] = sprintf( __( 'The rule "%s" has no condition. Add at least one, or remove the rule.', 'krivo-chatflow' ), $label );
+			} elseif ( $kept < $typed ) {
+				/* translators: %s: rule name. */
+				$errors[] = sprintf( __( 'The rule "%s" has a condition that is not valid. Check the field, the operator and the value.', 'krivo-chatflow' ), $label );
 			}
 		}
 		return $errors;

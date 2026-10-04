@@ -44,7 +44,7 @@ final class Mailer {
 		if ( ! empty( $options['reply_to'] ) && is_email( $options['reply_to'] ) ) {
 			$name = trim( (string) preg_replace( '/["<>,;\r\n]+/', ' ', (string) ( $options['reply_to_name'] ?? '' ) ) );
 			$name = Text::limit( Text::single_line( $name ), 80 );
-			$headers[] = 'Reply-To: ' . ( '' !== $name ? '"' . $name . '" ' : '' ) . '<' . $options['reply_to'] . '>';
+			$headers[] = 'Reply-To: ' . ( '' !== $name ? $name . ' ' : '' ) . '<' . $options['reply_to'] . '>'; // wp_mail() and PHPMailer quote the display name.
 		} elseif ( '' !== $config['reply_to'] ) {
 			$headers[] = 'Reply-To: <' . $config['reply_to'] . '>';
 		}
@@ -78,7 +78,12 @@ final class Mailer {
 			}
 		};
 		$from_email = static function ( $email ) use ( $config, $custom ) {
-			return $custom && '' !== $config['from_email'] ? $config['from_email'] : $email;
+			if ( $custom && '' !== $config['from_email'] ) {
+				return $config['from_email'];
+			}
+			// The WordPress default sender is "wordpress@<host>": on a local site (localhost) it is not a
+			// valid address and PHPMailer refuses to send. Only then, use the administrator's address.
+			return \PHPMailer\PHPMailer\PHPMailer::validateAddress( (string) $email ) ? $email : (string) get_option( 'admin_email' );
 		};
 		$from_name = static function ( $name ) use ( $config, $custom ) {
 			return $custom && '' !== $config['from_name'] ? $config['from_name'] : $name;
@@ -86,8 +91,8 @@ final class Mailer {
 
 		add_action( 'phpmailer_init', $on_init, PHP_INT_MAX );
 		add_action( 'wp_mail_failed', $on_failed );
+		add_filter( 'wp_mail_from', $from_email, PHP_INT_MAX );
 		if ( $custom ) {
-			add_filter( 'wp_mail_from', $from_email, PHP_INT_MAX );
 			add_filter( 'wp_mail_from_name', $from_name, PHP_INT_MAX );
 		}
 
@@ -96,8 +101,8 @@ final class Mailer {
 		} finally {
 			remove_action( 'phpmailer_init', $on_init, PHP_INT_MAX );
 			remove_action( 'wp_mail_failed', $on_failed );
+			remove_filter( 'wp_mail_from', $from_email, PHP_INT_MAX );
 			if ( $custom ) {
-				remove_filter( 'wp_mail_from', $from_email, PHP_INT_MAX );
 				remove_filter( 'wp_mail_from_name', $from_name, PHP_INT_MAX );
 			}
 		}
