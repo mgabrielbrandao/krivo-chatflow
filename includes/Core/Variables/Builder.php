@@ -123,6 +123,66 @@ final class Builder {
 	}
 
 	/**
+	 * The variables a template of this flow can use, for the editor's "insert variable" menu.
+	 *
+	 * @param array $flow Flow config.
+	 * @return array[] Each { name, label, group } where group is "field", "person" or "system".
+	 */
+	public static function catalog( array $flow ): array {
+		$list = array(
+			array(
+				'name'  => 'name',
+				'label' => __( 'Name', 'krivo-chatflow' ),
+				'group' => 'person',
+			),
+			array(
+				'name'  => 'email',
+				'label' => __( 'E-mail', 'krivo-chatflow' ),
+				'group' => 'person',
+			),
+			array(
+				'name'  => 'phone',
+				'label' => __( 'Phone', 'krivo-chatflow' ),
+				'group' => 'person',
+			),
+		);
+		$seen = array( 'name', 'email', 'phone' );
+		foreach ( self::fields( $flow ) as $field ) {
+			$key = (string) ( $field['key'] ?? '' );
+			if ( '' === $key || in_array( $key, $seen, true ) || ! Registry::collects( (string) ( $field['type'] ?? '' ) ) || in_array( $key, self::reserved(), true ) ) {
+				continue;
+			}
+			$seen[] = $key;
+			$list[] = array(
+				'name'  => $key,
+				'label' => '' !== (string) $field['label'] ? (string) $field['label'] : $key,
+				'group' => 'field',
+			);
+		}
+		$system = array(
+			'all_fields'   => __( 'All answers', 'krivo-chatflow' ),
+			'page_url'     => __( 'Page address', 'krivo-chatflow' ),
+			'page_title'   => __( 'Page title', 'krivo-chatflow' ),
+			'utm_source'   => __( 'Campaign source', 'krivo-chatflow' ),
+			'utm_medium'   => __( 'Campaign medium', 'krivo-chatflow' ),
+			'utm_campaign' => __( 'Campaign name', 'krivo-chatflow' ),
+			'destination'  => __( 'Destination', 'krivo-chatflow' ),
+			'site_name'    => __( 'Site name', 'krivo-chatflow' ),
+			'flow_name'    => __( 'Chat name', 'krivo-chatflow' ),
+			'date'         => __( 'Date', 'krivo-chatflow' ),
+			'time'         => __( 'Time', 'krivo-chatflow' ),
+		);
+		foreach ( $system as $name => $label ) {
+			$list[] = array(
+				'name'  => $name,
+				'label' => $label,
+				'group' => 'system',
+			);
+		}
+		return $list;
+	}
+
+	/**
 	 * Flattens the flow's fields in order.
 	 *
 	 * @param array $flow Flow config.

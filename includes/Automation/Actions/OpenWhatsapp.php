@@ -81,17 +81,22 @@ final class OpenWhatsapp implements ActionInterface {
 	}
 
 	/**
-	 * Builds the WhatsApp directive.
+	 * Builds the WhatsApp message and link without any side effect (the editor's preview and the real
+	 * send use this same code).
 	 *
 	 * @param RunContext $context Context.
 	 * @param array      $config  Configuration.
-	 * @return Result
+	 * @return array{url:string,message:string,skip:?Result}
 	 */
-	public function run( RunContext $context, array $config ): Result {
+	public function compose( RunContext $context, array $config ): array {
 		$destination = RoutingRepository::destination( (string) ( $context->lead['destination_key'] ?? '' ) );
 		$digits      = null !== $destination ? (string) $destination['whatsapp'] : '';
 		if ( '' === $digits ) {
-			return Result::skipped( 'no_whatsapp', __( 'The routed destination has no WhatsApp number.', 'krivo-chatflow' ) );
+			return array(
+				'url'     => '',
+				'message' => '',
+				'skip'    => Result::skipped( 'no_whatsapp', __( 'The routed destination has no WhatsApp number.', 'krivo-chatflow' ) ),
+			);
 		}
 
 		$template = '' !== (string) ( $config['message'] ?? '' ) ? (string) $config['message'] : (string) ( $context->flow['whatsapp']['message'] ?? '' );
@@ -120,7 +125,30 @@ final class OpenWhatsapp implements ActionInterface {
 		$url = (string) apply_filters( 'krivo_chatflow_whatsapp_url', $url, $context->lead, $context->flow );
 
 		if ( 0 !== strpos( $url, UrlBuilder::HOST ) ) {
-			return Result::skipped( 'bad_url', __( 'The WhatsApp link was not generated.', 'krivo-chatflow' ) );
+			return array(
+				'url'     => '',
+				'message' => $message,
+				'skip'    => Result::skipped( 'bad_url', __( 'The WhatsApp link was not generated.', 'krivo-chatflow' ) ),
+			);
+		}
+		return array(
+			'url'     => $url,
+			'message' => $message,
+			'skip'    => null,
+		);
+	}
+
+	/**
+	 * Builds the WhatsApp directive.
+	 *
+	 * @param RunContext $context Context.
+	 * @param array      $config  Configuration.
+	 * @return Result
+	 */
+	public function run( RunContext $context, array $config ): Result {
+		$composed = $this->compose( $context, $config );
+		if ( null !== $composed['skip'] ) {
+			return $composed['skip'];
 		}
 
 		/**
@@ -129,13 +157,13 @@ final class OpenWhatsapp implements ActionInterface {
 		 * @param string $url  URL.
 		 * @param array  $lead Lead.
 		 */
-		do_action( 'krivo_chatflow_before_whatsapp_redirect', $url, $context->lead );
+		do_action( 'krivo_chatflow_before_whatsapp_redirect', $composed['url'], $context->lead );
 
 		return Result::success(
 			array(
 				'directive' => array(
 					'type' => 'open_whatsapp',
-					'url'  => $url,
+					'url'  => $composed['url'],
 				),
 			)
 		);

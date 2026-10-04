@@ -252,6 +252,22 @@ final class LeadRepository {
 	}
 
 	/**
+	 * Number of leads (spam excluded) per flow, for the flows list.
+	 *
+	 * @return array<int,int> flow id => count
+	 */
+	public static function count_by_flow(): array {
+		global $wpdb;
+		$table = Tables::leads();
+		$rows  = $wpdb->get_results( "SELECT flow_id, COUNT(*) AS total FROM {$table} WHERE status <> 'spam' GROUP BY flow_id", ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$out   = array();
+		foreach ( (array) $rows as $row ) {
+			$out[ (int) $row['flow_id'] ] = (int) $row['total'];
+		}
+		return $out;
+	}
+
+	/**
 	 * Leads with a given e-mail address (WordPress privacy export/erase tools work by e-mail).
 	 *
 	 * @param string $email  E-mail address.

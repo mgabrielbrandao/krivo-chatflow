@@ -136,30 +136,32 @@ final class SendEmail implements ActionInterface {
 	}
 
 	/**
-	 * Sends the e-mail.
+	 * Builds the message without sending it (used by the send and by the editor's dry run, so what is
+	 * previewed is exactly what is sent). Has no side effects.
 	 *
 	 * @param RunContext $context Context.
 	 * @param array      $config  Configuration.
-	 * @return Result
+	 * @return array{args:?array,skip:?Result,autoresponder:bool} "args" holds { to[], subject, html, text, options }.
 	 */
-	public function run( RunContext $context, array $config ): Result {
+	public function compose( RunContext $context, array $config ): array {
 		$lead = $context->lead;
 		if ( 'spam' === ( $lead['status'] ?? '' ) ) {
-			return Result::skipped( 'spam', __( 'The lead was held as possible spam.', 'krivo-chatflow' ) );
+			return array(
+				'args'          => null,
+				'skip'          => Result::skipped( 'spam', __( 'The lead was held as possible spam.', 'krivo-chatflow' ) ),
+				'autoresponder' => false,
+			);
 		}
 
-		$tokens         = (array) ( $config['to'] ?? array() );
+		$tokens           = (array) ( $config['to'] ?? array() );
 		$is_autoresponder = array( 'lead' ) === $tokens;
-		$recipients     = $this->recipients( $tokens, $lead );
+		$recipients       = $this->recipients( $tokens, $lead );
 		if ( array() === $recipients ) {
-			return Result::skipped( 'no_recipient', __( 'There is no valid recipient for this e-mail.', 'krivo-chatflow' ) );
-		}
-
-		if ( $is_autoresponder ) {
-			// One confirmation per address per hour: nobody can use the form to flood a third party.
-			if ( ! RateLimiter::hit( 'autoresponder:' . strtolower( $recipients[0] ), 1, HOUR_IN_SECONDS ) ) {
-				return Result::skipped( 'rate_limited', __( 'A confirmation was already sent to this address recently.', 'krivo-chatflow' ) );
-			}
+			return array(
+				'args'          => null,
+				'skip'          => Result::skipped( 'no_recipient', __( 'There is no valid recipient for this e-mail.', 'krivo-chatflow' ) ),
+				'autoresponder' => $is_autoresponder,
+			);
 		}
 
 		$vars    = $context->vars();
@@ -167,13 +169,12 @@ final class SendEmail implements ActionInterface {
 		$subject = Renderer::render( (string) ( $config['subject'] ?? '' ), $vars, 'subject' );
 		$text    = Renderer::render( $body, $vars, 'text' );
 		// The template text itself is escaped as HTML first; then values are inserted escaped.
-		$inner   = Renderer::render( nl2br( esc_html( $body ), false ), $vars, 'html' );
-		$html    = self::wrap( $inner );
+		$inner = Renderer::render( nl2br( esc_html( $body ), false ), $vars, 'html' );
 
 		$args = array(
 			'to'      => $recipients,
 			'subject' => $subject,
-			'html'    => $html,
+			'html'    => self::wrap( $inner ),
 			'text'    => $text,
 			'options' => array(),
 		);
@@ -190,6 +191,35 @@ final class SendEmail implements ActionInterface {
 		 * @param array $config  Action configuration.
 		 */
 		$args = apply_filters( 'krivo_chatflow_email_args', $args, $lead, $config );
+
+		return array(
+			'args'          => (array) $args,
+			'skip'          => null,
+			'autoresponder' => $is_autoresponder,
+		);
+	}
+
+	/**
+	 * Sends the e-mail.
+	 *
+	 * @param RunContext $context Context.
+	 * @param array      $config  Configuration.
+	 * @return Result
+	 */
+	public function run( RunContext $context, array $config ): Result {
+		$composed = $this->compose( $context, $config );
+		if ( null !== $composed['skip'] ) {
+			return $composed['skip'];
+		}
+		$args = $composed['args'];
+
+		if ( $composed['autoresponder'] ) {
+			// One confirmation per address per hour: nobody can use the form to flood a third party.
+			$first = (array) $args['to'];
+			if ( ! RateLimiter::hit( 'autoresponder:' . strtolower( (string) ( $first[0] ?? '' ) ), 1, HOUR_IN_SECONDS ) ) {
+				return Result::skipped( 'rate_limited', __( 'A confirmation was already sent to this address recently.', 'krivo-chatflow' ) );
+			}
+		}
 
 		$sent = Mailer::send( (array) $args['to'], (string) $args['subject'], (string) $args['html'], (string) $args['text'], (array) $args['options'] );
 		if ( $sent['ok'] ) {

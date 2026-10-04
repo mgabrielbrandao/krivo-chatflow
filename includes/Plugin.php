@@ -34,6 +34,9 @@ final class Plugin {
 		Scheduler::register();
 		Engine::register();
 
+		// REST routes and the admin-ajax fallback; classes load only when the REST server (or ajax) runs.
+		\Krivo\ChatFlow\Rest\Router::register();
+
 		do_action( 'krivo_chatflow_loaded' );
 	}
 }
