@@ -37,6 +37,9 @@ final class Plugin {
 		// REST routes and the admin-ajax fallback; classes load only when the REST server (or ajax) runs.
 		\Krivo\ChatFlow\Rest\Router::register();
 
+		// Front end: the bubble, the shortcode and the privacy tools.
+		\Krivo\ChatFlow\Frontend\Frontend::register();
+
 		do_action( 'krivo_chatflow_loaded' );
 	}
 }

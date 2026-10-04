@@ -11,7 +11,7 @@
 		"build": "node bin/build.mjs",
 		"build:dev": "node bin/build.mjs --dev",
 		"watch": "node bin/build.mjs --dev --watch",
-		"test:js": "node --test tests/js/",
+		"test:js": "node --test tests/js/*.test.mjs",
 		"test:e2e": "node tests/e2e/run.mjs"
 	},
 	"devDependencies": {
