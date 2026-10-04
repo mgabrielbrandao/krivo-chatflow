@@ -1,0 +1,647 @@
+/* Krivo ChatFlow: the panel. Downloaded only when the visitor shows interest.
+   Every rule starts with the widget root (an id), so a theme's generic rules cannot override it. */
+:is(#krivo-chatflow-root, .kcf-inline-host) {
+	.kcf-panel {
+		--kcf-accent: #7b2ff7;
+		--kcf-on-accent: #fff;
+		--kcf-panel-bg: #fff;
+		--kcf-text: #171519;
+		--kcf-muted: rgba(23, 21, 25, 0.64);
+		--kcf-line: rgba(23, 21, 25, 0.16);
+		--kcf-soft: #f3eefb;
+		--kcf-field: #fff;
+		--kcf-danger: #b42318;
+		--kcf-danger-bg: rgba(180, 35, 24, 0.1);
+		--kcf-focus: #171519;
+		position: absolute;
+		bottom: calc(var(--kcf-size, 60px) + 14px);
+		display: flex;
+		flex-direction: column;
+		width: 380px;
+		max-width: calc(100vw - 32px);
+		max-height: min(640px, calc(100vh - var(--kcf-size, 60px) - var(--kcf-oy, 24px) - 32px));
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		border: 1px solid var(--kcf-line);
+		border-radius: 18px;
+		background: var(--kcf-panel-bg);
+		color: var(--kcf-text);
+		font: 400 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		letter-spacing: normal;
+		text-align: left;
+		text-transform: none;
+		box-shadow: 0 16px 48px rgba(23, 21, 25, 0.26), 0 2px 8px rgba(23, 21, 25, 0.12);
+		animation: kcf-panel-in 0.2s ease both;
+		box-sizing: border-box;
+	}
+	&.kcf-pos-bottom-right .kcf-panel {
+		right: 0;
+	}
+	&.kcf-pos-bottom-left .kcf-panel {
+		left: 0;
+	}
+	.kcf-panel[data-theme="dark"] {
+		--kcf-panel-bg: #1c1a21;
+		--kcf-text: #f3f0f8;
+		--kcf-muted: rgba(243, 240, 248, 0.72);
+		--kcf-line: rgba(255, 255, 255, 0.2);
+		--kcf-soft: #2b2833;
+		--kcf-field: #25222c;
+		--kcf-danger: #fda29b;
+		--kcf-danger-bg: rgba(253, 162, 155, 0.14);
+		--kcf-focus: #f3f0f8;
+	}
+	.kcf-panel[hidden],
+	.kcf-panel [hidden] {
+		display: none !important;
+	}
+	.kcf-panel *,
+	.kcf-panel *::before,
+	.kcf-panel *::after {
+		box-sizing: border-box;
+	}
+	.kcf-panel :where(h2, p, ul, ol, li, form, fieldset, legend, label, div, span, header, footer, section) {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		letter-spacing: inherit;
+		text-transform: none;
+		text-shadow: none;
+		float: none;
+		min-width: 0;
+	}
+
+	/* Header */
+	.kcf-head {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 16px 12px 16px 18px;
+		background: var(--kcf-accent);
+		color: var(--kcf-on-accent);
+	}
+	.kcf-avatar {
+		flex: none;
+		width: 40px !important;
+		height: 40px !important;
+		border-radius: 50% !important;
+		object-fit: cover;
+		background: rgba(255, 255, 255, 0.3);
+	}
+	.kcf-head-text {
+		flex: 1;
+		min-width: 0;
+	}
+	.kcf-title {
+		font-size: 17px !important;
+		font-weight: 650 !important;
+		line-height: 1.25 !important;
+		color: var(--kcf-on-accent) !important;
+	}
+	.kcf-title:focus {
+		outline: none;
+	}
+	.kcf-title:focus-visible {
+		outline: 2px solid var(--kcf-on-accent);
+		outline-offset: 2px;
+		border-radius: 4px;
+	}
+	.kcf-sub {
+		margin-top: 2px !important;
+		font-size: 13.5px;
+		opacity: 0.92;
+		color: var(--kcf-on-accent) !important;
+	}
+	.kcf-status {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 4px !important;
+		font-size: 12.5px;
+		color: var(--kcf-on-accent) !important;
+		opacity: 0.95;
+	}
+	.kcf-status::before {
+		content: "";
+		flex: none;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #9ca3af;
+		box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+	}
+	.kcf-status[data-state="online"]::before {
+		background: #22c55e;
+	}
+	.kcf-close {
+		flex: none;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 44px !important;
+		height: 44px !important;
+		margin: 0 !important;
+		padding: 10px !important;
+		border: 0 !important;
+		border-radius: 50% !important;
+		background: transparent !important;
+		color: var(--kcf-on-accent) !important;
+		cursor: pointer;
+		line-height: 0;
+	}
+	.kcf-close:hover {
+		background: rgba(255, 255, 255, 0.2) !important;
+	}
+	.kcf-close:focus-visible {
+		outline: 2px solid var(--kcf-on-accent) !important;
+		outline-offset: -2px;
+	}
+	.kcf-close svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* Body */
+	.kcf-body {
+		flex: 1 1 auto;
+		min-height: 120px;
+		padding: 18px;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		background: var(--kcf-panel-bg);
+	}
+	.kcf-loading {
+		color: var(--kcf-muted);
+	}
+	.kcf-fields {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.kcf-unit {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.kcf-unit-title {
+		font-size: 16px !important;
+		font-weight: 650 !important;
+		line-height: 1.3;
+		color: var(--kcf-text) !important;
+	}
+	.kcf-field {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+	.kcf-label {
+		display: block;
+		font-size: 14px !important;
+		font-weight: 600 !important;
+		line-height: 1.35;
+		color: var(--kcf-text) !important;
+	}
+	.kcf-opt {
+		font-weight: 400;
+		color: var(--kcf-muted);
+	}
+	.kcf-desc {
+		font-size: 13px;
+		color: var(--kcf-muted) !important;
+	}
+	.kcf-sr {
+		position: absolute !important;
+		width: 1px !important;
+		height: 1px !important;
+		margin: -1px !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		clip: rect(0 0 0 0) !important;
+		white-space: nowrap !important;
+		border: 0 !important;
+	}
+	.kcf-input {
+		display: block !important;
+		width: 100% !important;
+		height: 46px !important;
+		margin: 0 !important;
+		padding: 0 14px !important;
+		border: 1px solid var(--kcf-line) !important;
+		border-radius: 10px !important;
+		background: var(--kcf-field) !important;
+		color: var(--kcf-text) !important;
+		font: 400 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+		box-shadow: none !important;
+		appearance: none;
+		-webkit-appearance: none;
+	}
+	.kcf-input::placeholder {
+		color: var(--kcf-muted);
+		opacity: 1;
+	}
+	.kcf-textarea {
+		height: auto !important;
+		min-height: 104px;
+		padding: 12px 14px !important;
+		resize: vertical;
+	}
+	.kcf-select {
+		padding-right: 38px !important;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;
+		background-repeat: no-repeat !important;
+		background-position: right 12px center !important;
+		background-size: 18px !important;
+	}
+	.kcf-input:focus,
+	.kcf-input:focus-visible {
+		border-color: var(--kcf-accent) !important;
+		outline: 2px solid var(--kcf-accent) !important;
+		outline-offset: 1px !important;
+	}
+	.kcf-invalid .kcf-input {
+		border-color: var(--kcf-danger) !important;
+	}
+	.kcf-err {
+		display: block;
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--kcf-danger) !important;
+	}
+	.kcf-group {
+		min-width: 0;
+		border: 0;
+	}
+	.kcf-choices {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-top: 6px;
+	}
+	.kcf-choice {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		min-height: 24px;
+		font-size: 15px;
+		cursor: pointer;
+	}
+	.kcf-choice input {
+		flex: none;
+		width: 20px !important;
+		height: 20px !important;
+		margin: 1px 0 0 !important;
+		accent-color: var(--kcf-accent);
+		cursor: pointer;
+	}
+	.kcf-choice input:focus-visible {
+		outline: 2px solid var(--kcf-focus);
+		outline-offset: 2px;
+	}
+	.kcf-consent {
+		font-size: 13.5px;
+		line-height: 1.45;
+		color: var(--kcf-muted);
+	}
+	.kcf-consent a,
+	.kcf-html a,
+	.kcf-link {
+		color: var(--kcf-text);
+		text-decoration: underline;
+	}
+	.kcf-html {
+		font-size: 14px;
+		color: var(--kcf-text);
+	}
+	.kcf-html :where(p, ul, ol) {
+		margin: 0 0 8px;
+	}
+	.kcf-html :where(ul, ol) {
+		padding-left: 20px;
+	}
+	.kcf-hp {
+		position: absolute !important;
+		left: -9999px !important;
+		width: 1px !important;
+		height: 1px !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+	}
+
+	/* Steps */
+	.kcf-progress {
+		margin-bottom: 16px;
+	}
+	.kcf-step {
+		margin-bottom: 8px !important;
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--kcf-muted) !important;
+	}
+	.kcf-bar {
+		height: 4px;
+		border-radius: 2px;
+		background: var(--kcf-soft);
+		overflow: hidden;
+	}
+	.kcf-bar-fill {
+		display: block;
+		height: 100%;
+		border-radius: 2px;
+		background: var(--kcf-accent);
+		transition: width 0.25s ease;
+	}
+
+	/* Buttons */
+	.kcf-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-top: 18px;
+	}
+	.kcf-btn {
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		min-height: 46px !important;
+		margin: 0 !important;
+		padding: 0 20px !important;
+		border: 1px solid transparent !important;
+		border-radius: 10px !important;
+		font: 600 15.5px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+		text-align: center;
+		text-decoration: none !important;
+		text-transform: none !important;
+		cursor: pointer;
+		box-shadow: none !important;
+		appearance: none;
+		-webkit-appearance: none;
+	}
+	.kcf-btn-primary {
+		flex: 1;
+		background: var(--kcf-accent) !important;
+		color: var(--kcf-on-accent) !important;
+	}
+	.kcf-btn-primary:hover {
+		filter: brightness(0.93);
+	}
+	.kcf-btn-primary[disabled] {
+		opacity: 0.65;
+		cursor: progress;
+	}
+	.kcf-btn-ghost {
+		background: transparent !important;
+		border-color: var(--kcf-line) !important;
+		color: var(--kcf-text) !important;
+	}
+	.kcf-btn-ghost:hover {
+		background: var(--kcf-soft) !important;
+	}
+	.kcf-btn:focus-visible,
+	.kcf-chip:focus-visible,
+	.kcf-send:focus-visible,
+	.kcf-back:focus-visible,
+	.kcf-link:focus-visible {
+		outline: 3px solid var(--kcf-focus) !important;
+		outline-offset: 2px !important;
+	}
+	.kcf-wa-note {
+		flex-basis: 100%;
+		font-size: 12.5px;
+		color: var(--kcf-muted) !important;
+		text-align: center;
+	}
+	.kcf-link {
+		margin: 0 0 0 8px !important;
+		padding: 0 !important;
+		border: 0 !important;
+		background: none !important;
+		font: inherit !important;
+		font-weight: 600 !important;
+		cursor: pointer;
+	}
+	.kcf-banner {
+		margin-top: 14px;
+		padding: 10px 12px;
+		border-radius: 10px;
+		background: var(--kcf-danger-bg);
+		color: var(--kcf-danger);
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.kcf-banner .kcf-link {
+		color: inherit !important;
+	}
+	.kcf-preview-note {
+		margin-top: 14px;
+		padding: 8px 10px;
+		border: 1px dashed var(--kcf-line);
+		border-radius: 8px;
+		font-size: 12.5px;
+		color: var(--kcf-muted);
+		text-align: center;
+	}
+
+	/* Conversation */
+	.kcf-log {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.kcf-msg {
+		max-width: 86%;
+		padding: 10px 14px;
+		font-size: 15px;
+		line-height: 1.45;
+		overflow-wrap: anywhere;
+		white-space: pre-line;
+	}
+	.kcf-bot {
+		align-self: flex-start;
+		border-radius: 16px 16px 16px 4px;
+		background: var(--kcf-soft) !important;
+		color: var(--kcf-text) !important;
+	}
+	.kcf-me {
+		align-self: flex-end;
+		border-radius: 16px 16px 4px 16px;
+		background: var(--kcf-accent) !important;
+		color: var(--kcf-on-accent) !important;
+	}
+	.kcf-composer {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-top: 12px;
+	}
+	.kcf-row {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+	}
+	.kcf-row .kcf-field {
+		flex: 1;
+		min-width: 0;
+	}
+	.kcf-send {
+		flex: none;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 46px !important;
+		height: 46px !important;
+		margin: 0 !important;
+		padding: 12px !important;
+		border: 0 !important;
+		border-radius: 50% !important;
+		background: var(--kcf-accent) !important;
+		color: var(--kcf-on-accent) !important;
+		cursor: pointer;
+		line-height: 0;
+	}
+	.kcf-send svg {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	.kcf-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	.kcf-chip {
+		margin: 0 !important;
+		padding: 10px 16px !important;
+		border: 1.5px solid var(--kcf-accent) !important;
+		border-radius: 999px !important;
+		background: transparent !important;
+		color: var(--kcf-text) !important;
+		font: 500 15px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+		cursor: pointer;
+	}
+	.kcf-chip:hover,
+	.kcf-chip[aria-pressed="true"] {
+		background: var(--kcf-accent) !important;
+		color: var(--kcf-on-accent) !important;
+	}
+	.kcf-back {
+		align-self: flex-start;
+		display: inline-flex !important;
+		align-items: center;
+		gap: 4px;
+		margin: 0 !important;
+		padding: 2px 4px !important;
+		border: 0 !important;
+		background: none !important;
+		color: var(--kcf-muted) !important;
+		font: 500 13px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+		cursor: pointer;
+	}
+	.kcf-back svg {
+		width: 14px;
+		height: 14px;
+	}
+	.kcf-sending {
+		color: var(--kcf-muted) !important;
+		font-size: 14px;
+	}
+
+	/* Done */
+	.kcf-done {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 14px;
+		padding: 8px 0;
+		text-align: center;
+	}
+	.kcf-done-icon {
+		align-self: center;
+		width: 56px;
+		height: 56px;
+		padding: 14px;
+		border-radius: 50%;
+		background: var(--kcf-accent);
+		color: var(--kcf-on-accent);
+		line-height: 0;
+	}
+	.kcf-done-icon svg {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	.kcf-done-text {
+		font-size: 16px;
+		line-height: 1.5;
+		white-space: pre-line;
+		color: var(--kcf-text) !important;
+	}
+
+	/* Footer / signature (an ordinary visible element, never hidden) */
+	.kcf-foot {
+		padding: 10px 18px 12px;
+		border-top: 1px solid var(--kcf-line);
+		background: var(--kcf-panel-bg);
+		text-align: center;
+	}
+	.kcf-credit {
+		font-size: 12.5px;
+		color: var(--kcf-muted) !important;
+	}
+	.kcf-credit a {
+		color: var(--kcf-text);
+		font-weight: 600;
+		text-decoration: underline;
+	}
+	.kcf-credit a:focus-visible {
+		outline: 2px solid var(--kcf-focus);
+		outline-offset: 2px;
+	}
+
+	/* Inline (shortcode): the same panel, always open, in the flow of the page */
+	.kcf-panel.kcf-inline {
+		position: relative;
+		bottom: auto;
+		width: 100%;
+		max-width: 520px;
+		max-height: none;
+		margin: 0 auto;
+		animation: none;
+	}
+}
+
+@keyframes kcf-panel-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.98);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:is(#krivo-chatflow-root, .kcf-inline-host) .kcf-panel,
+	:is(#krivo-chatflow-root, .kcf-inline-host) .kcf-panel * {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+
+/* Phones: a bottom sheet that never blocks the page behind it */
+@media (max-width: 640px) {
+	#krivo-chatflow-root .kcf-panel:not(.kcf-inline) {
+		position: fixed;
+		inset: auto 0 0 0;
+		width: auto;
+		max-width: none;
+		max-height: min(85vh, 85dvh, var(--kcf-vh, 100vh));
+		border-radius: 18px 18px 0 0;
+		border-width: 1px 0 0;
+		padding-bottom: env(safe-area-inset-bottom, 0px);
+	}
+	#krivo-chatflow-root .kcf-body {
+		padding: 16px;
+	}
+}

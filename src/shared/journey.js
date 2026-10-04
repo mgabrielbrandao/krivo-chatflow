@@ -15,7 +15,7 @@ export function units(flow) {
 	const mode = flow.mode || 'form';
 	const steps = Array.isArray(flow.steps) ? flow.steps : [];
 	if (mode === 'steps') {
-		return steps.map((step) => ({ id: String(step.id || ''), fields: Array.isArray(step.fields) ? step.fields : [] }));
+		return steps.map((step) => ({ id: String(step.id || ''), title: String(step.title || ''), fields: Array.isArray(step.fields) ? step.fields : [] }));
 	}
 	const all = [];
 	steps.forEach((step) => (Array.isArray(step.fields) ? step.fields : []).forEach((field) => all.push(field)));

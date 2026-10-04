@@ -105,12 +105,19 @@ final class Manifest {
 				'tz'      => Hours::client_timezone(),
 			),
 			'design'    => array(
-				'title'      => '' !== $design['title'] ? $design['title'] : __( 'Hello 👋', 'krivo-chatflow' ),
+				'title'      => '' !== $design['title'] ? $design['title'] : __( 'Hello', 'krivo-chatflow' ),
 				'subtitle'   => '' !== $design['subtitle'] ? $design['subtitle'] : __( 'How can we help you?', 'krivo-chatflow' ),
 				'theme'      => $design['theme'],
 				'accent'     => $design['accent'],
 				'avatar_url' => $avatar_url,
 				'strings'    => $strings,
+			),
+			// Only what is needed before the manifest has been downloaded.
+			'i18n'      => array(
+				'close'   => __( 'Close chat', 'krivo-chatflow' ),
+				'loading' => __( 'Loading…', 'krivo-chatflow' ),
+				'error'   => __( 'We could not load the chat. Please try again.', 'krivo-chatflow' ),
+				'retry'   => __( 'Try again', 'krivo-chatflow' ),
 			),
 			'signature' => self::signature(),
 		);
@@ -259,6 +266,8 @@ final class Manifest {
 				'type_answer'       => __( 'Type your answer…', 'krivo-chatflow' ),
 				'optional'          => __( '(optional)', 'krivo-chatflow' ),
 				'done'              => __( 'Done', 'krivo-chatflow' ),
+				'accept'            => __( 'I agree', 'krivo-chatflow' ),
+				'skip'              => __( 'Skip', 'krivo-chatflow' ),
 			)
 		);
 	}

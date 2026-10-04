@@ -48,6 +48,10 @@ final class Renderer {
 		}
 		$html .= '<button type="button" class="' . esc_attr( implode( ' ', $classes ) ) . '" aria-label="' . esc_attr( $label ) . '" aria-expanded="false" aria-controls="krivo-chatflow-panel">';
 		$html .= '<span class="kcf-icon" aria-hidden="true">' . self::icon( (array) $bubble['icon'] ) . '</span>';
+		if ( 'pill' === $bubble['shape'] ) {
+			// The pill shows its text; the other shapes are icon-only and rely on the aria-label.
+			$html .= '<span class="kcf-label">' . esc_html( $label ) . '</span>';
+		}
 		if ( ! empty( $bubble['badge']['enabled'] ) ) {
 			$html .= '<span class="kcf-badge" hidden>' . esc_html( (string) $bubble['badge']['text'] ) . '</span>';
 		}

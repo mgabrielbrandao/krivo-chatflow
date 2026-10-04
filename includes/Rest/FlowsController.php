@@ -324,7 +324,8 @@ final class FlowsController extends AdminController {
 		if ( is_wp_error( $config ) ) {
 			return $config;
 		}
-		$manifest = Manifest::build( (int) $request['id'], 0, $config );
+		$manifest                = Manifest::build( (int) $request['id'], 0, $config );
+		$manifest['bubble_html'] = \Krivo\ChatFlow\Frontend\Renderer::bubble( $manifest['boot'] );
 		return self::ok( $manifest );
 	}
 
