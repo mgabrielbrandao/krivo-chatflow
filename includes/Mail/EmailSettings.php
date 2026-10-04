@@ -63,11 +63,12 @@ final class EmailSettings {
 		$host     = preg_match( '/^[a-z0-9]([a-z0-9.-]{0,251}[a-z0-9])?$/', $host ) ? $host : '';
 		$from     = Sanitizer::email( $raw['from_email'] ?? '' );
 		$reply_to = Sanitizer::email( $raw['reply_to'] ?? '' );
+		$port     = isset( $raw['port'] ) && is_numeric( $raw['port'] ) ? (int) $raw['port'] : 0;
 
 		return array(
 			'mode'       => Sanitizer::enum( $raw['mode'] ?? '', array( 'wp', 'custom' ), $defaults['mode'] ),
 			'host'       => $host,
-			'port'       => Sanitizer::int( $raw['port'] ?? $defaults['port'], 1, 65535, $defaults['port'] ),
+			'port'       => $port >= 1 && $port <= 65535 ? $port : $defaults['port'], // A port that cannot exist is not "fixed" to some other number.
 			'encryption' => Sanitizer::enum( $raw['encryption'] ?? '', array( 'none', 'ssl', 'tls' ), $defaults['encryption'] ),
 			'auth'       => Sanitizer::bool( $raw['auth'] ?? $defaults['auth'] ),
 			'username'   => Sanitizer::str( $raw['username'] ?? '', 190 ),

@@ -38,19 +38,21 @@ final class LeadRepository {
 	public static function insert( array $data ): int {
 		global $wpdb;
 
-		$now = Clock::now();
-		$row = array(
+		$now    = Clock::now();
+		$status = $data['status'] ?? 'new';
+		$source = $data['source'] ?? 'widget';
+		$row    = array(
 			'public_id'         => wp_generate_uuid4(),
 			'flow_id'           => (int) ( $data['flow_id'] ?? 0 ),
 			'flow_revision'     => (int) ( $data['flow_revision'] ?? 0 ),
-			'status'            => in_array( $data['status'] ?? 'new', self::STATUSES, true ) ? $data['status'] : 'new',
+			'status'            => in_array( $status, self::STATUSES, true ) ? $status : 'new',
 			'name'              => (string) ( $data['name'] ?? '' ),
 			'email'             => (string) ( $data['email'] ?? '' ),
 			'phone'             => (string) ( $data['phone'] ?? '' ),
 			'destination_key'   => (string) ( $data['destination_key'] ?? '' ),
 			'destination_label' => (string) ( $data['destination_label'] ?? '' ),
 			'channel'           => 'whatsapp' === ( $data['channel'] ?? '' ) ? 'whatsapp' : 'message',
-			'source'            => in_array( $data['source'] ?? 'widget', array( 'widget', 'shortcode' ), true ) ? $data['source'] : 'widget',
+			'source'            => in_array( $source, array( 'widget', 'shortcode' ), true ) ? $source : 'widget',
 			'in_hours'          => isset( $data['in_hours'] ) && null !== $data['in_hours'] ? (int) (bool) $data['in_hours'] : null,
 			'device'            => (string) ( $data['device'] ?? '' ),
 			'answers'           => Json::encode( (array) ( $data['answers'] ?? array() ) ),

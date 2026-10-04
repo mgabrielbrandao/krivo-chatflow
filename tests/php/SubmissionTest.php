@@ -463,7 +463,7 @@ class SubmissionTest extends Krivo_TestCase {
 	public function test_spam_leads_are_not_changed_by_automations(): void {
 		$id = $this->flow(
 			array(
-				array( 'id' => 'a_st', 'trigger' => 'lead.created', 'type' => 'change_lead_status', 'config' => array( 'status' => 'won' ) ),
+				array( 'id' => 'a_st', 'trigger' => 'lead.created', 'type' => 'change_lead_status', 'config' => array( 'status' => 'converted' ) ),
 			)
 		);
 		add_filter( 'krivo_chatflow_is_spam', '__return_true' );
