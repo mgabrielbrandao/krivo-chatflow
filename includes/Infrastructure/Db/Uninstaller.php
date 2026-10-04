@@ -31,6 +31,7 @@ final class Uninstaller {
 		'krivo_chatflow_integrations',
 		'krivo_chatflow_index',
 		'krivo_chatflow_onboarding',
+		'krivo_chatflow_email_test',
 		'krivo_chatflow_db_version',
 		'krivo_chatflow_migrating',
 		'krivo_chatflow_queue_lock',

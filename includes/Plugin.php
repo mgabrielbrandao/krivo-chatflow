@@ -39,6 +39,8 @@ final class Plugin {
 
 		// Front end: the bubble, the shortcode and the privacy tools.
 		\Krivo\ChatFlow\Frontend\Frontend::register();
+		\Krivo\ChatFlow\Core\Leads\PrivacyTools::register();
+		\Krivo\ChatFlow\Core\Leads\CsvExporter::register();
 
 		do_action( 'krivo_chatflow_loaded' );
 	}
