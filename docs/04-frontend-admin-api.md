@@ -182,7 +182,8 @@ falha o build se qualquer orçamento estourar. CLS é zero por construção: ele
 - `nofollow` incluído porque é **branding, não construção de backlinks** (item 59).
 - Estilo: pequeno, contraste ≥ 4,5:1, respeita tema claro/escuro, sem competir com o CTA.
 - **Um único build** para o .org e comercial. Divergência futura de política = *flag* de empacotamento documentada, nunca checagem silenciosa em runtime.
-- `authorized_by` / `authorized_at` ficam registrados (prova de consentimento). **A URL final é fornecida e verificada por você** antes do release; até lá o link fica desabilitado no código.
+- `authorized_by` / `authorized_at` ficam registrados (prova de consentimento).
+- **Destino do link**: `https://krivo.works/` (informado pelo proprietário). O domínio **não é alcançável a partir do ambiente de desenvolvimento**, então não foi verificado: o `link-check` do release (CI ou máquina do proprietário) precisa confirmar que responde, e **sem essa confirmação a opção de link permanece desabilitada**. A URL fica numa constante única (`KRIVO_CHATFLOW_CREDIT_URL`), listada em `bin/external-endpoints.json` e em *External Services*.
 
 ### 3.10 Eventos JavaScript e API (item 17)
 
@@ -288,4 +289,7 @@ Integração com `@wordpress/components` sujeita à deriva entre versões do WP:
 
 - **Conceito**: balão de conversa minimalista cuja estrutura é formada pelo **espaço negativo entre duas formas da linguagem Krivo** (ou pelo próprio **K**), com a “cauda” do balão integrada à perna do K. Geometria em grade de 24 px, traço mínimo de 2 px para sobreviver em **16 px**, sem gradiente e sem dependência de cor.
 - **Entregáveis**: símbolo SVG (cor + monocromático + negativo), ícone de menu do admin (SVG `data:` mono), ícone do plugin (128/256 para o .org), banner. Verificação **renderizada** em 16/24/32/64/128/512 px (Chromium headless) e em modo monocromático, com critério de aceite visual.
-- **Dependência sua**: preciso do **símbolo/K oficial da Krivo (SVG)** para derivar o desenho com fidelidade; sem isso, o conceito fica genérico. Não será usado nenhum elemento do logotipo do WhatsApp.
+- **Estado**: **conjunto provisório entregue em [`brand/`](../brand/README.md)** — símbolo (colorido, branco, monocromático), ícone de plugin, lockup claro/escuro, ícone do menu do admin e PNGs do WordPress.org (128/256). Gerado por `brand/tools/build_logo.py`, versionado e reproduzível.
+- **Dois tamanhos ópticos**: o desenho principal vale a partir de 32 px; até 24 px usa-se o desenho **small** (traço mais grosso, K mais alto). Verificado em pixels reais: em 16 px o desenho principal fica fino e instável; o *small* mantém haste, braço e perna distintos. O ícone do menu do admin (20 px) usa o *small* e foi conferido nas três cores do admin (normal, *hover*, atual).
+- **Regra de construção**: a borda esquerda do talo do K coincide com a borda vertical da cauda; silhueta de quadrado arredondado (não circular), para não lembrar o logotipo do WhatsApp.
+- **Dependência sua (continua)**: o **símbolo/K oficial da Krivo (SVG)** substitui este desenho provisório; os arquivos e o gerador foram feitos para essa troca ser mecânica. Não será usado nenhum elemento do logotipo do WhatsApp.

@@ -105,7 +105,7 @@ Tamanhos relativos (P / M / G). **Nenhum marco termina sem seus testes e sem o `
 | K15 | PT-BR não carrega automaticamente antes da aprovação (core não lê `languages/` do plugin) | Alta | Médio | Decisão D-04; instalador de tradução no beta; translate.wordpress.org depois |
 | K16 | Cálculo de horário (fuso, horário de verão) | Média | Médio | `Intl` com o fuso do site; fixtures de datas críticas; `in_hours` no servidor é autoritativo |
 | K17 | Revisor estranha rota pública e *fallback* AJAX | Baixa | Médio | Justificativa documentada, *allowlist* explícita, guardas reais (não `__return_true`) |
-| K18 | Desenho do logo sem o símbolo oficial fica genérico | Alta | Baixo | Pedir o SVG da Krivo (seção 7) |
+| K18 | Desenho do logo sem o símbolo oficial fica genérico | Alta | Baixo | **Parcialmente mitigado**: conjunto provisório em `brand/` (reproduzível, com tamanhos ópticos); a troca pelo símbolo oficial (seção 7) é mecânica |
 | K19 | Plugin Check avisa “script carregado em todos os contextos” quando o balão está publicado no site inteiro | Alta | Baixo | Aviso inerente a widget flutuante (lido no código do `Enqueued_Scripts_Scope_Check`); triagem justificada no M7, sem artifícios; nada carrega sem flow publicado |
 
 ## 6. Fora do MVP / backlog (e “preparado, não construído”)
@@ -141,10 +141,10 @@ Tamanhos relativos (P / M / G). **Nenhum marco termina sem seus testes e sem o `
 
 | Insumo | Para quê | Estado |
 |--------|----------|--------|
-| **SVG do símbolo/K oficial da Krivo** | Derivar o logotipo “balão + K” com fidelidade | pendente |
-| **URL de destino do link “Krivo Works”** | Assinatura clicável (hoje desabilitada no código) | pendente; `krivo.works` inacessível aqui, **não verificada** |
+| **SVG do símbolo/K oficial da Krivo** | Substituir o logo provisório | **logo provisório entregue em `brand/`**; símbolo oficial ainda pendente |
+| **URL de destino do link “Krivo Works”** | Assinatura clicável | **informada: `https://krivo.works/`**; `krivo.works` é inacessível a partir do ambiente, então **não verificada** — o `link-check` do release confirma; sem isso a opção de link fica desabilitada |
 | **Repositório público** (ou espelho) e seu URL | Fonte dos bundles, seção *Source code* do `readme.txt` | hoje **privado** |
-| **Username WordPress.org** | `Contributors` | `gabrielbrandaoai` (informado por você); **não verificável aqui** — validar o perfil antes de cada submissão |
+| **Username WordPress.org** | `Contributors` | **confirmado por você: `gabrielbrandaoai`** (gravado em `bin/release.json` no M0). Não é verificável a partir do ambiente (`wordpress.org` bloqueado): o perfil precisa ser aberto no navegador antes de cada submissão; o `Contributors` distingue maiúsculas e minúsculas |
 | **Liberar `developer.wordpress.org`, `wordpress.org`, `make.wordpress.org`** em *Network access* do ambiente | Releitura das diretrizes; baixar Elementor/WooCommerce/plugins de SMTP e cache para a matriz | sem isso, a matriz roda só no CI do GitHub |
 | **Aparelhos reais** (iPhone/Safari, Android/Chrome, Samsung Internet) | Roteiro manual do M7 | seu lado |
 

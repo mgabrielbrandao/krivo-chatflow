@@ -105,6 +105,7 @@ krivo-chatflow/                         # raiz do repositório (em dev, também 
 ├── languages/                          # krivo-chatflow.pot
 ├── tests/                              # php/{unit,integration,security} · js · e2e · fixtures
 ├── bin/                                # build-zip.php · release-check.php · size-budget.mjs · link-check.php
+├── brand/                              # identidade visual (provisória): SVG, previews, gerador (fora do ZIP)
 ├── assets-wporg/                       # banner, ícones, screenshots (SVN /assets; fora do ZIP)
 ├── docs/                               # estes documentos (+ BUILD.md, EXTERNAL-SERVICES.md, WORDPRESS-ORG-COMPLIANCE.md no M7)
 └── composer.json · package.json · package-lock.json · webpack.config.js · phpcs.xml.dist

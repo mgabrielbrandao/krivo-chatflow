@@ -17,6 +17,8 @@
 | 05 | [Segurança, WordPress.org e qualidade](05-seguranca-wporg-qualidade.md) | Modelo de ameaças, conformidade por design, regressões do Krivo Forms, testes, checklist de release, build |
 | 06 | [Plano de desenvolvimento](06-plano-de-desenvolvimento.md) | Escopo por fase (MVP / 1.0 / depois), marcos com critérios de saída, riscos, decisões em aberto |
 
+**Identidade visual provisória:** [`../brand/README.md`](../brand/README.md) — símbolo, ícone, lockup e ícone do menu do admin (SVG), com gerador e previews.
+
 ## Resumo executivo (uma página)
 
 **O que é.** Uma camada entre visitante e atendimento: um balão flutuante que abre um fluxo de

@@ -1,0 +1,9 @@
+# Local tooling and build output (the plugin ZIP is assembled by an allowlist script, never from the working tree)
+.venv/
+__pycache__/
+node_modules/
+vendor/
+/build/
+*.log
+.DS_Store
+Thumbs.db

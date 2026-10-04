@@ -248,5 +248,5 @@ krivo-chatflow/
 └── src/** · package.json · package-lock.json · webpack.config.js      # fonte dos bundles
 ```
 
-Fora do ZIP: `tests/`, `bin/`, `docs/`, `assets-wporg/` (vai ao SVN `/assets`), configs de PHPCS/PHPStan/PHPUnit, `composer.*`, qualquer arquivo oculto, `node_modules/`, `vendor/`, `.github/`, `CLAUDE.md` e diretórios de IA.
+Fora do ZIP: `tests/`, `bin/`, `docs/`, `brand/`, `assets-wporg/` (vai ao SVN `/assets`), configs de PHPCS/PHPStan/PHPUnit, `composer.*`, qualquer arquivo oculto, `node_modules/`, `vendor/`, `.github/`, `CLAUDE.md` e diretórios de IA.
 O ZIP é **sempre** gerado por esse script — nunca “zipar a pasta do repositório”.
