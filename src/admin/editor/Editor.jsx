@@ -16,6 +16,7 @@ import { tabFor } from './helpers.js';
 const AUTOSAVE_MS = 1800;
 
 export const EDITOR_TABS = ['flow', 'design', 'bubble', 'whatsapp', 'email', 'automations', 'logic', 'publish'];
+const BUTTON_TABS = ['flow', 'bubble', 'publish'];
 
 /**
  * The chat editor. Everything is edited in a local copy and saved to the DRAFT automatically; the
@@ -223,16 +224,17 @@ function EditorBody({ id, initial, meta, tab, onTab, onBack, onOpen, confirm, to
 	const report = flow.report || { errors: [], warnings: [] };
 	const badges = useMemo(() => {
 		const marks = {};
-		report.errors.forEach((item) => (marks[tabFor(item)] = 'error'));
+		report.errors.forEach((item) => (marks[tabFor(item, config.mode)] = 'error'));
 		report.warnings.forEach((item) => {
-			const key = tabFor(item);
+			const key = tabFor(item, config.mode);
 			marks[key] = marks[key] || 'warn';
 		});
 		return marks;
-	}, [flow.report]);
+	}, [flow.report, config.mode]);
 
+	const buttonOnly = config.mode === 'button';
 	const labels = {
-		flow: __('Questions', 'krivo-chatflow'),
+		flow: buttonOnly ? __('Button', 'krivo-chatflow') : __('Questions', 'krivo-chatflow'),
 		design: __('Design', 'krivo-chatflow'),
 		bubble: __('Bubble', 'krivo-chatflow'),
 		whatsapp: __('WhatsApp', 'krivo-chatflow'),
@@ -241,13 +243,15 @@ function EditorBody({ id, initial, meta, tab, onTab, onBack, onOpen, confirm, to
 		logic: __('Logic', 'krivo-chatflow'),
 		publish: __('Publish', 'krivo-chatflow'),
 	};
-	const tabs = EDITOR_TABS.map((key) => ({
+	// A "button only" chat has no form, panel, e-mail, automations or logic: those tabs would do nothing.
+	const shown = buttonOnly ? BUTTON_TABS : EDITOR_TABS;
+	const tabs = shown.map((key) => ({
 		id: key,
 		label: labels[key],
 		badge: badges[key] ? 'warn' : '',
 		badgeLabel: badges[key] === 'error' ? __('Needs attention', 'krivo-chatflow') : __('Worth a look', 'krivo-chatflow'),
 	}));
-	const current = EDITOR_TABS.includes(tab) ? tab : 'flow';
+	const current = shown.includes(tab) ? tab : 'flow';
 	const published = flow.status === 'published';
 	const paused = flow.status === 'paused';
 
@@ -280,7 +284,7 @@ function EditorBody({ id, initial, meta, tab, onTab, onBack, onOpen, confirm, to
 					</Notice>
 				) : null}
 				<Tabs tabs={tabs} value={current} onChange={onTab} label={__('Chat settings', 'krivo-chatflow')}>
-					{current === 'flow' ? <FlowTab config={config} update={update} meta={meta} variables={variables} /> : null}
+					{current === 'flow' ? <FlowTab flowId={id} config={config} update={update} meta={meta} variables={variables} /> : null}
 					{current === 'design' ? <DesignTab config={config} update={update} /> : null}
 					{current === 'bubble' ? <BubbleTab config={config} update={update} meta={meta} /> : null}
 					{current === 'whatsapp' ? <WhatsappTab flowId={id} config={config} update={update} meta={meta} variables={variables} /> : null}

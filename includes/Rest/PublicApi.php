@@ -14,6 +14,8 @@ use Krivo\ChatFlow\Core\Stats\StatsRepository;
 use Krivo\ChatFlow\Core\Submission\AntiSpam\Guard;
 use Krivo\ChatFlow\Core\Submission\AntiSpam\Token;
 use Krivo\ChatFlow\Core\Submission\Pipeline;
+use Krivo\ChatFlow\Core\Submission\Tracking;
+use Krivo\ChatFlow\Core\Whatsapp\ButtonLink;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -27,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 final class PublicApi {
 
 	public const MAX_BODY_BYTES = 65536;
-	public const EVENTS         = array( 'view', 'start' );
+	public const EVENTS         = array( 'view', 'start', 'click' );
 
 	/**
 	 * The public manifest of a published flow.
@@ -72,8 +74,9 @@ final class PublicApi {
 		if ( null !== $limited ) {
 			return $limited;
 		}
-		if ( null === FlowRepository::published( $flow_id ) ) {
-			return self::not_found();
+		$row = FlowRepository::published( $flow_id );
+		if ( null === $row || 'button' === $row['config']['mode'] ) {
+			return self::not_found(); // A "button only" chat has no form, so there is nothing to submit.
 		}
 		StatsRepository::increment( $flow_id, StatsRepository::OPEN );
 		return array(
@@ -84,7 +87,9 @@ final class PublicApi {
 
 	/**
 	 * Records funnel events reported by the browser. They are advisory (a robot can inflate them),
-	 * which is why leads and WhatsApp clicks are counted by the server instead.
+	 * which is why leads and WhatsApp clicks are counted by the server instead. A "click" is only
+	 * accepted for a "button only" chat that opens a plain link (a WhatsApp button is counted by the
+	 * server, in button()).
 	 *
 	 * @param int   $flow_id Flow id.
 	 * @param array $events  Event names.
@@ -95,7 +100,8 @@ final class PublicApi {
 		if ( null !== $limited ) {
 			return $limited;
 		}
-		if ( null === FlowRepository::published( $flow_id ) ) {
+		$row = FlowRepository::published( $flow_id );
+		if ( null === $row ) {
 			return self::not_found();
 		}
 		foreach ( array_unique( array_slice( $events, 0, 5 ) ) as $event ) {
@@ -105,9 +111,57 @@ final class PublicApi {
 			if ( 'view' === $event && ! Settings::get( 'analytics.count_views', true ) ) {
 				continue;
 			}
+			if ( 'click' === $event ) {
+				if ( 'button' === $row['config']['mode'] && 'link' === $row['config']['button']['action'] ) {
+					StatsRepository::increment( $flow_id, StatsRepository::BUTTON_CLICK );
+				}
+				continue;
+			}
 			StatsRepository::increment( $flow_id, $event );
 		}
 		return true;
+	}
+
+	/**
+	 * The visitor tapped the WhatsApp button of a "button only" chat: resolves the destination (routing
+	 * rules included), builds the wa.me link, counts the click and hands the link to the browser. The
+	 * destination number is therefore never printed in the page.
+	 *
+	 * @param int   $flow_id Flow id.
+	 * @param array $context Page context reported by the browser (url, title, referrer, device, utm).
+	 * @return array|\WP_Error { ok, url }
+	 */
+	public static function button( int $flow_id, array $context ) {
+		$limited = Guard::light( 'button', $flow_id, 20 );
+		if ( null !== $limited ) {
+			return $limited;
+		}
+		$row = FlowRepository::published( $flow_id );
+		if ( null === $row || 'button' !== $row['config']['mode'] || 'whatsapp' !== $row['config']['button']['action'] ) {
+			return self::not_found();
+		}
+
+		$tracking = Tracking::sanitize( $context );
+		$link     = ButtonLink::compose( $flow_id, $row['config'], $tracking );
+		if ( '' === $link['url'] ) {
+			return new \WP_Error( 'krivo_chatflow_unavailable', __( 'WhatsApp is not available right now. Please try again in a moment.', 'krivo-chatflow' ), array( 'status' => 503 ) );
+		}
+
+		StatsRepository::increment( $flow_id, StatsRepository::BUTTON_CLICK );
+		StatsRepository::increment( $flow_id, StatsRepository::WHATSAPP_CLICK );
+		/**
+		 * Fires when a visitor taps the WhatsApp button of a "button only" chat (there is no lead).
+		 *
+		 * @param int    $flow_id  Flow id.
+		 * @param string $url      The wa.me link handed to the browser.
+		 * @param array  $tracking Page and campaign context.
+		 */
+		do_action( 'krivo_chatflow_button_clicked', $flow_id, $link['url'], $tracking );
+
+		return array(
+			'ok'  => true,
+			'url' => $link['url'],
+		);
 	}
 
 	/**

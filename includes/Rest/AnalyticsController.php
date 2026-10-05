@@ -97,6 +97,7 @@ final class AnalyticsController extends AdminController {
 					'view'           => 'browser',
 					'open'           => 'server',
 					'start'          => 'browser',
+					'button_click'   => 'server',
 					'lead'           => 'server',
 					'whatsapp_click' => 'server',
 				),

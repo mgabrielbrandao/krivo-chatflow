@@ -79,6 +79,7 @@ export function Dashboard() {
 						<Stat label={__('Opened the chat', 'krivo-chatflow')} value={number(d.funnel.totals.open)} note={percent(d.funnel.rates.open_rate) + ' ' + __('of visitors', 'krivo-chatflow')} />
 						<Stat label={__('Started answering', 'krivo-chatflow')} value={number(d.funnel.totals.start)} />
 						<Stat label={__('Leads', 'krivo-chatflow')} value={number(d.funnel.totals.lead)} note={percent(d.funnel.rates.completion_rate) + ' ' + __('finish', 'krivo-chatflow')} />
+						{d.funnel.totals.button_click > 0 ? <Stat label={__('Tapped the button', 'krivo-chatflow')} value={number(d.funnel.totals.button_click)} /> : null}
 						<Stat label={__('Went to WhatsApp', 'krivo-chatflow')} value={number(d.funnel.totals.whatsapp_click)} />
 					</div>
 				</Card>

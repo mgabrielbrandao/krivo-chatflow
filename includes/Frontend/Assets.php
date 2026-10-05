@@ -120,7 +120,7 @@ final class Assets {
 	 * @return string
 	 */
 	private static function config_json( ?array $selection ): string {
-		$config = array(
+		$config       = array(
 			'version'   => KRIVO_CHATFLOW_VERSION,
 			'rest'      => esc_url_raw( rest_url( 'krivo-chatflow/v1/' ) ),
 			'ajax'      => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
@@ -134,6 +134,14 @@ final class Assets {
 			'flow'      => null === $selection ? null : $selection['boot'],
 			'inline'    => (object) self::$inline,
 		);
+		$needs_button = null !== $selection && ! empty( $selection['boot']['button'] );
+		foreach ( self::$inline as $boot ) {
+			$needs_button = $needs_button || ! empty( $boot['button'] );
+		}
+		if ( $needs_button ) {
+			// Only chats that are just a button download this file (see src/frontend/button.js).
+			$config['button'] = array( 'js' => KRIVO_CHATFLOW_URL . 'assets/frontend/button.js?ver=' . rawurlencode( KRIVO_CHATFLOW_VERSION ) );
+		}
 		if ( null !== $selection && $selection['preview'] ) {
 			// A draft cannot be fetched from the public endpoint: the manifest travels with the page.
 			$flow               = FlowRepository::get( (int) $selection['id'] );

@@ -127,6 +127,83 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 		return panelPromise;
 	}
 
+	// ------------------------------------------------------------------ "button only" chats
+
+	var buttonPromise = null;
+	function loadButton() {
+		if (buttonPromise) {
+			return buttonPromise;
+		}
+		buttonPromise = new Promise(function (resolve, reject) {
+			if (win.KrivoChatFlowButton) {
+				resolve(win.KrivoChatFlowButton);
+				return;
+			}
+			var script = doc.createElement('script');
+			script.src = cfg.button.js;
+			script.async = true;
+			script.onload = function () {
+				win.KrivoChatFlowButton ? resolve(win.KrivoChatFlowButton) : reject(new Error('button'));
+			};
+			script.onerror = function () {
+				buttonPromise = null;
+				reject(new Error('button'));
+			};
+			doc.head.appendChild(script);
+		});
+		return buttonPromise;
+	}
+
+	// What tapping a WhatsApp button does. The tab is opened inside the click (so no pop-up blocker objects);
+	// button.js (downloaded only for chats that are just a button) asks the server for the wa.me link, because
+	// the number is never printed in the page, and points the tab at it.
+	function buttonAction(boot, notify) {
+		var busy = false;
+		return function () {
+			if (cfg.preview) {
+				notify(boot.i18n.preview_button);
+				return;
+			}
+			if (busy) {
+				return;
+			}
+			busy = true;
+			var tab = null;
+			try {
+				tab = win.open('', '_blank');
+			} catch (e) {
+				tab = null;
+			}
+			loadButton()
+				.then(function (api) {
+					return api.go(cfg, boot, tab, notify, emit);
+				})
+				.catch(function () {
+					if (tab) {
+						tab.close();
+					}
+					notify(boot.i18n.button_error);
+				})
+				.then(function () {
+					busy = false;
+				});
+		};
+	}
+
+	// Wires a button or link of a "button only" chat.
+	function wireButton(el, boot, activate) {
+		if (el.tagName === 'A') {
+			el.addEventListener('click', function () {
+				if (!cfg.preview) {
+					ping(boot.id, ['click']);
+				}
+				emit('button', { flow: boot.id, mode: 'button' });
+			});
+		} else {
+			el.addEventListener('click', activate);
+		}
+	}
+
 	function idle(fn) {
 		if (win.requestIdleCallback) {
 			win.requestIdleCallback(fn, { timeout: 1500 });
@@ -146,12 +223,40 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 		var badge = root.querySelector('.kcf-badge');
 		var instance = null;
 		var shown = false;
+		var isButton = !!boot.button;
+		var tipText = tooltip && tooltip.querySelector('.kcf-tooltip-text');
+		var tipOriginal = tipText ? tipText.textContent : '';
 
 		function hideTooltip() {
 			if (tooltip) {
 				tooltip.hidden = true;
+				tooltip.classList.remove('kcf-note');
+				if (tipText) {
+					tipText.textContent = tipOriginal;
+				}
 			}
 		}
+
+		// A message that replaces the welcome text for a moment (the link could not be opened, or the preview).
+		function note(message) {
+			if (!tooltip || !tipText) {
+				return;
+			}
+			if (!message) {
+				hideTooltip();
+				return;
+			}
+			tooltip.classList.add('kcf-note');
+			tipText.textContent = message;
+			tooltip.hidden = false;
+		}
+
+		function showCard() {
+			if (tooltip && b.tooltip.enabled) {
+				tooltip.hidden = false;
+			}
+		}
+		var activate = isButton ? buttonAction(boot, note) : null;
 
 		function open(trigger) {
 			hideTooltip();
@@ -175,18 +280,31 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 			}
 		}
 
-		button.addEventListener('click', function () {
-			if (instance && instance.isOpen()) {
-				instance.close();
-			} else {
-				open('click');
-			}
-		});
-		['pointerenter', 'focus', 'touchstart', 'pointerdown'].forEach(function (name) {
-			button.addEventListener(name, function () {
-				loadPanel().catch(function () {});
-			}, { passive: true, once: true });
-		});
+		if (isButton) {
+			wireButton(button, boot, activate);
+			Array.prototype.forEach.call(root.querySelectorAll('.kcf-tooltip-cta'), function (el) {
+				wireButton(el, boot, activate);
+			});
+		} else {
+			button.addEventListener('click', function () {
+				if (instance && instance.isOpen()) {
+					instance.close();
+				} else {
+					open('click');
+				}
+			});
+			// The welcome card can carry a button that does the same as the bubble.
+			Array.prototype.forEach.call(root.querySelectorAll('.kcf-tooltip-cta'), function (el) {
+				el.addEventListener('click', function () {
+					open('click');
+				});
+			});
+			['pointerenter', 'focus', 'touchstart', 'pointerdown'].forEach(function (name) {
+				button.addEventListener(name, function () {
+					loadPanel().catch(function () {});
+				}, { passive: true, once: true });
+			});
+		}
 
 		function reveal() {
 			if (shown) {
@@ -196,6 +314,11 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 			idle(function () {
 				root.hidden = false;
 				root.classList.add('kcf-in');
+				if (isButton && !cfg.preview) {
+					idle(function () {
+						loadButton().catch(function () {});
+					});
+				}
 				var beh = boot.behavior;
 				if (tooltip && b.tooltip.enabled) {
 					var seen = get(local, 'tip:' + boot.id + ':' + boot.rev);
@@ -227,7 +350,8 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 				if (beh.auto_open && !(beh.auto_open_once && get(session, 'auto:' + boot.id))) {
 					set(session, 'auto:' + boot.id, '1');
 					idle(function () {
-						open('auto');
+						// A "button only" chat has no window to open: "open automatically" shows its welcome card.
+						isButton ? showCard() : open('auto');
 					});
 				}
 				beacon(boot.id);
@@ -256,13 +380,19 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 					root.hidden = false;
 					root.classList.add('kcf-in');
 				}
+				if (isButton) {
+					showCard();
+					return Promise.resolve(null);
+				}
 				return open('api');
 			},
 			close: function () {
-				withInstance('close');
+				isButton ? hideTooltip() : withInstance('close');
 			},
 			toggle: function () {
-				if (instance && instance.isOpen()) {
+				if (isButton) {
+					tooltip && tooltip.hidden ? showCard() : hideTooltip();
+				} else if (instance && instance.isOpen()) {
 					instance.close();
 				} else {
 					open('api');
@@ -271,17 +401,13 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 		};
 	}
 
-	// One advisory "view" per session and flow (the server counts leads and WhatsApp clicks itself).
-	function beacon(flowId) {
-		if (cfg.preview || get(session, 'view:' + flowId)) {
-			return;
-		}
-		set(session, 'view:' + flowId, '1');
+	// Advisory counters (the server counts leads and WhatsApp clicks itself).
+	function ping(flowId, events) {
 		try {
 			fetch(cfg.rest + 'public/events', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ flow: flowId, events: ['view'] }),
+				body: JSON.stringify({ flow: flowId, events: events }),
 				keepalive: true,
 				credentials: 'omit',
 			}).catch(function () {});
@@ -290,9 +416,35 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 		}
 	}
 
+	// One advisory "view" per session and flow.
+	function beacon(flowId) {
+		if (cfg.preview || get(session, 'view:' + flowId)) {
+			return;
+		}
+		set(session, 'view:' + flowId, '1');
+		ping(flowId, ['view']);
+	}
+
 	// ------------------------------------------------------------------ inline (shortcode)
 
 	function setupInline() {
+		// A "button only" chat placed by the shortcode: the button is already in the page, only wire it.
+		Array.prototype.forEach.call(doc.querySelectorAll('[data-kcf-inline-button]'), function (host) {
+			var boot = cfg.inline && cfg.inline[host.getAttribute('data-kcf-inline-button')];
+			var el = host.querySelector('.kcf-inline-cta');
+			if (!boot || !boot.button || !el) {
+				return;
+			}
+			el.style.setProperty('--kcf-bg', boot.bubble.colors.bg);
+			el.style.setProperty('--kcf-fg', boot.bubble.colors.icon);
+			var message = doc.createElement('span');
+			message.className = 'kcf-inline-note';
+			message.setAttribute('role', 'status');
+			host.appendChild(message);
+			wireButton(el, boot, buttonAction(boot, function (text) {
+				message.textContent = text;
+			}));
+		});
 		var hosts = doc.querySelectorAll('[data-kcf-inline]');
 		Array.prototype.forEach.call(hosts, function (host) {
 			var boot = cfg.inline && cfg.inline[host.getAttribute('data-kcf-inline')];

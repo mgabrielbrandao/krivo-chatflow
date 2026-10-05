@@ -938,7 +938,7 @@ class RestAdminTest extends Krivo_TestCase {
 		$this->assertSame( 0, $this->call( 'GET', '/analytics/summary', array( 'flow' => 2 ) )->get_data()['totals']['view'] );
 		$this->assertSame( 400, $this->call( 'GET', '/analytics/summary', array( 'days' => 9999 ) )->get_status() );
 		$empty = $this->call( 'GET', '/analytics/summary', array( 'flow' => 77 ) )->get_data()['rates'];
-		$this->assertSame( array( 'open_rate' => null, 'completion_rate' => null, 'conversion_rate' => null, 'whatsapp_rate' => null ), $empty, 'No division by zero' );
+		$this->assertSame( array( 'open_rate' => null, 'completion_rate' => null, 'conversion_rate' => null, 'click_rate' => null, 'whatsapp_rate' => null ), $empty, 'No division by zero' );
 	}
 
 	public function test_health_reports_what_needs_attention(): void {

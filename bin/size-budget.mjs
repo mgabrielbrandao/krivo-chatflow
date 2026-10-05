@@ -11,6 +11,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const budgets = {
 	'assets/frontend/loader.js': 3 * 1024,
 	'assets/frontend/bubble.css': 2 * 1024,
+	// Only for chats that are just a button (no form): downloaded right after the bubble appears.
+	'assets/frontend/button.js': 2 * 1024,
 	// Downloaded when the visitor shows interest.
 	'assets/frontend/panel.js': 14 * 1024,
 	'assets/frontend/panel.css': 4 * 1024,

@@ -109,8 +109,11 @@ export function bestOn(hex) {
 // ------------------------------------------------------------------------------ validation report
 
 /** Which editor tab shows the fix for a report item. */
-export function tabFor(item) {
+export function tabFor(item, mode) {
 	const code = item.code || '';
+	if (mode === 'button' && /^(button_|no_whatsapp_destination|unknown_variable)/.test(code)) {
+		return 'flow';
+	}
 	if (/^(field_|no_fields|empty_step|rule_|step_)/.test(code)) {
 		return code.startsWith('rule_') ? 'logic' : 'flow';
 	}

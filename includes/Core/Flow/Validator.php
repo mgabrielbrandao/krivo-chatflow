@@ -29,6 +29,10 @@ final class Validator {
 	 * @return array{errors:array[],warnings:array[]}
 	 */
 	public static function report( array $config ): array {
+		if ( 'button' === $config['mode'] ) {
+			return self::button_report( $config );
+		}
+
 		$errors   = array();
 		$warnings = array();
 
@@ -161,6 +165,52 @@ final class Validator {
 		}
 		if ( Contrast::ratio( $config['design']['accent'], '#FFFFFF' ) < 4.5 ) {
 			$warnings[] = self::item( 'accent_contrast', __( 'White text on the panel accent colour is hard to read. Pick a darker accent colour.', 'krivo-chatflow' ), 'design' );
+		}
+
+		return array(
+			'errors'   => $errors,
+			'warnings' => $warnings,
+		);
+	}
+
+	/**
+	 * The report for a "button only" flow: there is no form, no logic and no automation, so only the
+	 * action, the texts and where the button appears are checked.
+	 *
+	 * @param array $config Sanitised flow configuration.
+	 * @return array{errors:array[],warnings:array[]}
+	 */
+	private static function button_report( array $config ): array {
+		$errors   = array();
+		$warnings = array();
+
+		if ( 'link' === $config['button']['action'] ) {
+			if ( '' === $config['button']['url'] ) {
+				$errors[] = self::item( 'button_no_url', __( 'Enter the address the button opens: a web page, a phone number (tel:+5511999999999) or an e-mail (mailto:name@example.com).', 'krivo-chatflow' ), 'button' );
+			}
+		} else {
+			if ( ! self::has_whatsapp_destination() ) {
+				$errors[] = self::item( 'no_whatsapp_destination', __( 'WhatsApp is turned on, but there is no destination with a WhatsApp number. Add one in Routing.', 'krivo-chatflow' ), '' );
+			}
+			$chosen = RoutingRepository::destination( (string) $config['whatsapp']['default_destination'] );
+			if ( null !== $chosen && '' === (string) $chosen['whatsapp'] ) {
+				/* translators: %s: destination name. */
+				$warnings[] = self::item( 'button_destination_no_number', sprintf( __( 'The destination "%s" has no WhatsApp number, so the button falls back to routing and the site default.', 'krivo-chatflow' ), $chosen['name'] ), 'whatsapp' );
+			}
+			$known = array_merge( array_column( Builder::button_catalog(), 'name' ), array_keys( Renderer::ALIASES ), array( 'referrer', 'utm_content', 'utm_term' ) );
+			foreach ( Renderer::used( (string) $config['whatsapp']['message'] ) as $name ) {
+				if ( ! in_array( $name, $known, true ) ) {
+					/* translators: %s: variable name. */
+					$warnings[] = self::item( 'unknown_variable', sprintf( __( 'The variable {%s} does not exist and will be empty.', 'krivo-chatflow' ), $name ), 'whatsapp.message' );
+				}
+			}
+		}
+
+		if ( 'only' === $config['display']['mode'] && array() === $config['display']['include'] ) {
+			$warnings[] = self::item( 'display_nowhere', __( 'The widget is set to show only on specific pages, but no page was added, so it will not appear anywhere.', 'krivo-chatflow' ), '' );
+		}
+		if ( Contrast::ratio( $config['bubble']['colors']['bg'], $config['bubble']['colors']['icon'] ) < 3.0 ) {
+			$warnings[] = self::item( 'bubble_contrast', __( 'The bubble icon is hard to see against the bubble colour. Pick colours with more contrast.', 'krivo-chatflow' ), 'bubble' );
 		}
 
 		return array(

@@ -42,7 +42,8 @@ final class Pipeline {
 	public static function handle( array $payload ) {
 		$flow_id = (int) ( $payload['flow'] ?? 0 );
 		$row     = FlowRepository::published( $flow_id );
-		if ( null === $row ) {
+		// A "button only" chat has no form: nothing can be submitted to it.
+		if ( null === $row || 'button' === $row['config']['mode'] ) {
 			return new \WP_Error( 'krivo_chatflow_not_found', __( 'This chat is not available.', 'krivo-chatflow' ), array( 'status' => 404 ) );
 		}
 		$flow = $row['config'];

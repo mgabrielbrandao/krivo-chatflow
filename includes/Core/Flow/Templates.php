@@ -8,6 +8,7 @@
 namespace Krivo\ChatFlow\Core\Flow;
 
 use Krivo\ChatFlow\Automation\Actions\SendEmail;
+use Krivo\ChatFlow\Core\Whatsapp\ButtonLink;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -37,6 +38,7 @@ final class Templates {
 					$def['fields']
 				),
 				'whatsapp'    => $def['whatsapp'],
+				'mode'        => $def['mode'] ?? 'form',
 			);
 		}
 		return $list;
@@ -57,6 +59,9 @@ final class Templates {
 		$def      = $defs[ $id ];
 		$whatsapp = array_key_exists( 'whatsapp', $opts ) ? (bool) $opts['whatsapp'] : $def['whatsapp'];
 		$config   = Defaults::blank( isset( $opts['name'] ) && '' !== $opts['name'] ? (string) $opts['name'] : $def['name'] );
+		if ( 'button' === ( $def['mode'] ?? '' ) ) {
+			return self::build_button( $config, $def );
+		}
 
 		$config['steps'][0]['fields']        = $def['fields'];
 		$config['whatsapp']['message']       = $def['message'];
@@ -87,6 +92,28 @@ final class Templates {
 	}
 
 	/**
+	 * A "button only" template: no fields, no e-mail; the welcome card does the talking.
+	 *
+	 * @param array $config Blank configuration.
+	 * @param array $def    Template definition.
+	 * @return array
+	 */
+	private static function build_button( array $config, array $def ): array {
+		$config['mode']                       = 'button';
+		$config['button']['action']           = 'whatsapp';
+		$config['whatsapp']['message']        = ButtonLink::default_message();
+		$config['bubble']['label']            = $def['label'];
+		$config['bubble']['tooltip']['title'] = $def['title'];
+		$config['bubble']['tooltip']['text']  = $def['text'];
+		$config['bubble']['tooltip']['cta']   = $def['cta'];
+		$config['bubble']['tooltip']['delay'] = 2;
+		// The card stays until the visitor dismisses it or taps the button: it is the whole message.
+		$config['bubble']['tooltip']['duration'] = 0;
+		$config['bubble']['tooltip']['once']     = false;
+		return $config;
+	}
+
+	/**
 	 * Template definitions.
 	 *
 	 * @return array<string,array>
@@ -110,7 +137,19 @@ final class Templates {
 		};
 
 		return array(
-			'contact'     => array(
+			'whatsapp_button' => array(
+				'name'        => __( 'WhatsApp button', 'krivo-chatflow' ),
+				'description' => __( 'No form: just a floating button with a welcome message that opens WhatsApp.', 'krivo-chatflow' ),
+				'mode'        => 'button',
+				'whatsapp'    => true,
+				'message'     => '',
+				'fields'      => array(),
+				'label'       => __( 'Chat on WhatsApp', 'krivo-chatflow' ),
+				'title'       => __( 'Hello!', 'krivo-chatflow' ),
+				'text'        => __( 'How can we help? Talk to us on WhatsApp.', 'krivo-chatflow' ),
+				'cta'         => __( 'Chat on WhatsApp', 'krivo-chatflow' ),
+			),
+			'contact'         => array(
 				'name'        => __( 'Simple contact', 'krivo-chatflow' ),
 				'description' => __( 'Name, WhatsApp and a message. The fastest way to start.', 'krivo-chatflow' ),
 				'whatsapp'    => true,
@@ -135,7 +174,7 @@ final class Templates {
 					$f( 'textarea', __( 'Message', 'krivo-chatflow' ), array( 'placeholder' => __( 'How can we help?', 'krivo-chatflow' ) ) ),
 				),
 			),
-			'quote'       => array(
+			'quote'           => array(
 				'name'        => __( 'Request a quote', 'krivo-chatflow' ),
 				'description' => __( 'Qualify the project before the conversation: company, service and budget.', 'krivo-chatflow' ),
 				'whatsapp'    => true,
@@ -155,7 +194,7 @@ final class Templates {
 					$f( 'textarea', __( 'Message', 'krivo-chatflow' ), array( 'placeholder' => __( 'Tell us a bit about the project', 'krivo-chatflow' ) ) ),
 				),
 			),
-			'support'     => array(
+			'support'         => array(
 				'name'        => __( 'Support', 'krivo-chatflow' ),
 				'description' => __( 'Collect the product and the problem so the team can answer faster.', 'krivo-chatflow' ),
 				'whatsapp'    => false,
@@ -174,7 +213,7 @@ final class Templates {
 					),
 				),
 			),
-			'clinic'      => array(
+			'clinic'          => array(
 				'name'        => __( 'Clinic', 'krivo-chatflow' ),
 				'description' => __( 'Appointment requests with the type of care.', 'krivo-chatflow' ),
 				'whatsapp'    => true,
@@ -193,7 +232,7 @@ final class Templates {
 					$f( 'textarea', __( 'Message', 'krivo-chatflow' ) ),
 				),
 			),
-			'real_estate' => array(
+			'real_estate'     => array(
 				'name'        => __( 'Real estate', 'krivo-chatflow' ),
 				'description' => __( 'Property type and price range, so the broker calls with the right options.', 'krivo-chatflow' ),
 				'whatsapp'    => true,

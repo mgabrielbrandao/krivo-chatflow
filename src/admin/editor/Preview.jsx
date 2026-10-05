@@ -10,11 +10,14 @@ import { Button } from '../ui.jsx';
 export function Preview({ flowId, config }) {
 	const stage = useRef(null);
 	const instance = useRef(null);
+	const card = useRef(null);
 	const openRef = useRef(true);
+	const modeRef = useRef(null);
 	const [open, setOpen] = useState(true);
 	const [error, setError] = useState('');
 	const [manifest, setManifest] = useState(null);
 	const key = JSON.stringify(config);
+	const buttonOnly = config.mode === 'button';
 
 	useEffect(() => {
 		let live = true;
@@ -47,7 +50,14 @@ export function Preview({ flowId, config }) {
 			instance.current.destroy();
 			instance.current = null;
 		}
+		card.current = null;
 		host.replaceChildren();
+		// Hiding the welcome card of a button must not leave the chat window closed after switching back to a form.
+		if (modeRef.current !== manifest.boot.mode) {
+			modeRef.current = manifest.boot.mode;
+			openRef.current = true;
+			setOpen(true);
+		}
 
 		// The bubble is rendered (and escaped) by PHP; it is parsed into the stage as DOM nodes.
 		const doc = new DOMParser().parseFromString(manifest.bubble_html, 'text/html');
@@ -69,6 +79,46 @@ export function Preview({ flowId, config }) {
 		host.appendChild(root);
 
 		const button = root.querySelector('.kcf-bubble');
+
+		// "Button only" chat: there is no panel. Tapping shows a note instead of leaving the editor.
+		if (manifest.boot.button) {
+			const text = tooltip && tooltip.querySelector('.kcf-tooltip-text');
+			const original = text ? text.textContent : '';
+			const enabled = manifest.boot.bubble.tooltip.enabled;
+			if (tooltip) {
+				tooltip.hidden = !(enabled && openRef.current);
+				card.current = enabled ? tooltip : null;
+			}
+			const showNote = (event) => {
+				event.preventDefault();
+				if (tooltip && text) {
+					tooltip.classList.add('kcf-note');
+					text.textContent = manifest.boot.i18n.preview_button;
+					tooltip.hidden = false;
+				}
+			};
+			const targets = Array.from(root.querySelectorAll('.kcf-bubble, .kcf-tooltip-cta'));
+			targets.forEach((el) => el.addEventListener('click', showNote));
+			const close = root.querySelector('.kcf-tooltip-close');
+			const dismiss = () => {
+				if (tooltip && text) {
+					tooltip.classList.remove('kcf-note');
+					text.textContent = original;
+					tooltip.hidden = true;
+				}
+				openRef.current = false;
+				setOpen(false);
+			};
+			if (close) {
+				close.addEventListener('click', dismiss);
+			}
+			return () => {
+				targets.forEach((el) => el.removeEventListener('click', showNote));
+				if (close) {
+					close.removeEventListener('click', dismiss);
+				}
+			};
+		}
 		const panel = Panel.create({ cfg: { rest: '', ajax: '' }, boot: manifest.boot, root, bubble: button, emit: () => {}, preview: true, manifest: manifest.flow });
 		instance.current = panel;
 		if (openRef.current) {
@@ -112,7 +162,18 @@ export function Preview({ flowId, config }) {
 				<strong>{__('Live preview', 'krivo-chatflow')}</strong>
 				<Button
 					small
+					disabled={buttonOnly && !(manifest && manifest.boot.bubble.tooltip.enabled)}
 					onClick={() => {
+						if (buttonOnly) {
+							const tip = card.current;
+							if (tip) {
+								tip.classList.remove('kcf-note');
+								tip.hidden = !tip.hidden;
+								openRef.current = !tip.hidden;
+								setOpen(!tip.hidden);
+							}
+							return;
+						}
 						const panel = instance.current;
 						if (panel && panel.isOpen()) {
 							panel.close();
@@ -125,13 +186,13 @@ export function Preview({ flowId, config }) {
 						}
 					}}
 				>
-					{open ? __('Show only the bubble', 'krivo-chatflow') : __('Open the chat', 'krivo-chatflow')}
+					{buttonOnly ? (open ? __('Hide the welcome message', 'krivo-chatflow') : __('Show the welcome message', 'krivo-chatflow')) : open ? __('Show only the bubble', 'krivo-chatflow') : __('Open the chat', 'krivo-chatflow')}
 				</Button>
 			</div>
 			<div className="kcf-stage" ref={stage} aria-label={__('Preview of your chat', 'krivo-chatflow')} />
 			{error ? <p className="kcf-field__error">{error}</p> : null}
 			<p className="kcf-field__help" style={{ marginTop: 8 }}>
-				{__('This is the real chat. Nothing you type here is sent or saved.', 'krivo-chatflow')}
+				{buttonOnly ? __('This is the real button. Tapping it here only shows a note: nothing is opened or sent.', 'krivo-chatflow') : __('This is the real chat. Nothing you type here is sent or saved.', 'krivo-chatflow')}
 			</p>
 		</div>
 	);

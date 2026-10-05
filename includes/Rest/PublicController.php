@@ -100,6 +100,28 @@ final class PublicController {
 
 		register_rest_route(
 			self::NAMESPACE,
+			'/public/button',
+			array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => array( __CLASS__, 'button' ),
+				'permission_callback' => array( __CLASS__, 'permit_origin' ),
+				'args'                => array(
+					'flow'    => array(
+						'type'              => 'integer',
+						'required'          => true,
+						'sanitize_callback' => 'absint',
+						'validate_callback' => 'rest_validate_request_arg',
+					),
+					'context' => array(
+						'type'    => 'object',
+						'default' => array(),
+					),
+				),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
 			'/public/submissions',
 			array(
 				'methods'             => \WP_REST_Server::CREATABLE,
@@ -200,6 +222,17 @@ final class PublicController {
 	public static function events( \WP_REST_Request $request ) {
 		$result = PublicApi::events( (int) $request['flow'], (array) $request['events'] );
 		return is_wp_error( $result ) ? self::error( $result ) : new \WP_REST_Response( null, 204 );
+	}
+
+	/**
+	 * POST button.
+	 *
+	 * @param \WP_REST_Request $request Request.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public static function button( \WP_REST_Request $request ) {
+		$result = PublicApi::button( (int) $request['flow'], (array) $request['context'] );
+		return is_wp_error( $result ) ? self::error( $result ) : new \WP_REST_Response( $result, 200 );
 	}
 
 	/**

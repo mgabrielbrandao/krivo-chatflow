@@ -17,13 +17,15 @@ defined( 'ABSPATH' ) || exit;
  * not one event row, so the table stays tiny and carries no personal data.
  *
  * Client-reported metrics (view, open, start) are advisory and can be inflated by bots; "lead" and
- * "whatsapp_click" are counted by the server and are authoritative.
+ * "whatsapp_click" are counted by the server and are authoritative. "button_click" (the "button only"
+ * mode) is counted by the server for WhatsApp, and reported by the browser for plain links.
  */
 final class StatsRepository {
 
 	public const VIEW           = 'view';
 	public const OPEN           = 'open';
 	public const START          = 'start';
+	public const BUTTON_CLICK   = 'button_click';
 	public const LEAD           = 'lead';
 	public const WHATSAPP_CLICK = 'whatsapp_click';
 
@@ -33,7 +35,7 @@ final class StatsRepository {
 	 * @return string[]
 	 */
 	public static function metrics(): array {
-		return array( self::VIEW, self::OPEN, self::START, self::LEAD, self::WHATSAPP_CLICK );
+		return array( self::VIEW, self::OPEN, self::START, self::BUTTON_CLICK, self::LEAD, self::WHATSAPP_CLICK );
 	}
 
 	/**
@@ -130,6 +132,7 @@ final class StatsRepository {
 			'open_rate'       => $rate( (int) $totals[ self::OPEN ], (int) $totals[ self::VIEW ] ),
 			'completion_rate' => $rate( (int) $totals[ self::LEAD ], (int) $totals[ self::START ] ),
 			'conversion_rate' => $rate( (int) $totals[ self::LEAD ], (int) $totals[ self::VIEW ] ),
+			'click_rate'      => $rate( (int) ( $totals[ self::BUTTON_CLICK ] ?? 0 ), (int) $totals[ self::VIEW ] ),
 			'whatsapp_rate'   => $rate( (int) $totals[ self::WHATSAPP_CLICK ], (int) $totals[ self::LEAD ] ),
 		);
 	}

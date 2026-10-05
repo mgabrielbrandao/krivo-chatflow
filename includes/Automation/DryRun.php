@@ -14,6 +14,7 @@ use Krivo\ChatFlow\Automation\Webhook\PayloadBuilder;
 use Krivo\ChatFlow\Core\Routing\Resolver;
 use Krivo\ChatFlow\Core\Variables\Builder;
 use Krivo\ChatFlow\Core\Variables\Renderer;
+use Krivo\ChatFlow\Core\Whatsapp\ButtonLink;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -33,6 +34,9 @@ final class DryRun {
 	 * @return array
 	 */
 	public static function run( int $flow_id, array $flow ): array {
+		if ( 'button' === $flow['mode'] ) {
+			return self::run_button( $flow_id, $flow );
+		}
 		$lead   = SampleData::lead_for_flow( $flow );
 		$values = array();
 		foreach ( $lead['answers'] as $key => $answer ) {
@@ -132,6 +136,48 @@ final class DryRun {
 				);
 			}
 		}
+		return $report;
+	}
+
+	/**
+	 * Previews a "button only" flow: the link the button would open for a visitor on a sample page.
+	 *
+	 * @param int   $flow_id Flow id (0 for an unsaved flow).
+	 * @param array $flow    Sanitised flow configuration.
+	 * @return array Same shape as run().
+	 */
+	private static function run_button( int $flow_id, array $flow ): array {
+		$tracking = array(
+			'page_url'   => home_url( '/sample-page/' ),
+			'page_path'  => '/sample-page/',
+			'page_title' => __( 'Sample page', 'krivo-chatflow' ),
+			'device'     => 'desktop',
+		);
+		$report   = array(
+			'destination' => null,
+			'whatsapp'    => null,
+			'emails'      => array(),
+			'webhooks'    => array(),
+			'message'     => '',
+			'variables'   => array(),
+		);
+		if ( 'whatsapp' !== $flow['button']['action'] ) {
+			return $report;
+		}
+		$link = ButtonLink::compose( $flow_id, $flow, $tracking );
+		if ( null !== $link['destination'] ) {
+			$report['destination'] = array(
+				'name'     => $link['destination']['name'],
+				'reason'   => '',
+				'whatsapp' => '' !== $link['destination']['whatsapp'],
+			);
+		}
+		$report['whatsapp'] = array(
+			'ok'      => '' !== $link['url'],
+			'message' => $link['message'],
+			'url'     => $link['url'],
+			'reason'  => $link['reason'],
+		);
 		return $report;
 	}
 }

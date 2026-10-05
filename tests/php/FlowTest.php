@@ -428,10 +428,14 @@ class FlowTest extends Krivo_TestCase {
 			$config = Sanitizer::sanitize( Templates::build( $template['id'] ) );
 			$report = Validator::report( $config );
 			$this->assertSame( array(), $report['errors'], $template['id'] . ' has no blocking errors' );
+			if ( 'button' === $config['mode'] ) {
+				$this->assertSame( array(), $config['steps'][0]['fields'], $template['id'] . ' has no form' );
+				continue;
+			}
 			$this->assertNotEmpty( $config['steps'][0]['fields'], $template['id'] );
 			$this->assertNotEmpty( $config['automations'], $template['id'] );
 		}
-		$this->assertCount( 5, Templates::all() );
+		$this->assertCount( 6, Templates::all() );
 		$this->assertNull( Templates::build( 'does-not-exist' ) );
 	}
 

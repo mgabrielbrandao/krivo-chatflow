@@ -9,6 +9,7 @@ const METRICS = [
 	['view', () => __('Saw the bubble', 'krivo-chatflow'), () => __('Counted in the visitor’s browser, so ad blockers can hide some.', 'krivo-chatflow')],
 	['open', () => __('Opened the chat', 'krivo-chatflow'), () => __('Counted by your server.', 'krivo-chatflow')],
 	['start', () => __('Started answering', 'krivo-chatflow'), () => __('Counted in the visitor’s browser.', 'krivo-chatflow')],
+	['button_click', () => __('Tapped the button', 'krivo-chatflow'), () => __('Chats that are only a button. Counted by your server for WhatsApp, and in the visitor’s browser for links.', 'krivo-chatflow')],
 	['lead', () => __('Leads', 'krivo-chatflow'), () => __('Counted by your server: this is exact.', 'krivo-chatflow')],
 	['whatsapp_click', () => __('Went to WhatsApp', 'krivo-chatflow'), () => __('Counted by your server.', 'krivo-chatflow')],
 ];
@@ -54,6 +55,9 @@ export function AnalyticsScreen() {
 	const d = data.data;
 	const top = Math.max(1, d.totals.view);
 	const empty = METRICS.every(([key]) => !d.totals[key]);
+	// "Tapped the button" only matters when a chat is just a button.
+	const metrics = METRICS.filter(([key]) => key !== 'button_click' || d.totals.button_click > 0);
+	const buttonsOnly = d.totals.lead === 0 && d.totals.whatsapp_click > 0;
 
 	return (
 		<div className="kcf-stack">
@@ -77,7 +81,8 @@ export function AnalyticsScreen() {
 				<Stat label={__('Leads', 'krivo-chatflow')} value={number(d.totals.lead)} note={percent(d.rates.conversion_rate) + ' ' + __('of visitors', 'krivo-chatflow')} />
 				<Stat label={__('Opened the chat', 'krivo-chatflow')} value={percent(d.rates.open_rate)} note={__('of those who saw the bubble', 'krivo-chatflow')} />
 				<Stat label={__('Finished what they started', 'krivo-chatflow')} value={percent(d.rates.completion_rate)} />
-				<Stat label={__('Went to WhatsApp', 'krivo-chatflow')} value={percent(d.rates.whatsapp_rate)} note={__('of the leads', 'krivo-chatflow')} />
+				{d.totals.button_click > 0 ? <Stat label={__('Tapped the button', 'krivo-chatflow')} value={number(d.totals.button_click)} note={percent(d.rates.click_rate) + ' ' + __('of those who saw the bubble', 'krivo-chatflow')} /> : null}
+				{buttonsOnly ? <Stat label={__('Went to WhatsApp', 'krivo-chatflow')} value={number(d.totals.whatsapp_click)} /> : <Stat label={__('Went to WhatsApp', 'krivo-chatflow')} value={percent(d.rates.whatsapp_rate)} note={__('of the leads', 'krivo-chatflow')} />}
 			</div>
 
 			{empty ? (
@@ -88,7 +93,7 @@ export function AnalyticsScreen() {
 				<>
 					<Card title={__('Funnel', 'krivo-chatflow')} subtitle={__('How visitors move from seeing the bubble to talking to you.', 'krivo-chatflow')}>
 						<div className="kcf-funnel">
-							{METRICS.map(([key, label, source]) => (
+							{metrics.map(([key, label, source]) => (
 								<div className="kcf-funnel__row" key={key}>
 									<span className="kcf-funnel__label">
 										{label()}
@@ -105,14 +110,14 @@ export function AnalyticsScreen() {
 
 					<Card title={__('Day by day', 'krivo-chatflow')} actions={<Button small onClick={() => setTable(!table)}>{table ? __('Show chart', 'krivo-chatflow') : __('Show as table', 'krivo-chatflow')}</Button>}>
 						<div className="kcf-stack">
-							<Segmented label={__('Show', 'krivo-chatflow')} value={metric} onChange={setMetric} options={METRICS.map(([key, label]) => ({ value: key, label: label() }))} />
+							<Segmented label={__('Show', 'krivo-chatflow')} value={metric} onChange={setMetric} options={metrics.map(([key, label]) => ({ value: key, label: label() }))} />
 							{table ? (
 								<div className="kcf-table-wrap" style={{ maxHeight: 360, overflow: 'auto' }}>
 									<table className="kcf-table">
 										<thead>
 											<tr>
 												<th scope="col">{__('Day', 'krivo-chatflow')}</th>
-												{METRICS.map(([key, label]) => (
+												{metrics.map(([key, label]) => (
 													<th scope="col" className="is-num" key={key}>
 														{label()}
 													</th>
@@ -123,7 +128,7 @@ export function AnalyticsScreen() {
 											{d.daily.map((entry) => (
 												<tr key={entry.day}>
 													<th scope="row">{day(entry.day)}</th>
-													{METRICS.map(([key]) => (
+													{metrics.map(([key]) => (
 														<td className="is-num" key={key}>
 															{number(entry[key])}
 														</td>

@@ -296,7 +296,7 @@ class RestPublicTest extends Krivo_TestCase {
 				$this->assertNotEmpty( $handler['args'], $route . ' declares and validates its arguments' );
 			}
 		}
-		$this->assertSame( 4, $found );
+		$this->assertSame( 5, $found );
 	}
 
 	// ------------------------------------------------------------------ admin-ajax fallback

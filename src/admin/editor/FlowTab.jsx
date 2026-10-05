@@ -2,12 +2,14 @@ import { useState } from '@wordpress/element';
 import { __, sprintf } from '../i18n.js';
 import { Button, Card, CheckField, Notice, NumberField, SelectField, Segmented, TextArea, TextField, Toggle, cx, useApp } from '../ui.jsx';
 import { move, newField, randomId, setPath, slugKey } from './helpers.js';
+import { ButtonSettings } from './ButtonSettings.jsx';
 import { VariableChips } from './VariableChips.jsx';
+import { WelcomeCard } from './WelcomeCard.jsx';
 
 const NEW_STEP = () => ({ id: randomId('s_'), title: '', fields: [] });
 
 /** The "Flow" tab: mode, steps, fields (add, edit, reorder, duplicate, delete) and the closing text. */
-export function FlowTab({ config, update, meta, variables }) {
+export function FlowTab({ flowId, config, update, meta, variables }) {
 	const { confirm } = useApp();
 	const [openId, setOpenId] = useState(null);
 	const stepsMode = config.mode === 'steps';
@@ -34,7 +36,13 @@ export function FlowTab({ config, update, meta, variables }) {
 		}
 		const jumps = (config.logic.rules || []).filter((rule) => !(rule.then || []).some((action) => action.do === 'goto' || action.do === 'finish'));
 		const logic = { rules: mode === 'steps' || mode === 'conversational' ? config.logic.rules : jumps };
-		update({ ...config, mode, steps, logic });
+		let next = { ...config, mode, steps, logic };
+		const tip = config.bubble.tooltip;
+		if (mode === 'button' && !tip.text && !tip.title && !tip.cta) {
+			// The welcome card is the whole chat here: it stays until the visitor taps or dismisses it.
+			next = setPath(next, 'bubble.tooltip', { ...tip, enabled: true, delay: 2, duration: 0, once: false });
+		}
+		update(next);
 	};
 
 	const addField = (type) => {
@@ -123,79 +131,92 @@ export function FlowTab({ config, update, meta, variables }) {
 							{ value: 'form', label: __('One form', 'krivo-chatflow') },
 							{ value: 'steps', label: __('Steps', 'krivo-chatflow') },
 							{ value: 'conversational', label: __('Conversation', 'krivo-chatflow') },
+							{ value: 'button', label: __('Only a button', 'krivo-chatflow') },
 						]}
 						help={
 							{
 								form: __('All questions on one screen.', 'krivo-chatflow'),
 								steps: __('Several screens with a progress bar. Good for longer forms.', 'krivo-chatflow'),
 								conversational: __('One question at a time, like a chat.', 'krivo-chatflow'),
+								button: __('No form: a floating button with a welcome message that opens WhatsApp or a link.', 'krivo-chatflow'),
 							}[config.mode]
 						}
 					/>
 				</div>
 			</Card>
 
-			<Card
-				title={__('Fields', 'krivo-chatflow')}
-				subtitle={sprintf(/* translators: 1: number of fields in the chat, 2: maximum allowed. */ __('%1$d of %2$d fields', 'krivo-chatflow'), totalFields, meta.limits.fields)}
-				actions={
-					stepsMode && config.steps.length < meta.limits.steps ? (
-						<Button small onClick={() => setSteps(config.steps.concat(NEW_STEP()))}>
-							{__('Add step', 'krivo-chatflow')}
-						</Button>
-					) : null
-				}
-			>
-				{config.steps.map((step, stepIndex) => (
-					<section key={step.id} className="kcf-stack" aria-label={stepsMode ? sprintf(/* translators: %d: position of the step. */ __('Step %d', 'krivo-chatflow'), stepIndex + 1) : undefined} style={{ marginBottom: stepsMode ? 22 : 0 }}>
-						{stepsMode ? (
-							<div className="kcf-row" style={{ alignItems: 'flex-end' }}>
-								<TextField label={sprintf(/* translators: %d: position of the step. */ __('Step %d title', 'krivo-chatflow'), stepIndex + 1)} value={step.title} onChange={(value) => setSteps(config.steps.map((s, i) => (i === stepIndex ? { ...s, title: value } : s)))} maxLength={120} />
-								{config.steps.length > 1 ? (
-									<Button kind="ghost" className="kcf-btn--danger-ghost" small onClick={() => removeStep(stepIndex)} style={{ flex: '0 0 auto' }}>
-										{__('Delete step', 'krivo-chatflow')}
-									</Button>
+			{config.mode === 'button' ? (
+				<>
+					<ButtonSettings flowId={flowId} config={config} update={update} meta={meta} variables={variables} />
+					<WelcomeCard config={config} update={update} />
+				</>
+			) : null}
+
+			{config.mode !== 'button' ? (
+				<>
+					<Card
+						title={__('Fields', 'krivo-chatflow')}
+						subtitle={sprintf(/* translators: 1: number of fields in the chat, 2: maximum allowed. */ __('%1$d of %2$d fields', 'krivo-chatflow'), totalFields, meta.limits.fields)}
+						actions={
+							stepsMode && config.steps.length < meta.limits.steps ? (
+								<Button small onClick={() => setSteps(config.steps.concat(NEW_STEP()))}>
+									{__('Add step', 'krivo-chatflow')}
+								</Button>
+							) : null
+						}
+					>
+						{config.steps.map((step, stepIndex) => (
+							<section key={step.id} className="kcf-stack" aria-label={stepsMode ? sprintf(/* translators: %d: position of the step. */ __('Step %d', 'krivo-chatflow'), stepIndex + 1) : undefined} style={{ marginBottom: stepsMode ? 22 : 0 }}>
+								{stepsMode ? (
+									<div className="kcf-row" style={{ alignItems: 'flex-end' }}>
+										<TextField label={sprintf(/* translators: %d: position of the step. */ __('Step %d title', 'krivo-chatflow'), stepIndex + 1)} value={step.title} onChange={(value) => setSteps(config.steps.map((s, i) => (i === stepIndex ? { ...s, title: value } : s)))} maxLength={120} />
+										{config.steps.length > 1 ? (
+											<Button kind="ghost" className="kcf-btn--danger-ghost" small onClick={() => removeStep(stepIndex)} style={{ flex: '0 0 auto' }}>
+												{__('Delete step', 'krivo-chatflow')}
+											</Button>
+										) : null}
+									</div>
 								) : null}
-							</div>
-						) : null}
-						<FieldList
-							step={step}
-							stepIndex={stepIndex}
-							config={config}
-							openId={openId}
-							setOpenId={setOpenId}
-							types={types}
-							onChange={setField}
-							onRemove={removeField}
-							onDuplicate={duplicateField}
-							onReorder={reorder}
-							onMoveStep={moveToStep}
-							variables={variables}
-							meta={meta}
-						/>
-					</section>
-				))}
+								<FieldList
+									step={step}
+									stepIndex={stepIndex}
+									config={config}
+									openId={openId}
+									setOpenId={setOpenId}
+									types={types}
+									onChange={setField}
+									onRemove={removeField}
+									onDuplicate={duplicateField}
+									onReorder={reorder}
+									onMoveStep={moveToStep}
+									variables={variables}
+									meta={meta}
+								/>
+							</section>
+						))}
 
-				<h3 className="kcf-small" style={{ margin: '18px 0 8px', fontWeight: 650 }}>
-					{__('Add a field', 'krivo-chatflow')}
-				</h3>
-				<div className="kcf-palette" role="group" aria-label={__('Field types', 'krivo-chatflow')}>
-					{types.map((type) => (
-						<button key={type.type} type="button" onClick={() => addField(type.type)} disabled={totalFields >= meta.limits.fields}>
-							{type.label}
-						</button>
-					))}
-				</div>
-				{totalFields >= meta.limits.fields ? <Notice tone="warn">{__('You reached the maximum number of fields.', 'krivo-chatflow')}</Notice> : null}
-			</Card>
+						<h3 className="kcf-small" style={{ margin: '18px 0 8px', fontWeight: 650 }}>
+							{__('Add a field', 'krivo-chatflow')}
+						</h3>
+						<div className="kcf-palette" role="group" aria-label={__('Field types', 'krivo-chatflow')}>
+							{types.map((type) => (
+								<button key={type.type} type="button" onClick={() => addField(type.type)} disabled={totalFields >= meta.limits.fields}>
+									{type.label}
+								</button>
+							))}
+						</div>
+						{totalFields >= meta.limits.fields ? <Notice tone="warn">{__('You reached the maximum number of fields.', 'krivo-chatflow')}</Notice> : null}
+					</Card>
 
-			<Card title={__('When the visitor finishes', 'krivo-chatflow')}>
-				<div className="kcf-stack">
-					<TextField label={__('Button text', 'krivo-chatflow')} help={__('Leave empty for the default ("Continue on WhatsApp" when WhatsApp is on, otherwise "Send message").', 'krivo-chatflow')} value={config.finish.button_label} onChange={(value) => update(setPath(config, 'finish.button_label', value))} maxLength={60} />
-					<TextArea label={__('Thank-you message', 'krivo-chatflow')} value={config.finish.success_message} onChange={(value) => update(setPath(config, 'finish.success_message', value))} rows={3} maxLength={500} help={__('You can use the visitor’s answers, for example {name}.', 'krivo-chatflow')} />
-					<VariableChips variables={variables} />
-				</div>
-			</Card>
+					<Card title={__('When the visitor finishes', 'krivo-chatflow')}>
+						<div className="kcf-stack">
+							<TextField label={__('Button text', 'krivo-chatflow')} help={__('Leave empty for the default ("Continue on WhatsApp" when WhatsApp is on, otherwise "Send message").', 'krivo-chatflow')} value={config.finish.button_label} onChange={(value) => update(setPath(config, 'finish.button_label', value))} maxLength={60} />
+							<TextArea label={__('Thank-you message', 'krivo-chatflow')} value={config.finish.success_message} onChange={(value) => update(setPath(config, 'finish.success_message', value))} rows={3} maxLength={500} help={__('You can use the visitor’s answers, for example {name}.', 'krivo-chatflow')} />
+							<VariableChips variables={variables} />
+						</div>
+					</Card>
+				</>
+			) : null}
 		</div>
 	);
 }

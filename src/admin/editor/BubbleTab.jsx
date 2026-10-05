@@ -3,6 +3,7 @@ import { Card, ColorField, NumberField, Notice, SelectField, Segmented, TextArea
 import { contrast, setPath } from './helpers.js';
 import { ImagePicker } from './ImagePicker.jsx';
 import { SvgIcon } from './SvgIcon.jsx';
+import { WelcomeCard } from './WelcomeCard.jsx';
 
 const ICON_LABELS = { chat: __('Chat', 'krivo-chatflow'), message: __('Message', 'krivo-chatflow'), headset: __('Headset', 'krivo-chatflow'), 'phone-chat': __('Phone', 'krivo-chatflow') };
 
@@ -47,7 +48,7 @@ export function BubbleTab({ config, update, meta }) {
 					) : null}
 					{bubble.icon.type === 'custom_image' ? <ImagePicker label={__('Icon image', 'krivo-chatflow')} attachmentId={bubble.icon.attachment_id} onChange={(id) => set('bubble.icon.attachment_id', id)} /> : null}
 
-					<TextField label={__('Button text and accessible name', 'krivo-chatflow')} value={bubble.label} onChange={(value) => set('bubble.label', value)} maxLength={80} help={__('Read by screen readers, and shown next to the icon in the "pill" shape. Leave empty for "Open chat".', 'krivo-chatflow')} />
+					<TextField label={__('Button text and accessible name', 'krivo-chatflow')} value={bubble.label} onChange={(value) => set('bubble.label', value)} maxLength={80} help={config.mode === 'button' ? __('Read by screen readers, and shown next to the icon in the "pill" shape. Leave empty for the standard text.', 'krivo-chatflow') : __('Read by screen readers, and shown next to the icon in the "pill" shape. Leave empty for "Open chat".', 'krivo-chatflow')} />
 
 					<Segmented
 						label={__('Shape', 'krivo-chatflow')}
@@ -107,22 +108,7 @@ export function BubbleTab({ config, update, meta }) {
 				</div>
 			</Card>
 
-			<Card title={__('Greeting bubble', 'krivo-chatflow')} subtitle={__('A short message next to the button.', 'krivo-chatflow')}>
-				<div className="kcf-stack">
-					<Toggle label={__('Show a greeting', 'krivo-chatflow')} checked={bubble.tooltip.enabled} onChange={(value) => set('bubble.tooltip.enabled', value)} />
-					{bubble.tooltip.enabled ? (
-						<>
-							<TextField label={__('Text', 'krivo-chatflow')} value={bubble.tooltip.text} onChange={(value) => set('bubble.tooltip.text', value)} maxLength={120} help={__('Leave empty for "Need help?".', 'krivo-chatflow')} />
-							<div className="kcf-row">
-								<NumberField label={__('Appears after', 'krivo-chatflow')} value={bubble.tooltip.delay} onChange={(value) => set('bubble.tooltip.delay', value === '' ? 0 : value)} min={0} max={120} suffix={__('seconds', 'krivo-chatflow')} />
-								<NumberField label={__('Stays for', 'krivo-chatflow')} value={bubble.tooltip.duration} onChange={(value) => set('bubble.tooltip.duration', value === '' ? 0 : value)} min={0} max={120} suffix={__('seconds', 'krivo-chatflow')} help={__('0 keeps it until dismissed.', 'krivo-chatflow')} />
-							</div>
-							<Toggle label={__('Show only once per visitor', 'krivo-chatflow')} help={__('Remembered in the visitor’s browser, without cookies.', 'krivo-chatflow')} checked={bubble.tooltip.once} onChange={(value) => set('bubble.tooltip.once', value)} />
-							<Toggle label={__('Let the visitor close it', 'krivo-chatflow')} checked={bubble.tooltip.dismissible} onChange={(value) => set('bubble.tooltip.dismissible', value)} />
-						</>
-					) : null}
-				</div>
-			</Card>
+			{config.mode === 'button' ? null : <WelcomeCard config={config} update={update} />}
 
 			<Card title={__('Notification badge', 'krivo-chatflow')}>
 				<div className="kcf-stack">
@@ -149,8 +135,12 @@ export function BubbleTab({ config, update, meta }) {
 					/>
 					{behavior.trigger === 'delay' ? <NumberField label={__('Delay', 'krivo-chatflow')} value={behavior.delay} onChange={(value) => set('behavior.delay', value === '' ? 0 : value)} min={0} max={60} suffix={__('seconds', 'krivo-chatflow')} help={__('0 shows it as soon as the page is idle.', 'krivo-chatflow')} /> : null}
 					{behavior.trigger === 'scroll' ? <NumberField label={__('Scrolled', 'krivo-chatflow')} value={behavior.scroll_percent} onChange={(value) => set('behavior.scroll_percent', value === '' ? 1 : value)} min={1} max={100} suffix={__('% of the page', 'krivo-chatflow')} /> : null}
-					<Toggle label={__('Open the chat automatically', 'krivo-chatflow')} help={__('It opens by itself after the button appears. Use with care: some visitors find it intrusive.', 'krivo-chatflow')} checked={behavior.auto_open} onChange={(value) => set('behavior.auto_open', value)} />
-					{behavior.auto_open ? <Toggle label={__('Only once per visit', 'krivo-chatflow')} checked={behavior.auto_open_once} onChange={(value) => set('behavior.auto_open_once', value)} /> : null}
+					{config.mode === 'button' ? null : (
+						<>
+							<Toggle label={__('Open the chat automatically', 'krivo-chatflow')} help={__('It opens by itself after the button appears. Use with care: some visitors find it intrusive.', 'krivo-chatflow')} checked={behavior.auto_open} onChange={(value) => set('behavior.auto_open', value)} />
+							{behavior.auto_open ? <Toggle label={__('Only once per visit', 'krivo-chatflow')} checked={behavior.auto_open_once} onChange={(value) => set('behavior.auto_open_once', value)} /> : null}
+						</>
+					)}
 				</div>
 			</Card>
 		</div>

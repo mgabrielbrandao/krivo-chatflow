@@ -96,7 +96,7 @@ export function CreateDialog({ templates, initial, onClose, onCreated }) {
 				<div className="kcf-stack">
 					<p className="kcf-muted">{template.description}</p>
 					<TextField label={__('Name', 'krivo-chatflow')} help={__('Only you see this name.', 'krivo-chatflow')} value={name} onChange={setName} placeholder={template.name} maxLength={120} data-autofocus />
-					{template.id ? <Toggle label={__('Continue on WhatsApp after the form', 'krivo-chatflow')} help={__('You can change this later.', 'krivo-chatflow')} checked={whatsapp} onChange={setWhatsapp} /> : null}
+					{template.id && template.mode !== 'button' ? <Toggle label={__('Continue on WhatsApp after the form', 'krivo-chatflow')} help={__('You can change this later.', 'krivo-chatflow')} checked={whatsapp} onChange={setWhatsapp} /> : null}
 				</div>
 			) : (
 				<TemplatePicker templates={templates} onPick={setTemplate} busy={busy} />

@@ -27,7 +27,7 @@ final class AjaxFallback {
 	 * @return void
 	 */
 	public static function register(): void {
-		foreach ( array( 'manifest', 'session', 'events', 'submit' ) as $action ) {
+		foreach ( array( 'manifest', 'session', 'events', 'button', 'submit' ) as $action ) {
 			add_action( 'wp_ajax_krivo_chatflow_' . $action, array( __CLASS__, $action ) );
 			add_action( 'wp_ajax_nopriv_krivo_chatflow_' . $action, array( __CLASS__, $action ) );
 		}
@@ -70,6 +70,17 @@ final class AjaxFallback {
 		}
 		status_header( 204 );
 		exit;
+	}
+
+	/**
+	 * The WhatsApp button of a "button only" chat.
+	 *
+	 * @return void
+	 */
+	public static function button(): void {
+		self::guard_origin();
+		$data = self::payload();
+		self::respond( PublicApi::button( (int) ( $data['flow'] ?? 0 ), is_array( $data['context'] ?? null ) ? $data['context'] : array() ) );
 	}
 
 	/**

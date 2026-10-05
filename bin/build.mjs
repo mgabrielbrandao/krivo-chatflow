@@ -18,6 +18,7 @@ const common = { absWorkingDir: root, bundle: true, minify: !dev, sourcemap: fal
 const jobs = [
 	{ ...common, entryPoints: ['src/frontend/loader.js'], outfile: join(outRoot, 'assets/frontend/loader.js'), format: 'iife' },
 	{ ...common, entryPoints: ['src/frontend/panel.js'], outfile: join(outRoot, 'assets/frontend/panel.js'), format: 'iife' },
+	{ ...common, entryPoints: ['src/frontend/button.js'], outfile: join(outRoot, 'assets/frontend/button.js'), format: 'iife' },
 	{ ...common, entryPoints: ['src/frontend/bubble.css'], outfile: join(outRoot, 'assets/frontend/bubble.css') },
 	{ ...common, entryPoints: ['src/frontend/panel.css'], outfile: join(outRoot, 'assets/frontend/panel.css') },
 ];

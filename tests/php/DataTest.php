@@ -384,7 +384,7 @@ class DataTest extends Krivo_TestCase {
 		$this->assertSame( 2, StatsRepository::totals( $day, $day, 1 )['view'] );
 		$this->assertSame( 3, StatsRepository::totals( $day, $day )['view'], 'All flows' );
 		$this->assertSame( 1, StatsRepository::totals( $day, $day, 1 )['lead'] );
-		$this->assertSame( array( 'view', 'open', 'start', 'lead', 'whatsapp_click' ), array_keys( StatsRepository::totals( $day, $day ) ) );
+		$this->assertSame( array( 'view', 'open', 'start', 'button_click', 'lead', 'whatsapp_click' ), array_keys( StatsRepository::totals( $day, $day ) ) );
 		$this->assertSame( 0, StatsRepository::totals( '2000-01-01', '2000-01-02' )['view'] );
 		$series = StatsRepository::series( $day, $day, 1 );
 		ksort( $series[ $day ] );
@@ -401,12 +401,12 @@ class DataTest extends Krivo_TestCase {
 
 	public function test_funnel_rates_are_null_instead_of_dividing_by_zero(): void {
 		$this->assertSame(
-			array( 'open_rate' => null, 'completion_rate' => null, 'conversion_rate' => null, 'whatsapp_rate' => null ),
-			StatsRepository::rates( array( 'view' => 0, 'open' => 0, 'start' => 0, 'lead' => 0, 'whatsapp_click' => 0 ) )
+			array( 'open_rate' => null, 'completion_rate' => null, 'conversion_rate' => null, 'click_rate' => null, 'whatsapp_rate' => null ),
+			StatsRepository::rates( array( 'view' => 0, 'open' => 0, 'start' => 0, 'button_click' => 0, 'lead' => 0, 'whatsapp_click' => 0 ) )
 		);
 		$this->assertSame(
-			array( 'open_rate' => 20.0, 'completion_rate' => 50.0, 'conversion_rate' => 1.0, 'whatsapp_rate' => 50.0 ),
-			StatsRepository::rates( array( 'view' => 1000, 'open' => 200, 'start' => 20, 'lead' => 10, 'whatsapp_click' => 5 ) )
+			array( 'open_rate' => 20.0, 'completion_rate' => 50.0, 'conversion_rate' => 1.0, 'click_rate' => 4.0, 'whatsapp_rate' => 50.0 ),
+			StatsRepository::rates( array( 'view' => 1000, 'open' => 200, 'start' => 20, 'button_click' => 40, 'lead' => 10, 'whatsapp_click' => 5 ) )
 		);
 	}
 

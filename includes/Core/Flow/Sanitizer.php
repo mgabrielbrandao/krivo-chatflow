@@ -59,6 +59,7 @@ final class Sanitizer {
 			'message'             => self::textarea( $raw['whatsapp']['message'] ?? '', 1000 ),
 			'default_destination' => preg_match( '/^dst_[a-z0-9]{4,16}$/', $destination ) ? $destination : '',
 		);
+		$out['button']      = self::button( is_array( $raw['button'] ?? null ) ? $raw['button'] : array(), $out['button'] );
 		$out['automations'] = self::automations( $raw['automations'] ?? array() );
 		$out['bubble']      = self::bubble( is_array( $raw['bubble'] ?? null ) ? $raw['bubble'] : array(), $out['bubble'] );
 		$out['design']      = self::design( is_array( $raw['design'] ?? null ) ? $raw['design'] : array(), $out['design'] );
@@ -426,6 +427,49 @@ final class Sanitizer {
 	}
 
 	// ----------------------------------------------------------------------------------------
+	// Button-only mode
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * Sanitises the "button only" settings.
+	 *
+	 * @param array $raw      Raw settings.
+	 * @param array $defaults Defaults.
+	 * @return array{action:string,url:string,new_tab:bool}
+	 */
+	private static function button( array $raw, array $defaults ): array {
+		return array(
+			'action'  => self::enum( $raw['action'] ?? '', Defaults::ACTIONS, $defaults['action'] ),
+			'url'     => self::button_url( $raw['url'] ?? '' ),
+			'new_tab' => self::bool( $raw['new_tab'] ?? $defaults['new_tab'] ),
+		);
+	}
+
+	/**
+	 * The address the button opens: an http(s) URL, a path on this site ("/contact/"), "tel:" or
+	 * "mailto:". Anything else (javascript:, data:, ...) becomes empty.
+	 *
+	 * @param mixed $value Raw value.
+	 * @return string
+	 */
+	public static function button_url( $value ): string {
+		$value = is_scalar( $value ) ? trim( (string) $value ) : '';
+		if ( '' === $value || strlen( $value ) > 500 ) {
+			return '';
+		}
+		if ( 0 === stripos( $value, 'tel:' ) ) {
+			$number = preg_replace( '/[\s().-]+/', '', substr( $value, 4 ) );
+			return is_string( $number ) && 1 === preg_match( '/^\+?[0-9]{3,20}$/', $number ) ? 'tel:' . $number : '';
+		}
+		if ( 0 === stripos( $value, 'mailto:' ) ) {
+			$address = trim( (string) strtok( substr( $value, 7 ), '?' ) );
+			return is_email( $address ) ? 'mailto:' . $address : '';
+		}
+		// Paths on this site ("/contact/") are kept as they are and resolved when the page is built.
+		return esc_url_raw( $value, array( 'http', 'https' ) );
+	}
+
+	// ----------------------------------------------------------------------------------------
 	// Appearance, behaviour, hours, display
 	// ----------------------------------------------------------------------------------------
 
@@ -475,7 +519,9 @@ final class Sanitizer {
 		$tooltip        = is_array( $raw['tooltip'] ?? null ) ? $raw['tooltip'] : array();
 		$out['tooltip'] = array(
 			'enabled'     => self::bool( $tooltip['enabled'] ?? $defaults['tooltip']['enabled'] ),
-			'text'        => self::str( $tooltip['text'] ?? '', 120 ),
+			'title'       => self::str( $tooltip['title'] ?? '', 60 ),
+			'text'        => self::str( $tooltip['text'] ?? '', 240 ),
+			'cta'         => self::str( $tooltip['cta'] ?? '', 40 ),
 			'delay'       => self::int( $tooltip['delay'] ?? $defaults['tooltip']['delay'], 0, 120, $defaults['tooltip']['delay'] ),
 			'duration'    => self::int( $tooltip['duration'] ?? $defaults['tooltip']['duration'], 0, 120, $defaults['tooltip']['duration'] ),
 			'dismissible' => self::bool( $tooltip['dismissible'] ?? $defaults['tooltip']['dismissible'] ),

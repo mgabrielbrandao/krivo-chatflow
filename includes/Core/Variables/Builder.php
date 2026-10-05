@@ -129,6 +129,9 @@ final class Builder {
 	 * @return array[] Each { name, label, group } where group is "field", "person" or "system".
 	 */
 	public static function catalog( array $flow ): array {
+		if ( 'button' === ( $flow['mode'] ?? '' ) ) {
+			return self::button_catalog();
+		}
 		$list = array(
 			array(
 				'name'  => 'name',
@@ -159,8 +162,22 @@ final class Builder {
 				'group' => 'field',
 			);
 		}
+		$list[] = array(
+			'name'  => 'all_fields',
+			'label' => __( 'All answers', 'krivo-chatflow' ),
+			'group' => 'system',
+		);
+		return array_merge( $list, self::button_catalog() );
+	}
+
+	/**
+	 * The variables of a "button only" flow: there is no form, so only what is known about the page,
+	 * the campaign and the site.
+	 *
+	 * @return array[]
+	 */
+	public static function button_catalog(): array {
 		$system = array(
-			'all_fields'   => __( 'All answers', 'krivo-chatflow' ),
 			'page_url'     => __( 'Page address', 'krivo-chatflow' ),
 			'page_title'   => __( 'Page title', 'krivo-chatflow' ),
 			'utm_source'   => __( 'Campaign source', 'krivo-chatflow' ),
@@ -172,6 +189,7 @@ final class Builder {
 			'date'         => __( 'Date', 'krivo-chatflow' ),
 			'time'         => __( 'Time', 'krivo-chatflow' ),
 		);
+		$list   = array();
 		foreach ( $system as $name => $label ) {
 			$list[] = array(
 				'name'  => $name,

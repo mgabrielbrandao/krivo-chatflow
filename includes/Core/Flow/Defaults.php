@@ -19,7 +19,8 @@ final class Defaults {
 
 	public const SCHEMA = 1;
 
-	public const MODES      = array( 'form', 'steps', 'conversational' );
+	public const MODES      = array( 'form', 'steps', 'conversational', 'button' );
+	public const ACTIONS    = array( 'whatsapp', 'link' );
 	public const SHAPES     = array( 'circle', 'squircle', 'pill', 'custom' );
 	public const POSITIONS  = array( 'bottom-right', 'bottom-left' );
 	public const ANIMATIONS = array( 'none', 'fade', 'pulse', 'bounce' );
@@ -54,6 +55,12 @@ final class Defaults {
 				'message'             => '',
 				'default_destination' => '',
 			),
+			// "Button only" mode: no form, the visitor taps the bubble (or the button in the welcome card).
+			'button'      => array(
+				'action'  => 'whatsapp',
+				'url'     => '',
+				'new_tab' => true,
+			),
 			'automations' => array(),
 			'bubble'      => array(
 				'icon'      => array(
@@ -77,7 +84,9 @@ final class Defaults {
 				'animation' => 'none',
 				'tooltip'   => array(
 					'enabled'     => true,
+					'title'       => '',
 					'text'        => '',
+					'cta'         => '',
 					'delay'       => 3,
 					'duration'    => 8,
 					'dismissible' => true,

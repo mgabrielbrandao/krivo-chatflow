@@ -67,6 +67,25 @@ final class Manifest {
 		}
 		$avatar_url = $design['avatar_attachment_id'] > 0 ? (string) wp_get_attachment_image_url( (int) $design['avatar_attachment_id'], 'thumbnail' ) : '';
 
+		$button   = 'button' === $config['mode'] ? self::button( $config['button'] ) : null;
+		$tooltip  = $bubble['tooltip'];
+		$fallback = null === $button ? array(
+			'label' => __( 'Open chat', 'krivo-chatflow' ),
+			'text'  => __( 'Need help?', 'krivo-chatflow' ),
+			'cta'   => '',
+		) : self::button_texts( $button['action'] );
+
+		$i18n = array(
+			'close'   => __( 'Close chat', 'krivo-chatflow' ),
+			'loading' => __( 'Loading…', 'krivo-chatflow' ),
+			'error'   => __( 'We could not load the chat. Please try again.', 'krivo-chatflow' ),
+			'retry'   => __( 'Try again', 'krivo-chatflow' ),
+		);
+		if ( null !== $button ) {
+			$i18n['button_error']   = __( 'We could not open WhatsApp. Please try again in a moment.', 'krivo-chatflow' );
+			$i18n['preview_button'] = 'whatsapp' === $button['action'] ? __( 'Preview: on your site this button opens WhatsApp.', 'krivo-chatflow' ) : __( 'Preview: on your site this button opens your link.', 'krivo-chatflow' );
+		}
+
 		return array(
 			'id'        => $id,
 			'rev'       => $revision,
@@ -77,7 +96,7 @@ final class Manifest {
 					'svg'       => 'custom_svg' === $icon['type'] ? $icon['svg'] : '',
 					'image_url' => $image_url,
 				),
-				'label'     => '' !== $bubble['label'] ? $bubble['label'] : __( 'Open chat', 'krivo-chatflow' ),
+				'label'     => '' !== $bubble['label'] ? $bubble['label'] : $fallback['label'],
 				'shape'     => $bubble['shape'],
 				'radius'    => $bubble['radius'],
 				'position'  => $bubble['position'],
@@ -88,8 +107,10 @@ final class Manifest {
 				'shadow'    => $bubble['shadow'],
 				'animation' => $bubble['animation'],
 				'tooltip'   => array(
-					'enabled'     => $bubble['tooltip']['enabled'],
-					'text'        => '' !== $bubble['tooltip']['text'] ? $bubble['tooltip']['text'] : __( 'Need help?', 'krivo-chatflow' ),
+					'enabled'     => $tooltip['enabled'],
+					'title'       => $tooltip['title'],
+					'text'        => '' !== $tooltip['text'] ? $tooltip['text'] : $fallback['text'],
+					'cta'         => '' !== $tooltip['cta'] ? $tooltip['cta'] : $fallback['cta'],
 					'delay'       => $bubble['tooltip']['delay'],
 					'duration'    => $bubble['tooltip']['duration'],
 					'dismissible' => $bubble['tooltip']['dismissible'],
@@ -97,6 +118,7 @@ final class Manifest {
 				),
 				'badge'     => $bubble['badge'],
 			),
+			'button'    => $button,
 			'behavior'  => $config['behavior'],
 			'devices'   => $config['display']['devices'],
 			'hours'     => array(
@@ -113,13 +135,48 @@ final class Manifest {
 				'strings'    => $strings,
 			),
 			// Only what is needed before the manifest has been downloaded.
-			'i18n'      => array(
-				'close'   => __( 'Close chat', 'krivo-chatflow' ),
-				'loading' => __( 'Loading…', 'krivo-chatflow' ),
-				'error'   => __( 'We could not load the chat. Please try again.', 'krivo-chatflow' ),
-				'retry'   => __( 'Try again', 'krivo-chatflow' ),
-			),
+			'i18n'      => $i18n,
 			'signature' => self::signature(),
+		);
+	}
+
+	/**
+	 * What the browser needs to know about the button of a "button only" chat. A WhatsApp number never
+	 * appears here: the browser asks the server when the visitor taps.
+	 *
+	 * @param array $button Sanitised button settings.
+	 * @return array{action:string,url:string,new_tab:bool}
+	 */
+	private static function button( array $button ): array {
+		$url = (string) $button['url'];
+		if ( 0 === strpos( $url, '/' ) ) {
+			$url = home_url( $url );
+		}
+		return array(
+			'action'  => $button['action'],
+			'url'     => 'link' === $button['action'] ? $url : '',
+			'new_tab' => ! empty( $button['new_tab'] ) && 'link' === $button['action'] && 1 === preg_match( '#^https?://#i', $url ),
+		);
+	}
+
+	/**
+	 * Default texts of a "button only" chat.
+	 *
+	 * @param string $action whatsapp or link.
+	 * @return array{label:string,text:string,cta:string}
+	 */
+	private static function button_texts( string $action ): array {
+		if ( 'whatsapp' === $action ) {
+			return array(
+				'label' => __( 'Chat on WhatsApp', 'krivo-chatflow' ),
+				'text'  => __( 'Hi! How can we help? Talk to us on WhatsApp.', 'krivo-chatflow' ),
+				'cta'   => __( 'Chat on WhatsApp', 'krivo-chatflow' ),
+			);
+		}
+		return array(
+			'label' => __( 'Contact us', 'krivo-chatflow' ),
+			'text'  => __( 'Hi! How can we help?', 'krivo-chatflow' ),
+			'cta'   => __( 'Contact us', 'krivo-chatflow' ),
 		);
 	}
 
