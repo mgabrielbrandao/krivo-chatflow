@@ -153,7 +153,8 @@ foreach ( array( 'Description', 'Installation', 'Frequently Asked Questions', 'S
 	check( "readme.txt has a section '== $sec =='", (bool) preg_match( '/^== ' . preg_quote( $sec, '/' ) . ' ==\s*$/mi', $readme ) );
 }
 check( 'readme.txt names where the human-readable source lives (src/, BUILD.md and the public repository)', str_contains( $readme, 'src/' ) && str_contains( $readme, 'BUILD.md' ) && 1 === preg_match( '#https://github\.com/[\w.-]+/[\w.-]+#', $readme ) );
-check( 'the product is not presented as a WhatsApp product (no "WhatsApp" in the plugin name or the tags)', ! preg_match( '/whatsapp/i', $header( 'Plugin Name' ) ) && ! preg_match( '/whatsapp/i', $rd( 'Tags' ) ) );
+check( 'the product is not presented as a WhatsApp product (the plugin name, slug and text domain do not contain a third-party brand)', ! preg_match( '/whatsapp/i', $header( 'Plugin Name' ) . $header( 'Text Domain' ) . $top ) && str_starts_with( $readme, '=== Krivo ChatFlow ===' ) );
+check( 'readme.txt says WhatsApp is a trademark of its owner and that the plugin is not affiliated', (bool) preg_match( '/WhatsApp is a trademark.*not affiliated/s', $readme ) );
 
 // ------------------------------------------------------------------------------------------ 3. dangerous code
 
@@ -172,8 +173,15 @@ $deny = array(
 	'unserialize() of data'          => '/\bunserialize\s*\(/',
 	'$_REQUEST'                      => '/\$_REQUEST\b/',
 );
+// base64_decode is flagged as a possible obfuscation tool. Two places legitimately decode data that this plugin itself
+// encoded (the signed visitor token and the encrypted secret store), each with a documented phpcs:ignore.
+$decode_allowed = array( 'includes/Core/Submission/AntiSpam/Token.php', 'includes/Infrastructure/Crypto/Secrets.php' );
 foreach ( $deny as $label => $pattern ) {
 	$hits = grep_files( $php_files, '/\.php$/', $pattern );
+	if ( 0 === strpos( $label, 'base64_decode' ) ) {
+		$hits = array_filter( $hits, static fn( $h ) => ! ( in_array( strstr( $h, ':', true ), $decode_allowed, true ) && str_contains( $h, 'phpcs:ignore' ) ) );
+		$label = 'base64_decode outside the two documented places (signed token, secret store)';
+	}
 	check( "no $label", array() === $hits, implode( "\n", $hits ) );
 }
 $short_tags = grep_files( $php_files, '/\.php$/', '/<\?(?!php|=)/' );
@@ -192,7 +200,7 @@ foreach ( $php_files as $relative => $absolute ) {
 }
 check( "every PHP file refuses direct access (ABSPATH / WP_UNINSTALL_PLUGIN guard)", array() === $guards, implode( "\n", $guards ) );
 
-$todo = grep_files( $files, '/\.(php|js|css|jsx|mjs)$/', '/\b(TODO|FIXME|XXX|HACK)\b|console\.(log|debug|trace)|debugger;/', array( '#^assets/#' ) );
+$todo = grep_files( $files, '/\.(php|js|css|jsx|mjs)$/', '/\b(TODO|FIXME|XXX|HACK)\b|console\.(log|debug|trace)|debugger;/', array( '#^assets/#', '#^bin/#' ) ); // bin/ holds command-line tools, which print to the terminal.
 $todo = array_merge( $todo, grep_files( $files, '#^assets/.*\.js$#', '/console\.(log|debug|trace)\(|debugger;/' ) );
 check( 'no TODO/FIXME, console.log or debugger statements in shipped code', array() === $todo, implode( "\n", $todo ) );
 
@@ -290,10 +298,11 @@ foreach ( $php_files as $relative => $absolute ) {
 		$hosts[ (string) parse_url( $url, PHP_URL_HOST ) ][] = $relative;
 	}
 }
-$allowed_hosts = array( 'www.w3.org', 'wa.me', 'krivo.works', 'www.gnu.org', 'wordpress.org', 'api.w.org', 'localhost' );
+// example.invalid is the reserved name (RFC 2606) used for fake sample data in the dry run; it can never resolve.
+$allowed_hosts = array( 'www.w3.org', 'wa.me', 'krivo.works', 'www.gnu.org', 'wordpress.org', 'api.w.org', 'localhost', 'example.invalid' );
 $unknown       = array();
 foreach ( $hosts as $host => $in ) {
-	if ( ! in_array( $host, $allowed_hosts, true ) ) {
+	if ( '' !== $host && ! in_array( $host, $allowed_hosts, true ) ) {
 		$unknown[] = $host . '  (' . implode( ', ', array_unique( $in ) ) . ')';
 	}
 }

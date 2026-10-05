@@ -2,27 +2,27 @@ import { __ } from '../i18n.js';
 import { Button, SelectField } from '../ui.jsx';
 
 export const OPERATORS = [
-	['eq', __('is')],
-	['neq', __('is not')],
-	['contains', __('contains')],
-	['not_contains', __('does not contain')],
-	['starts_with', __('starts with')],
-	['ends_with', __('ends with')],
-	['gt', __('is greater than')],
-	['gte', __('is at least')],
-	['lt', __('is less than')],
-	['lte', __('is at most')],
-	['in', __('is one of (comma separated)')],
-	['matches', __('matches the pattern (* = anything)')],
-	['empty', __('is empty')],
-	['not_empty', __('is not empty')],
+	['eq', __('is', 'krivo-chatflow')],
+	['neq', __('is not', 'krivo-chatflow')],
+	['contains', __('contains', 'krivo-chatflow')],
+	['not_contains', __('does not contain', 'krivo-chatflow')],
+	['starts_with', __('starts with', 'krivo-chatflow')],
+	['ends_with', __('ends with', 'krivo-chatflow')],
+	['gt', __('is greater than', 'krivo-chatflow')],
+	['gte', __('is at least', 'krivo-chatflow')],
+	['lt', __('is less than', 'krivo-chatflow')],
+	['lte', __('is at most', 'krivo-chatflow')],
+	['in', __('is one of (comma separated)', 'krivo-chatflow')],
+	['matches', __('matches the pattern (* = anything)', 'krivo-chatflow')],
+	['empty', __('is empty', 'krivo-chatflow')],
+	['not_empty', __('is not empty', 'krivo-chatflow')],
 ];
 
 /**
  * "All / any of these conditions" editor shared by the chat logic and by routing.
  * `fields`: [{ key, label, options? }] answers that can be tested; `context`: [{ key, label }] page and visitor data.
  */
-export function ConditionGroup({ group, onChange, fields, context, max = 10, label = __('When') }) {
+export function ConditionGroup({ group, onChange, fields, context, max = 10, label = __('When', 'krivo-chatflow') }) {
 	const conditions = group.conditions;
 	const firstLeft = () => (fields[0] ? 'field:' + fields[0].key : context[0] ? 'ctx:' + context[0].key : '');
 	const setCond = (index, patch) => onChange({ ...group, conditions: conditions.map((cond, i) => (i === index ? { ...cond, ...patch } : cond)) });
@@ -34,8 +34,8 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 				value={group.match}
 				onChange={(value) => onChange({ ...group, match: value })}
 				options={[
-					{ value: 'all', label: __('ALL of these are true') },
-					{ value: 'any', label: __('ANY of these is true') },
+					{ value: 'all', label: __('ALL of these are true', 'krivo-chatflow') },
+					{ value: 'any', label: __('ANY of these is true', 'krivo-chatflow') },
 				]}
 			/>
 			{conditions.map((cond, index) => {
@@ -45,9 +45,9 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 				const needsValue = cond.op !== 'empty' && cond.op !== 'not_empty';
 				return (
 					<div className="kcf-cond" key={index}>
-						<select className="kcf-input kcf-select" aria-label={__('Question or information')} value={cond.left} onChange={(event) => setCond(index, { left: event.target.value })}>
+						<select className="kcf-input kcf-select" aria-label={__('Question or information', 'krivo-chatflow')} value={cond.left} onChange={(event) => setCond(index, { left: event.target.value })}>
 							{fields.length ? (
-								<optgroup label={__('Answers')}>
+								<optgroup label={__('Answers', 'krivo-chatflow')}>
 									{fields.map((item) => (
 										<option key={item.key} value={'field:' + item.key}>
 											{item.label || item.key}
@@ -55,7 +55,7 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 									))}
 								</optgroup>
 							) : null}
-							<optgroup label={__('Page and visitor')}>
+							<optgroup label={__('Page and visitor', 'krivo-chatflow')}>
 								{context.map((item) => (
 									<option key={item.key} value={'ctx:' + item.key}>
 										{item.label}
@@ -64,7 +64,7 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 							</optgroup>
 							{cond.left && !fields.some((item) => 'field:' + item.key === cond.left) && !context.some((item) => 'ctx:' + item.key === cond.left) ? <option value={cond.left}>{cond.left}</option> : null}
 						</select>
-						<select className="kcf-input kcf-select" aria-label={__('Condition')} value={cond.op} onChange={(event) => setCond(index, { op: event.target.value })}>
+						<select className="kcf-input kcf-select" aria-label={__('Condition', 'krivo-chatflow')} value={cond.op} onChange={(event) => setCond(index, { op: event.target.value })}>
 							{OPERATORS.map(([value, text]) => (
 								<option key={value} value={value}>
 									{text}
@@ -73,8 +73,8 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 						</select>
 						{needsValue ? (
 							options && (cond.op === 'eq' || cond.op === 'neq') ? (
-								<select className="kcf-input kcf-select" aria-label={__('Value')} value={cond.right} onChange={(event) => setCond(index, { right: event.target.value })}>
-									<option value="">{__('Choose…')}</option>
+								<select className="kcf-input kcf-select" aria-label={__('Value', 'krivo-chatflow')} value={cond.right} onChange={(event) => setCond(index, { right: event.target.value })}>
+									<option value="">{__('Choose…', 'krivo-chatflow')}</option>
 									{options.map((option) => (
 										<option key={option.value || option.label} value={option.value || option.label}>
 											{option.label}
@@ -82,12 +82,12 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 									))}
 								</select>
 							) : (
-								<input className="kcf-input" aria-label={__('Value')} value={cond.right} onChange={(event) => setCond(index, { right: event.target.value })} maxLength={300} />
+								<input className="kcf-input" aria-label={__('Value', 'krivo-chatflow')} value={cond.right} onChange={(event) => setCond(index, { right: event.target.value })} maxLength={300} />
 							)
 						) : (
 							<span />
 						)}
-						<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" aria-label={__('Remove condition')} disabled={conditions.length <= 1} onClick={() => onChange({ ...group, conditions: conditions.filter((_, i) => i !== index) })}>
+						<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" aria-label={__('Remove condition', 'krivo-chatflow')} disabled={conditions.length <= 1} onClick={() => onChange({ ...group, conditions: conditions.filter((_, i) => i !== index) })}>
 							✕
 						</button>
 					</div>
@@ -95,7 +95,7 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 			})}
 			<div>
 				<Button small disabled={conditions.length >= max} onClick={() => onChange({ ...group, conditions: conditions.concat({ left: firstLeft(), op: 'eq', right: '' }) })}>
-					{__('Add condition')}
+					{__('Add condition', 'krivo-chatflow')}
 				</Button>
 			</div>
 		</div>

@@ -27,13 +27,13 @@ export function EmailTab({ flowId, config, update, meta, variables }) {
 
 	return (
 		<div className="kcf-stack">
-			{!canEdit ? <Notice tone="info">{__('Changing who receives e-mails needs the "manage integrations" permission, because it decides where visitor data goes. You can read the settings here.')}</Notice> : null}
+			{!canEdit ? <Notice tone="info">{__('Changing who receives e-mails needs the "manage integrations" permission, because it decides where visitor data goes. You can read the settings here.', 'krivo-chatflow')}</Notice> : null}
 			<fieldset disabled={!canEdit} style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
 				<div className="kcf-stack">
-					<Card title={__('Notification to your team')} subtitle={__('Sent in the background a moment after the visitor finishes, so a slow mail server never delays them.')}>
+					<Card title={__('Notification to your team', 'krivo-chatflow')} subtitle={__('Sent in the background a moment after the visitor finishes, so a slow mail server never delays them.', 'krivo-chatflow')}>
 						<div className="kcf-stack">
 							<Toggle
-								label={__('Send an e-mail for every new lead')}
+								label={__('Send an e-mail for every new lead', 'krivo-chatflow')}
 								checked={!!notification && notification.enabled}
 								onChange={(on) => {
 									if (!notification) {
@@ -52,10 +52,10 @@ export function EmailTab({ flowId, config, update, meta, variables }) {
 						</div>
 					</Card>
 
-					<Card title={__('Confirmation to the visitor')} subtitle={__('Optional. A short "we received your message" e-mail to the address the visitor typed.')}>
+					<Card title={__('Confirmation to the visitor', 'krivo-chatflow')} subtitle={__('Optional. A short "we received your message" e-mail to the address the visitor typed.', 'krivo-chatflow')}>
 						<div className="kcf-stack">
 							<Toggle
-								label={__('Send a confirmation')}
+								label={__('Send a confirmation', 'krivo-chatflow')}
 								checked={!!confirmation && confirmation.enabled}
 								onChange={(on) => {
 									if (!confirmation) {
@@ -78,9 +78,9 @@ export function EmailTab({ flowId, config, update, meta, variables }) {
 				</div>
 			</fieldset>
 
-			<Card title={__('Is e-mail delivery working?')}>
+			<Card title={__('Is e-mail delivery working?', 'krivo-chatflow')}>
 				<div className="kcf-stack">
-					<p className="kcf-muted">{__('Send a test message to the site administrator to check that your server delivers e-mail. You can use your own SMTP server in Settings → E-mail.')}</p>
+					<p className="kcf-muted">{__('Send a test message to the site administrator to check that your server delivers e-mail. You can use your own SMTP server in Settings → E-mail.', 'krivo-chatflow')}</p>
 					<div className="kcf-row kcf-row--tight">
 						{can('manage_email') ? (
 							<Button
@@ -96,10 +96,10 @@ export function EmailTab({ flowId, config, update, meta, variables }) {
 									setTesting(false);
 								}}
 							>
-								{__('Send a test e-mail')}
+								{__('Send a test e-mail', 'krivo-chatflow')}
 							</Button>
 						) : null}
-						{boot.menu.find((m) => m.screen === 'settings') ? <LinkButton href={boot.menu.find((m) => m.screen === 'settings').url}>{__('E-mail settings')}</LinkButton> : null}
+						{boot.menu.find((m) => m.screen === 'settings') ? <LinkButton href={boot.menu.find((m) => m.screen === 'settings').url}>{__('E-mail settings', 'krivo-chatflow')}</LinkButton> : null}
 					</div>
 				</div>
 			</Card>

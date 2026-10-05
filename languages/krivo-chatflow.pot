@@ -1,0 +1,5243 @@
+# Copyright (C) 2026 Krivo Works
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Krivo ChatFlow 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/mgabrielbrandao/krivo-chatflow/issues\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-05T07:16:34+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: krivo-chatflow\n"
+
+#. Plugin Name of the plugin
+#: krivo-chatflow.php
+#: includes/Admin/Menu.php:82
+#: includes/Admin/Menu.php:83
+msgid "Krivo ChatFlow"
+msgstr ""
+
+#. Description of the plugin
+#: krivo-chatflow.php
+msgid "A floating chat widget that qualifies visitors with a short flow, saves the lead and continues by WhatsApp, e-mail or webhook."
+msgstr ""
+
+#. Author of the plugin
+#: krivo-chatflow.php
+msgid "Krivo Works"
+msgstr ""
+
+#. Author URI of the plugin
+#: krivo-chatflow.php
+msgid "https://krivo.works/"
+msgstr ""
+
+#: includes/Admin/Menu.php:48
+#: assets/admin/admin.js:2
+#: src/admin/index.jsx:14
+msgid "Dashboard"
+msgstr ""
+
+#: includes/Admin/Menu.php:49
+#: assets/admin/admin.js:2
+#: src/admin/index.jsx:15
+msgid "ChatFlows"
+msgstr ""
+
+#: includes/Admin/Menu.php:50
+#: assets/admin/admin.js:1
+#: assets/admin/admin.js:2
+#: src/admin/index.jsx:16
+#: src/admin/screens/AnalyticsScreen.jsx:12
+#: src/admin/screens/AnalyticsScreen.jsx:79
+#: src/admin/screens/Dashboard.jsx:81
+#: src/admin/screens/FlowsScreen.jsx:188
+#: src/admin/screens/LeadsScreen.jsx:221
+msgid "Leads"
+msgstr ""
+
+#: includes/Admin/Menu.php:51
+#: assets/admin/admin.js:1
+#: assets/admin/admin.js:2
+#: src/admin/editor/LogicTab.jsx:122
+#: src/admin/index.jsx:17
+msgid "Routing"
+msgstr ""
+
+#: includes/Admin/Menu.php:52
+#: assets/admin/admin.js:1
+#: assets/admin/admin.js:2
+#: src/admin/editor/AutomationsTab.jsx:92
+#: src/admin/index.jsx:18
+msgid "Integrations"
+msgstr ""
+
+#: includes/Admin/Menu.php:53
+#: assets/admin/admin.js:1
+#: assets/admin/admin.js:2
+#: src/admin/index.jsx:19
+#: src/admin/screens/AnalyticsScreen.jsx:62
+msgid "Analytics"
+msgstr ""
+
+#: includes/Admin/Menu.php:54
+#: includes/Admin/Menu.php:148
+#: assets/admin/admin.js:2
+#: src/admin/index.jsx:20
+msgid "Settings"
+msgstr ""
+
+#. translators: %s: screen name.
+#: includes/Admin/Menu.php:95
+#, php-format
+msgid "%s ‹ Krivo ChatFlow"
+msgstr ""
+
+#: includes/Admin/Notices.php:56
+msgid "Krivo ChatFlow is ready."
+msgstr ""
+
+#: includes/Admin/Notices.php:57
+msgid "Create your first chat: it takes a couple of minutes."
+msgstr ""
+
+#: includes/Admin/Notices.php:58
+msgid "Get started"
+msgstr ""
+
+#: includes/Admin/Notices.php:59
+#: includes/Frontend/Renderer.php:45
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:86
+msgid "Dismiss"
+msgstr ""
+
+#: includes/Admin/Notices.php:85
+#: includes/Rest/AdminController.php:61
+msgid "You are not allowed to do this."
+msgstr ""
+
+#. translators: %s: screen name.
+#: includes/Admin/Screen.php:29
+#, php-format
+msgid "Krivo ChatFlow: %s"
+msgstr ""
+
+#: includes/Admin/Screen.php:32
+msgid "Loading Krivo ChatFlow…"
+msgstr ""
+
+#: includes/Admin/Screen.php:34
+msgid "Krivo ChatFlow needs JavaScript to run its screens. Please enable JavaScript in your browser."
+msgstr ""
+
+#: includes/Automation/Actions/ChangeLeadStatus.php:39
+msgid "Change lead status"
+msgstr ""
+
+#: includes/Automation/Actions/OpenWhatsapp.php:43
+#: includes/Core/Flow/Manifest.php:259
+msgid "Open WhatsApp"
+msgstr ""
+
+#: includes/Automation/Actions/OpenWhatsapp.php:98
+msgid "The routed destination has no WhatsApp number."
+msgstr ""
+
+#: includes/Automation/Actions/OpenWhatsapp.php:131
+msgid "The WhatsApp link was not generated."
+msgstr ""
+
+#: includes/Automation/Actions/OpenWhatsapp.php:178
+#: includes/Core/Flow/Templates.php:117
+msgid ""
+"Hello! My name is {name}.\n"
+"\n"
+"{all_fields}\n"
+"\n"
+"Page: {page_url}"
+msgstr ""
+
+#: includes/Automation/Actions/RouteLead.php:39
+msgid "Route the lead again"
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:48
+msgid "Send e-mail"
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:77
+msgid "New lead — {name}"
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:78
+msgid ""
+"New contact received through Krivo ChatFlow.\n"
+"\n"
+"{all_fields}\n"
+"\n"
+"Page: {page_url}\n"
+"Source: {utm_source}"
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:92
+msgid "We received your message"
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:93
+msgid ""
+"Hello {name},\n"
+"\n"
+"We received your request and our team will get back to you soon."
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:151
+msgid "The lead was held as possible spam."
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:162
+msgid "There is no valid recipient for this e-mail."
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:220
+msgid "A confirmation was already sent to this address recently."
+msgstr ""
+
+#: includes/Automation/Actions/SendEmail.php:230
+msgid "wp_mail() reported a failure."
+msgstr ""
+
+#: includes/Automation/Actions/SendWebhook.php:42
+msgid "Send webhook"
+msgstr ""
+
+#: includes/Automation/Actions/SendWebhook.php:112
+msgid "The connection is turned off or was removed."
+msgstr ""
+
+#: includes/Automation/DryRun.php:73
+#: includes/Core/Flow/Manifest.php:164
+#: includes/Core/Submission/Pipeline.php:224
+msgid "Thank you! We received your message."
+msgstr ""
+
+#: includes/Automation/Registry.php:55
+msgid "When the form is submitted"
+msgstr ""
+
+#: includes/Automation/Registry.php:56
+msgid "When a lead is created"
+msgstr ""
+
+#: includes/Automation/Registry.php:57
+msgid "When a routing rule matches"
+msgstr ""
+
+#: includes/Automation/Registry.php:58
+msgid "When the visitor continues on WhatsApp"
+msgstr ""
+
+#: includes/Automation/Registry.php:59
+msgid "When the flow is completed"
+msgstr ""
+
+#: includes/Automation/Registry.php:60
+msgid "When a lead is updated"
+msgstr ""
+
+#: includes/Automation/SampleData.php:67
+msgid "Sample destination"
+msgstr ""
+
+#: includes/Automation/SampleData.php:74
+msgid "Sample page"
+msgstr ""
+
+#: includes/Automation/SampleData.php:101
+msgid "This is a sample message written to preview how your template looks."
+msgstr ""
+
+#: includes/Automation/SampleData.php:112
+#: includes/Core/Fields/Types.php:237
+#: includes/Core/Leads/CsvExporter.php:158
+msgid "Accepted"
+msgstr ""
+
+#: includes/Automation/SampleData.php:127
+msgid "Sample"
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:170
+#: includes/Rest/IntegrationsController.php:203
+#: includes/Rest/IntegrationsController.php:216
+msgid "Connection not found."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:173
+msgid "Too many connections."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:183
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:62
+msgid "Give the connection a name."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:201
+msgid "Enter the webhook URL."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:210
+msgid "The header name is not valid."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:242
+msgid "A header name is not valid."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:277
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:71
+msgid "Enter a signing secret, or turn signing off."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:289
+msgid "Confirm that you understand which data is sent to this address before turning the connection on."
+msgstr ""
+
+#: includes/Automation/Webhook/ConnectionRepository.php:357
+msgid "Enter a complete web address, starting with https://."
+msgstr ""
+
+#: includes/Automation/Webhook/Executor.php:35
+msgid "The webhook address is missing or can no longer be read. Enter it again."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:202
+msgid "This field is required."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:203
+msgid "Please accept to continue."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:204
+msgid "Please check this field."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:205
+msgid "Enter a valid e-mail address."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:206
+msgid "Enter a valid phone number, with area code."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:207
+msgid "Enter a valid number."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:208
+msgid "Enter a valid web address."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:209
+msgid "Enter a valid date."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:210
+msgid "Enter a valid time."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:211
+msgid "Choose one of the available options."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:212
+msgid "This text is too long (maximum {max} characters)."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:213
+msgid "The minimum is {min}."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:214
+msgid "The maximum is {max}."
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:254
+#: includes/Core/Flow/Templates.php:121
+#: includes/Core/Flow/Templates.php:144
+#: includes/Core/Flow/Templates.php:164
+#: includes/Core/Flow/Templates.php:183
+#: includes/Core/Flow/Templates.php:202
+#: includes/Core/Leads/CsvExporter.php:113
+#: includes/Core/Leads/PrivacyTools.php:89
+#: includes/Core/Variables/Builder.php:135
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:117
+#: src/admin/screens/Dashboard.jsx:123
+#: src/admin/screens/FlowsScreen.jsx:98
+#: src/admin/screens/FlowsScreen.jsx:185
+#: src/admin/screens/IntegrationsScreen.jsx:120
+#: src/admin/screens/IntegrationsScreen.jsx:172
+#: src/admin/screens/IntegrationsScreen.jsx:264
+#: src/admin/screens/RoutingScreen.jsx:25
+#: src/admin/screens/RoutingScreen.jsx:189
+msgid "Name"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:264
+#: includes/Core/Flow/Templates.php:165
+#: includes/Core/Leads/CsvExporter.php:114
+#: includes/Core/Leads/PrivacyTools.php:93
+#: includes/Core/Variables/Builder.php:140
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:239
+#: src/admin/screens/LeadsScreen.jsx:88
+msgid "E-mail"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:274
+#: includes/Core/Flow/Templates.php:184
+#: includes/Core/Flow/Templates.php:203
+#: includes/Core/Leads/CsvExporter.php:115
+#: includes/Core/Leads/PrivacyTools.php:97
+#: includes/Core/Variables/Builder.php:145
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/screens/LeadsScreen.jsx:96
+msgid "Phone"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:284
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:135
+#: src/admin/screens/RoutingScreen.jsx:28
+msgid "WhatsApp number"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:294
+msgid "Short text"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:304
+msgid "Long text"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:314
+msgid "Number"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:324
+msgid "Dropdown"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:334
+msgid "Single choice"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:344
+msgid "Multiple choice"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:354
+#: includes/Core/Leads/CsvExporter.php:111
+#: includes/Core/Leads/PrivacyTools.php:85
+#: includes/Core/Variables/Builder.php:172
+msgid "Date"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:364
+#: includes/Core/Variables/Builder.php:173
+msgid "Time"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:374
+msgid "Web address"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:384
+msgid "Consent (LGPD)"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:394
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:246
+msgid "Hidden field"
+msgstr ""
+
+#: includes/Core/Fields/Registry.php:404
+msgid "Text / HTML block"
+msgstr ""
+
+#: includes/Core/Fields/Types.php:237
+msgid "Not accepted"
+msgstr ""
+
+#: includes/Core/Flow/Defaults.php:39
+msgid "New ChatFlow"
+msgstr ""
+
+#: includes/Core/Flow/FlowRepository.php:118
+#: includes/Core/Flow/FlowRepository.php:148
+msgid "Flow not found."
+msgstr ""
+
+#: includes/Core/Flow/FlowRepository.php:121
+msgid "Someone else edited this flow. Reload the page to get the latest version."
+msgstr ""
+
+#: includes/Core/Flow/FlowRepository.php:155
+msgid "The flow has problems that must be fixed before publishing."
+msgstr ""
+
+#. translators: %s: flow name.
+#: includes/Core/Flow/FlowRepository.php:253
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:70
+#, php-format,js-format
+msgid "%s (copy)"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:80
+msgid "Open chat"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:92
+msgid "Need help?"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:108
+msgid "Hello"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:109
+msgid "How can we help you?"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:117
+#: includes/Core/Flow/Manifest.php:253
+msgid "Close chat"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:118
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:79
+#: src/admin/ui.jsx:65
+msgid "Loading…"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:119
+msgid "We could not load the chat. Please try again."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:120
+#: includes/Core/Flow/Manifest.php:255
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:406
+msgid "Try again"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:163
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:28
+msgid "Continue on WhatsApp"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:216
+msgid "Powered by"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:230
+msgid "We are online"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:231
+msgid "We are offline right now, but leave your message."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:232
+msgid "Send message"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:233
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:142
+#: src/admin/screens/Onboarding.jsx:170
+msgid "Continue"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:234
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:87
+#: src/admin/screens/Onboarding.jsx:140
+msgid "Back"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:254
+msgid "Sending…"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:256
+msgid "We could not send your message. Please try again."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:257
+msgid "Connection problem. Your answers were kept; please try again."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:258
+#: includes/Core/Submission/AntiSpam/Guard.php:73
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:260
+msgid "You will be redirected to WhatsApp with your message ready."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:261
+msgid "Select an option"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:262
+msgid "privacy policy"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:263
+msgid "Preview mode: nothing is sent or saved."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:264
+msgid "Step {current} of {total}"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:265
+msgid "Your answer"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:266
+msgid "Type your answer…"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:267
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:102
+msgid "(optional)"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:268
+msgid "Done"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:269
+msgid "I agree"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:270
+msgid "Skip"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:63
+msgid "Thank you, {name}! We received your message and will get back to you soon."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:114
+msgid "Simple contact"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:115
+msgid "Name, WhatsApp and a message. The fastest way to start."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:124
+msgid "Your name"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:129
+#: includes/Core/Leads/PrivacyTools.php:191
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:238
+msgid "WhatsApp"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:132
+msgid "(00) 00000-0000"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:135
+#: includes/Core/Flow/Templates.php:155
+#: includes/Core/Flow/Templates.php:193
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:53
+#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/editor/WhatsappTab.jsx:46
+msgid "Message"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:135
+msgid "How can we help?"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:139
+msgid "Request a quote"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:140
+msgid "Qualify the project before the conversation: company, service and budget."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:142
+msgid ""
+"Hello! I'd like a quote. My name is {name}.\n"
+"\n"
+"{all_fields}"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:145
+msgid "Company"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:148
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:121
+msgid "Service"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:151
+msgid "Website"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:151
+msgid "Automation"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:151
+#: includes/Core/Flow/Templates.php:159
+msgid "Support"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:151
+#: includes/Core/Flow/Templates.php:190
+msgid "Other"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:154
+msgid "Budget"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:154
+msgid "Estimated amount"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:155
+msgid "Tell us a bit about the project"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:160
+msgid "Collect the product and the problem so the team can answer faster."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:162
+msgid ""
+"Hello! I need support. My name is {name}.\n"
+"\n"
+"{all_fields}"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:166
+msgid "Product"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:169
+msgid "Problem"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:172
+msgid "Describe what is happening"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:178
+msgid "Clinic"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:179
+msgid "Appointment requests with the type of care."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:181
+msgid ""
+"Hello! I'd like to schedule an appointment. My name is {name}.\n"
+"\n"
+"{all_fields}"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:187
+msgid "Type of care"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:190
+msgid "First appointment"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:190
+msgid "Return visit"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:190
+msgid "Exam"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:197
+msgid "Real estate"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:198
+msgid "Property type and price range, so the broker calls with the right options."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:200
+msgid ""
+"Hello! I'm looking for a property. My name is {name}.\n"
+"\n"
+"{all_fields}"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:206
+msgid "Property type"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:209
+msgid "Apartment"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:209
+msgid "House"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:209
+msgid "Commercial"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:209
+msgid "Land"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:214
+msgid "Price range"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:216
+msgid "Up to 300k"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:216
+msgid "300k to 600k"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:216
+msgid "600k to 1M"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:216
+msgid "Above 1M"
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:46
+msgid "A field has no label."
+msgstr ""
+
+#. translators: %s: field label.
+#: includes/Core/Flow/Validator.php:50
+#, php-format
+msgid "The field \"%s\" needs at least one option."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:54
+msgid "Add at least one field to the flow."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:59
+msgid "A step has no fields and will be empty."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:72
+msgid "A logic rule has no valid condition, so it always applies. Edit or remove it."
+msgstr ""
+
+#. translators: %s: field key.
+#: includes/Core/Flow/Validator.php:81
+#, php-format
+msgid "A logic rule refers to the field \"%s\", which does not exist."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:87
+msgid "A logic rule depends on a field that comes after the field it shows or hides, so it will not work. Move the field up."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:109
+msgid "A \"Send webhook\" automation has no connection selected."
+msgstr ""
+
+#. translators: %s: connection name.
+#: includes/Core/Flow/Validator.php:112
+#, php-format
+msgid "The connection \"%s\" is turned off, so no data will be sent to it."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:115
+msgid "The custom webhook payload is not valid JSON."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:120
+msgid "WhatsApp is turned on, but there is no destination with a WhatsApp number. Add one in Routing."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:123
+msgid "An e-mail is set to go to the destination, but no destination has an e-mail address."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:126
+msgid "Nothing happens after the visitor sends the form except saving the lead. Add an e-mail notification or WhatsApp."
+msgstr ""
+
+#. translators: %s: variable name.
+#: includes/Core/Flow/Validator.php:148
+#, php-format
+msgid "The variable {%s} does not exist and will be empty."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:155
+msgid "The widget is set to show only on specific pages, but no page was added, so it will not appear anywhere."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:160
+msgid "The bubble icon is hard to see against the bubble colour. Pick colours with more contrast."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:163
+msgid "White text on the panel accent colour is hard to read. Pick a darker accent colour."
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:59
+msgid "You are not allowed to export leads."
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:110
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:78
+msgid "ID"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:112
+#: includes/Core/Leads/PrivacyTools.php:81
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/screens/AnalyticsScreen.jsx:74
+#: src/admin/screens/Dashboard.jsx:124
+#: src/admin/screens/IntegrationsScreen.jsx:376
+#: src/admin/screens/LeadsScreen.jsx:84
+#: src/admin/screens/LeadsScreen.jsx:233
+#: src/admin/screens/LeadsScreen.jsx:279
+msgid "Chat"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:116
+#: includes/Core/Leads/PrivacyTools.php:101
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:152
+#: src/admin/screens/Dashboard.jsx:125
+#: src/admin/screens/FlowsScreen.jsx:186
+#: src/admin/screens/IntegrationsScreen.jsx:266
+#: src/admin/screens/LeadsScreen.jsx:80
+#: src/admin/screens/LeadsScreen.jsx:232
+#: src/admin/screens/LeadsScreen.jsx:281
+msgid "Status"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:117
+msgid "Channel"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:118
+#: includes/Core/Routing/RoutingRepository.php:103
+#: includes/Core/Variables/Builder.php:169
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:16
+msgid "Destination"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:119
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:102
+msgid "Within business hours"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:120
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:104
+msgid "Device"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:121
+#: includes/Core/Leads/PrivacyTools.php:105
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:108
+msgid "Page"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:122
+#: includes/Core/Variables/Builder.php:165
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:331
+msgid "Page title"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:123
+#: includes/Core/Leads/PrivacyTools.php:109
+#: includes/Rest/RoutingController.php:106
+msgid "Referrer"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:129
+msgid "Consent"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:131
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:50
+#: src/admin/screens/LeadsScreen.jsx:120
+msgid "Answers"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:148
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:103
+msgid "Yes"
+msgstr ""
+
+#: includes/Core/Leads/CsvExporter.php:148
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:103
+msgid "No"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:42
+#: includes/Core/Leads/PrivacyTools.php:56
+#: includes/Core/Leads/PrivacyTools.php:135
+msgid "Krivo ChatFlow leads"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:113
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:114
+msgid "Campaign"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:128
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:136
+msgid "Consent given"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:136
+msgid "Messages sent through the chat widget of this site."
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:187
+msgid "Chat widget (Krivo ChatFlow)"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:188
+msgid "This site has a chat widget that asks visitors a few questions. Suggested text, to be reviewed and adapted to how you use it:"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:189
+msgid "What we collect"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:189
+msgid "The answers a visitor chooses to send (for example name, e-mail, phone and message), the page they were on, the referring page and campaign parameters (UTM), the kind of device (desktop, tablet or mobile) and, when a consent box is shown, the consent given and when."
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:190
+msgid "Where it is stored"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:190
+msgid "In this site's own database. The plugin does not send visitor data to any service unless the site owner turns on an e-mail notification to their own address or a webhook to a service they chose. If a webhook is on, the data of each new lead is sent to that service."
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:191
+msgid "When the visitor chooses to continue on WhatsApp, their browser opens a wa.me link with their message already written. The visitor sends it from WhatsApp; this site does not contact WhatsApp. WhatsApp's own privacy policy applies from that moment."
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:192
+msgid "Cookies and browser storage"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:192
+msgid "The widget sets no cookies. It uses the browser's session storage (to remember within the visit that the chat was opened and the first campaign parameters) and local storage (to remember that the greeting bubble was dismissed). Nothing identifies the visitor."
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:193
+msgid "Retention and rights"
+msgstr ""
+
+#: includes/Core/Leads/PrivacyTools.php:193
+msgid "Leads are kept until the site owner deletes them or the retention period set in the plugin ends. A visitor can ask for their data to be exported or erased; the site owner can do so with the WordPress tools under Tools > Export Personal Data and Erase Personal Data, which include these leads."
+msgstr ""
+
+#. translators: %s: destination name.
+#: includes/Core/Routing/RoutingRepository.php:170
+#, php-format
+msgid "The WhatsApp number of \"%s\" is not valid. Use the country code and the number with area code."
+msgstr ""
+
+#. translators: %s: e-mail typed by the user.
+#: includes/Core/Routing/RoutingRepository.php:175
+#, php-format
+msgid "\"%s\" is not a valid e-mail address."
+msgstr ""
+
+#: includes/Core/Routing/RoutingRepository.php:194
+msgid "Untitled rule"
+msgstr ""
+
+#. translators: %s: rule name.
+#: includes/Core/Routing/RoutingRepository.php:197
+#, php-format
+msgid "The rule \"%s\" sends leads to a destination that does not exist."
+msgstr ""
+
+#. translators: %s: rule name.
+#: includes/Core/Routing/RoutingRepository.php:204
+#, php-format
+msgid "The rule \"%s\" has no condition. Add at least one, or remove the rule."
+msgstr ""
+
+#. translators: %s: rule name.
+#: includes/Core/Routing/RoutingRepository.php:207
+#, php-format
+msgid "The rule \"%s\" has a condition that is not valid. Check the field, the operator and the value."
+msgstr ""
+
+#: includes/Core/Routing/RoutingRepository.php:223
+msgid "Someone else changed the routing. Reload the page and try again."
+msgstr ""
+
+#: includes/Core/Submission/AntiSpam/Guard.php:43
+#: includes/Core/Submission/AntiSpam/Guard.php:98
+#: includes/Rest/AjaxFallback.php:120
+#: includes/Rest/PublicController.php:139
+msgid "This request was not accepted."
+msgstr ""
+
+#: includes/Core/Submission/AntiSpam/Guard.php:54
+msgid "Please take a moment to review your answers and try again."
+msgstr ""
+
+#: includes/Core/Submission/AntiSpam/Guard.php:55
+msgid "Your session expired. Reload the page and try again."
+msgstr ""
+
+#: includes/Core/Submission/AntiSpam/Guard.php:101
+msgid "Too many requests."
+msgstr ""
+
+#: includes/Core/Submission/Pipeline.php:46
+#: includes/Rest/PublicApi.php:146
+msgid "This chat is not available."
+msgstr ""
+
+#: includes/Core/Submission/Pipeline.php:72
+msgid "Please check the highlighted fields."
+msgstr ""
+
+#: includes/Core/Submission/Pipeline.php:167
+msgid "We could not save your message. Please try again."
+msgstr ""
+
+#: includes/Core/Variables/Builder.php:163
+msgid "All answers"
+msgstr ""
+
+#: includes/Core/Variables/Builder.php:164
+#: includes/Rest/RoutingController.php:102
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:330
+msgid "Page address"
+msgstr ""
+
+#: includes/Core/Variables/Builder.php:166
+#: includes/Rest/RoutingController.php:110
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:10
+msgid "Campaign source"
+msgstr ""
+
+#: includes/Core/Variables/Builder.php:167
+#: includes/Rest/RoutingController.php:114
+msgid "Campaign medium"
+msgstr ""
+
+#: includes/Core/Variables/Builder.php:168
+#: includes/Rest/RoutingController.php:118
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:11
+msgid "Campaign name"
+msgstr ""
+
+#: includes/Core/Variables/Builder.php:170
+msgid "Site name"
+msgstr ""
+
+#: includes/Core/Variables/Builder.php:171
+msgid "Chat name"
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:147
+msgid "The receiving service accepted the request."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:149
+msgid "The receiving service took too long to answer."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:151
+msgid "The address could not be found. Check the domain name."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:153
+msgid "The connection was refused. Check that the service is running and the address is correct."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:155
+msgid "The secure connection failed. Check that the certificate of the receiving service is valid."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:157
+msgid "This address is not allowed. Private addresses and unusual ports need to be enabled explicitly."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:159
+msgid "The address does not use HTTPS. Use an https:// address, or allow HTTP in the advanced options."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:161
+msgid "The service answered with a redirect. Redirects are not followed; use the final address."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:164
+msgid "The service asked to try again later."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:165
+msgid "The service rejected the request. Check the address, the credentials and the payload."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:167
+msgid "The service had an internal error."
+msgstr ""
+
+#: includes/Infrastructure/Http/SafeClient.php:169
+msgid "The request could not be completed."
+msgstr ""
+
+#. translators: %s: site name.
+#: includes/Mail/Diagnostics.php:32
+#, php-format
+msgid "Krivo ChatFlow test e-mail from %s"
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:35
+msgid "This is a test message sent by Krivo ChatFlow. If you can read it, e-mail delivery is working."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:57
+msgid "Connected. The test message was accepted by your SMTP server."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:58
+msgid "The WordPress mailer accepted the test message."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:60
+msgid "Sent, but another plugin replaced the ChatFlow SMTP settings, so the message did not use them."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:95
+msgid "The server rejected the user name or password."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:98
+msgid "Could not connect to the SMTP server. Check the host, the port and the encryption type."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:101
+msgid "The secure connection failed. Check the encryption type and that the server certificate is valid."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:104
+msgid "The server did not accept the sender address. Use an address from your own domain."
+msgstr ""
+
+#: includes/Mail/Diagnostics.php:106
+msgid "The message could not be sent."
+msgstr ""
+
+#: includes/Rest/AdminController.php:104
+msgid "Not found."
+msgstr ""
+
+#: includes/Rest/AdminController.php:129
+msgid "Use the format YYYY-MM-DD."
+msgstr ""
+
+#: includes/Rest/FlowsController.php:229
+msgid "Unknown template."
+msgstr ""
+
+#: includes/Rest/FlowsController.php:236
+msgid "The chat could not be created."
+msgstr ""
+
+#: includes/Rest/FlowsController.php:249
+#: includes/Rest/FlowsController.php:262
+#: includes/Rest/FlowsController.php:286
+#: includes/Rest/FlowsController.php:324
+#: includes/Rest/FlowsController.php:376
+#: includes/Rest/FlowsController.php:474
+msgid "Chat not found."
+msgstr ""
+
+#: includes/Rest/FlowsController.php:270
+msgid "You are not allowed to change automations, e-mail recipients or webhooks."
+msgstr ""
+
+#: includes/Rest/FlowsController.php:311
+msgid "Only a published chat can be paused."
+msgstr ""
+
+#: includes/Rest/IntegrationsController.php:220
+#: includes/Rest/SettingsController.php:170
+msgid "Please wait a minute before sending another test."
+msgstr ""
+
+#: includes/Rest/IntegrationsController.php:256
+msgid "Choose a valid webhook automation."
+msgstr ""
+
+#: includes/Rest/IntegrationsController.php:319
+msgid "Only a failed, skipped or cancelled run can be tried again."
+msgstr ""
+
+#: includes/Rest/IntegrationsController.php:331
+msgid "When this connection is on, the details of each new lead (name, e-mail, phone, answers, page and campaign information) are sent to the address you configure. Only turn it on for a service you trust and that you may share this data with."
+msgstr ""
+
+#: includes/Rest/LeadsController.php:184
+#: includes/Rest/LeadsController.php:203
+#: includes/Rest/LeadsController.php:213
+msgid "Lead not found."
+msgstr ""
+
+#: includes/Rest/LeadsController.php:226
+msgid "Select between 1 and 200 leads."
+msgstr ""
+
+#: includes/Rest/LeadsController.php:241
+msgid "Choose a status."
+msgstr ""
+
+#: includes/Rest/PublicController.php:156
+msgid "The message is too large."
+msgstr ""
+
+#: includes/Rest/RoutingController.php:98
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:9
+msgid "Page path"
+msgstr ""
+
+#: includes/Rest/RoutingController.php:122
+msgid "Device (desktop, tablet, mobile)"
+msgstr ""
+
+#: includes/Rest/RoutingController.php:126
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:12
+msgid "Within business hours (yes/no)"
+msgstr ""
+
+#: includes/Rest/SettingsController.php:142
+msgid "The sender address is not a valid e-mail address."
+msgstr ""
+
+#: includes/Rest/SettingsController.php:143
+msgid "The reply-to address is not a valid e-mail address."
+msgstr ""
+
+#: includes/Rest/SettingsController.php:148
+msgid "Enter the SMTP server address, or choose the WordPress mailer."
+msgstr ""
+
+#: includes/Rest/SettingsController.php:166
+msgid "Enter a valid e-mail address to receive the test."
+msgstr ""
+
+#: includes/Rest/SystemController.php:186
+msgid "WP-Cron is turned off on this site. E-mails and webhooks are only sent when a real server cron job calls wp-cron.php. If you have not set one up, they will be delayed."
+msgstr ""
+
+#. translators: %d: minutes.
+#: includes/Rest/SystemController.php:194
+#, php-format
+msgid "Automations are running about %d minutes late. Check that WP-Cron works on this site."
+msgstr ""
+
+#. translators: %d: number of failed automations.
+#: includes/Rest/SystemController.php:202
+#, php-format
+msgid "%d automation failed in the last 24 hours. Open Integrations to see why and try again."
+msgid_plural "%d automations failed in the last 24 hours. Open Integrations to see why and try again."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/Rest/SystemController.php:209
+msgid "Your own SMTP server is configured but has not been tested successfully. Send a test e-mail in Settings."
+msgstr ""
+
+#. translators: 1: required PHP version, 2: required WordPress version.
+#: krivo-chatflow.php:44
+#, php-format
+msgid "Krivo ChatFlow requires PHP %1$s and WordPress %2$s or newer. The plugin is inactive."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:217
+msgid "colour picker"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:36
+#: src/admin/ui.jsx:363
+msgid "Close"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:110
+#: src/admin/ui.jsx:408
+msgid "Cancel"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:410
+msgid "Confirm"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:453
+msgid "Copied"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:453
+msgid "Copy"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:464
+msgid "Pagination"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:466
+msgid "Previous"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/ui.jsx:472
+msgid "Next"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:112
+msgid "Live preview"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:128
+msgid "Show only the bubble"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:128
+msgid "Open the chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:131
+msgid "Preview of your chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:134
+msgid "This is the real chat. Nothing you type here is sent or saved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/VariableChips.jsx:29
+msgid "Click a variable to insert it where your cursor is:"
+msgstr ""
+
+#. translators: %s: a variable such as {name}.
+#: assets/admin/admin.js:1
+#: src/admin/editor/VariableChips.jsx:44
+#, js-format
+msgid "%s copied. Paste it in a message."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:29
+msgid "This message goes to the visitor, at the address they typed. It can only use the visitor’s name, never the free text they wrote, so it cannot be abused to send arbitrary content to someone else."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:30
+msgid "Add an \"E-mail\" field to the chat, otherwise there is no address to write to."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:34
+#: src/admin/editor/AutomationForms.jsx:110
+#: src/admin/screens/SettingsScreen.jsx:277
+msgid "Send to"
+msgstr ""
+
+#. translators: %s: e-mail address of the site administrator.
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:36
+#, js-format
+msgid "The site administrator (%s)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:37
+msgid "The e-mail addresses of the destination chosen by routing"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:37
+msgid "Set in Routing. The destination can depend on what the visitor answered."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:39
+msgid "Other addresses"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:47
+msgid "Separate several with commas."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:52
+msgid "Subject"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:55
+msgid "Reply goes to the visitor"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:55
+msgid "When you press \"Reply\", the answer is addressed to the visitor."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:69
+msgid "E-mail preview"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:70
+msgid "Preview with sample data"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:72
+msgid "To:"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:75
+msgid "Subject:"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:98
+msgid "The template must be a JSON object."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:101
+msgid "This is not valid JSON yet."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:108
+msgid "Create a connection first (in Integrations): the address of your n8n, Make, Zapier or custom endpoint."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:110
+msgid "Choose a connection…"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:110
+msgid "turned off"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:112
+msgid "This connection is turned off, so nothing will be sent until you turn it on in Integrations."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:115
+msgid "What to send"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:119
+msgid "The standard payload (lead, answers, page and campaign)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:120
+msgid "My own JSON template"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:125
+msgid "JSON template"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:125
+msgid "Variables such as {name} are replaced inside the text values. The structure stays exactly as you wrote it."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:144
+msgid "Preview the payload"
+msgstr ""
+
+#. translators: 1: host name of the receiving service, 2: HTTP status code.
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:154
+#, js-format
+msgid "Accepted by %1$s (HTTP %2$s)."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationForms.jsx:161
+#: src/admin/screens/IntegrationsScreen.jsx:291
+msgid "Send a test"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:25
+msgid "Automations run in the background after the visitor finishes. E-mails and webhooks are queued and retried if the receiving service is down; the visitor never waits for them."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:27
+msgid "Automations can send visitor data to other services, so changing them needs the \"manage integrations\" permission."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:31
+msgid "No automations yet. Add one below."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:43
+msgid "From the WhatsApp tab"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:44
+#: src/admin/screens/IntegrationsScreen.jsx:284
+msgid "On"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:50
+msgid "Delete this automation?"
+msgstr ""
+
+#. translators: %s: name of the automation, for example "Send e-mail".
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:50
+#, js-format
+msgid "\"%s\" will stop running for new leads."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:50
+#: src/admin/editor/AutomationsTab.jsx:56
+#: src/admin/editor/FlowTab.jsx:58
+#: src/admin/editor/FlowTab.jsx:263
+#: src/admin/editor/LogicTab.jsx:63
+#: src/admin/screens/FlowsScreen.jsx:228
+#: src/admin/screens/IntegrationsScreen.jsx:231
+#: src/admin/screens/IntegrationsScreen.jsx:297
+#: src/admin/screens/LeadsScreen.jsx:199
+#: src/admin/screens/LeadsScreen.jsx:261
+#: src/admin/screens/RoutingScreen.jsx:184
+msgid "Delete"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:62
+#: src/admin/editor/ConditionGroup.jsx:25
+#: src/admin/screens/Dashboard.jsx:126
+#: src/admin/screens/IntegrationsScreen.jsx:375
+msgid "When"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:67
+msgid "Set the lead status to"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:70
+#: src/admin/screens/Dashboard.jsx:18
+msgid "New"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:70
+#: src/admin/screens/Dashboard.jsx:19
+msgid "Contacted"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:70
+#: src/admin/screens/Dashboard.jsx:20
+msgid "Converted"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:70
+#: src/admin/screens/Dashboard.jsx:21
+msgid "Lost"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:73
+msgid "Runs the routing rules again after the lead changes, and updates who the lead is assigned to."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:75
+msgid "Message (overrides the WhatsApp tab)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:82
+msgid "Add an automation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/AutomationsTab.jsx:92
+msgid "Webhooks send to a connection you create in"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ImagePicker.jsx:24
+msgid "The media library is not available on this screen."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ImagePicker.jsx:28
+msgid "Use this image"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ImagePicker.jsx:42
+msgid "Change image"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ImagePicker.jsx:42
+msgid "Choose image"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ImagePicker.jsx:46
+#: src/admin/screens/RoutingScreen.jsx:20
+#: src/admin/screens/RoutingScreen.jsx:103
+msgid "Remove"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:7
+msgid "Headset"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:18
+msgid "Icon and shape"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:21
+#: src/admin/editor/BubbleTab.jsx:90
+msgid "Icon"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:33
+msgid "My SVG"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:33
+msgid "My image"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:40
+msgid "SVG code"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:45
+msgid "Paste the SVG markup. It is cleaned automatically: scripts and external links are removed. Use fill=\"currentColor\" so it follows the icon colour."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:48
+msgid "Icon image"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:50
+msgid "Button text and accessible name"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:50
+msgid "Read by screen readers, and shown next to the icon in the \"pill\" shape. Leave empty for \"Open chat\"."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:53
+msgid "Shape"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:57
+msgid "Circle"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:58
+msgid "Rounded square"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:59
+msgid "Pill with text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:60
+msgid "Custom corners"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:63
+msgid "Corner radius"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:67
+msgid "Position and size"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:70
+msgid "Side of the screen"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:74
+#: src/admin/screens/Onboarding.jsx:164
+msgid "Bottom right"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:75
+#: src/admin/screens/Onboarding.jsx:165
+msgid "Bottom left"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:79
+msgid "Distance from the side"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:80
+msgid "Distance from the bottom"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:81
+msgid "Size"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:86
+msgid "Colours and effects"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:89
+msgid "Background"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:91
+msgid "Border"
+msgstr ""
+
+#. translators: %s: contrast ratio, for example 2.1.
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:93
+#, js-format
+msgid "The icon is hard to see on this background (contrast %s:1, at least 3:1 is recommended)."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:94
+msgid "Soft shadow"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:96
+msgid "Attention animation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:100
+#: src/admin/screens/IntegrationsScreen.jsx:144
+#: src/admin/screens/SettingsScreen.jsx:230
+msgid "None"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:101
+msgid "Fade in"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:102
+msgid "Pulse"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:103
+msgid "Gentle bounce"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:105
+msgid "Animations are turned off for visitors who ask their device to reduce motion."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:110
+msgid "Greeting bubble"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:110
+msgid "A short message next to the button."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:112
+msgid "Show a greeting"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:115
+#: src/admin/editor/FlowTab.jsx:284
+#: src/admin/editor/PublishTab.jsx:74
+msgid "Text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:115
+msgid "Leave empty for \"Need help?\"."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:117
+#: src/admin/editor/BubbleTab.jsx:133
+msgid "Appears after"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:117
+#: src/admin/editor/BubbleTab.jsx:118
+#: src/admin/editor/BubbleTab.jsx:133
+#: src/admin/editor/BubbleTab.jsx:150
+#: src/admin/screens/IntegrationsScreen.jsx:134
+#: src/admin/screens/SettingsScreen.jsx:111
+msgid "seconds"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:118
+msgid "Stays for"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:118
+msgid "0 keeps it until dismissed."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:120
+msgid "Show only once per visitor"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:120
+msgid "Remembered in the visitor’s browser, without cookies."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:121
+msgid "Let the visitor close it"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:127
+msgid "Notification badge"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:129
+msgid "Show a small badge on the button"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:132
+msgid "Badge text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:139
+msgid "When it appears"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:142
+msgid "Show the button"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:146
+msgid "After a delay"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:147
+msgid "After the visitor scrolls"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:150
+msgid "Delay"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:150
+msgid "0 shows it as soon as the page is idle."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:151
+msgid "Scrolled"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:151
+msgid "% of the page"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:152
+msgid "Open the chat automatically"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:152
+msgid "It opens by itself after the button appears. Use with care: some visitors find it intrusive."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:153
+msgid "Only once per visit"
+msgstr ""
+
+#. translators: %s: value.
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:15
+#, js-format
+msgid "This colour is hard to read with text on top (contrast %s:1, at least 4.5:1 is recommended). Choose a darker or lighter colour so the title and the buttons stay readable."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:26
+msgid "Chat window"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:28
+msgid "Title"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:28
+msgid "Leave empty for the default."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:29
+msgid "Subtitle"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:30
+msgid "Avatar (optional)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:32
+msgid "Theme"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:36
+msgid "Light"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:37
+msgid "Dark"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:38
+msgid "Follow the visitor’s device"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:41
+msgid "Accent colour"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:41
+msgid "Header, buttons and the visitor’s messages."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:45
+msgid "Small texts"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:45
+msgid "Leave a field empty to use the default text."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:47
+msgid "Shown when you are available"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:48
+msgid "Shown outside business hours"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:50
+msgid "Send button"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:51
+msgid "Next button"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/DesignTab.jsx:52
+msgid "Back button"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:30
+msgid "Changing who receives e-mails needs the \"manage integrations\" permission, because it decides where visitor data goes. You can read the settings here."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:33
+msgid "Notification to your team"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:33
+msgid "Sent in the background a moment after the visitor finishes, so a slow mail server never delays them."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:36
+msgid "Send an e-mail for every new lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:55
+msgid "Confirmation to the visitor"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:55
+msgid "Optional. A short \"we received your message\" e-mail to the address the visitor typed."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:58
+msgid "Send a confirmation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:81
+msgid "Is e-mail delivery working?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:83
+msgid "Send a test message to the site administrator to check that your server delivers e-mail. You can use your own SMTP server in Settings → E-mail."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:99
+#: src/admin/screens/Dashboard.jsx:13
+#: src/admin/screens/SettingsScreen.jsx:273
+msgid "Send a test e-mail"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/EmailTab.jsx:102
+msgid "E-mail settings"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:29
+msgid "Merge the steps?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:29
+msgid "Only the \"Steps\" mode has separate steps. Switching will put all fields in one list. Logic rules that jump between steps will be removed."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:29
+msgid "Merge steps"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:56
+msgid "Delete this field?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:57
+msgid "A logic rule uses this field. Deleting it will also remove the rule parts that depend on it."
+msgstr ""
+
+#. translators: %s: label of the field.
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:57
+#, js-format
+msgid "\"%s\" will be removed from the chat."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:107
+msgid "Delete this step?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:107
+msgid "The fields inside it will be deleted too."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:107
+msgid "The step is empty."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:107
+#: src/admin/editor/FlowTab.jsx:156
+msgid "Delete step"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:115
+msgid "About this chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:117
+#: src/admin/screens/FlowsScreen.jsx:98
+msgid "Only you see this name."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:119
+msgid "How should it look to the visitor?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:123
+msgid "One form"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:124
+msgid "Steps"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:125
+msgid "Conversation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:129
+msgid "All questions on one screen."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:130
+msgid "Several screens with a progress bar. Good for longer forms."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:131
+msgid "One question at a time, like a chat."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:139
+msgid "Fields"
+msgstr ""
+
+#. translators: 1: number of fields in the chat, 2: maximum allowed.
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:140
+#, js-format
+msgid "%1$d of %2$d fields"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:144
+msgid "Add step"
+msgstr ""
+
+#. translators: %d: position of the step.
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:150
+#: src/admin/editor/FlowTab.jsx:352
+#: src/admin/editor/LogicTab.jsx:28
+#, js-format
+msgid "Step %d"
+msgstr ""
+
+#. translators: %d: position of the step.
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:153
+#, js-format
+msgid "Step %d title"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:180
+msgid "Add a field"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:182
+msgid "Field types"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:189
+msgid "You reached the maximum number of fields."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:192
+msgid "When the visitor finishes"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:194
+msgid "Button text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:194
+msgid "Leave empty for the default (\"Continue on WhatsApp\" when WhatsApp is on, otherwise \"Send message\")."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:195
+msgid "Thank-you message"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:195
+msgid "You can use the visitor’s answers, for example {name}."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:206
+msgid "No fields yet. Add the first one below."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:237
+msgid "Drag to reorder"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:238
+msgid "Drag to reorder (or use the arrows)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:246
+msgid "Text block"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:246
+msgid "(no label)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:249
+msgid "required"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:254
+#: src/admin/editor/FlowTab.jsx:368
+#: src/admin/screens/RoutingScreen.jsx:177
+msgid "Move up"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:257
+#: src/admin/editor/FlowTab.jsx:371
+#: src/admin/screens/RoutingScreen.jsx:180
+msgid "Move down"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:260
+#: src/admin/screens/FlowsScreen.jsx:223
+msgid "Duplicate"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:284
+msgid "Allowed: bold, italic, links, lists and line breaks."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:287
+msgid "Label (for you)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:287
+msgid "Label"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:288
+msgid "Question in the conversation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:288
+msgid "What the chat says before this field. You can use earlier answers, for example \"Nice to meet you, {name}!\"."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:289
+msgid "Help text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:290
+msgid "Placeholder"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:296
+msgid "Variable name"
+msgstr ""
+
+#. translators: %s: variable name of the field.
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:297
+#, js-format
+msgid "Use {%s} in messages and e-mails. Letters, numbers and underscores."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:309
+msgid "Minimum"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:310
+msgid "Maximum"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:313
+msgid "Maximum length"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:313
+msgid "0 means the default."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:314
+#: src/admin/screens/Onboarding.jsx:134
+#: src/admin/screens/RoutingScreen.jsx:27
+msgid "Country code"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:314
+msgid "Added when the visitor types a local number, for example 55 for Brazil. Leave empty to use the site default."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:318
+msgid "Consent text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:318
+msgid "What the visitor agrees to. Bold, italic and links are allowed."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:319
+msgid "Add a link to the site’s privacy policy"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:319
+msgid "Uses the page chosen in Settings → Privacy of WordPress."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:326
+msgid "Value comes from"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:332
+msgid "Referring page"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:333
+msgid "Campaign source (utm_source)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:334
+msgid "Campaign medium (utm_medium)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:335
+msgid "Campaign name (utm_campaign)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:336
+msgid "Campaign content (utm_content)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:337
+msgid "Campaign term (utm_term)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:338
+msgid "A parameter in the page address"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:339
+msgid "A fixed value"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:342
+msgid "Parameter name"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:342
+msgid "For example \"ref\" reads ?ref=abc from the address."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:343
+msgid "Fixed value"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:347
+msgid "Default value"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:350
+msgid "Required"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:352
+#: src/admin/screens/IntegrationsScreen.jsx:377
+msgid "Step"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:363
+msgid "Options"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:364
+msgid "Add at least one option."
+msgstr ""
+
+#. translators: %d: position of the option in the list.
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:367
+#, js-format
+msgid "Option %d"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:374
+msgid "Remove option"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:381
+msgid "Add option"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:5
+msgid "is"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:6
+msgid "is not"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:7
+#: src/admin/editor/PublishTab.jsx:67
+msgid "contains"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:8
+msgid "does not contain"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:9
+#: src/admin/editor/PublishTab.jsx:69
+msgid "starts with"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:10
+#: src/admin/editor/PublishTab.jsx:70
+msgid "ends with"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:11
+msgid "is greater than"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:12
+msgid "is at least"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:13
+msgid "is less than"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:14
+msgid "is at most"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:15
+msgid "is one of (comma separated)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:16
+msgid "matches the pattern (* = anything)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:17
+msgid "is empty"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:18
+msgid "is not empty"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:37
+msgid "ALL of these are true"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:38
+msgid "ANY of these is true"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:48
+msgid "Question or information"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:58
+msgid "Page and visitor"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:67
+#: src/admin/editor/PublishTab.jsx:63
+msgid "Condition"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:76
+#: src/admin/editor/ConditionGroup.jsx:85
+#: src/admin/screens/IntegrationsScreen.jsx:173
+msgid "Value"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:77
+#: src/admin/editor/LogicTab.jsx:88
+#: src/admin/editor/LogicTab.jsx:89
+#: src/admin/editor/LogicTab.jsx:95
+msgid "Choose…"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:90
+#: src/admin/editor/PublishTab.jsx:85
+msgid "Remove condition"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ConditionGroup.jsx:98
+msgid "Add condition"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:8
+msgid "Visitor’s device (desktop, tablet, mobile)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:35
+msgid "Show the field"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:36
+msgid "Hide the field"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:37
+msgid "Jump to step"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:37
+msgid "Jump to question"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:37
+msgid "Finish right away"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:42
+msgid "Logic lets the chat adapt to the answers. A rule can only depend on questions that come BEFORE what it changes: the visitor has not answered the later ones yet. Hidden fields are never required and are not saved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:47
+msgid "No rules yet. Without rules, every visitor sees every field, in order."
+msgstr ""
+
+#. translators: %d: position of the rule in the list.
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:57
+#: src/admin/screens/RoutingScreen.jsx:175
+#, js-format
+msgid "Rule %d"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:63
+msgid "Delete this rule?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:63
+msgid "The chat will stop adapting in this way."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:68
+msgid "Delete rule"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:81
+msgid "Then"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:87
+msgid "Do this"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:88
+msgid "Field"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:89
+msgid "Go to"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:92
+msgid "Right after"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:96
+msgid "The rule is checked when the visitor leaves this one."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:99
+msgid "Remove action"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:107
+msgid "Add action"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:117
+msgid "Add a rule"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:119
+msgid "Add fields to the chat first."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:122
+msgid "Who receives each lead can also depend on the answers. That lives in the Routing screen, for all chats."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/LogicTab.jsx:123
+msgid "Use Routing to send, for example, “budget above 10,000” to your senior salesperson."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:8
+msgid "Monday"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:9
+msgid "Tuesday"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:10
+msgid "Wednesday"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:11
+msgid "Thursday"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:12
+msgid "Friday"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:13
+msgid "Saturday"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:14
+msgid "Sunday"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:18
+msgid "Kind of page"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:19
+msgid "Address (URL)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:20
+msgid "Content type"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:21
+msgid "A specific post or page (ID)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:22
+msgid "Category, tag or other term"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:26
+msgid "Home page"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:27
+msgid "Blog page"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:28
+msgid "Any single post or page"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:29
+msgid "Any archive"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:30
+msgid "Search results"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:31
+msgid "Page not found"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:32
+msgid "Shop (WooCommerce)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:33
+msgid "Cart (WooCommerce)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:34
+msgid "Checkout (WooCommerce)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:35
+msgid "My account (WooCommerce)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:55
+msgid "No conditions yet."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:59
+msgid "Which"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:68
+msgid "is exactly"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:71
+msgid "matches (* = anything)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:77
+msgid "Type slug"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:81
+msgid "Taxonomy"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:82
+msgid "Name or slug"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:92
+msgid "Add a condition"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:108
+msgid "Closed"
+msgstr ""
+
+#. translators: %s: weekday name. Label of the opening time field.
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:111
+#, js-format
+msgid "%s opens"
+msgstr ""
+
+#. translators: %s: weekday name. Label of the closing time field.
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:113
+#, js-format
+msgid "%s closes"
+msgstr ""
+
+#. translators: %s: weekday name.
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:114
+#, js-format
+msgid "Remove %s period"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:121
+msgid "Add period"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:121
+msgid "Open"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/PublishTab.jsx:153
+#: src/admin/screens/FlowsScreen.jsx:32
+msgid "Published"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/PublishTab.jsx:153
+#: src/admin/screens/FlowsScreen.jsx:33
+msgid "Paused"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/PublishTab.jsx:153
+#: src/admin/screens/FlowsScreen.jsx:34
+msgid "Draft"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:158
+msgid "Live on your site."
+msgstr ""
+
+#. translators: %s: date and time.
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:158
+#, js-format
+msgid "Last published %s."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:158
+msgid "You have changes that are not live yet."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:158
+msgid "Everything is up to date."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:161
+msgid "The chat is hidden from visitors. Publish it to show it again."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:163
+msgid "Nobody sees this chat until you publish it. Edits are saved as a draft, so you can work safely."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:168
+msgid "Fix these before publishing:"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:174
+#: src/admin/editor/PublishTab.jsx:189
+msgid "Go there"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:183
+msgid "Worth a look:"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:196
+msgid "Everything looks good."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:303
+#: src/admin/editor/PublishTab.jsx:200
+msgid "Publish changes"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:242
+#: src/admin/editor/Editor.jsx:303
+#: src/admin/editor/PublishTab.jsx:200
+msgid "Publish"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:204
+#: src/admin/screens/FlowsScreen.jsx:218
+msgid "Pause"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:207
+msgid "See the draft on my site"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:209
+msgid "If you use a cache plugin or a CDN, clear the cache so visitors get the latest version."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:213
+msgid "Where it appears"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:216
+msgid "Show this chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:220
+msgid "On the whole site"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:221
+msgid "Only on certain pages"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:222
+msgid "Nowhere (I will place it myself)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:224
+msgid "Use the shortcode or the button API to show it exactly where you want."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:228
+msgid "Show it when the page matches any of"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:229
+msgid "With no conditions, the chat will not appear anywhere."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:232
+msgid "Except when the page matches any of"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:233
+msgid "But never when the page matches"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:236
+msgid "Who sees it"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:240
+msgid "Everyone"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:241
+msgid "Only visitors who are not logged in"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:242
+msgid "Only logged-in users"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:246
+msgid "On which devices"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:249
+msgid "Computers"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:250
+msgid "Tablets"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:251
+msgid "Phones"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:257
+msgid "Priority"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:257
+msgid "Only one chat bubble appears per page. If several match, the highest priority wins."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:261
+msgid "Business hours"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:261
+msgid "The chat keeps collecting messages outside these hours; it only tells the visitor you are away. Uses your site’s timezone."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:263
+msgid "Show whether you are available"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:268
+msgid "Show it exactly where you want"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:270
+msgid "Put this chat inside a page or post with the shortcode:"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:275
+msgid "It shows the chat open, inside the content, instead of a floating button. Only published chats can be shown."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:279
+msgid "Manage"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:282
+msgid "Duplicate this chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:285
+msgid "Delete this chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/PublishTab.jsx:288
+msgid "Deleting a chat keeps the leads it collected."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:27
+msgid "Your user can edit the message, but turning WhatsApp on or off needs the \"manage integrations\" permission."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:28
+msgid "When the visitor finishes, their browser opens WhatsApp with the message already written. Nothing is sent by your site, and no paid service is involved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:30
+msgid "Open WhatsApp after the form"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:32
+msgid "Who receives the conversation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:35
+msgid "Decided by routing (or the site default)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:35
+msgid "no WhatsApp number"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:36
+msgid "Routing rules can still send some visitors to another person, for example depending on their budget."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:39
+msgid "Add a destination"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:40
+msgid "There is no destination yet. Add the WhatsApp number that should receive the conversations."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:49
+msgid "Text the visitor sends"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:54
+msgid "Leave empty to use a standard message with the name and all answers."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:60
+msgid "What the visitor will send"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:60
+msgid "Preview with sample answers. This is the exact text and link the site builds."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:69
+msgid "Link opened for the visitor"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:77
+msgid "WhatsApp is turned off for this chat."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WhatsappTab.jsx:83
+msgid "Destination in this preview:"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:35
+msgid "Back to chats"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:158
+msgid "Published. Your chat is live."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:177
+msgid "Paused. Visitors no longer see this chat."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:190
+#: src/admin/screens/FlowsScreen.jsx:120
+msgid "Copy created as a draft."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:201
+msgid "Delete this chat?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:202
+msgid "The chat disappears from your site and its settings are removed. The leads it already collected are kept."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:203
+#: src/admin/screens/FlowsScreen.jsx:132
+msgid "Delete chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:213
+#: src/admin/screens/FlowsScreen.jsx:139
+msgid "Chat deleted."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:235
+msgid "Questions"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:236
+msgid "Design"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:237
+msgid "Bubble"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:240
+msgid "Automations"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:241
+msgid "Logic"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:248
+msgid "Needs attention"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:248
+msgid "Worth a look"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:255
+#: src/admin/screens/RoutingScreen.jsx:209
+#: src/admin/screens/SettingsScreen.jsx:137
+msgid "All changes saved"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:256
+#: src/admin/screens/RoutingScreen.jsx:209
+#: src/admin/screens/SettingsScreen.jsx:137
+msgid "Saving…"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:257
+#: src/admin/screens/RoutingScreen.jsx:209
+#: src/admin/screens/SettingsScreen.jsx:137
+msgid "Unsaved changes"
+msgstr ""
+
+#. translators: %s: the reason the server gave.
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:258
+#, js-format
+msgid "Could not save: %s"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:258
+msgid "Could not save"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:259
+msgid "Someone else changed this chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:271
+msgid "Load their version"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:274
+msgid "Keep mine"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:279
+msgid "Another administrator saved changes to this chat while you were editing. Load their version (you lose your unsaved edits), or keep yours (you replace theirs)."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:282
+msgid "Chat settings"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:300
+msgid "Save now"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:316
+#: src/admin/screens/AnalyticsScreen.jsx:74
+#: src/admin/screens/RoutingScreen.jsx:194
+msgid "All chats"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:318
+msgid "Untitled chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:320
+msgid "Changes not live"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:38
+msgid "Blank"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:38
+msgid "Start from nothing and add your own questions."
+msgstr ""
+
+#. translators: %s: name of the template.
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:82
+#, js-format
+msgid "New chat: %s"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:82
+msgid "Choose a starting point"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:89
+msgid "Create chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:99
+msgid "Continue on WhatsApp after the form"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:99
+msgid "You can change this later."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:126
+msgid "Paused."
+msgstr ""
+
+#. translators: %s: name of the chat.
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:130
+#: src/admin/screens/IntegrationsScreen.jsx:231
+#, js-format
+msgid "Delete “%s”?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:131
+msgid "The chat disappears from your site. The leads it already collected are kept."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:10
+#: src/admin/screens/FlowsScreen.jsx:160
+msgid "Create your first chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:160
+msgid "Pick a starting point. You can change everything afterwards, and nothing appears on your site until you publish."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:167
+msgid "No chats yet"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:172
+msgid "Your chats"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:176
+msgid "New chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:190
+msgid "Edited"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:192
+#: src/admin/screens/IntegrationsScreen.jsx:268
+#: src/admin/screens/IntegrationsScreen.jsx:380
+msgid "Actions"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:214
+#: src/admin/screens/IntegrationsScreen.jsx:294
+msgid "Edit"
+msgstr ""
+
+#. translators: %d: number of chats.
+#: assets/admin/admin.js:1
+#: src/admin/screens/FlowsScreen.jsx:240
+#, js-format
+msgid "%d chat"
+msgid_plural "%d chats"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:34
+msgid "Enter the WhatsApp number, or turn WhatsApp off."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:37
+msgid "Enter an e-mail address or a WhatsApp number to receive the leads."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:42
+msgid "Main"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:85
+msgid "Your chat is live."
+msgstr ""
+
+#. translators: 1: current step, 2: number of steps.
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:96
+#, js-format
+msgid "Set up your chat (step %1$d of %2$d)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:99
+msgid "I will do it myself"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:113
+msgid "What should your chat help with?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:114
+msgid "Pick the closest one. You can change every question later."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:129
+msgid "Where should the leads go?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:130
+msgid "Name of the person or team"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:131
+msgid "Continue the conversation on WhatsApp"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:131
+msgid "After the form, the visitor’s browser opens WhatsApp with the message written. No paid service needed."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:138
+msgid "E-mail that receives each lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:151
+msgid "Make it yours"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:153
+msgid "Brand colour"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:157
+msgid "Chat title"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:157
+msgid "Talk to us"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:158
+msgid "Welcome message above the bubble"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:160
+msgid "Bubble position"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:180
+msgid "Ready to go live"
+msgstr ""
+
+#. translators: %s: value.
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:182
+#, js-format
+msgid "“%s” will appear on your whole site. You can change where it appears, the questions and the design at any time."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:186
+msgid "Support the plugin (optional)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:188
+msgid "Show a small “Powered by Krivo Works” line in the chat window"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:188
+msgid "Off by default. Nothing is shown unless you tick this."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:189
+msgid "Make the line a link to krivo.works"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:189
+msgid "A separate choice. Without it the line is plain text."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:195
+msgid "Publish my chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Onboarding.jsx:198
+msgid "Keep editing instead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:11
+msgid "Add who receives the leads"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:12
+msgid "Publish the chat on your site"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:14
+msgid "Receive your first lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:22
+msgid "Spam"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:70
+msgid "Open Integrations"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:70
+msgid "Open Settings"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:69
+#: src/admin/screens/Dashboard.jsx:76
+msgid "Last 7 days"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:76
+msgid "See analytics"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:78
+msgid "Visitors who saw the bubble"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:10
+#: src/admin/screens/AnalyticsScreen.jsx:80
+#: src/admin/screens/Dashboard.jsx:79
+msgid "Opened the chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:79
+#: src/admin/screens/Dashboard.jsx:79
+msgid "of visitors"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:11
+#: src/admin/screens/Dashboard.jsx:80
+msgid "Started answering"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:81
+msgid "finish"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:13
+#: src/admin/screens/AnalyticsScreen.jsx:82
+#: src/admin/screens/Dashboard.jsx:82
+msgid "Went to WhatsApp"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:89
+msgid "First steps"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:105
+msgid "done"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:115
+msgid "Latest leads"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:115
+msgid "All leads"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:117
+msgid "No leads yet"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:117
+#: src/admin/screens/LeadsScreen.jsx:269
+msgid "When a visitor finishes a chat, the lead appears here."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:151
+msgid "System"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:153
+msgid "Automations queue"
+msgstr ""
+
+#. translators: 1: number of automations waiting, 2: number that failed.
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:155
+#, js-format
+msgid "%1$d waiting, %2$d failed in the last 24 hours"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:157
+msgid "Background tasks (WP-Cron)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:158
+msgid "Turned off on this site"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:158
+#: src/admin/screens/IntegrationsScreen.jsx:25
+msgid "Running"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:159
+#: src/admin/screens/SettingsScreen.jsx:213
+msgid "E-mail delivery"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:160
+msgid "Your own SMTP server"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/Dashboard.jsx:160
+msgid "WordPress mailer"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:9
+msgid "Saw the bubble"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:9
+msgid "Counted in the visitor’s browser, so ad blockers can hide some."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:10
+#: src/admin/screens/AnalyticsScreen.jsx:13
+msgid "Counted by your server."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:11
+msgid "Counted in the visitor’s browser."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:12
+msgid "Counted by your server: this is exact."
+msgstr ""
+
+#. translators: 1: name of the measure (for example "Leads"), 2: total in the period, 3: highest daily value. Read by screen readers as the description of the chart.
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:25
+#, js-format
+msgid "%1$s per day: %2$d in total, at most %3$d in a day."
+msgstr ""
+
+#. translators: 1: first day of the period, 2: last day of the period.
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:62
+#, js-format
+msgid "From %1$s to %2$s"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:65
+msgid "Period"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:70
+msgid "Last 30 days"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:71
+msgid "Last 90 days"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:80
+msgid "of those who saw the bubble"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:81
+msgid "Finished what they started"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:82
+msgid "of the leads"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:87
+msgid "No data in this period yet"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:87
+msgid "Numbers appear as visitors see and use your chat."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:91
+msgid "Funnel"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:91
+msgid "How visitors move from seeing the bubble to talking to you."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:108
+msgid "Day by day"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:108
+msgid "Show chart"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:108
+msgid "Show as table"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:110
+#: src/admin/screens/IntegrationsScreen.jsx:362
+msgid "Show"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:116
+msgid "Day"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:145
+msgid "These numbers are counted by your own site. Nothing is sent to anyone else."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:8
+msgid "Any webhook"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:14
+msgid "Paste the address that receives the data (it must start with https://)."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:15
+msgid "In n8n, add a “Webhook” node, set the method to POST and paste its Production URL here."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:16
+msgid "In Make, add a “Custom webhook” module and paste the address it shows."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:17
+msgid "In Zapier, use the trigger “Webhooks by Zapier → Catch Hook” and paste the Custom Webhook URL."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:21
+msgid "Sent"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: assets/admin/admin.js:2
+#: src/admin/screens/IntegrationsScreen.jsx:22
+#: src/admin/screens/SettingsScreen.jsx:295
+msgid "Failed"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:23
+msgid "Will retry"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:24
+msgid "Waiting"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:26
+msgid "Skipped"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:27
+msgid "Cancelled"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:65
+msgid "Enter the webhook address."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:68
+msgid "Enter the token or password for the chosen authentication."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:74
+msgid "Confirm that you understand which data is sent before turning the connection on."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:95
+msgid "Connection saved."
+msgstr ""
+
+#. translators: %s: name of the connection.
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:106
+#, js-format
+msgid "Edit “%s”"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:106
+#: src/admin/screens/IntegrationsScreen.jsx:254
+msgid "New connection"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:112
+msgid "Save connection"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:120
+msgid "My CRM"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:124
+msgid "Webhook address (URL)"
+msgstr ""
+
+#. translators: %s: host name of the saved webhook address.
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:127
+#, js-format
+msgid "Saved for %s. Leave empty to keep it."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:130
+msgid "The address is stored encrypted and is never shown again."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:133
+#: src/admin/screens/IntegrationsScreen.jsx:140
+msgid "Method"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:134
+msgid "Timeout"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:137
+msgid "Authentication"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:137
+msgid "Only if the service asks for it. Secrets are stored encrypted and never shown again."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:145
+msgid "Bearer token"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:146
+msgid "Username and password"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:147
+msgid "Custom header"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:150
+msgid "Header name"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:151
+#: src/admin/screens/SettingsScreen.jsx:235
+msgid "Username"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:154
+#: src/admin/screens/SettingsScreen.jsx:240
+msgid "Password"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:154
+msgid "Token"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:154
+msgid "Header value"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:159
+#: src/admin/screens/IntegrationsScreen.jsx:187
+#: src/admin/screens/SettingsScreen.jsx:249
+msgid "Saved. Leave empty to keep it."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:165
+msgid "Extra headers"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:165
+msgid "Add header"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:167
+msgid "None."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:173
+msgid "Saved. Leave empty to keep."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:174
+msgid "Secret"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:175
+msgid "Remove header"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:184
+msgid "Signature"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:184
+msgid "Lets the receiver check that a request really came from your site (HMAC SHA-256 in the X-KrivoChatFlow-Signature header)."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:186
+msgid "Sign every request"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:187
+msgid "Signing secret"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:191
+msgid "Advanced"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:193
+msgid "Allow plain http:// addresses"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:193
+msgid "Not recommended: the data travels unencrypted."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:194
+msgid "Allow addresses on a private network (localhost, 192.168.x.x…)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:194
+msgid "Only for a service you run yourself inside the same network as this site."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:198
+msgid "Turn on"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:200
+msgid "This connection is on"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:200
+msgid "Automations that use an off connection do nothing."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:201
+msgid "I understand which data is sent to this address and I may share it with this service."
+msgstr ""
+
+#. translators: %s: date and time.
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:202
+#, js-format
+msgid "You confirmed the data sharing on %s."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:231
+msgid "Automations that use it will stop sending. Its saved address and secrets are erased."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:236
+msgid "Connection deleted."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:252
+msgid "Webhook connections"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:253
+msgid "Send each new lead to n8n, Make, Zapier or your own system. Choose a connection inside a chat, in its Automations tab."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:258
+msgid "No connections yet"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:258
+msgid "Webhooks send data to another service. Add one only if you need it."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:265
+msgid "Address"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:281
+msgid "The saved address cannot be read (the site’s secret key changed). Enter it again."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:284
+msgid "Off"
+msgstr ""
+
+#. translators: %d: duration in milliseconds.
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:306
+#, js-format
+msgid "(%d ms)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:342
+msgid "Queued to run again."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:350
+msgid "Automation log"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:350
+msgid "Every e-mail, webhook and WhatsApp step the chats ran. Failures are tried again automatically up to 3 times."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:350
+msgid "Refresh"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:365
+#: src/admin/screens/LeadsScreen.jsx:232
+#: src/admin/screens/LeadsScreen.jsx:233
+msgid "All"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:369
+msgid "Nothing here yet"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:369
+msgid "When a visitor finishes a chat, what the automations did appears here."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:378
+msgid "Result"
+msgstr ""
+
+#. translators: 1: number of the attempt, 2: maximum number of attempts.
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:396
+#, js-format
+msgid "Attempt %1$d of %2$d"
+msgstr ""
+
+#. translators: %s: date and time.
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:401
+#, js-format
+msgid "Next try: %s"
+msgstr ""
+
+#. translators: %d: number of automation runs.
+#: assets/admin/admin.js:1
+#: src/admin/screens/IntegrationsScreen.jsx:417
+#, js-format
+msgid "%d run"
+msgid_plural "%d runs"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:53
+msgid "Status updated."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:61
+msgid "Delete this lead?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:61
+msgid "This removes the lead and its answers permanently."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:61
+msgid "Delete lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:66
+msgid "Lead deleted."
+msgstr ""
+
+#. translators: %d: lead number.
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:75
+#, js-format
+msgid "Lead #%d"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:75
+#: src/admin/screens/LeadsScreen.jsx:278
+msgid "Lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:82
+#: src/admin/screens/LeadsScreen.jsx:282
+msgid "Received"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:100
+#: src/admin/screens/LeadsScreen.jsx:280
+msgid "Went to"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:122
+msgid "No answers."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:140
+msgid "accepted"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:140
+msgid "not accepted"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:148
+msgid "Automations for this lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:150
+msgid "None ran for this lead."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:166
+msgid "Delete this lead"
+msgstr ""
+
+#. translators: %d: number of leads.
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:199
+#, js-format
+msgid "Delete %d lead?"
+msgid_plural "Delete %d leads?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:199
+msgid "This removes them and their answers permanently."
+msgstr ""
+
+#. translators: %d: number of leads changed.
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:203
+#, js-format
+msgid "%d lead updated."
+msgid_plural "%d leads updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:225
+msgid "Export CSV"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:231
+msgid "Search"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:231
+msgid "Name, e-mail or phone"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:234
+msgid "From"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:235
+msgid "To"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:249
+msgid "Actions for the selected leads"
+msgstr ""
+
+#. translators: %d: number of selected leads.
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:250
+#, js-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:253
+msgid "Mark as"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:255
+msgid "Apply"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:269
+msgid "No leads found"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:269
+msgid "Try different filters."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:276
+msgid "Select all on this page"
+msgstr ""
+
+#. translators: %s: name of the lead.
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:289
+#, js-format
+msgid "Select %s"
+msgstr ""
+
+#. translators: %d: number of leads.
+#: assets/admin/admin.js:1
+#: src/admin/screens/LeadsScreen.jsx:310
+#, js-format
+msgid "%d lead"
+msgid_plural "%d leads"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:18
+msgid "Default"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:18
+msgid "Make default"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:25
+msgid "Sales team"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:28
+msgid "Where the visitor continues the conversation."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:31
+msgid "E-mails that receive the lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:38
+msgid "Separate several addresses with commas."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:40
+msgid "Note"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:40
+msgid "Only you see this."
+msgstr ""
+
+#. translators: %s: name of the destination.
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:101
+#, js-format
+msgid "Remove “%s”?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:101
+msgid "this destination"
+msgstr ""
+
+#. translators: %d: number of routing rules that use the destination.
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:102
+#, js-format
+msgid "%d rule(s) send leads here. Change or delete them first, otherwise the changes cannot be saved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:102
+msgid "Leads will no longer be sent here."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:136
+msgid "Routing saved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:144
+msgid "Every lead goes to a destination: a WhatsApp number to continue the conversation and/or e-mail addresses that receive the details. Rules send some leads somewhere else, depending on their answers."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:146
+msgid "Load the latest version"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:147
+msgid "Someone else changed the routing while you were editing."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:153
+msgid "Destinations"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:153
+msgid "Add destination"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:155
+msgid "No destination yet"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:155
+msgid "Add the WhatsApp number or e-mail that should receive your leads."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:169
+msgid "Rules"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:169
+msgid "Checked from top to bottom. The first rule that matches decides. If none matches, the default destination is used."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:169
+msgid "Add rule"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:171
+msgid "No rules. Every lead goes to the default destination."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:189
+msgid "High budget"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:190
+msgid "Rule is active"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:192
+msgid "Applies to"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:201
+msgid "Then send the lead to"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:213
+msgid "Overwrite with mine"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/RoutingScreen.jsx:217
+msgid "Save routing"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:42
+msgid "Settings saved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:54
+msgid "General"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:56
+msgid "Default country code"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:61
+msgid "Added to phone numbers typed without a country code, for example 55 for Brazil."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:65
+msgid "What the chat records"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:65
+msgid "Everything is stored on your own site. Nothing is sent to third parties."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:67
+msgid "Count how many visitors see and open the chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:67
+msgid "Anonymous daily totals for the Analytics screen. No cookies, no personal data."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:68
+msgid "Save the campaign (UTM) of each lead"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:68
+msgid "utm_source, utm_medium and utm_campaign from the page address."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:69
+msgid "Save where the visitor came from (referrer)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:70
+msgid "Publish chat events to the browser data layer (dataLayer)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:70
+msgid "Lets Google Tag Manager react to “chat opened” and “lead sent”. The plugin itself never contacts Google."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:74
+msgid "Privacy and retention"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:77
+msgid "Delete leads after"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:82
+#: src/admin/screens/SettingsScreen.jsx:85
+msgid "days"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:83
+msgid "0 keeps leads until you delete them. Otherwise a daily task deletes older leads for good."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:85
+msgid "Keep the automation log for"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:87
+msgid "Delete ALL plugin data when the plugin is deleted"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:88
+msgid "Leads, chats, routing, connections and settings. Deactivating never deletes anything. This cannot be undone."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:92
+msgid "When you delete the plugin from the Plugins screen, every lead will be erased."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:94
+msgid "Suggested text for your privacy policy was added to "
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:95
+msgid "Settings → Privacy → Policy Guide"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:97
+msgid "Visitors’ requests to export or erase their data are handled by WordPress in "
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:98
+msgid "Tools → Export Personal Data"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:100
+msgid "Erase Personal Data"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:105
+msgid "Spam protection"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:105
+msgid "Works without CAPTCHAs or third-party services."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:108
+msgid "Messages allowed per visitor"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:109
+msgid "…within"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:109
+msgid "minutes"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:111
+msgid "Minimum time to fill in the chat"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:111
+msgid "Robots that answer instantly are treated as spam."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:112
+msgid "Emergency brake: messages per minute on the whole site"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:112
+msgid "If a flood exceeds this, new messages go to “spam” until it calms down."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:114
+msgid "Where is the visitor’s IP address?"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:118
+msgid "Directly (no proxy) — recommended"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:119
+msgid "Behind Cloudflare"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:120
+msgid "Behind a proxy or load balancer (X-Forwarded-For)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:122
+msgid "Only change this if your site is really behind that service; otherwise visitors could fake their address."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:127
+msgid "“Powered by Krivo Works” line"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:127
+msgid "A small credit inside the chat window. It is off unless you turn it on, and you can turn it off at any time."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:129
+msgid "Show “Powered by Krivo Works” in the chat window"
+msgstr ""
+
+#. translators: %s: web address of the Krivo Works site.
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:130
+#, js-format
+msgid "Make the line a link to %s"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:130
+msgid "A separate choice. Without it the line is plain text and visitors can’t click through."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:131
+msgid "Turn the line on first to choose this."
+msgstr ""
+
+#. translators: %s: date and time.
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:132
+#, js-format
+msgid "You turned it on on %s."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:139
+msgid "Save settings"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:191
+msgid "E-mail settings saved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:213
+msgid "How the chat sends e-mails: lead notifications and confirmations to visitors."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:217
+msgid "Send e-mails with"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:221
+msgid "WordPress (the default mailer, or the SMTP plugin you already use)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:222
+msgid "My own SMTP server (only for this plugin)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:228
+msgid "SMTP server"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:229
+msgid "Port"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:230
+msgid "Encryption"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:232
+msgid "The server asks for a username and password"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:237
+msgid "The password is defined in wp-config.php (KRIVO_CHATFLOW_SMTP_PASSWORD)."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:250
+msgid "The saved password cannot be read (the site’s secret key changed). Enter it again."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:250
+msgid "Stored encrypted. Never shown again."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:256
+msgid "Remove the saved password"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:261
+msgid "Sender e-mail"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:261
+msgid "Should belong to your domain, or e-mails may be marked as spam."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:262
+msgid "Sender name"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:264
+msgid "Reply to"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:267
+msgid "Save e-mail settings"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:273
+msgid "Uses the settings above, once they are saved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:275
+msgid "You have unsaved changes. Save first so the test uses them."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/SettingsScreen.jsx:279
+msgid "Send test"
+msgstr ""
+
+#: assets/admin/admin.js:2
+#: src/admin/screens/SettingsScreen.jsx:295
+msgid "Last test:"
+msgstr ""
+
+#: assets/admin/admin.js:2
+#: src/admin/screens/SettingsScreen.jsx:295
+msgid "Worked"
+msgstr ""

@@ -22,13 +22,13 @@ export function AutomationsTab({ flowId, config, update, meta, variables }) {
 	return (
 		<div className="kcf-stack">
 			<Notice tone="info">
-				{__('Automations run in the background after the visitor finishes. E-mails and webhooks are queued and retried if the receiving service is down; the visitor never waits for them.')}
+				{__('Automations run in the background after the visitor finishes. E-mails and webhooks are queued and retried if the receiving service is down; the visitor never waits for them.', 'krivo-chatflow')}
 			</Notice>
-			{!canEdit ? <Notice tone="warn">{__('Automations can send visitor data to other services, so changing them needs the "manage integrations" permission.')}</Notice> : null}
+			{!canEdit ? <Notice tone="warn">{__('Automations can send visitor data to other services, so changing them needs the "manage integrations" permission.', 'krivo-chatflow')}</Notice> : null}
 
 			<fieldset disabled={!canEdit} style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
 				<div className="kcf-stack">
-					{config.automations.length === 0 ? <Card><p className="kcf-muted">{__('No automations yet. Add one below.')}</p></Card> : null}
+					{config.automations.length === 0 ? <Card><p className="kcf-muted">{__('No automations yet. Add one below.', 'krivo-chatflow')}</p></Card> : null}
 					{config.automations.map((automation) => {
 						const action = actions.find((item) => item.type === automation.type);
 						const allowed = triggers.filter((trigger) => action && action.triggers.includes(trigger.key));
@@ -40,46 +40,46 @@ export function AutomationsTab({ flowId, config, update, meta, variables }) {
 								subtitle={labelOf(triggers, automation.trigger, 'key')}
 								actions={
 									<div className="kcf-row kcf-row--tight" style={{ alignItems: 'center' }}>
-										{automation.managed ? <Badge tone="brand">{__('From the WhatsApp tab')}</Badge> : null}
-										<Toggle label={__('On')} checked={automation.enabled} onChange={(value) => set({ ...automation, enabled: value })} />
+										{automation.managed ? <Badge tone="brand">{__('From the WhatsApp tab', 'krivo-chatflow')}</Badge> : null}
+										<Toggle label={__('On', 'krivo-chatflow')} checked={automation.enabled} onChange={(value) => set({ ...automation, enabled: value })} />
 										<Button
 											small
 											kind="ghost"
 											className="kcf-btn--danger-ghost"
 											onClick={async () => {
-												const ok = await confirm({ title: __('Delete this automation?'), message: sprintf(__('"%s" will stop running for new leads.'), labelOf(actions, automation.type, 'type')), confirm: __('Delete'), danger: true });
+												const ok = await confirm({ title: __('Delete this automation?', 'krivo-chatflow'), message: sprintf(/* translators: %s: name of the automation, for example "Send e-mail". */ __('"%s" will stop running for new leads.', 'krivo-chatflow'), labelOf(actions, automation.type, 'type')), confirm: __('Delete', 'krivo-chatflow'), danger: true });
 												if (ok) {
 													update(removeAutomation(config, automation.id));
 												}
 											}}
 										>
-											{__('Delete')}
+											{__('Delete', 'krivo-chatflow')}
 										</Button>
 									</div>
 								}
 							>
 								<div className="kcf-stack">
-									<SelectField label={__('When')} value={automation.trigger} onChange={(value) => set({ ...automation, trigger: value })} options={allowed.map((trigger) => ({ value: trigger.key, label: trigger.label }))} />
+									<SelectField label={__('When', 'krivo-chatflow')} value={automation.trigger} onChange={(value) => set({ ...automation, trigger: value })} options={allowed.map((trigger) => ({ value: trigger.key, label: trigger.label }))} />
 									{automation.type === 'send_email' ? <EmailForm automation={automation} onChange={set} variables={variables} meta={meta} hasEmail={hasEmailField(config)} kind={isAutoresponder(automation) ? 'confirmation' : 'notification'} /> : null}
 									{automation.type === 'send_webhook' ? <WebhookForm automation={automation} onChange={set} flowId={flowId} variables={variables} meta={meta} /> : null}
 									{automation.type === 'change_lead_status' ? (
 										<SelectField
-											label={__('Set the lead status to')}
+											label={__('Set the lead status to', 'krivo-chatflow')}
 											value={automation.config.status}
 											onChange={(value) => set({ ...automation, config: { ...automation.config, status: value } })}
-											options={meta.statuses.filter((status) => status !== 'spam').map((status) => ({ value: status, label: { new: __('New'), contacted: __('Contacted'), converted: __('Converted'), lost: __('Lost') }[status] || status }))}
+											options={meta.statuses.filter((status) => status !== 'spam').map((status) => ({ value: status, label: { new: __('New', 'krivo-chatflow'), contacted: __('Contacted', 'krivo-chatflow'), converted: __('Converted', 'krivo-chatflow'), lost: __('Lost', 'krivo-chatflow') }[status] || status }))}
 										/>
 									) : null}
-									{automation.type === 'route_lead' ? <p className="kcf-muted">{__('Runs the routing rules again after the lead changes, and updates who the lead is assigned to.')}</p> : null}
+									{automation.type === 'route_lead' ? <p className="kcf-muted">{__('Runs the routing rules again after the lead changes, and updates who the lead is assigned to.', 'krivo-chatflow')}</p> : null}
 									{automation.type === 'open_whatsapp' ? (
-										<TextArea label={__('Message (overrides the WhatsApp tab)')} value={automation.config.message} onChange={(value) => set({ ...automation, config: { ...automation.config, message: value } })} rows={4} optional />
+										<TextArea label={__('Message (overrides the WhatsApp tab)', 'krivo-chatflow')} value={automation.config.message} onChange={(value) => set({ ...automation, config: { ...automation.config, message: value } })} rows={4} optional />
 									) : null}
 								</div>
 							</Card>
 						);
 					})}
 
-					<Card title={__('Add an automation')}>
+					<Card title={__('Add an automation', 'krivo-chatflow')}>
 						<div className="kcf-row kcf-row--tight">
 							{actions.map((action) => (
 								<Button key={action.type} small disabled={config.automations.length >= meta.limits.automations} onClick={() => add(action.type)}>
@@ -89,7 +89,7 @@ export function AutomationsTab({ flowId, config, update, meta, variables }) {
 						</div>
 						{boot.menu.find((m) => m.screen === 'integrations') ? (
 							<p className="kcf-small kcf-muted" style={{ marginTop: 12 }}>
-								{__('Webhooks send to a connection you create in')} <a href={boot.menu.find((m) => m.screen === 'integrations').url}>{__('Integrations')}</a>.
+								{__('Webhooks send to a connection you create in', 'krivo-chatflow')} <a href={boot.menu.find((m) => m.screen === 'integrations').url}>{__('Integrations', 'krivo-chatflow')}</a>.
 							</p>
 						) : null}
 					</Card>

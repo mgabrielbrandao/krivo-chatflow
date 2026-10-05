@@ -41,7 +41,7 @@ final class AjaxFallback {
 	public static function manifest(): void {
 		self::guard_origin();
 		$data   = self::payload();
-		$result = PublicApi::manifest( (int) ( $data['flow'] ?? 0 ) );
+		$result = PublicApi::manifest( (int) ( $data['flow'] ?? 0 ), is_scalar( $data['lang'] ?? '' ) ? sanitize_text_field( (string) ( $data['lang'] ?? '' ) ) : '' );
 		self::respond( is_wp_error( $result ) ? $result : $result['flow'] );
 	}
 

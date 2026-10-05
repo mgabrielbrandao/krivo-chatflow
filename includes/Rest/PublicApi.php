@@ -32,10 +32,11 @@ final class PublicApi {
 	/**
 	 * The public manifest of a published flow.
 	 *
-	 * @param int $flow_id Flow id.
+	 * @param int    $flow_id Flow id.
+	 * @param string $locale  Language the page is in (optional).
 	 * @return array|\WP_Error { rev, flow }
 	 */
-	public static function manifest( int $flow_id ) {
+	public static function manifest( int $flow_id, string $locale = '' ) {
 		$limited = Guard::light( 'manifest', $flow_id, 120 );
 		if ( null !== $limited ) {
 			return $limited;
@@ -44,9 +45,19 @@ final class PublicApi {
 		if ( null === $row ) {
 			return self::not_found();
 		}
+		// The page tells which language it is in, so a cached copy of the manifest never mixes languages.
+		$switched = '' !== $locale
+			&& 1 === preg_match( '/^[a-z]{2,3}(_[A-Za-z0-9]{2,8})*$/', $locale )
+			&& determine_locale() !== $locale
+			&& ( 'en_US' === $locale || in_array( $locale, get_available_languages(), true ) )
+			&& switch_to_locale( $locale );
+		$flow     = Manifest::flow( $row['id'], $row['revision'], $row['config'] );
+		if ( $switched ) {
+			restore_previous_locale();
+		}
 		return array(
 			'rev'  => $row['revision'],
-			'flow' => Manifest::flow( $row['id'], $row['revision'], $row['config'] ),
+			'flow' => $flow,
 		);
 	}
 

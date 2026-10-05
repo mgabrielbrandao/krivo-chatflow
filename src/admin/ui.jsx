@@ -62,7 +62,7 @@ export function Spinner({ label }) {
 	return (
 		<div className="kcf-loading" role="status">
 			<span className="kcf-spin kcf-spin--big" aria-hidden="true" />
-			<span>{label || __('Loading…')}</span>
+			<span>{label || __('Loading…', 'krivo-chatflow')}</span>
 		</div>
 	);
 }
@@ -83,7 +83,7 @@ export function Notice({ tone = 'info', children, onDismiss, action }) {
 			<div className="kcf-notice__body">{children}</div>
 			{action}
 			{onDismiss ? (
-				<button type="button" className="kcf-notice__x" onClick={onDismiss} aria-label={__('Dismiss')}>
+				<button type="button" className="kcf-notice__x" onClick={onDismiss} aria-label={__('Dismiss', 'krivo-chatflow')}>
 					×
 				</button>
 			) : null}
@@ -99,7 +99,7 @@ function FieldShell({ id, label, help, error, children, inline, optional }) {
 			{label ? (
 				<label className="kcf-field__label" htmlFor={id}>
 					{label}
-					{optional ? <span className="kcf-field__opt"> {__('(optional)')}</span> : null}
+					{optional ? <span className="kcf-field__opt"> {__('(optional)', 'krivo-chatflow')}</span> : null}
 				</label>
 			) : null}
 			{children}
@@ -214,7 +214,7 @@ export function ColorField({ label, help, value, onChange, optional }) {
 	return (
 		<FieldShell id={id} label={label} help={help} optional={optional}>
 			<div className="kcf-color">
-				<input type="color" className="kcf-color__swatch" value={HEX.test(value || '') ? value : '#000000'} onChange={(event) => onChange(event.target.value.toUpperCase())} aria-label={label + ' — ' + __('colour picker')} />
+				<input type="color" className="kcf-color__swatch" value={HEX.test(value || '') ? value : '#000000'} onChange={(event) => onChange(event.target.value.toUpperCase())} aria-label={label + ' — ' + __('colour picker', 'krivo-chatflow')} />
 				<input
 					id={id}
 					className="kcf-input kcf-color__hex"
@@ -360,7 +360,7 @@ export function Modal({ title, onClose, children, footer, wide }) {
 			<div className={cx('kcf-modal__box', wide && 'kcf-modal__box--wide')} role="dialog" aria-modal="true" aria-labelledby={id} ref={ref} tabIndex={-1}>
 				<div className="kcf-modal__head">
 					<h2 id={id}>{title}</h2>
-					<button type="button" className="kcf-modal__x" onClick={onClose} aria-label={__('Close')}>
+					<button type="button" className="kcf-modal__x" onClick={onClose} aria-label={__('Close', 'krivo-chatflow')}>
 						×
 					</button>
 				</div>
@@ -405,9 +405,9 @@ export function Providers({ children }) {
 					onClose={() => close(false)}
 					footer={
 						<>
-							<Button onClick={() => close(false)}>{dialog.cancel || __('Cancel')}</Button>
+							<Button onClick={() => close(false)}>{dialog.cancel || __('Cancel', 'krivo-chatflow')}</Button>
 							<Button kind={dialog.danger ? 'danger' : 'primary'} onClick={() => close(true)} data-autofocus>
-								{dialog.confirm || __('Confirm')}
+								{dialog.confirm || __('Confirm', 'krivo-chatflow')}
 							</Button>
 						</>
 					}
@@ -450,7 +450,7 @@ export function CopyButton({ text, label }) {
 				window.setTimeout(() => setDone(false), 1800);
 			}}
 		>
-			{done ? __('Copied') : label || __('Copy')}
+			{done ? __('Copied', 'krivo-chatflow') : label || __('Copy', 'krivo-chatflow')}
 		</Button>
 	);
 }
@@ -461,15 +461,15 @@ export function Pagination({ page, perPage, total, onPage }) {
 		return null;
 	}
 	return (
-		<nav className="kcf-pager" aria-label={__('Pagination')}>
+		<nav className="kcf-pager" aria-label={__('Pagination', 'krivo-chatflow')}>
 			<Button small disabled={page <= 1} onClick={() => onPage(page - 1)}>
-				{__('Previous')}
+				{__('Previous', 'krivo-chatflow')}
 			</Button>
 			<span className="kcf-pager__info">
 				{page} / {pages}
 			</span>
 			<Button small disabled={page >= pages} onClick={() => onPage(page + 1)}>
-				{__('Next')}
+				{__('Next', 'krivo-chatflow')}
 			</Button>
 		</nav>
 	);

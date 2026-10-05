@@ -91,6 +91,39 @@ class RestPublicTest extends Krivo_TestCase {
 		$this->assertArrayNotHasKey( 'X-Krivo-Chatflow-Cacheable', $headers, 'The internal marker is removed' );
 	}
 
+	public function test_manifest_follows_the_language_the_page_asks_for(): void {
+		$id = $this->flow();
+		$available = static function ( $languages ) {
+			return array_merge( (array) $languages, array( 'pt_BR' ) );
+		};
+		add_filter( 'get_available_languages', $available );
+		// The locale switcher reads the available languages once, when it is created.
+		$GLOBALS['wp_locale_switcher'] = new WP_Locale_Switcher();
+		$GLOBALS['wp_locale_switcher']->init();
+		try {
+			unload_textdomain( 'krivo-chatflow', true ); // Reloadable: a plain unload stops WordPress from loading it again in this process.
+			load_plugin_textdomain( 'krivo-chatflow', false, 'krivo-chatflow/languages' );
+			$english    = $this->call( 'GET', '/public/flows/' . $id )->get_data();
+			$portuguese = $this->call( 'GET', '/public/flows/' . $id, array( 'lang' => 'pt_BR' ) )->get_data();
+			$this->assertSame( 'Continue', $english['i18n']['next'] );
+			$this->assertSame( 'Continuar', $portuguese['i18n']['next'] );
+			$this->assertSame( 'Continue', $this->call( 'GET', '/public/flows/' . $id )->get_data()['i18n']['next'], 'the language is restored afterwards' );
+		} finally {
+			remove_filter( 'get_available_languages', $available );
+			$GLOBALS['wp_locale_switcher'] = new WP_Locale_Switcher();
+			$GLOBALS['wp_locale_switcher']->init();
+		}
+	}
+
+	public function test_manifest_ignores_a_language_it_does_not_have_and_malformed_values(): void {
+		$id = $this->flow();
+		foreach ( array( 'xx_YY', '../../etc/passwd', 'pt_BR<script>', str_repeat( 'a', 300 ) ) as $lang ) {
+			$response = $this->call( 'GET', '/public/flows/' . $id, array( 'lang' => $lang ) );
+			$this->assertSame( 200, $response->get_status(), $lang );
+			$this->assertSame( 'Continue', $response->get_data()['i18n']['next'], $lang );
+		}
+	}
+
 	public function test_manifest_is_not_cached_for_logged_in_users(): void {
 		$id = $this->flow();
 		wp_set_current_user( self::factory()->user->create( array( 'role' => 'subscriber' ) ) );

@@ -26,7 +26,7 @@ export function VariableChips({ variables, only }) {
 	return (
 		<div>
 			<p className="kcf-field__help" style={{ marginBottom: 6 }}>
-				{__('Click a variable to insert it where your cursor is:')}
+				{__('Click a variable to insert it where your cursor is:', 'krivo-chatflow')}
 			</p>
 			<div className="kcf-chips">
 				{list.map((variable) => (
@@ -41,7 +41,7 @@ export function VariableChips({ variables, only }) {
 							if (!insertAtCursor(text)) {
 								try {
 									await navigator.clipboard.writeText(text);
-									toast('ok', sprintf(__('%s copied. Paste it in a message.'), text));
+									toast('ok', sprintf(/* translators: %s: a variable such as {name}. */ __('%s copied. Paste it in a message.', 'krivo-chatflow'), text));
 								} catch (e) {
 									toast('info', text);
 								}

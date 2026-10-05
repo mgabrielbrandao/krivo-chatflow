@@ -33,7 +33,7 @@ function Drawer({ title, onClose, children }) {
 			<div className="kcf-row" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
 				<h2 style={{ fontSize: 18 }}>{title}</h2>
 				<Button small onClick={onClose}>
-					{__('Close')}
+					{__('Close', 'krivo-chatflow')}
 				</Button>
 			</div>
 			{children}
@@ -50,7 +50,7 @@ function LeadDetail({ id, onClose, onChanged, onDeleted }) {
 		setStatus(value);
 		try {
 			await api.patch('leads/' + id, { status: value });
-			toast('ok', __('Status updated.'));
+			toast('ok', __('Status updated.', 'krivo-chatflow'));
 			onChanged();
 			lead.reload();
 		} catch (e) {
@@ -58,12 +58,12 @@ function LeadDetail({ id, onClose, onChanged, onDeleted }) {
 		}
 	};
 	const remove = async () => {
-		if (!(await confirm({ title: __('Delete this lead?'), message: __('This removes the lead and its answers permanently.'), confirm: __('Delete lead'), danger: true }))) {
+		if (!(await confirm({ title: __('Delete this lead?', 'krivo-chatflow'), message: __('This removes the lead and its answers permanently.', 'krivo-chatflow'), confirm: __('Delete lead', 'krivo-chatflow'), danger: true }))) {
 			return;
 		}
 		try {
 			await api.del('leads/' + id);
-			toast('ok', __('Lead deleted.'));
+			toast('ok', __('Lead deleted.', 'krivo-chatflow'));
 			onDeleted();
 		} catch (e) {
 			toast('error', e.message);
@@ -72,20 +72,20 @@ function LeadDetail({ id, onClose, onChanged, onDeleted }) {
 
 	const d = lead.data;
 	return (
-		<Drawer title={d ? d.name || d.email || d.phone || sprintf(__('Lead #%d'), d.id) : __('Lead')} onClose={onClose}>
+		<Drawer title={d ? d.name || d.email || d.phone || sprintf(/* translators: %d: lead number. */ __('Lead #%d', 'krivo-chatflow'), d.id) : __('Lead', 'krivo-chatflow')} onClose={onClose}>
 			{lead.loading && !d ? <Spinner /> : null}
 			{lead.error ? <Notice tone="error">{lead.error.message}</Notice> : null}
 			{d ? (
 				<div className="kcf-stack">
-					<SelectField label={__('Status')} value={status || d.status} onChange={change} options={statusOptions()} disabled={!can('edit_leads')} />
+					<SelectField label={__('Status', 'krivo-chatflow')} value={status || d.status} onChange={change} options={statusOptions()} disabled={!can('edit_leads')} />
 					<dl className="kcf-dl">
-						<dt>{__('Received')}</dt>
+						<dt>{__('Received', 'krivo-chatflow')}</dt>
 						<dd>{dateTime(d.created_at)}</dd>
-						<dt>{__('Chat')}</dt>
+						<dt>{__('Chat', 'krivo-chatflow')}</dt>
 						<dd>{d.flow || '—'}</dd>
 						{d.email ? (
 							<>
-								<dt>{__('E-mail')}</dt>
+								<dt>{__('E-mail', 'krivo-chatflow')}</dt>
 								<dd>
 									<a href={'mailto:' + d.email}>{d.email}</a>
 								</dd>
@@ -93,33 +93,33 @@ function LeadDetail({ id, onClose, onChanged, onDeleted }) {
 						) : null}
 						{d.phone ? (
 							<>
-								<dt>{__('Phone')}</dt>
+								<dt>{__('Phone', 'krivo-chatflow')}</dt>
 								<dd>{d.phone}</dd>
 							</>
 						) : null}
-						<dt>{__('Went to')}</dt>
+						<dt>{__('Went to', 'krivo-chatflow')}</dt>
 						<dd>{d.destination || '—'}</dd>
-						<dt>{__('Within business hours')}</dt>
-						<dd>{d.in_hours === null || d.in_hours === undefined ? '—' : d.in_hours ? __('Yes') : __('No')}</dd>
-						<dt>{__('Device')}</dt>
+						<dt>{__('Within business hours', 'krivo-chatflow')}</dt>
+						<dd>{d.in_hours === null || d.in_hours === undefined ? '—' : d.in_hours ? __('Yes', 'krivo-chatflow') : __('No', 'krivo-chatflow')}</dd>
+						<dt>{__('Device', 'krivo-chatflow')}</dt>
 						<dd>{d.device || '—'}</dd>
 						{d.page_url ? (
 							<>
-								<dt>{__('Page')}</dt>
+								<dt>{__('Page', 'krivo-chatflow')}</dt>
 								<dd>{d.page_title ? d.page_title + ' — ' : ''}{d.page_url}</dd>
 							</>
 						) : null}
 						{d.utm.source || d.utm.campaign ? (
 							<>
-								<dt>{__('Campaign')}</dt>
+								<dt>{__('Campaign', 'krivo-chatflow')}</dt>
 								<dd>{[d.utm.source, d.utm.medium, d.utm.campaign].filter(Boolean).join(' / ')}</dd>
 							</>
 						) : null}
 					</dl>
 
-					<Card title={__('Answers')}>
+					<Card title={__('Answers', 'krivo-chatflow')}>
 						{d.answers.length === 0 ? (
-							<p className="kcf-muted">{__('No answers.')}</p>
+							<p className="kcf-muted">{__('No answers.', 'krivo-chatflow')}</p>
 						) : (
 							<dl className="kcf-dl">
 								{d.answers.map((answer) => (
@@ -133,11 +133,11 @@ function LeadDetail({ id, onClose, onChanged, onDeleted }) {
 					</Card>
 
 					{d.consent.length > 0 ? (
-						<Card title={__('Consent given')}>
+						<Card title={__('Consent given', 'krivo-chatflow')}>
 							<ul style={{ margin: 0, paddingLeft: 18 }}>
 								{d.consent.map((item) => (
 									<li key={item.key}>
-										{item.key}: {item.accepted ? __('accepted') : __('not accepted')} {item.at ? '(' + dateTime(item.at) + ')' : ''}
+										{item.key}: {item.accepted ? __('accepted', 'krivo-chatflow') : __('not accepted', 'krivo-chatflow')} {item.at ? '(' + dateTime(item.at) + ')' : ''}
 									</li>
 								))}
 							</ul>
@@ -145,9 +145,9 @@ function LeadDetail({ id, onClose, onChanged, onDeleted }) {
 					) : null}
 
 					{can('view_integrations') ? (
-						<Card title={__('Automations for this lead')}>
+						<Card title={__('Automations for this lead', 'krivo-chatflow')}>
 							{d.runs.length === 0 ? (
-								<p className="kcf-muted">{__('None ran for this lead.')}</p>
+								<p className="kcf-muted">{__('None ran for this lead.', 'krivo-chatflow')}</p>
 							) : (
 								<ul style={{ margin: 0, paddingLeft: 18 }}>
 									{d.runs.map((run) => (
@@ -163,7 +163,7 @@ function LeadDetail({ id, onClose, onChanged, onDeleted }) {
 					{can('delete_leads') ? (
 						<div>
 							<Button kind="ghost" className="kcf-btn--danger-ghost" onClick={remove}>
-								{__('Delete this lead')}
+								{__('Delete this lead', 'krivo-chatflow')}
 							</Button>
 						</div>
 					) : null}
@@ -196,11 +196,11 @@ export function LeadsScreen() {
 
 	const bulk = async (action) => {
 		try {
-			if (action === 'delete' && !(await confirm({ title: sprintf(_n('Delete %d lead?', 'Delete %d leads?', selected.length), selected.length), message: __('This removes them and their answers permanently.'), confirm: __('Delete'), danger: true }))) {
+			if (action === 'delete' && !(await confirm({ title: sprintf(/* translators: %d: number of leads. */ _n('Delete %d lead?', 'Delete %d leads?', selected.length, 'krivo-chatflow'), selected.length), message: __('This removes them and their answers permanently.', 'krivo-chatflow'), confirm: __('Delete', 'krivo-chatflow'), danger: true }))) {
 				return;
 			}
 			const result = await api.post('leads/bulk', { action, ids: selected, status: action === 'status' ? bulkStatus : undefined });
-			toast('ok', sprintf(_n('%d lead updated.', '%d leads updated.', result.affected), result.affected));
+			toast('ok', sprintf(/* translators: %d: number of leads changed. */ _n('%d lead updated.', '%d leads updated.', result.affected, 'krivo-chatflow'), result.affected));
 			setSelected([]);
 			list.reload();
 		} catch (e) {
@@ -218,21 +218,21 @@ export function LeadsScreen() {
 	return (
 		<div className="kcf-stack">
 			<Card
-				title={__('Leads')}
+				title={__('Leads', 'krivo-chatflow')}
 				actions={
 					can('export_leads') ? (
 						<a className="kcf-btn kcf-btn--secondary kcf-btn--small" href={exportUrl()}>
-							{__('Export CSV')}
+							{__('Export CSV', 'krivo-chatflow')}
 						</a>
 					) : null
 				}
 			>
 				<div className="kcf-filters">
-					<TextField label={__('Search')} type="search" value={typed} onChange={setTyped} placeholder={__('Name, e-mail or phone')} />
-					<SelectField label={__('Status')} value={filters.status} onChange={(value) => set({ status: value })} options={statusOptions(__('All'))} />
-					<SelectField label={__('Chat')} value={filters.flow} onChange={(value) => set({ flow: value })} options={[{ value: '', label: __('All') }].concat((data ? data.flows : []).map((flow) => ({ value: String(flow.id), label: flow.title })))} />
-					<TextField label={__('From')} type="date" value={filters.from} onChange={(value) => set({ from: value })} />
-					<TextField label={__('To')} type="date" value={filters.to} onChange={(value) => set({ to: value })} />
+					<TextField label={__('Search', 'krivo-chatflow')} type="search" value={typed} onChange={setTyped} placeholder={__('Name, e-mail or phone', 'krivo-chatflow')} />
+					<SelectField label={__('Status', 'krivo-chatflow')} value={filters.status} onChange={(value) => set({ status: value })} options={statusOptions(__('All', 'krivo-chatflow'))} />
+					<SelectField label={__('Chat', 'krivo-chatflow')} value={filters.flow} onChange={(value) => set({ flow: value })} options={[{ value: '', label: __('All', 'krivo-chatflow') }].concat((data ? data.flows : []).map((flow) => ({ value: String(flow.id), label: flow.title })))} />
+					<TextField label={__('From', 'krivo-chatflow')} type="date" value={filters.from} onChange={(value) => set({ from: value })} />
+					<TextField label={__('To', 'krivo-chatflow')} type="date" value={filters.to} onChange={(value) => set({ to: value })} />
 				</div>
 
 				{data ? (
@@ -246,19 +246,19 @@ export function LeadsScreen() {
 				) : null}
 
 				{selected.length > 0 ? (
-					<div className="kcf-row kcf-row--tight" style={{ marginBottom: 12, alignItems: 'flex-end' }} role="group" aria-label={__('Actions for the selected leads')}>
-						<strong>{sprintf(_n('%d selected', '%d selected', selected.length), selected.length)}</strong>
+					<div className="kcf-row kcf-row--tight" style={{ marginBottom: 12, alignItems: 'flex-end' }} role="group" aria-label={__('Actions for the selected leads', 'krivo-chatflow')}>
+						<strong>{sprintf(/* translators: %d: number of selected leads. */ _n('%d selected', '%d selected', selected.length, 'krivo-chatflow'), selected.length)}</strong>
 						{can('edit_leads') ? (
 							<>
-								<SelectField label={__('Mark as')} value={bulkStatus} onChange={setBulkStatus} options={statusOptions()} />
+								<SelectField label={__('Mark as', 'krivo-chatflow')} value={bulkStatus} onChange={setBulkStatus} options={statusOptions()} />
 								<Button small onClick={() => bulk('status')}>
-									{__('Apply')}
+									{__('Apply', 'krivo-chatflow')}
 								</Button>
 							</>
 						) : null}
 						{can('delete_leads') ? (
 							<Button small kind="ghost" className="kcf-btn--danger-ghost" onClick={() => bulk('delete')}>
-								{__('Delete')}
+								{__('Delete', 'krivo-chatflow')}
 							</Button>
 						) : null}
 					</div>
@@ -266,27 +266,27 @@ export function LeadsScreen() {
 
 				{list.error ? <Notice tone="error">{list.error.message}</Notice> : null}
 				{list.loading && !data ? <Spinner /> : null}
-				{data && items.length === 0 ? <Empty title={__('No leads found')}>{filters.search || filters.status || filters.flow || filters.from || filters.to ? __('Try different filters.') : __('When a visitor finishes a chat, the lead appears here.')}</Empty> : null}
+				{data && items.length === 0 ? <Empty title={__('No leads found', 'krivo-chatflow')}>{filters.search || filters.status || filters.flow || filters.from || filters.to ? __('Try different filters.', 'krivo-chatflow') : __('When a visitor finishes a chat, the lead appears here.', 'krivo-chatflow')}</Empty> : null}
 				{items.length > 0 ? (
 					<div className="kcf-table-wrap" aria-busy={list.loading ? 'true' : undefined}>
 						<table className="kcf-table">
 							<thead>
 								<tr>
 									<th scope="col" style={{ width: 32 }}>
-										<input type="checkbox" aria-label={__('Select all on this page')} checked={allOn} onChange={(event) => setSelected(event.target.checked ? items.map((lead) => lead.id) : [])} />
+										<input type="checkbox" aria-label={__('Select all on this page', 'krivo-chatflow')} checked={allOn} onChange={(event) => setSelected(event.target.checked ? items.map((lead) => lead.id) : [])} />
 									</th>
-									<th scope="col">{__('Lead')}</th>
-									<th scope="col">{__('Chat')}</th>
-									<th scope="col">{__('Went to')}</th>
-									<th scope="col">{__('Status')}</th>
-									<th scope="col">{__('Received')}</th>
+									<th scope="col">{__('Lead', 'krivo-chatflow')}</th>
+									<th scope="col">{__('Chat', 'krivo-chatflow')}</th>
+									<th scope="col">{__('Went to', 'krivo-chatflow')}</th>
+									<th scope="col">{__('Status', 'krivo-chatflow')}</th>
+									<th scope="col">{__('Received', 'krivo-chatflow')}</th>
 								</tr>
 							</thead>
 							<tbody>
 								{items.map((lead) => (
 									<tr key={lead.id}>
 										<td>
-											<input type="checkbox" aria-label={sprintf(__('Select %s'), lead.name || lead.email || '#' + lead.id)} checked={selected.includes(lead.id)} onChange={(event) => setSelected(event.target.checked ? selected.concat(lead.id) : selected.filter((id) => id !== lead.id))} />
+											<input type="checkbox" aria-label={sprintf(/* translators: %s: name of the lead. */ __('Select %s', 'krivo-chatflow'), lead.name || lead.email || '#' + lead.id)} checked={selected.includes(lead.id)} onChange={(event) => setSelected(event.target.checked ? selected.concat(lead.id) : selected.filter((id) => id !== lead.id))} />
 										</td>
 										<td>
 											<button type="button" className="kcf-link-button" onClick={() => setOpen(lead.id)}>
@@ -307,7 +307,7 @@ export function LeadsScreen() {
 					</div>
 				) : null}
 				{data ? <Pagination page={filters.page} perPage={PER_PAGE} total={data.total} onPage={(page) => set({ page })} /> : null}
-				{data ? <p className="kcf-small kcf-muted" style={{ marginTop: 8 }}>{sprintf(_n('%d lead', '%d leads', data.total), data.total)}</p> : null}
+				{data ? <p className="kcf-small kcf-muted" style={{ marginTop: 8 }}>{sprintf(/* translators: %d: number of leads. */ _n('%d lead', '%d leads', data.total, 'krivo-chatflow'), data.total)}</p> : null}
 			</Card>
 
 			{open ? <LeadDetail id={open} onClose={() => setOpen(0)} onChanged={list.reload} onDeleted={() => { setOpen(0); list.reload(); }} /> : null}

@@ -37,16 +37,20 @@ final class PublicController {
 				'callback'            => array( __CLASS__, 'manifest' ),
 				'permission_callback' => array( __CLASS__, 'permit_origin' ),
 				'args'                => array(
-					'id' => array(
+					'id'   => array(
 						'type'              => 'integer',
 						'required'          => true,
 						'sanitize_callback' => 'absint',
 						'validate_callback' => 'rest_validate_request_arg',
 					),
-					'v'  => array(
+					'v'    => array(
 						'type'              => 'integer',
 						'sanitize_callback' => 'absint',
 						'validate_callback' => 'rest_validate_request_arg',
+					),
+					'lang' => array(
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
 			)
@@ -165,7 +169,7 @@ final class PublicController {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public static function manifest( \WP_REST_Request $request ) {
-		$result = PublicApi::manifest( (int) $request['id'] );
+		$result = PublicApi::manifest( (int) $request['id'], (string) $request['lang'] );
 		if ( is_wp_error( $result ) ) {
 			return self::error( $result );
 		}

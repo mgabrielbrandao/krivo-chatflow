@@ -13,31 +13,31 @@ function DestinationCard({ destination, isDefault, onChange, onDefault, onRemove
 	return (
 		<div className="kcf-rule">
 			<div className="kcf-rule__title">
-				<span>{destination.name || __('Destination')}</span>
+				<span>{destination.name || __('Destination', 'krivo-chatflow')}</span>
 				<span className="kcf-row kcf-row--tight">
-					{isDefault ? <Badge tone="brand">{__('Default')}</Badge> : <Button small onClick={onDefault}>{__('Make default')}</Button>}
+					{isDefault ? <Badge tone="brand">{__('Default', 'krivo-chatflow')}</Badge> : <Button small onClick={onDefault}>{__('Make default', 'krivo-chatflow')}</Button>}
 					<Button small kind="ghost" className="kcf-btn--danger-ghost" onClick={onRemove}>
-						{__('Remove')}
+						{__('Remove', 'krivo-chatflow')}
 					</Button>
 				</span>
 			</div>
 			<div className="kcf-stack" style={{ gap: 12 }}>
-				<TextField label={__('Name')} value={destination.name} onChange={(value) => onChange({ ...destination, name: value })} maxLength={80} placeholder={__('Sales team')} />
+				<TextField label={__('Name', 'krivo-chatflow')} value={destination.name} onChange={(value) => onChange({ ...destination, name: value })} maxLength={80} placeholder={__('Sales team', 'krivo-chatflow')} />
 				<div className="kcf-row">
-					<TextField label={__('Country code')} value={destination.dial_code} onChange={(value) => onChange({ ...destination, dial_code: value.replace(/\D/g, '').slice(0, 4) })} inputMode="numeric" placeholder={boot.defaultDial || '55'} style={{ maxWidth: 110 }} />
-					<TextField label={__('WhatsApp number')} optional value={destination.number} onChange={(value) => onChange({ ...destination, number: value.replace(/[^\d\s()-]/g, '').slice(0, 20) })} inputMode="tel" placeholder="(11) 91234-5678" help={__('Where the visitor continues the conversation.')} />
+					<TextField label={__('Country code', 'krivo-chatflow')} value={destination.dial_code} onChange={(value) => onChange({ ...destination, dial_code: value.replace(/\D/g, '').slice(0, 4) })} inputMode="numeric" placeholder={boot.defaultDial || '55'} style={{ maxWidth: 110 }} />
+					<TextField label={__('WhatsApp number', 'krivo-chatflow')} optional value={destination.number} onChange={(value) => onChange({ ...destination, number: value.replace(/[^\d\s()-]/g, '').slice(0, 20) })} inputMode="tel" placeholder="(11) 91234-5678" help={__('Where the visitor continues the conversation.', 'krivo-chatflow')} />
 				</div>
 				<TextField
-					label={__('E-mails that receive the lead')}
+					label={__('E-mails that receive the lead', 'krivo-chatflow')}
 					optional
 					value={emails}
 					onChange={(value) => {
 						setEmails(value);
 						onChange({ ...destination, emails: textToEmails(value) });
 					}}
-					help={__('Separate several addresses with commas.')}
+					help={__('Separate several addresses with commas.', 'krivo-chatflow')}
 				/>
-				<TextField label={__('Note')} optional value={destination.note} onChange={(value) => onChange({ ...destination, note: value })} maxLength={200} help={__('Only you see this.')} />
+				<TextField label={__('Note', 'krivo-chatflow')} optional value={destination.note} onChange={(value) => onChange({ ...destination, note: value })} maxLength={200} help={__('Only you see this.', 'krivo-chatflow')} />
 			</div>
 		</div>
 	);
@@ -98,9 +98,9 @@ export function RoutingScreen() {
 	const removeDestination = async (destination) => {
 		const used = rules.filter((rule) => rule.destination === destination.id).length;
 		const sure = await confirm({
-			title: sprintf(__('Remove “%s”?'), destination.name || __('this destination')),
-			message: used > 0 ? sprintf(__('%d rule(s) send leads here. Change or delete them first, otherwise the changes cannot be saved.'), used) : __('Leads will no longer be sent here.'),
-			confirm: __('Remove'),
+			title: sprintf(/* translators: %s: name of the destination. */ __('Remove “%s”?', 'krivo-chatflow'), destination.name || __('this destination', 'krivo-chatflow')),
+			message: used > 0 ? sprintf(/* translators: %d: number of routing rules that use the destination. */ __('%d rule(s) send leads here. Change or delete them first, otherwise the changes cannot be saved.', 'krivo-chatflow'), used) : __('Leads will no longer be sent here.', 'krivo-chatflow'),
+			confirm: __('Remove', 'krivo-chatflow'),
 			danger: true,
 		});
 		if (sure) {
@@ -133,7 +133,7 @@ export function RoutingScreen() {
 			setRouting(result.routing);
 			setRevision(result.routing.revision);
 			setState({ saving: false, error: '', conflict: false, dirty: false });
-			toast('ok', __('Routing saved.'));
+			toast('ok', __('Routing saved.', 'krivo-chatflow'));
 		} catch (error) {
 			setState((s) => ({ ...s, saving: false, conflict: error.status === 409, error: error.message }));
 		}
@@ -141,18 +141,18 @@ export function RoutingScreen() {
 
 	return (
 		<div className="kcf-stack">
-			<Notice tone="info">{__('Every lead goes to a destination: a WhatsApp number to continue the conversation and/or e-mail addresses that receive the details. Rules send some leads somewhere else, depending on their answers.')}</Notice>
+			<Notice tone="info">{__('Every lead goes to a destination: a WhatsApp number to continue the conversation and/or e-mail addresses that receive the details. Rules send some leads somewhere else, depending on their answers.', 'krivo-chatflow')}</Notice>
 			{state.conflict ? (
-				<Notice tone="error" action={<Button small onClick={() => loaded.reload()}>{__('Load the latest version')}</Button>}>
-					{__('Someone else changed the routing while you were editing.')}
+				<Notice tone="error" action={<Button small onClick={() => loaded.reload()}>{__('Load the latest version', 'krivo-chatflow')}</Button>}>
+					{__('Someone else changed the routing while you were editing.', 'krivo-chatflow')}
 				</Notice>
 			) : state.error ? (
 				<Notice tone="error">{state.error}</Notice>
 			) : null}
 
-			<Card title={__('Destinations')} actions={<Button kind="primary" small onClick={addDestination}>{__('Add destination')}</Button>}>
+			<Card title={__('Destinations', 'krivo-chatflow')} actions={<Button kind="primary" small onClick={addDestination}>{__('Add destination', 'krivo-chatflow')}</Button>}>
 				<div className="kcf-stack">
-					{destinations.length === 0 ? <Empty title={__('No destination yet')}>{__('Add the WhatsApp number or e-mail that should receive your leads.')}</Empty> : null}
+					{destinations.length === 0 ? <Empty title={__('No destination yet', 'krivo-chatflow')}>{__('Add the WhatsApp number or e-mail that should receive your leads.', 'krivo-chatflow')}</Empty> : null}
 					{destinations.map((destination, index) => (
 						<DestinationCard
 							key={destination.id}
@@ -166,39 +166,39 @@ export function RoutingScreen() {
 				</div>
 			</Card>
 
-			<Card title={__('Rules')} subtitle={__('Checked from top to bottom. The first rule that matches decides. If none matches, the default destination is used.')} actions={<Button small onClick={addRule} disabled={destinations.length === 0}>{__('Add rule')}</Button>}>
+			<Card title={__('Rules', 'krivo-chatflow')} subtitle={__('Checked from top to bottom. The first rule that matches decides. If none matches, the default destination is used.', 'krivo-chatflow')} actions={<Button small onClick={addRule} disabled={destinations.length === 0}>{__('Add rule', 'krivo-chatflow')}</Button>}>
 				<div className="kcf-stack">
-					{rules.length === 0 ? <p className="kcf-muted">{__('No rules. Every lead goes to the default destination.')}</p> : null}
+					{rules.length === 0 ? <p className="kcf-muted">{__('No rules. Every lead goes to the default destination.', 'krivo-chatflow')}</p> : null}
 					{rules.map((rule, index) => (
 						<div className="kcf-rule" key={rule.id}>
 							<div className="kcf-rule__title">
-								<span>{rule.name || sprintf(__('Rule %d'), index + 1)}</span>
+								<span>{rule.name || sprintf(__('Rule %d', 'krivo-chatflow'), index + 1)}</span>
 								<span className="kcf-row kcf-row--tight">
-									<Button small kind="ghost" aria-label={__('Move up')} disabled={index === 0} onClick={() => set({ rules: move(rules, index, index - 1) })}>
+									<Button small kind="ghost" aria-label={__('Move up', 'krivo-chatflow')} disabled={index === 0} onClick={() => set({ rules: move(rules, index, index - 1) })}>
 										↑
 									</Button>
-									<Button small kind="ghost" aria-label={__('Move down')} disabled={index === rules.length - 1} onClick={() => set({ rules: move(rules, index, index + 1) })}>
+									<Button small kind="ghost" aria-label={__('Move down', 'krivo-chatflow')} disabled={index === rules.length - 1} onClick={() => set({ rules: move(rules, index, index + 1) })}>
 										↓
 									</Button>
 									<Button small kind="ghost" className="kcf-btn--danger-ghost" onClick={() => set({ rules: rules.filter((_, i) => i !== index) })}>
-										{__('Delete')}
+										{__('Delete', 'krivo-chatflow')}
 									</Button>
 								</span>
 							</div>
 							<div className="kcf-stack" style={{ gap: 12 }}>
-								<TextField label={__('Name')} optional value={rule.name} onChange={(value) => setRule(index, { ...rule, name: value })} maxLength={80} placeholder={__('High budget')} />
-								<Toggle label={__('Rule is active')} checked={rule.enabled} onChange={(value) => setRule(index, { ...rule, enabled: value })} />
+								<TextField label={__('Name', 'krivo-chatflow')} optional value={rule.name} onChange={(value) => setRule(index, { ...rule, name: value })} maxLength={80} placeholder={__('High budget', 'krivo-chatflow')} />
+								<Toggle label={__('Rule is active', 'krivo-chatflow')} checked={rule.enabled} onChange={(value) => setRule(index, { ...rule, enabled: value })} />
 								<fieldset className="kcf-field">
-									<legend className="kcf-field__label">{__('Applies to')}</legend>
+									<legend className="kcf-field__label">{__('Applies to', 'krivo-chatflow')}</legend>
 									<div className="kcf-row kcf-row--tight">
-										<CheckField label={__('All chats')} checked={rule.flows.length === 0} onChange={() => setRule(index, { ...rule, flows: [] })} />
+										<CheckField label={__('All chats', 'krivo-chatflow')} checked={rule.flows.length === 0} onChange={() => setRule(index, { ...rule, flows: [] })} />
 										{flows.map((flow) => (
 											<CheckField key={flow.id} label={flow.title} checked={rule.flows.includes(flow.id)} onChange={(on) => setRule(index, { ...rule, flows: on ? rule.flows.concat(flow.id) : rule.flows.filter((id) => id !== flow.id) })} />
 										))}
 									</div>
 								</fieldset>
 								<ConditionGroup group={rule.when} onChange={(when) => setRule(index, { ...rule, when })} fields={fields} context={context} max={10} />
-								<SelectField label={__('Then send the lead to')} value={rule.destination} onChange={(value) => setRule(index, { ...rule, destination: value })} options={destinationOptions} />
+								<SelectField label={__('Then send the lead to', 'krivo-chatflow')} value={rule.destination} onChange={(value) => setRule(index, { ...rule, destination: value })} options={destinationOptions} />
 							</div>
 						</div>
 					))}
@@ -206,15 +206,15 @@ export function RoutingScreen() {
 			</Card>
 
 			<div className="kcf-sticky-save">
-				<span className="kcf-small" role="status">{state.saving ? __('Saving…') : state.dirty ? __('Unsaved changes') : __('All changes saved')}</span>
+				<span className="kcf-small" role="status">{state.saving ? __('Saving…', 'krivo-chatflow') : state.dirty ? __('Unsaved changes', 'krivo-chatflow') : __('All changes saved', 'krivo-chatflow')}</span>
 				<span className="kcf-row kcf-row--tight">
 					{state.conflict ? (
 						<Button small kind="danger" onClick={() => save(true)}>
-							{__('Overwrite with mine')}
+							{__('Overwrite with mine', 'krivo-chatflow')}
 						</Button>
 					) : null}
 					<Button kind="primary" small onClick={() => save(false)} loading={state.saving} disabled={!state.dirty}>
-						{__('Save routing')}
+						{__('Save routing', 'krivo-chatflow')}
 					</Button>
 				</span>
 			</div>

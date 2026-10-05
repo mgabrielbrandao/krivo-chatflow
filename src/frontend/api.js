@@ -55,7 +55,7 @@ export function createApi(cfg) {
 	}
 
 	return {
-		manifest: (id, rev) => call('manifest', 'public/flows/' + id, 'GET', { flow: id }, 'v=' + rev),
+		manifest: (id, rev) => call('manifest', 'public/flows/' + id, 'GET', { flow: id, lang: cfg.locale || '' }, 'v=' + rev + (cfg.locale ? '&lang=' + encodeURIComponent(cfg.locale) : '')),
 		session: (id) => call('session', 'public/session', 'POST', { flow: id }),
 		events: (id, events) => call('events', 'public/events', 'POST', { flow: id, events }),
 		submit: (payload) => call('submit', 'public/submissions', 'POST', payload),

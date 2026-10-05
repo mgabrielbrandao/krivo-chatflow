@@ -21,11 +21,11 @@ export function ImagePicker({ label, attachmentId, onChange }) {
 	}, [attachmentId]);
 
 	if (!window.wp || !window.wp.media) {
-		return <p className="kcf-field__help">{__('The media library is not available on this screen.')}</p>;
+		return <p className="kcf-field__help">{__('The media library is not available on this screen.', 'krivo-chatflow')}</p>;
 	}
 
 	const pick = () => {
-		const frame = window.wp.media({ title: label, button: { text: __('Use this image') }, multiple: false, library: { type: 'image' } });
+		const frame = window.wp.media({ title: label, button: { text: __('Use this image', 'krivo-chatflow') }, multiple: false, library: { type: 'image' } });
 		frame.on('select', () => {
 			const selected = frame.state().get('selection').first().toJSON();
 			onChange(selected.id);
@@ -39,11 +39,11 @@ export function ImagePicker({ label, attachmentId, onChange }) {
 			<div className="kcf-row kcf-row--tight" style={{ alignItems: 'center' }}>
 				{url ? <img src={url} alt="" width="48" height="48" style={{ objectFit: 'cover', borderRadius: 8, border: '1px solid var(--kcf-line)' }} /> : null}
 				<Button small onClick={pick}>
-					{attachmentId ? __('Change image') : __('Choose image')}
+					{attachmentId ? __('Change image', 'krivo-chatflow') : __('Choose image', 'krivo-chatflow')}
 				</Button>
 				{attachmentId ? (
 					<Button small kind="ghost" onClick={() => onChange(0)}>
-						{__('Remove')}
+						{__('Remove', 'krivo-chatflow')}
 					</Button>
 				) : null}
 			</div>

@@ -124,6 +124,7 @@ final class Assets {
 			'version'   => KRIVO_CHATFLOW_VERSION,
 			'rest'      => esc_url_raw( rest_url( 'krivo-chatflow/v1/' ) ),
 			'ajax'      => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
+			'locale'    => get_locale(),
 			'panel'     => array(
 				'js'  => KRIVO_CHATFLOW_URL . 'assets/frontend/panel.js?ver=' . rawurlencode( KRIVO_CHATFLOW_VERSION ),
 				'css' => KRIVO_CHATFLOW_URL . 'assets/frontend/panel.css?ver=' . rawurlencode( KRIVO_CHATFLOW_VERSION ),

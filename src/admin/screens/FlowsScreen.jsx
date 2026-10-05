@@ -29,13 +29,13 @@ export function useHash() {
 }
 
 const STATUS = {
-	published: ['ok', () => __('Published')],
-	paused: ['warn', () => __('Paused')],
-	draft: ['neutral', () => __('Draft')],
+	published: ['ok', () => __('Published', 'krivo-chatflow')],
+	paused: ['warn', () => __('Paused', 'krivo-chatflow')],
+	draft: ['neutral', () => __('Draft', 'krivo-chatflow')],
 };
 
 export function TemplatePicker({ templates, onPick, busy }) {
-	const options = templates.concat([{ id: '', name: __('Blank'), description: __('Start from nothing and add your own questions.'), fields: [] }]);
+	const options = templates.concat([{ id: '', name: __('Blank', 'krivo-chatflow'), description: __('Start from nothing and add your own questions.', 'krivo-chatflow'), fields: [] }]);
 	return (
 		<div className="kcf-grid">
 			{options.map((template) => (
@@ -79,14 +79,14 @@ export function CreateDialog({ templates, initial, onClose, onCreated }) {
 	return (
 		<Modal
 			wide
-			title={template ? sprintf(__('New chat: %s'), template.name) : __('Choose a starting point')}
+			title={template ? sprintf(/* translators: %s: name of the template. */ __('New chat: %s', 'krivo-chatflow'), template.name) : __('Choose a starting point', 'krivo-chatflow')}
 			onClose={onClose}
 			footer={
 				template ? (
 					<>
-						<Button onClick={() => setTemplate(null)}>{__('Back')}</Button>
+						<Button onClick={() => setTemplate(null)}>{__('Back', 'krivo-chatflow')}</Button>
 						<Button kind="primary" loading={busy} onClick={() => create(template, name, whatsapp)} data-autofocus>
-							{__('Create chat')}
+							{__('Create chat', 'krivo-chatflow')}
 						</Button>
 					</>
 				) : null
@@ -95,8 +95,8 @@ export function CreateDialog({ templates, initial, onClose, onCreated }) {
 			{template ? (
 				<div className="kcf-stack">
 					<p className="kcf-muted">{template.description}</p>
-					<TextField label={__('Name')} help={__('Only you see this name.')} value={name} onChange={setName} placeholder={template.name} maxLength={120} data-autofocus />
-					{template.id ? <Toggle label={__('Continue on WhatsApp after the form')} help={__('You can change this later.')} checked={whatsapp} onChange={setWhatsapp} /> : null}
+					<TextField label={__('Name', 'krivo-chatflow')} help={__('Only you see this name.', 'krivo-chatflow')} value={name} onChange={setName} placeholder={template.name} maxLength={120} data-autofocus />
+					{template.id ? <Toggle label={__('Continue on WhatsApp after the form', 'krivo-chatflow')} help={__('You can change this later.', 'krivo-chatflow')} checked={whatsapp} onChange={setWhatsapp} /> : null}
 				</div>
 			) : (
 				<TemplatePicker templates={templates} onPick={setTemplate} busy={busy} />
@@ -117,26 +117,26 @@ function FlowsList({ onOpen }) {
 		try {
 			if (action === 'duplicate') {
 				const copy = await api.post('flows/' + flow.id + '/duplicate');
-				toast('ok', __('Copy created as a draft.'));
+				toast('ok', __('Copy created as a draft.', 'krivo-chatflow'));
 				onOpen(copy.id);
 				return;
 			}
 			if (action === 'pause') {
 				await api.post('flows/' + flow.id + '/pause');
-				toast('ok', __('Paused.'));
+				toast('ok', __('Paused.', 'krivo-chatflow'));
 			}
 			if (action === 'delete') {
 				const sure = await confirm({
-					title: sprintf(__('Delete “%s”?'), flow.title),
-					message: __('The chat disappears from your site. The leads it already collected are kept.'),
-					confirm: __('Delete chat'),
+					title: sprintf(/* translators: %s: name of the chat. */ __('Delete “%s”?', 'krivo-chatflow'), flow.title),
+					message: __('The chat disappears from your site. The leads it already collected are kept.', 'krivo-chatflow'),
+					confirm: __('Delete chat', 'krivo-chatflow'),
 					danger: true,
 				});
 				if (!sure) {
 					return;
 				}
 				await api.del('flows/' + flow.id);
-				toast('ok', __('Chat deleted.'));
+				toast('ok', __('Chat deleted.', 'krivo-chatflow'));
 			}
 			list.reload();
 		} catch (error) {
@@ -157,23 +157,23 @@ function FlowsList({ onOpen }) {
 	return (
 		<div className="kcf-stack">
 			{items.length === 0 ? (
-				<Card title={__('Create your first chat')} subtitle={__('Pick a starting point. You can change everything afterwards, and nothing appears on your site until you publish.')}>
+				<Card title={__('Create your first chat', 'krivo-chatflow')} subtitle={__('Pick a starting point. You can change everything afterwards, and nothing appears on your site until you publish.', 'krivo-chatflow')}>
 					{can('create_flows') && templates.data ? (
 						<TemplatePicker
 							templates={templates.data.items}
 							onPick={(template) => setCreating(template)}
 						/>
 					) : (
-						<Empty title={__('No chats yet')} />
+						<Empty title={__('No chats yet', 'krivo-chatflow')} />
 					)}
 				</Card>
 			) : (
 				<Card
-					title={__('Your chats')}
+					title={__('Your chats', 'krivo-chatflow')}
 					actions={
 						can('create_flows') ? (
 							<Button kind="primary" onClick={() => setCreating(true)}>
-								{__('New chat')}
+								{__('New chat', 'krivo-chatflow')}
 							</Button>
 						) : null
 					}
@@ -182,14 +182,14 @@ function FlowsList({ onOpen }) {
 						<table className="kcf-table">
 							<thead>
 								<tr>
-									<th scope="col">{__('Name')}</th>
-									<th scope="col">{__('Status')}</th>
+									<th scope="col">{__('Name', 'krivo-chatflow')}</th>
+									<th scope="col">{__('Status', 'krivo-chatflow')}</th>
 									<th scope="col" className="is-num">
-										{__('Leads')}
+										{__('Leads', 'krivo-chatflow')}
 									</th>
-									<th scope="col">{__('Edited')}</th>
+									<th scope="col">{__('Edited', 'krivo-chatflow')}</th>
 									<th scope="col">
-										<span className="kcf-sr">{__('Actions')}</span>
+										<span className="kcf-sr">{__('Actions', 'krivo-chatflow')}</span>
 									</th>
 								</tr>
 							</thead>
@@ -211,21 +211,21 @@ function FlowsList({ onOpen }) {
 											<td>
 												<span className="kcf-row kcf-row--tight" style={{ justifyContent: 'flex-end' }}>
 													<Button small onClick={() => onOpen(flow.id)}>
-														{__('Edit')}
+														{__('Edit', 'krivo-chatflow')}
 													</Button>
 													{flow.status === 'published' ? (
 														<Button small kind="ghost" onClick={() => act(flow, 'pause')} loading={busy === flow.id}>
-															{__('Pause')}
+															{__('Pause', 'krivo-chatflow')}
 														</Button>
 													) : null}
 													{can('create_flows') ? (
 														<Button small kind="ghost" onClick={() => act(flow, 'duplicate')}>
-															{__('Duplicate')}
+															{__('Duplicate', 'krivo-chatflow')}
 														</Button>
 													) : null}
 													{can('delete_flows') ? (
 														<Button small kind="ghost" className="kcf-btn--danger-ghost" onClick={() => act(flow, 'delete')}>
-															{__('Delete')}
+															{__('Delete', 'krivo-chatflow')}
 														</Button>
 													) : null}
 												</span>
@@ -237,7 +237,7 @@ function FlowsList({ onOpen }) {
 						</table>
 					</div>
 					<p className="kcf-muted kcf-small" style={{ marginTop: 12 }}>
-						{sprintf(_n('%d chat', '%d chats', items.length), items.length)}
+						{sprintf(/* translators: %d: number of chats. */ _n('%d chat', '%d chats', items.length, 'krivo-chatflow'), items.length)}
 					</p>
 				</Card>
 			)}

@@ -103,7 +103,7 @@ final class Gate {
 			return array(
 				'id'      => (int) $entry['id'],
 				'rev'     => (int) $entry['rev'],
-				'boot'    => (array) $entry['boot'],
+				'boot'    => Index::boot_for_current_locale( $entry ),
 				'preview' => false,
 			);
 		}

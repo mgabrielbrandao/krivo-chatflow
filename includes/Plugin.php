@@ -28,6 +28,8 @@ final class Plugin {
 	public static function boot(): void {
 		Migrator::register();
 
+		// The Brazilian Portuguese translation ships with the plugin; other languages come from WordPress.org language packs.
+		add_action( 'init', array( __CLASS__, 'load_translations' ), 1 );
 		add_action( 'init', array( Settings::class, 'register' ) );
 
 		// Queue callbacks must exist on every request type (WP-Cron runs them on a bare request).
@@ -51,5 +53,14 @@ final class Plugin {
 		}
 
 		do_action( 'krivo_chatflow_loaded' );
+	}
+
+	/**
+	 * Loads the translation files bundled in languages/ (WordPress loads language packs by itself).
+	 *
+	 * @return void
+	 */
+	public static function load_translations(): void {
+		load_plugin_textdomain( 'krivo-chatflow', false, dirname( plugin_basename( KRIVO_CHATFLOW_FILE ) ) . '/languages' );
 	}
 }

@@ -11,13 +11,13 @@ import { RoutingScreen } from './screens/RoutingScreen.jsx';
 import { SettingsScreen } from './screens/SettingsScreen.jsx';
 
 const SCREENS = {
-	dashboard: [() => __('Dashboard'), Dashboard],
-	flows: [() => __('ChatFlows'), FlowsScreen],
-	leads: [() => __('Leads'), LeadsScreen],
-	routing: [() => __('Routing'), RoutingScreen],
-	integrations: [() => __('Integrations'), IntegrationsScreen],
-	analytics: [() => __('Analytics'), AnalyticsScreen],
-	settings: [() => __('Settings'), SettingsScreen],
+	dashboard: [() => __('Dashboard', 'krivo-chatflow'), Dashboard],
+	flows: [() => __('ChatFlows', 'krivo-chatflow'), FlowsScreen],
+	leads: [() => __('Leads', 'krivo-chatflow'), LeadsScreen],
+	routing: [() => __('Routing', 'krivo-chatflow'), RoutingScreen],
+	integrations: [() => __('Integrations', 'krivo-chatflow'), IntegrationsScreen],
+	analytics: [() => __('Analytics', 'krivo-chatflow'), AnalyticsScreen],
+	settings: [() => __('Settings', 'krivo-chatflow'), SettingsScreen],
 };
 
 function App() {

@@ -7,19 +7,19 @@ import { Badge, Button, Card, Empty, LinkButton, Notice, Spinner, useApp, useLoa
 import { Onboarding } from './Onboarding.jsx';
 
 const CHECKLIST = {
-	create: [() => __('Create your first chat'), 'flows', () => '#/new', 'edit_flows'],
-	destination: [() => __('Add who receives the leads'), 'routing', () => '', 'manage_routing'],
-	publish: [() => __('Publish the chat on your site'), 'flows', () => '', 'edit_flows'],
-	email_test: [() => __('Send a test e-mail'), 'settings', () => '', 'manage_email'],
-	first_lead: [() => __('Receive your first lead'), 'leads', () => '', 'view_leads'],
+	create: [() => __('Create your first chat', 'krivo-chatflow'), 'flows', () => '#/new', 'edit_flows'],
+	destination: [() => __('Add who receives the leads', 'krivo-chatflow'), 'routing', () => '', 'manage_routing'],
+	publish: [() => __('Publish the chat on your site', 'krivo-chatflow'), 'flows', () => '', 'edit_flows'],
+	email_test: [() => __('Send a test e-mail', 'krivo-chatflow'), 'settings', () => '', 'manage_email'],
+	first_lead: [() => __('Receive your first lead', 'krivo-chatflow'), 'leads', () => '', 'view_leads'],
 };
 
 export const STATUS_LABELS = {
-	new: () => __('New'),
-	contacted: () => __('Contacted'),
-	converted: () => __('Converted'),
-	lost: () => __('Lost'),
-	spam: () => __('Spam'),
+	new: () => __('New', 'krivo-chatflow'),
+	contacted: () => __('Contacted', 'krivo-chatflow'),
+	converted: () => __('Converted', 'krivo-chatflow'),
+	lost: () => __('Lost', 'krivo-chatflow'),
+	spam: () => __('Spam', 'krivo-chatflow'),
 };
 
 export const STATUS_TONES = { new: 'brand', contacted: 'info', converted: 'ok', lost: 'neutral', spam: 'danger' };
@@ -67,26 +67,26 @@ export function Dashboard() {
 	return (
 		<div className="kcf-stack">
 			{issues.map((issue) => (
-				<Notice key={issue.code} tone="warn" action={issue.code === 'runs_failed' && screenUrl('integrations') ? <LinkButton small href={screenUrl('integrations')}>{__('Open Integrations')}</LinkButton> : issue.code === 'smtp_untested' && screenUrl('settings') ? <LinkButton small href={screenUrl('settings')}>{__('Open Settings')}</LinkButton> : null}>
+				<Notice key={issue.code} tone="warn" action={issue.code === 'runs_failed' && screenUrl('integrations') ? <LinkButton small href={screenUrl('integrations')}>{__('Open Integrations', 'krivo-chatflow')}</LinkButton> : issue.code === 'smtp_untested' && screenUrl('settings') ? <LinkButton small href={screenUrl('settings')}>{__('Open Settings', 'krivo-chatflow')}</LinkButton> : null}>
 					{issue.message}
 				</Notice>
 			))}
 
 			{d.funnel ? (
-				<Card title={__('Last 7 days')} actions={screenUrl('analytics') ? <LinkButton small href={screenUrl('analytics')}>{__('See analytics')}</LinkButton> : null}>
+				<Card title={__('Last 7 days', 'krivo-chatflow')} actions={screenUrl('analytics') ? <LinkButton small href={screenUrl('analytics')}>{__('See analytics', 'krivo-chatflow')}</LinkButton> : null}>
 					<div className="kcf-stats">
-						<Stat label={__('Visitors who saw the bubble')} value={number(d.funnel.totals.view)} />
-						<Stat label={__('Opened the chat')} value={number(d.funnel.totals.open)} note={percent(d.funnel.rates.open_rate) + ' ' + __('of visitors')} />
-						<Stat label={__('Started answering')} value={number(d.funnel.totals.start)} />
-						<Stat label={__('Leads')} value={number(d.funnel.totals.lead)} note={percent(d.funnel.rates.completion_rate) + ' ' + __('finish')} />
-						<Stat label={__('Went to WhatsApp')} value={number(d.funnel.totals.whatsapp_click)} />
+						<Stat label={__('Visitors who saw the bubble', 'krivo-chatflow')} value={number(d.funnel.totals.view)} />
+						<Stat label={__('Opened the chat', 'krivo-chatflow')} value={number(d.funnel.totals.open)} note={percent(d.funnel.rates.open_rate) + ' ' + __('of visitors', 'krivo-chatflow')} />
+						<Stat label={__('Started answering', 'krivo-chatflow')} value={number(d.funnel.totals.start)} />
+						<Stat label={__('Leads', 'krivo-chatflow')} value={number(d.funnel.totals.lead)} note={percent(d.funnel.rates.completion_rate) + ' ' + __('finish', 'krivo-chatflow')} />
+						<Stat label={__('Went to WhatsApp', 'krivo-chatflow')} value={number(d.funnel.totals.whatsapp_click)} />
 					</div>
 				</Card>
 			) : null}
 
 			<div className="kcf-grid">
 				{pending.length > 0 ? (
-					<Card title={__('First steps')}>
+					<Card title={__('First steps', 'krivo-chatflow')}>
 						<ul className="kcf-checklist">
 							{d.checklist.map((item) => {
 								const [label, screen, hash, cap] = CHECKLIST[item.key];
@@ -102,7 +102,7 @@ export function Dashboard() {
 											) : (
 												<a href={href}>{label()}</a>
 											)}
-											{item.done ? <span className="kcf-sr"> ({__('done')})</span> : null}
+											{item.done ? <span className="kcf-sr"> ({__('done', 'krivo-chatflow')})</span> : null}
 										</span>
 									</li>
 								);
@@ -112,18 +112,18 @@ export function Dashboard() {
 				) : null}
 
 				{d.leads ? (
-					<Card title={__('Latest leads')} actions={screenUrl('leads') ? <LinkButton small href={screenUrl('leads')}>{__('All leads')}</LinkButton> : null}>
+					<Card title={__('Latest leads', 'krivo-chatflow')} actions={screenUrl('leads') ? <LinkButton small href={screenUrl('leads')}>{__('All leads', 'krivo-chatflow')}</LinkButton> : null}>
 						{d.leads.latest.length === 0 ? (
-							<Empty title={__('No leads yet')}>{__('When a visitor finishes a chat, the lead appears here.')}</Empty>
+							<Empty title={__('No leads yet', 'krivo-chatflow')}>{__('When a visitor finishes a chat, the lead appears here.', 'krivo-chatflow')}</Empty>
 						) : (
 							<div className="kcf-table-wrap">
 								<table className="kcf-table">
 									<thead>
 										<tr>
-											<th scope="col">{__('Name')}</th>
-											<th scope="col">{__('Chat')}</th>
-											<th scope="col">{__('Status')}</th>
-											<th scope="col">{__('When')}</th>
+											<th scope="col">{__('Name', 'krivo-chatflow')}</th>
+											<th scope="col">{__('Chat', 'krivo-chatflow')}</th>
+											<th scope="col">{__('Status', 'krivo-chatflow')}</th>
+											<th scope="col">{__('When', 'krivo-chatflow')}</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -148,16 +148,16 @@ export function Dashboard() {
 			</div>
 
 			{d.health ? (
-				<Card title={__('System')}>
+				<Card title={__('System', 'krivo-chatflow')}>
 					<dl className="kcf-dl">
-						<dt>{__('Automations queue')}</dt>
+						<dt>{__('Automations queue', 'krivo-chatflow')}</dt>
 						<dd>
-							{sprintf(__('%1$d waiting, %2$d failed in the last 24 hours'), (d.health.queue.counts.pending || 0) + (d.health.queue.counts.retrying || 0), d.health.queue.failed_24h)}
+							{sprintf(/* translators: 1: number of automations waiting, 2: number that failed. */ __('%1$d waiting, %2$d failed in the last 24 hours', 'krivo-chatflow'), (d.health.queue.counts.pending || 0) + (d.health.queue.counts.retrying || 0), d.health.queue.failed_24h)}
 						</dd>
-						<dt>{__('Background tasks (WP-Cron)')}</dt>
-						<dd>{d.health.cron.disabled ? __('Turned off on this site') : __('Running')}</dd>
-						<dt>{__('E-mail delivery')}</dt>
-						<dd>{d.health.email.mode === 'custom' ? __('Your own SMTP server') : __('WordPress mailer')}</dd>
+						<dt>{__('Background tasks (WP-Cron)', 'krivo-chatflow')}</dt>
+						<dd>{d.health.cron.disabled ? __('Turned off on this site', 'krivo-chatflow') : __('Running', 'krivo-chatflow')}</dd>
+						<dt>{__('E-mail delivery', 'krivo-chatflow')}</dt>
+						<dd>{d.health.email.mode === 'custom' ? __('Your own SMTP server', 'krivo-chatflow') : __('WordPress mailer', 'krivo-chatflow')}</dd>
 					</dl>
 				</Card>
 			) : null}

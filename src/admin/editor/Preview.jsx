@@ -109,7 +109,7 @@ export function Preview({ flowId, config }) {
 	return (
 		<div className="kcf-editor__preview">
 			<div className="kcf-preview__bar">
-				<strong>{__('Live preview')}</strong>
+				<strong>{__('Live preview', 'krivo-chatflow')}</strong>
 				<Button
 					small
 					onClick={() => {
@@ -125,13 +125,13 @@ export function Preview({ flowId, config }) {
 						}
 					}}
 				>
-					{open ? __('Show only the bubble') : __('Open the chat')}
+					{open ? __('Show only the bubble', 'krivo-chatflow') : __('Open the chat', 'krivo-chatflow')}
 				</Button>
 			</div>
-			<div className="kcf-stage" ref={stage} aria-label={__('Preview of your chat')} />
+			<div className="kcf-stage" ref={stage} aria-label={__('Preview of your chat', 'krivo-chatflow')} />
 			{error ? <p className="kcf-field__error">{error}</p> : null}
 			<p className="kcf-field__help" style={{ marginTop: 8 }}>
-				{__('This is the real chat. Nothing you type here is sent or saved.')}
+				{__('This is the real chat. Nothing you type here is sent or saved.', 'krivo-chatflow')}
 			</p>
 		</div>
 	);

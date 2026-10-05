@@ -60,6 +60,77 @@ class FrontendTest extends Krivo_TestCase {
 		return (string) ob_get_clean();
 	}
 
+	// ------------------------------------------------------------------ language
+
+	/**
+	 * Makes WordPress believe the request is in another language (and that its files exist).
+	 *
+	 * @param string $locale Locale.
+	 * @return callable Undo.
+	 */
+	private function in_language( string $locale ): callable {
+		$force     = static function () use ( $locale ) {
+			return $locale;
+		};
+		$available = static function ( $languages ) use ( $locale ) {
+			return array_merge( (array) $languages, array( $locale ) );
+		};
+		add_filter( 'locale', $force );
+		add_filter( 'pre_determine_locale', $force );
+		add_filter( 'get_available_languages', $available );
+		unload_textdomain( 'krivo-chatflow', true );
+		return static function () use ( $force, $available ) {
+			remove_filter( 'locale', $force );
+			remove_filter( 'pre_determine_locale', $force );
+			remove_filter( 'get_available_languages', $available );
+			unload_textdomain( 'krivo-chatflow', true );
+		};
+	}
+
+	public function test_the_index_remembers_the_language_it_was_built_in(): void {
+		$id = $this->published();
+		$this->assertSame( get_locale(), Index::get( $id )['locale'] );
+	}
+
+	public function test_default_texts_follow_the_language_of_the_request_not_the_one_of_the_last_publish(): void {
+		$id = $this->published();
+		$this->assertSame( 'Open chat', Index::get( $id )['boot']['bubble']['label'], 'built in English' );
+
+		$undo = $this->in_language( 'pt_BR' );
+		try {
+			load_plugin_textdomain( 'krivo-chatflow', false, 'krivo-chatflow/languages' );
+			$this->visit();
+			$boot = Gate::select()['boot'];
+			$this->assertSame( 'Abrir o chat', $boot['bubble']['label'] );
+			$this->assertSame( 'Precisa de ajuda?', $boot['bubble']['tooltip']['text'] );
+			$this->assertSame( 'Open chat', Index::get( $id )['boot']['bubble']['label'], 'the stored index is not rewritten by a page view' );
+		} finally {
+			$undo();
+		}
+		$this->visit();
+		$this->assertSame( 'Open chat', Gate::select()['boot']['bubble']['label'], 'back to the site language' );
+	}
+
+	public function test_a_text_the_administrator_wrote_is_never_translated(): void {
+		$id = $this->published( array(), array( 'bubble' => array( 'label' => 'Fale conosco' ) ) );
+		$undo = $this->in_language( 'pt_BR' );
+		try {
+			$this->visit();
+			$this->assertSame( 'Fale conosco', Gate::select()['boot']['bubble']['label'] );
+		} finally {
+			$undo();
+		}
+		$this->assertSame( $id, Index::get( $id )['id'] );
+	}
+
+	public function test_the_page_tells_the_browser_which_language_it_is_in(): void {
+		$this->published();
+		$this->visit();
+		Assets::maybe_enqueue();
+		$footer = $this->footer();
+		$this->assertStringContainsString( '"locale":"' . get_locale() . '"', $footer );
+	}
+
 	// ------------------------------------------------------------------ gate
 
 	public function test_nothing_happens_when_no_flow_is_published(): void {
