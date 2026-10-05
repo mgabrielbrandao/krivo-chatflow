@@ -44,7 +44,7 @@ export async function restClient(context) {
 	const res = await context.request.get(BASE + '/wp-admin/admin-ajax.php?action=rest-nonce');
 	const nonce = (await res.text()).trim();
 	const call = async (method, path, data) => {
-		const url = BASE + API + path.replace(/^\//, '') + (method === 'GET' && data ? (path.includes('?') ? '&' : '?') + new URLSearchParams(data).toString() : '');
+		const url = BASE + API + path.replace(/^\//, '') + (method === 'GET' && data ? '&' + new URLSearchParams(data).toString() : '');
 		const response = await context.request.fetch(url, {
 			method,
 			headers: { 'X-WP-Nonce': nonce, 'Content-Type': 'application/json' },
@@ -97,4 +97,98 @@ export async function createFlow(rest, body = {}) {
 		throw new Error('Could not create a flow: ' + JSON.stringify(res.body));
 	}
 	return res.body;
+}
+
+/** Plausible answers for every question of a flow configuration. */
+export function sampleAnswers(config, over = {}) {
+	const answers = {};
+	for (const step of config.steps) {
+		for (const field of step.fields) {
+			if (!field.key || ['html', 'hidden'].includes(field.type)) {
+				continue;
+			}
+			const first = (field.options || [])[0];
+			answers[field.key] = {
+				name: 'Ana Teste',
+				email: 'ana@example.test',
+				phone: '(11) 99999-1234',
+				whatsapp: '(11) 99999-1234',
+				textarea: 'Quero um orçamento.',
+				text: 'Texto de teste',
+				number: '1500',
+				date: '2030-01-15',
+				time: '10:30',
+				url: 'https://example.test/page',
+				consent: true,
+				select: first ? first.value || first.label : '',
+				radio: first ? first.value || first.label : '',
+				checkbox: first ? [first.value || first.label] : [],
+			}[field.type] ?? 'Texto de teste';
+		}
+	}
+	return { ...answers, ...over };
+}
+
+/** Submits a lead through the real public API, exactly as the widget does. */
+export async function submitLead(context, flowId, answers, extraContext = {}) {
+	const headers = { Origin: BASE, 'Content-Type': 'application/json' };
+	const session = await context.request.post(BASE + API + 'public/session', { headers, data: JSON.stringify({ flow: flowId }) });
+	const { token, min_wait_ms: wait } = await session.json();
+	await new Promise((resolve) => setTimeout(resolve, (wait || 1000) + 300));
+	const response = await context.request.post(BASE + API + 'public/submissions', {
+		headers,
+		data: JSON.stringify({ flow: flowId, token, answers, hp: '', context: { url: BASE + '/?e2e=1', title: 'E2E', device: 'desktop', ...extraContext } }),
+	});
+	return { status: response.status(), body: await response.json() };
+}
+
+/** A tiny HTTP receiver for webhook tests. `respond` can change what it answers. */
+export async function startReceiver() {
+	const { createServer } = await import('node:http');
+	const state = { requests: [], status: 200 };
+	const server = createServer((req, res) => {
+		const chunks = [];
+		req.on('data', (c) => chunks.push(c));
+		req.on('end', () => {
+			const raw = Buffer.concat(chunks).toString('utf8');
+			let json = null;
+			try {
+				json = JSON.parse(raw);
+			} catch (e) {
+				/* not JSON */
+			}
+			state.requests.push({ method: req.method, url: req.url, headers: req.headers, raw, json });
+			res.writeHead(state.status, { 'Content-Type': 'application/json' });
+			res.end('{"ok":true}');
+		});
+	});
+	await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+	state.url = 'http://127.0.0.1:' + server.address().port + '/hook';
+	state.close = () => new Promise((resolve) => server.close(resolve));
+	return state;
+}
+
+export async function waitFor(fn, { timeout = 20000, interval = 400, message = 'condition' } = {}) {
+	const end = Date.now() + timeout;
+	let last;
+	while (Date.now() < end) {
+		last = await fn();
+		if (last) {
+			return last;
+		}
+		await new Promise((resolve) => setTimeout(resolve, interval));
+	}
+	throw new Error('Timed out waiting for ' + message);
+}
+
+/** Removes every lead (the test site is a throw-away site). */
+export async function clearLeads(rest) {
+	for (let i = 0; i < 20; i += 1) {
+		const page = await rest.get('leads', { per_page: 100 });
+		const ids = ((page.body && page.body.items) || []).map((lead) => lead.id);
+		if (ids.length === 0) {
+			return;
+		}
+		await rest.post('leads/bulk', { action: 'delete', ids });
+	}
 }

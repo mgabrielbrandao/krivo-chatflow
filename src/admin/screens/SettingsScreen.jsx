@@ -154,9 +154,11 @@ function EmailDelivery() {
 	const [error, setError] = useState('');
 	const [to, setTo] = useState(boot.adminEmail || '');
 	const [test, setTest] = useState({ busy: false, result: null, error: '' });
+	const [last, setLast] = useState(null);
 
 	useEffect(() => {
 		if (loaded.data) {
+			setLast(loaded.data.last_test);
 			setE(loaded.data.settings);
 			setDirty(false);
 			setPassword('');
@@ -171,7 +173,6 @@ function EmailDelivery() {
 		return <Spinner />;
 	}
 	const pw = loaded.data.password;
-	const last = loaded.data.last_test;
 	const set = (patch) => {
 		setE({ ...e, ...patch });
 		setDirty(true);
@@ -198,8 +199,10 @@ function EmailDelivery() {
 	const sendTest = async () => {
 		setTest({ busy: true, result: null, error: '' });
 		try {
-			setTest({ busy: false, result: await api.post('email/test', { to }), error: '' });
-			loaded.reload();
+			const result = await api.post('email/test', { to });
+			setTest({ busy: false, result, error: '' });
+			// Not loaded.reload(): that would throw away what is being typed in the form above.
+			setLast({ status: result.status, at: new Date().toISOString() });
 		} catch (err) {
 			setTest({ busy: false, result: null, error: err.message });
 		}

@@ -60,6 +60,21 @@ final class Notices {
 	}
 
 	/**
+	 * Remembers, for the current user, that a notice was dismissed. Unknown keys are ignored.
+	 *
+	 * @param string $key Notice key.
+	 * @return void
+	 */
+	public static function remember( string $key ): void {
+		$list = get_user_meta( get_current_user_id(), self::META, true );
+		$list = is_array( $list ) ? $list : array();
+		if ( in_array( $key, array( 'welcome' ), true ) && ! in_array( $key, $list, true ) ) {
+			$list[] = $key;
+			update_user_meta( get_current_user_id(), self::META, $list );
+		}
+	}
+
+	/**
 	 * Stores the dismissal and goes back.
 	 *
 	 * @return void
@@ -69,13 +84,8 @@ final class Notices {
 		if ( '' === Capabilities::first_granted() ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'krivo-chatflow' ), '', array( 'response' => 403 ) );
 		}
-		$key  = isset( $_GET['notice'] ) ? sanitize_key( wp_unslash( $_GET['notice'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Verified by check_admin_referer() above.
-		$list = get_user_meta( get_current_user_id(), self::META, true );
-		$list = is_array( $list ) ? $list : array();
-		if ( in_array( $key, array( 'welcome' ), true ) && ! in_array( $key, $list, true ) ) {
-			$list[] = $key;
-			update_user_meta( get_current_user_id(), self::META, $list );
-		}
+		$key = isset( $_GET['notice'] ) ? sanitize_key( wp_unslash( $_GET['notice'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Verified by check_admin_referer() above.
+		self::remember( $key );
 		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : admin_url( 'plugins.php' ) );
 		exit;
 	}

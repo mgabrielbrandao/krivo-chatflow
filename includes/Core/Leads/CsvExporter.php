@@ -39,7 +39,14 @@ final class CsvExporter {
 	 * @return string
 	 */
 	public static function url(): string {
-		return wp_nonce_url( admin_url( 'admin-post.php?action=' . self::ACTION ), self::ACTION );
+		// Not wp_nonce_url(): it HTML-escapes the ampersand, and the admin app puts this address in a link's href.
+		return add_query_arg(
+			array(
+				'action'   => self::ACTION,
+				'_wpnonce' => wp_create_nonce( self::ACTION ),
+			),
+			admin_url( 'admin-post.php' )
+		);
 	}
 
 	/**

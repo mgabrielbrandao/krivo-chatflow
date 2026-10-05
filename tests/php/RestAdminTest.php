@@ -435,6 +435,51 @@ class RestAdminTest extends Krivo_TestCase {
 		$this->assertStringNotContainsString( 'automations', wp_json_encode( $manifest ) );
 	}
 
+	public function test_preview_of_an_unsaved_configuration_needs_no_stored_chat_and_escapes_what_it_renders(): void {
+		$config          = \Krivo\ChatFlow\Core\Flow\Defaults::blank( 'Wizard' );
+		$config['bubble']['label']        = '<script>alert(1)</script>';
+		$config['bubble']['colors']['bg'] = '#0B6B3A';
+		$config['design']['title']        = 'Hello wizard';
+		$response = $this->call( 'POST', '/preview', array( 'config' => $config ) );
+		$this->assertSame( 200, $response->get_status() );
+		$data = $response->get_data();
+		$this->assertSame( 'Hello wizard', $data['boot']['design']['title'] );
+		$this->assertSame( '#0B6B3A', $data['boot']['bubble']['colors']['bg'] );
+		$this->assertStringContainsString( 'krivo-chatflow-root', $data['bubble_html'] );
+		$this->assertStringNotContainsString( '<script', $data['bubble_html'], 'the bubble markup is escaped' );
+		$this->assertSame( array(), FlowRepository::all(), 'nothing was stored' );
+		$this->assertStringNotContainsString( 'automations', wp_json_encode( $data ) );
+	}
+
+	public function test_preview_returns_markup_for_a_stored_chat_too(): void {
+		$flow = $this->create_flow( array( 'template' => 'contact' ) );
+		$data = $this->call( 'POST', '/flows/' . $flow['id'] . '/preview', array( 'config' => $flow['config'] ) )->get_data();
+		$this->assertStringContainsString( 'class="kcf-bubble ', $data['bubble_html'] );
+	}
+
+	public function test_meta_gives_the_editor_destinations_without_numbers_and_connections_only_to_people_who_may_see_them(): void {
+		RoutingRepository::save(
+			array(
+				'default_destination' => 'dst_sales',
+				'destinations'        => array( array( 'id' => 'dst_sales', 'name' => 'Sales', 'dial_code' => '55', 'number' => '11999998888', 'emails' => array( 'private@example.test' ) ) ),
+			)
+		);
+		ConnectionRepository::save( array( 'name' => 'Hook', 'url' => StubServer::url( '/ok' ), 'allow_http' => true, 'allow_private_hosts' => true ), get_current_user_id() );
+
+		$meta = $this->call( 'GET', '/meta' )->get_data();
+		$this->assertSame( array( array( 'id' => 'dst_sales', 'name' => 'Sales', 'whatsapp' => true, 'emails' => 1 ) ), $meta['destinations'] );
+		$this->assertStringNotContainsString( '11999998888', wp_json_encode( $meta ) );
+		$this->assertStringNotContainsString( 'private@example.test', wp_json_encode( $meta ) );
+		$this->assertSame( array( 'Hook' ), array_column( $meta['connections'], 'name' ) );
+		$this->assertArrayNotHasKey( 'url', $meta['connections'][0] );
+		$this->assertArrayHasKey( 'chat', $meta['icons'] );
+		$this->assertStringStartsWith( '<svg', $meta['icons']['chat'] );
+		$this->assertSame( get_option( 'admin_email' ), $meta['admin_email'] );
+
+		$this->as_user_with( array( Capabilities::EDIT_FLOWS ) );
+		$this->assertSame( array(), $this->call( 'GET', '/meta' )->get_data()['connections'], 'editing chats does not reveal which services are connected' );
+	}
+
 	public function test_templates_and_meta_describe_what_the_editor_needs(): void {
 		$templates = $this->call( 'GET', '/templates' )->get_data()['items'];
 		$this->assertCount( count( Templates::all() ), $templates );
