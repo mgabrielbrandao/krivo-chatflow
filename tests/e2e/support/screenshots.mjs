@@ -4,7 +4,8 @@
 //   KRIVO_E2E_URL=… KRIVO_E2E_WP=… KRIVO_E2E_SHOTS=/some/dir node tests/e2e/support/screenshots.mjs [pt_BR|en_US]
 import { mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { BASE, adminUrl, launch, login, restClient, sampleAnswers, submitLead, visitorContext, wp } from '../helpers.mjs';
+import { SMTPServer } from 'smtp-server';
+import { BASE, adminUrl, launch, login, restClient, sampleAnswers, submitLead, visitorContext, waitFor, wp } from '../helpers.mjs';
 
 const OUT = process.env.KRIVO_E2E_SHOTS || 'screenshots';
 const LOCALE = process.argv[2] || 'pt_BR';
@@ -15,6 +16,19 @@ const browser = await launch();
 const adminCtx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
 await login(adminCtx);
 const rest = await restClient(adminCtx);
+
+// ----------------------------------------------------------------------------------------------- e-mail
+// The sandbox has no mail server, so the plugin's own SMTP settings point at a local one that accepts everything:
+// the e-mail log in the pictures then shows real deliveries instead of "could not instantiate mail function".
+const mailbox = new SMTPServer({ authOptional: true, disabledCommands: ['STARTTLS'], logger: false, onData: (stream, session, done) => { stream.resume(); stream.on('end', done); } });
+await new Promise((resolve) => mailbox.listen(0, '127.0.0.1', resolve));
+const originalEmail = (await rest.get('email')).body.settings;
+await rest.put('email', { settings: { ...originalEmail, mode: 'custom', host: '127.0.0.1', port: mailbox.server.address().port, encryption: 'none', auth: false, from_email: 'contato@exemplo.com.br', from_name: 'Site de Teste' } });
+const test = await rest.post('email/test', { to: 'contato@exemplo.com.br' });
+if (test.status !== 200) {
+	throw new Error('The test e-mail did not go out: ' + JSON.stringify(test.body));
+}
+const queueDrained = () => waitFor(async () => { const runs = (await rest.get('automations/runs', { per_page: 50 })).body; return runs.items.every((r) => !['pending', 'running', 'retrying'].includes(r.status)); }, { timeout: 60000, message: 'automation runs to finish' });
 
 // ----------------------------------------------------------------------------------------------- demo data
 const ids = JSON.parse(wp('eval-file', SEED).split('\n').filter((l) => l.startsWith('{')).pop());
@@ -37,6 +51,7 @@ for (const [i, lead] of list.entries()) {
 }
 // A fortnight of numbers (the counters only ever write "today"; this is demo data for the pictures).
 wp('eval', `global $wpdb; $t = \\Krivo\\ChatFlow\\Infrastructure\\Db\\Tables::stats(); for ($d = 13; $d >= 1; $d--) { $day = wp_date('Y-m-d', time() - $d * DAY_IN_SECONDS); $v = 40 + (($d * 7) % 23) * 3; foreach (array('view' => $v, 'open' => (int) ($v * 0.42), 'start' => (int) ($v * 0.3), 'lead' => (int) ($v * 0.14), 'whatsapp_click' => (int) ($v * 0.1)) as $m => $n) { $wpdb->query($wpdb->prepare("INSERT INTO $t (flow_id, day, metric, total) VALUES (%d, %s, %s, %d) ON DUPLICATE KEY UPDATE total = %d", ${ids.form}, $day, $m, $n, $n)); } }`);
+await queueDrained();
 wp('option', 'update', 'krivo_test_locale', LOCALE);
 
 // ----------------------------------------------------------------------------------------------- admin
@@ -52,6 +67,10 @@ async function shot(name, url, { wait = 1500, action, full = false } = {}) {
 		await action(admin);
 	}
 	await admin.waitForTimeout(wait);
+	if (full) {
+		// The save bar is pinned to the window; in a full-page picture it would sit on top of the content.
+		await admin.addStyleTag({ content: '.kcf-sticky-save { position: static !important; }' });
+	}
 	await admin.screenshot({ path: `${OUT}/${name}.png`, fullPage: full });
 	console.log('shot', name);
 }
@@ -150,6 +169,9 @@ await mp.waitForSelector('.kcf-panel:not([hidden]) .kcf-form');
 await mp.waitForTimeout(600);
 await mp.screenshot({ path: `${OUT}/widget-12-celular-formulario.png` });
 
+await queueDrained();
+await rest.put('email', { settings: originalEmail });
+await new Promise((resolve) => mailbox.close(resolve));
 wp('option', 'delete', 'krivo_test_locale');
 await browser.close();
 console.log('done ->', OUT);

@@ -15,28 +15,26 @@ const METRICS = [
 
 function BarChart({ daily, metric, label }) {
 	const max = Math.max(1, ...daily.map((entry) => entry[metric] || 0));
-	const width = 720;
-	const height = 150;
-	const pad = 22;
-	const gap = daily.length > 45 ? 1 : 3;
-	const barWidth = Math.max(2, (width - pad) / daily.length - gap);
 	const total = daily.reduce((sum, entry) => sum + (entry[metric] || 0), 0);
+	// Plain HTML instead of a stretched SVG: the labels keep their proportions at any width.
 	return (
-		<svg className="kcf-chart" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={sprintf(/* translators: 1: name of the measure (for example "Leads"), 2: total in the period, 3: highest daily value. Read by screen readers as the description of the chart. */ __('%1$s per day: %2$d in total, at most %3$d in a day.', 'krivo-chatflow'), label, total, max)} preserveAspectRatio="none">
-			<line className="kcf-chart__axis" x1={pad} y1={height - 20} x2={width} y2={height - 20} />
-			<text x="0" y="12">{max}</text>
-			{daily.map((entry, i) => {
-				const value = entry[metric] || 0;
-				const h = Math.round(((height - 40) * value) / max);
-				return (
-					<rect key={entry.day} className="kcf-chart__bar" x={pad + i * (barWidth + gap)} y={height - 20 - h} width={barWidth} height={h} rx="2">
-						<title>{day(entry.day) + ': ' + value}</title>
-					</rect>
-				);
-			})}
-			<text x={pad} y={height - 4}>{day(daily[0].day)}</text>
-			<text x={width} y={height - 4} textAnchor="end">{day(daily[daily.length - 1].day)}</text>
-		</svg>
+		<div className="kcf-chart" role="img" aria-label={sprintf(/* translators: 1: name of the measure (for example "Leads"), 2: total in the period, 3: highest daily value. Read by screen readers as the description of the chart. */ __('%1$s per day: %2$d in total, at most %3$d in a day.', 'krivo-chatflow'), label, total, max)}>
+			<span className="kcf-chart__max" aria-hidden="true">{max}</span>
+			<div className="kcf-chart__bars" aria-hidden="true">
+				{daily.map((entry) => {
+					const value = entry[metric] || 0;
+					return (
+						<span key={entry.day} className="kcf-chart__col" title={day(entry.day) + ': ' + value}>
+							<span className="kcf-chart__bar" style={{ height: value ? Math.max(2, Math.round((100 * value) / max)) + '%' : '0' }} />
+						</span>
+					);
+				})}
+			</div>
+			<div className="kcf-chart__days" aria-hidden="true">
+				<span>{day(daily[0].day)}</span>
+				<span>{day(daily[daily.length - 1].day)}</span>
+			</div>
+		</div>
 	);
 }
 
