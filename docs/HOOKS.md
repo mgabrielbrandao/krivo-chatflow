@@ -101,6 +101,11 @@ The final link. It must stay on `https://wa.me/`: anything else is refused and t
 ### `krivo_chatflow_before_whatsapp_redirect` (action)
 Fires right before the link is handed to the visitor's browser. `($url, $lead)`
 
+### `krivo_chatflow_button_clicked` (action)
+A visitor tapped the WhatsApp button of a "button only" chat (a chat with no form, so there is no lead and
+the message and URL filters above receive an empty `$lead`). `($flow_id, $url, $tracking)`: the `wa.me` link
+handed to the browser and the sanitised page context (`page_url`, `page_path`, `page_title`, `utm_*`, `device`).
+
 ---
 
 ## E-mail

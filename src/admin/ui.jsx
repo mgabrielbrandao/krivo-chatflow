@@ -70,6 +70,12 @@ export function Spinner({ label }) {
 export function Empty({ title, children, action }) {
 	return (
 		<div className="kcf-empty">
+			<svg className="kcf-empty__art" width="132" height="84" viewBox="0 0 132 84" fill="none" aria-hidden="true" focusable="false">
+				<rect x="6.5" y="14.5" width="119" height="55" rx="27.5" stroke="#A14DFF" strokeOpacity=".4" />
+				<rect x="24.5" y="25.5" width="83" height="33" rx="16.5" stroke="#7B2FF7" strokeOpacity=".55" />
+				<circle cx="66" cy="42" r="7" fill="#7B2FF7" />
+				<path d="M2 42h7M123 42h7" stroke="#5521B5" strokeOpacity=".45" strokeLinecap="round" />
+			</svg>
 			<p className="kcf-empty__title">{title}</p>
 			{children ? <p className="kcf-empty__text">{children}</p> : null}
 			{action}
@@ -84,7 +90,7 @@ export function Notice({ tone = 'info', children, onDismiss, action }) {
 			{action}
 			{onDismiss ? (
 				<button type="button" className="kcf-notice__x" onClick={onDismiss} aria-label={__('Dismiss', 'krivo-chatflow')}>
-					×
+					<Icon name="x" size={16} />
 				</button>
 			) : null}
 		</div>
@@ -118,6 +124,32 @@ function FieldShell({ id, label, help, error, children, inline, optional }) {
 }
 
 const describe = (id, help, error) => [help ? id + '-h' : '', error ? id + '-e' : ''].filter(Boolean).join(' ') || undefined;
+
+const ICONS = {
+	x: 'M6 6l12 12M18 6L6 18',
+	check: 'M5 12.5l4.5 4.5L19 7.5',
+	'arrow-up': 'M12 19V5M6 11l6-6 6 6',
+	'arrow-down': 'M12 5v14M6 13l6 6 6-6',
+	'arrow-left': 'M19 12H5M11 6l-6 6 6 6',
+	copy: 'M9.5 9h8a1.5 1.5 0 011.5 1.5v8a1.5 1.5 0 01-1.5 1.5h-8A1.5 1.5 0 018 18.5v-8A1.5 1.5 0 019.5 9zM5 15.5v-9A1.5 1.5 0 016.5 5h9',
+};
+
+/** Linear, geometric icons (one stroke width, round ends): the whole admin uses these instead of text glyphs. */
+export function Icon({ name, size = 18 }) {
+	const props = { className: 'kcf-ico', width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.75, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true', focusable: 'false' };
+	if (name === 'grip') {
+		return (
+			<svg {...props}>
+				{[6, 12, 18].map((y) => [9, 15].map((x) => <circle key={x + '-' + y} cx={x} cy={y} r="1.15" fill="currentColor" stroke="none" />))}
+			</svg>
+		);
+	}
+	return (
+		<svg {...props}>
+			<path d={ICONS[name]} />
+		</svg>
+	);
+}
 
 export function TextField({ label, help, error, value, onChange, type = 'text', optional, className, ...rest }) {
 	const id = useUid();
@@ -361,7 +393,7 @@ export function Modal({ title, onClose, children, footer, wide }) {
 				<div className="kcf-modal__head">
 					<h2 id={id}>{title}</h2>
 					<button type="button" className="kcf-modal__x" onClick={onClose} aria-label={__('Close', 'krivo-chatflow')}>
-						×
+						<Icon name="x" size={20} />
 					</button>
 				</div>
 				<div className="kcf-modal__body">{children}</div>

@@ -1,7 +1,7 @@
 # External services
 
 Krivo ChatFlow does **not** call any service run by Krivo Works or by any third party on its own.
-There is no telemetry, no licence check, no update server, no CDN, no web font, no analytics and no tracking pixel.
+There is no telemetry, no licence check, no update server, no CDN, no web font service (the one font used by the admin screens ships inside the plugin), no analytics and no tracking pixel.
 Everything the plugin stores stays in your WordPress database.
 
 The only times data leaves your site are listed here. Each one happens because *you* configured it or because the

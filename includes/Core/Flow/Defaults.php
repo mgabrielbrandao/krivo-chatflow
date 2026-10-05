@@ -76,7 +76,7 @@ final class Defaults {
 				'offset_y'  => 24,
 				'size'      => 60,
 				'colors'    => array(
-					'bg'     => '#7B2FF7',
+					'bg'     => '#171519',
 					'icon'   => '#FFFFFF',
 					'border' => '',
 				),

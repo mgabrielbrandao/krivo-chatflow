@@ -197,7 +197,7 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 				if (!cfg.preview) {
 					ping(boot.id, ['click']);
 				}
-				emit('button', { flow: boot.id, mode: 'button' });
+				emit('button', { flowId: boot.id, rev: boot.rev, mode: 'button' });
 			});
 		} else {
 			el.addEventListener('click', activate);
@@ -216,7 +216,7 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 
 	function setupBubble(boot, root) {
 		var b = boot.bubble;
-		applyBubbleStyle(root, b);
+		applyBubbleStyle(root, b, boot.design && boot.design.accent);
 
 		var button = root.querySelector('.kcf-bubble');
 		var tooltip = root.querySelector('.kcf-tooltip');
@@ -435,8 +435,8 @@ import { applyBubbleStyle } from '../shared/bubble-style.js';
 			if (!boot || !boot.button || !el) {
 				return;
 			}
-			el.style.setProperty('--kcf-bg', boot.bubble.colors.bg);
-			el.style.setProperty('--kcf-fg', boot.bubble.colors.icon);
+			el.style.setProperty('--kcf-bg', boot.design.accent);
+			el.style.setProperty('--kcf-fg', '#fff');
 			var message = doc.createElement('span');
 			message.className = 'kcf-inline-note';
 			message.setAttribute('role', 'status');

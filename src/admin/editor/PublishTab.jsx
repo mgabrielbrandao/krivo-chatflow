@@ -1,6 +1,6 @@
 import { api } from '../api.js';
 import { __, sprintf } from '../i18n.js';
-import { Badge, Button, Card, CopyButton, Notice, NumberField, SelectField, Segmented, TextField, Toggle, CheckField, useApp } from '../ui.jsx';
+import { Badge, Button, Card, CheckField, CopyButton, Icon, Notice, NumberField, Segmented, SelectField, TextField, Toggle, useApp } from '../ui.jsx';
 import { dateTime } from '../format.js';
 import { setPath, tabFor } from './helpers.js';
 
@@ -83,7 +83,7 @@ function RuleList({ rules, onChange, title }) {
 						</>
 					) : null}
 					<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" style={{ flex: '0 0 auto', marginBottom: 3 }} aria-label={__('Remove condition', 'krivo-chatflow')} onClick={() => onChange(rules.filter((_, i) => i !== index))}>
-						✕
+						<Icon name="x" size={18} />
 					</button>
 				</div>
 			))}
@@ -112,7 +112,7 @@ function HoursEditor({ hours, onChange }) {
 								<span aria-hidden="true">–</span>
 								<input className="kcf-input" type="time" aria-label={sprintf(/* translators: %s: weekday name. Label of the closing time field. */ __('%s closes', 'krivo-chatflow'), label)} value={range[1]} onChange={(event) => setDay(day, ranges.map((r, i) => (i === index ? [r[0], event.target.value] : r)))} style={{ width: 120 }} />
 								<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" aria-label={sprintf(/* translators: %s: weekday name. */ __('Remove %s period', 'krivo-chatflow'), label)} onClick={() => setDay(day, ranges.filter((_, i) => i !== index))}>
-									✕
+									<Icon name="x" size={18} />
 								</button>
 							</span>
 						))}

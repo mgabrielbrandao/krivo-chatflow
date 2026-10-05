@@ -1,19 +1,16 @@
-# Brazilian Portuguese translation of Krivo ChatFlow.
-# Copyright (C) 2026 Krivo Works
-# This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Krivo ChatFlow 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/mgabrielbrandao/krivo-chatflow/issues\n"
 "Last-Translator: Krivo Works\n"
 "Language-Team: Português do Brasil\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "POT-Creation-Date: 2026-10-05T07:16:37+00:00\n"
 "PO-Revision-Date: 2026-10-05 07:16+0000\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: krivo-chatflow\n"
 
 #. Plugin Name of the plugin
@@ -54,8 +51,8 @@ msgstr "ChatFlows"
 #: assets/admin/admin.js:1
 #: assets/admin/admin.js:2
 #: src/admin/index.jsx:16
-#: src/admin/screens/AnalyticsScreen.jsx:12
-#: src/admin/screens/AnalyticsScreen.jsx:79
+#: src/admin/screens/AnalyticsScreen.jsx:13
+#: src/admin/screens/AnalyticsScreen.jsx:81
 #: src/admin/screens/Dashboard.jsx:81
 #: src/admin/screens/FlowsScreen.jsx:188
 #: src/admin/screens/LeadsScreen.jsx:221
@@ -82,7 +79,7 @@ msgstr "Integrações"
 #: assets/admin/admin.js:1
 #: assets/admin/admin.js:2
 #: src/admin/index.jsx:19
-#: src/admin/screens/AnalyticsScreen.jsx:62
+#: src/admin/screens/AnalyticsScreen.jsx:64
 msgid "Analytics"
 msgstr "Análises"
 
@@ -112,9 +109,9 @@ msgid "Get started"
 msgstr "Começar"
 
 #: includes/Admin/Notices.php:59
-#: includes/Frontend/Renderer.php:45
+#: includes/Frontend/Renderer.php:58
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:86
+#: src/admin/ui.jsx:92
 msgid "Dismiss"
 msgstr "Dispensar"
 
@@ -142,7 +139,9 @@ msgid "Change lead status"
 msgstr "Alterar o status do lead"
 
 #: includes/Automation/Actions/OpenWhatsapp.php:43
-#: includes/Core/Flow/Manifest.php:259
+#: includes/Core/Flow/Manifest.php:316
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:28
 msgid "Open WhatsApp"
 msgstr "Abrir o WhatsApp"
 
@@ -151,11 +150,12 @@ msgid "The routed destination has no WhatsApp number."
 msgstr "O destino escolhido pelo roteamento não tem número de WhatsApp."
 
 #: includes/Automation/Actions/OpenWhatsapp.php:131
+#: includes/Core/Whatsapp/ButtonLink.php:85
 msgid "The WhatsApp link was not generated."
 msgstr "O link do WhatsApp não foi gerado."
 
 #: includes/Automation/Actions/OpenWhatsapp.php:178
-#: includes/Core/Flow/Templates.php:117
+#: includes/Core/Flow/Templates.php:156
 msgid ""
 "Hello! My name is {name}.\n"
 "\n"
@@ -235,9 +235,9 @@ msgstr "Enviar webhook"
 msgid "The connection is turned off or was removed."
 msgstr "A conexão está desativada ou foi removida."
 
-#: includes/Automation/DryRun.php:73
-#: includes/Core/Flow/Manifest.php:164
-#: includes/Core/Submission/Pipeline.php:224
+#: includes/Automation/DryRun.php:77
+#: includes/Core/Flow/Manifest.php:221
+#: includes/Core/Submission/Pipeline.php:225
 msgid "Thank you! We received your message."
 msgstr "Obrigado! Recebemos sua mensagem."
 
@@ -269,6 +269,7 @@ msgstr "Quando um lead é atualizado"
 msgid "Sample destination"
 msgstr "Destino de exemplo"
 
+#: includes/Automation/DryRun.php:153
 #: includes/Automation/SampleData.php:74
 msgid "Sample page"
 msgstr "Página de exemplo"
@@ -386,17 +387,17 @@ msgid "The maximum is {max}."
 msgstr "O máximo é {max}."
 
 #: includes/Core/Fields/Registry.php:254
-#: includes/Core/Flow/Templates.php:121
-#: includes/Core/Flow/Templates.php:144
-#: includes/Core/Flow/Templates.php:164
+#: includes/Core/Flow/Templates.php:160
 #: includes/Core/Flow/Templates.php:183
-#: includes/Core/Flow/Templates.php:202
+#: includes/Core/Flow/Templates.php:203
+#: includes/Core/Flow/Templates.php:222
+#: includes/Core/Flow/Templates.php:241
 #: includes/Core/Leads/CsvExporter.php:113
 #: includes/Core/Leads/PrivacyTools.php:89
-#: includes/Core/Variables/Builder.php:135
+#: includes/Core/Variables/Builder.php:138
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:117
-#: src/admin/screens/Dashboard.jsx:123
+#: src/admin/editor/FlowTab.jsx:125
+#: src/admin/screens/Dashboard.jsx:124
 #: src/admin/screens/FlowsScreen.jsx:98
 #: src/admin/screens/FlowsScreen.jsx:185
 #: src/admin/screens/IntegrationsScreen.jsx:120
@@ -408,24 +409,24 @@ msgid "Name"
 msgstr "Nome"
 
 #: includes/Core/Fields/Registry.php:264
-#: includes/Core/Flow/Templates.php:165
+#: includes/Core/Flow/Templates.php:204
 #: includes/Core/Leads/CsvExporter.php:114
 #: includes/Core/Leads/PrivacyTools.php:93
-#: includes/Core/Variables/Builder.php:140
+#: includes/Core/Variables/Builder.php:143
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:239
+#: src/admin/editor/Editor.jsx:241
 #: src/admin/screens/LeadsScreen.jsx:88
 msgid "E-mail"
 msgstr "E-mail"
 
 #: includes/Core/Fields/Registry.php:274
-#: includes/Core/Flow/Templates.php:184
-#: includes/Core/Flow/Templates.php:203
+#: includes/Core/Flow/Templates.php:223
+#: includes/Core/Flow/Templates.php:242
 #: includes/Core/Leads/CsvExporter.php:115
 #: includes/Core/Leads/PrivacyTools.php:97
-#: includes/Core/Variables/Builder.php:145
+#: includes/Core/Variables/Builder.php:148
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/editor/BubbleTab.jsx:8
 #: src/admin/screens/LeadsScreen.jsx:96
 msgid "Phone"
 msgstr "Telefone"
@@ -464,12 +465,12 @@ msgstr "Escolha múltipla"
 #: includes/Core/Fields/Registry.php:354
 #: includes/Core/Leads/CsvExporter.php:111
 #: includes/Core/Leads/PrivacyTools.php:85
-#: includes/Core/Variables/Builder.php:172
+#: includes/Core/Variables/Builder.php:189
 msgid "Date"
 msgstr "Data"
 
 #: includes/Core/Fields/Registry.php:364
-#: includes/Core/Variables/Builder.php:173
+#: includes/Core/Variables/Builder.php:190
 msgid "Time"
 msgstr "Hora"
 
@@ -483,7 +484,7 @@ msgstr "Consentimento (LGPD)"
 
 #: includes/Core/Fields/Registry.php:394
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:246
+#: src/admin/editor/FlowTab.jsx:267
 msgid "Hidden field"
 msgstr "Campo oculto"
 
@@ -495,7 +496,7 @@ msgstr "Bloco de texto / HTML"
 msgid "Not accepted"
 msgstr "Não aceito"
 
-#: includes/Core/Flow/Defaults.php:39
+#: includes/Core/Flow/Defaults.php:40
 msgid "New ChatFlow"
 msgstr "Novo ChatFlow"
 
@@ -515,199 +516,201 @@ msgstr "O fluxo tem problemas que precisam ser corrigidos antes de publicar."
 #. translators: %s: flow name.
 #: includes/Core/Flow/FlowRepository.php:253
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:70
+#: src/admin/editor/FlowTab.jsx:78
 #, php-format,js-format
 msgid "%s (copy)"
 msgstr "%s (cópia)"
 
-#: includes/Core/Flow/Manifest.php:80
+#: includes/Core/Flow/Manifest.php:73
 msgid "Open chat"
 msgstr "Abrir o chat"
 
-#: includes/Core/Flow/Manifest.php:92
+#: includes/Core/Flow/Manifest.php:74
 msgid "Need help?"
 msgstr "Precisa de ajuda?"
 
-#: includes/Core/Flow/Manifest.php:108
+#: includes/Core/Flow/Manifest.php:130
 msgid "Hello"
 msgstr "Olá"
 
-#: includes/Core/Flow/Manifest.php:109
+#: includes/Core/Flow/Manifest.php:131
 msgid "How can we help you?"
 msgstr "Como podemos ajudar?"
 
-#: includes/Core/Flow/Manifest.php:117
-#: includes/Core/Flow/Manifest.php:253
+#: includes/Core/Flow/Manifest.php:79
+#: includes/Core/Flow/Manifest.php:310
 msgid "Close chat"
 msgstr "Fechar o chat"
 
-#: includes/Core/Flow/Manifest.php:118
+#: includes/Core/Flow/Manifest.php:80
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:93
 #: src/admin/editor/WhatsappTab.jsx:79
 #: src/admin/ui.jsx:65
 msgid "Loading…"
 msgstr "Carregando…"
 
-#: includes/Core/Flow/Manifest.php:119
+#: includes/Core/Flow/Manifest.php:81
 msgid "We could not load the chat. Please try again."
 msgstr "Não foi possível carregar o chat. Tente novamente."
 
-#: includes/Core/Flow/Manifest.php:120
-#: includes/Core/Flow/Manifest.php:255
+#: includes/Core/Flow/Manifest.php:82
+#: includes/Core/Flow/Manifest.php:312
 #: assets/admin/admin.js:1
 #: src/admin/screens/IntegrationsScreen.jsx:406
 msgid "Try again"
 msgstr "Tentar de novo"
 
-#: includes/Core/Flow/Manifest.php:163
+#: includes/Core/Flow/Manifest.php:220
 #: assets/admin/admin.js:1
 #: src/admin/editor/WhatsappTab.jsx:28
 msgid "Continue on WhatsApp"
 msgstr "Continuar no WhatsApp"
 
-#: includes/Core/Flow/Manifest.php:216
+#: includes/Core/Flow/Manifest.php:273
 msgid "Powered by"
 msgstr "Desenvolvido por"
 
-#: includes/Core/Flow/Manifest.php:230
+#: includes/Core/Flow/Manifest.php:287
 msgid "We are online"
 msgstr "Estamos online"
 
-#: includes/Core/Flow/Manifest.php:231
+#: includes/Core/Flow/Manifest.php:288
 msgid "We are offline right now, but leave your message."
 msgstr "Estamos offline agora, mas deixe sua mensagem."
 
-#: includes/Core/Flow/Manifest.php:232
+#: includes/Core/Flow/Manifest.php:289
 msgid "Send message"
 msgstr "Enviar mensagem"
 
-#: includes/Core/Flow/Manifest.php:233
+#: includes/Core/Flow/Manifest.php:290
 #: assets/admin/admin.js:1
 #: src/admin/screens/Onboarding.jsx:142
 #: src/admin/screens/Onboarding.jsx:170
 msgid "Continue"
 msgstr "Continuar"
 
-#: includes/Core/Flow/Manifest.php:234
+#: includes/Core/Flow/Manifest.php:291
 #: assets/admin/admin.js:1
 #: src/admin/screens/FlowsScreen.jsx:87
 #: src/admin/screens/Onboarding.jsx:140
 msgid "Back"
 msgstr "Voltar"
 
-#: includes/Core/Flow/Manifest.php:254
+#: includes/Core/Flow/Manifest.php:311
 msgid "Sending…"
 msgstr "Enviando…"
 
-#: includes/Core/Flow/Manifest.php:256
+#: includes/Core/Flow/Manifest.php:313
 msgid "We could not send your message. Please try again."
 msgstr "Não foi possível enviar sua mensagem. Tente novamente."
 
-#: includes/Core/Flow/Manifest.php:257
+#: includes/Core/Flow/Manifest.php:314
 msgid "Connection problem. Your answers were kept; please try again."
 msgstr "Problema de conexão. Suas respostas foram mantidas; tente novamente."
 
-#: includes/Core/Flow/Manifest.php:258
+#: includes/Core/Flow/Manifest.php:315
 #: includes/Core/Submission/AntiSpam/Guard.php:73
 msgid "Too many attempts. Please wait a few minutes and try again."
 msgstr "Tentativas demais. Aguarde alguns minutos e tente de novo."
 
-#: includes/Core/Flow/Manifest.php:260
+#: includes/Core/Flow/Manifest.php:317
 msgid "You will be redirected to WhatsApp with your message ready."
 msgstr "Você será levado ao WhatsApp com sua mensagem pronta."
 
-#: includes/Core/Flow/Manifest.php:261
+#: includes/Core/Flow/Manifest.php:318
 msgid "Select an option"
 msgstr "Selecione uma opção"
 
-#: includes/Core/Flow/Manifest.php:262
+#: includes/Core/Flow/Manifest.php:319
 msgid "privacy policy"
 msgstr "política de privacidade"
 
-#: includes/Core/Flow/Manifest.php:263
+#: includes/Core/Flow/Manifest.php:320
 msgid "Preview mode: nothing is sent or saved."
 msgstr "Modo de visualização: nada é enviado nem salvo."
 
-#: includes/Core/Flow/Manifest.php:264
+#: includes/Core/Flow/Manifest.php:321
 msgid "Step {current} of {total}"
 msgstr "Etapa {current} de {total}"
 
-#: includes/Core/Flow/Manifest.php:265
+#: includes/Core/Flow/Manifest.php:322
 msgid "Your answer"
 msgstr "Sua resposta"
 
-#: includes/Core/Flow/Manifest.php:266
+#: includes/Core/Flow/Manifest.php:323
 msgid "Type your answer…"
 msgstr "Digite sua resposta…"
 
-#: includes/Core/Flow/Manifest.php:267
+#: includes/Core/Flow/Manifest.php:324
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:102
+#: src/admin/ui.jsx:108
 msgid "(optional)"
 msgstr "(opcional)"
 
-#: includes/Core/Flow/Manifest.php:268
+#: includes/Core/Flow/Manifest.php:325
 msgid "Done"
 msgstr "Pronto"
 
-#: includes/Core/Flow/Manifest.php:269
+#: includes/Core/Flow/Manifest.php:326
 msgid "I agree"
 msgstr "Eu concordo"
 
-#: includes/Core/Flow/Manifest.php:270
+#: includes/Core/Flow/Manifest.php:327
 msgid "Skip"
 msgstr "Pular"
 
-#: includes/Core/Flow/Templates.php:63
+#: includes/Core/Flow/Templates.php:68
 msgid "Thank you, {name}! We received your message and will get back to you soon."
 msgstr "Obrigado, {name}! Recebemos sua mensagem e responderemos em breve."
 
-#: includes/Core/Flow/Templates.php:114
+#: includes/Core/Flow/Templates.php:153
 msgid "Simple contact"
 msgstr "Contato simples"
 
-#: includes/Core/Flow/Templates.php:115
+#: includes/Core/Flow/Templates.php:154
 msgid "Name, WhatsApp and a message. The fastest way to start."
 msgstr "Nome, WhatsApp e uma mensagem. O jeito mais rápido de começar."
 
-#: includes/Core/Flow/Templates.php:124
+#: includes/Core/Flow/Templates.php:163
 msgid "Your name"
 msgstr "Seu nome"
 
-#: includes/Core/Flow/Templates.php:129
+#: includes/Core/Flow/Templates.php:168
 #: includes/Core/Leads/PrivacyTools.php:191
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:238
+#: src/admin/editor/Editor.jsx:240
 msgid "WhatsApp"
 msgstr "WhatsApp"
 
-#: includes/Core/Flow/Templates.php:132
+#: includes/Core/Flow/Templates.php:171
 msgid "(00) 00000-0000"
 msgstr "(00) 00000-0000"
 
-#: includes/Core/Flow/Templates.php:135
-#: includes/Core/Flow/Templates.php:155
-#: includes/Core/Flow/Templates.php:193
+#: includes/Core/Flow/Templates.php:174
+#: includes/Core/Flow/Templates.php:194
+#: includes/Core/Flow/Templates.php:232
 #: assets/admin/admin.js:1
 #: src/admin/editor/AutomationForms.jsx:53
-#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/editor/BubbleTab.jsx:8
+#: src/admin/editor/WelcomeCard.jsx:25
 #: src/admin/editor/WhatsappTab.jsx:46
 msgid "Message"
 msgstr "Mensagem"
 
-#: includes/Core/Flow/Templates.php:135
+#: includes/Core/Flow/Templates.php:174
 msgid "How can we help?"
 msgstr "Como podemos ajudar?"
 
-#: includes/Core/Flow/Templates.php:139
+#: includes/Core/Flow/Templates.php:178
 msgid "Request a quote"
 msgstr "Pedir um orçamento"
 
-#: includes/Core/Flow/Templates.php:140
+#: includes/Core/Flow/Templates.php:179
 msgid "Qualify the project before the conversation: company, service and budget."
 msgstr "Qualifique o projeto antes da conversa: empresa, serviço e orçamento."
 
-#: includes/Core/Flow/Templates.php:142
+#: includes/Core/Flow/Templates.php:181
 msgid ""
 "Hello! I'd like a quote. My name is {name}.\n"
 "\n"
@@ -717,51 +720,51 @@ msgstr ""
 "\n"
 "{all_fields}"
 
-#: includes/Core/Flow/Templates.php:145
+#: includes/Core/Flow/Templates.php:184
 msgid "Company"
 msgstr "Empresa"
 
-#: includes/Core/Flow/Templates.php:148
+#: includes/Core/Flow/Templates.php:187
 #: assets/admin/admin.js:1
 #: src/admin/screens/IntegrationsScreen.jsx:121
 msgid "Service"
 msgstr "Serviço"
 
-#: includes/Core/Flow/Templates.php:151
+#: includes/Core/Flow/Templates.php:190
 msgid "Website"
 msgstr "Site"
 
-#: includes/Core/Flow/Templates.php:151
+#: includes/Core/Flow/Templates.php:190
 msgid "Automation"
 msgstr "Automação"
 
-#: includes/Core/Flow/Templates.php:151
-#: includes/Core/Flow/Templates.php:159
+#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:198
 msgid "Support"
 msgstr "Suporte"
 
-#: includes/Core/Flow/Templates.php:151
 #: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "Other"
 msgstr "Outro"
 
-#: includes/Core/Flow/Templates.php:154
+#: includes/Core/Flow/Templates.php:193
 msgid "Budget"
 msgstr "Orçamento"
 
-#: includes/Core/Flow/Templates.php:154
+#: includes/Core/Flow/Templates.php:193
 msgid "Estimated amount"
 msgstr "Valor estimado"
 
-#: includes/Core/Flow/Templates.php:155
+#: includes/Core/Flow/Templates.php:194
 msgid "Tell us a bit about the project"
 msgstr "Conte um pouco sobre o projeto"
 
-#: includes/Core/Flow/Templates.php:160
+#: includes/Core/Flow/Templates.php:199
 msgid "Collect the product and the problem so the team can answer faster."
 msgstr "Reúna o produto e o problema para a equipe responder mais rápido."
 
-#: includes/Core/Flow/Templates.php:162
+#: includes/Core/Flow/Templates.php:201
 msgid ""
 "Hello! I need support. My name is {name}.\n"
 "\n"
@@ -771,27 +774,27 @@ msgstr ""
 "\n"
 "{all_fields}"
 
-#: includes/Core/Flow/Templates.php:166
+#: includes/Core/Flow/Templates.php:205
 msgid "Product"
 msgstr "Produto"
 
-#: includes/Core/Flow/Templates.php:169
+#: includes/Core/Flow/Templates.php:208
 msgid "Problem"
 msgstr "Problema"
 
-#: includes/Core/Flow/Templates.php:172
+#: includes/Core/Flow/Templates.php:211
 msgid "Describe what is happening"
 msgstr "Descreva o que está acontecendo"
 
-#: includes/Core/Flow/Templates.php:178
+#: includes/Core/Flow/Templates.php:217
 msgid "Clinic"
 msgstr "Clínica"
 
-#: includes/Core/Flow/Templates.php:179
+#: includes/Core/Flow/Templates.php:218
 msgid "Appointment requests with the type of care."
 msgstr "Pedidos de consulta com o tipo de atendimento."
 
-#: includes/Core/Flow/Templates.php:181
+#: includes/Core/Flow/Templates.php:220
 msgid ""
 "Hello! I'd like to schedule an appointment. My name is {name}.\n"
 "\n"
@@ -801,31 +804,31 @@ msgstr ""
 "\n"
 "{all_fields}"
 
-#: includes/Core/Flow/Templates.php:187
+#: includes/Core/Flow/Templates.php:226
 msgid "Type of care"
 msgstr "Tipo de atendimento"
 
-#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "First appointment"
 msgstr "Primeira consulta"
 
-#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "Return visit"
 msgstr "Retorno"
 
-#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "Exam"
 msgstr "Exame"
 
-#: includes/Core/Flow/Templates.php:197
+#: includes/Core/Flow/Templates.php:236
 msgid "Real estate"
 msgstr "Imobiliária"
 
-#: includes/Core/Flow/Templates.php:198
+#: includes/Core/Flow/Templates.php:237
 msgid "Property type and price range, so the broker calls with the right options."
 msgstr "Tipo de imóvel e faixa de valor, para o corretor ligar com as opções certas."
 
-#: includes/Core/Flow/Templates.php:200
+#: includes/Core/Flow/Templates.php:239
 msgid ""
 "Hello! I'm looking for a property. My name is {name}.\n"
 "\n"
@@ -835,119 +838,123 @@ msgstr ""
 "\n"
 "{all_fields}"
 
-#: includes/Core/Flow/Templates.php:206
+#: includes/Core/Flow/Templates.php:245
 msgid "Property type"
 msgstr "Tipo de imóvel"
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "Apartment"
 msgstr "Apartamento"
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "House"
 msgstr "Casa"
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "Commercial"
 msgstr "Comercial"
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "Land"
 msgstr "Terreno"
 
-#: includes/Core/Flow/Templates.php:214
+#: includes/Core/Flow/Templates.php:253
 msgid "Price range"
 msgstr "Faixa de valor"
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "Up to 300k"
 msgstr "Até 300 mil"
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "300k to 600k"
 msgstr "De 300 a 600 mil"
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "600k to 1M"
 msgstr "De 600 mil a 1 milhão"
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "Above 1M"
 msgstr "Acima de 1 milhão"
 
-#: includes/Core/Flow/Validator.php:46
+#: includes/Core/Flow/Validator.php:50
 msgid "A field has no label."
 msgstr "Um campo está sem rótulo."
 
 #. translators: %s: field label.
-#: includes/Core/Flow/Validator.php:50
+#: includes/Core/Flow/Validator.php:54
 #, php-format
 msgid "The field \"%s\" needs at least one option."
 msgstr "O campo “%s” precisa de pelo menos uma opção."
 
-#: includes/Core/Flow/Validator.php:54
+#: includes/Core/Flow/Validator.php:58
 msgid "Add at least one field to the flow."
 msgstr "Adicione pelo menos um campo ao fluxo."
 
-#: includes/Core/Flow/Validator.php:59
+#: includes/Core/Flow/Validator.php:63
 msgid "A step has no fields and will be empty."
 msgstr "Uma etapa não tem campos e ficará vazia."
 
-#: includes/Core/Flow/Validator.php:72
+#: includes/Core/Flow/Validator.php:76
 msgid "A logic rule has no valid condition, so it always applies. Edit or remove it."
 msgstr "Uma regra de lógica não tem condição válida, então sempre se aplica. Edite ou remova."
 
 #. translators: %s: field key.
-#: includes/Core/Flow/Validator.php:81
+#: includes/Core/Flow/Validator.php:85
 #, php-format
 msgid "A logic rule refers to the field \"%s\", which does not exist."
 msgstr "Uma regra de lógica se refere ao campo “%s”, que não existe."
 
-#: includes/Core/Flow/Validator.php:87
+#: includes/Core/Flow/Validator.php:91
 msgid "A logic rule depends on a field that comes after the field it shows or hides, so it will not work. Move the field up."
 msgstr "Uma regra de lógica depende de um campo que vem depois do campo que ela mostra ou oculta, então não vai funcionar. Mova o campo para cima."
 
-#: includes/Core/Flow/Validator.php:109
+#: includes/Core/Flow/Validator.php:113
 msgid "A \"Send webhook\" automation has no connection selected."
 msgstr "Uma automação “Enviar webhook” está sem conexão selecionada."
 
 #. translators: %s: connection name.
-#: includes/Core/Flow/Validator.php:112
+#: includes/Core/Flow/Validator.php:116
 #, php-format
 msgid "The connection \"%s\" is turned off, so no data will be sent to it."
 msgstr "A conexão “%s” está desativada, então nenhum dado será enviado a ela."
 
-#: includes/Core/Flow/Validator.php:115
+#: includes/Core/Flow/Validator.php:119
 msgid "The custom webhook payload is not valid JSON."
 msgstr "O payload personalizado do webhook não é um JSON válido."
 
-#: includes/Core/Flow/Validator.php:120
+#: includes/Core/Flow/Validator.php:124
+#: includes/Core/Flow/Validator.php:193
 msgid "WhatsApp is turned on, but there is no destination with a WhatsApp number. Add one in Routing."
 msgstr "O WhatsApp está ativado, mas não há destino com número de WhatsApp. Adicione um em Roteamento."
 
-#: includes/Core/Flow/Validator.php:123
+#: includes/Core/Flow/Validator.php:127
 msgid "An e-mail is set to go to the destination, but no destination has an e-mail address."
 msgstr "Um e-mail está configurado para ir ao destino, mas nenhum destino tem e-mail."
 
-#: includes/Core/Flow/Validator.php:126
+#: includes/Core/Flow/Validator.php:130
 msgid "Nothing happens after the visitor sends the form except saving the lead. Add an e-mail notification or WhatsApp."
 msgstr "Depois que o visitante envia o formulário, só o lead é salvo. Adicione um aviso por e-mail ou o WhatsApp."
 
 #. translators: %s: variable name.
-#: includes/Core/Flow/Validator.php:148
+#: includes/Core/Flow/Validator.php:152
+#: includes/Core/Flow/Validator.php:204
 #, php-format
 msgid "The variable {%s} does not exist and will be empty."
 msgstr "A variável {%s} não existe e ficará vazia."
 
-#: includes/Core/Flow/Validator.php:155
+#: includes/Core/Flow/Validator.php:159
+#: includes/Core/Flow/Validator.php:210
 msgid "The widget is set to show only on specific pages, but no page was added, so it will not appear anywhere."
 msgstr "O widget está configurado para aparecer só em páginas específicas, mas nenhuma página foi adicionada, então ele não aparecerá em lugar nenhum."
 
-#: includes/Core/Flow/Validator.php:160
+#: includes/Core/Flow/Validator.php:164
+#: includes/Core/Flow/Validator.php:213
 msgid "The bubble icon is hard to see against the bubble colour. Pick colours with more contrast."
 msgstr "O ícone da bolha é difícil de ver sobre a cor da bolha. Escolha cores com mais contraste."
 
-#: includes/Core/Flow/Validator.php:163
+#: includes/Core/Flow/Validator.php:167
 msgid "White text on the panel accent colour is hard to read. Pick a darker accent colour."
 msgstr "O texto branco sobre a cor de destaque do painel é difícil de ler. Escolha uma cor de destaque mais escura."
 
@@ -964,9 +971,9 @@ msgstr "ID"
 #: includes/Core/Leads/CsvExporter.php:112
 #: includes/Core/Leads/PrivacyTools.php:81
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:7
-#: src/admin/screens/AnalyticsScreen.jsx:74
-#: src/admin/screens/Dashboard.jsx:124
+#: src/admin/editor/BubbleTab.jsx:8
+#: src/admin/screens/AnalyticsScreen.jsx:76
+#: src/admin/screens/Dashboard.jsx:125
 #: src/admin/screens/IntegrationsScreen.jsx:376
 #: src/admin/screens/LeadsScreen.jsx:84
 #: src/admin/screens/LeadsScreen.jsx:233
@@ -978,7 +985,7 @@ msgstr "Chat"
 #: includes/Core/Leads/PrivacyTools.php:101
 #: assets/admin/admin.js:1
 #: src/admin/editor/PublishTab.jsx:152
-#: src/admin/screens/Dashboard.jsx:125
+#: src/admin/screens/Dashboard.jsx:126
 #: src/admin/screens/FlowsScreen.jsx:186
 #: src/admin/screens/IntegrationsScreen.jsx:266
 #: src/admin/screens/LeadsScreen.jsx:80
@@ -993,7 +1000,7 @@ msgstr "Canal"
 
 #: includes/Core/Leads/CsvExporter.php:118
 #: includes/Core/Routing/RoutingRepository.php:103
-#: includes/Core/Variables/Builder.php:169
+#: includes/Core/Variables/Builder.php:186
 #: assets/admin/admin.js:1
 #: src/admin/screens/RoutingScreen.jsx:16
 msgid "Destination"
@@ -1019,9 +1026,9 @@ msgid "Page"
 msgstr "Página"
 
 #: includes/Core/Leads/CsvExporter.php:122
-#: includes/Core/Variables/Builder.php:165
+#: includes/Core/Variables/Builder.php:182
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:331
+#: src/admin/editor/FlowTab.jsx:352
 msgid "Page title"
 msgstr "Título da página"
 
@@ -1160,8 +1167,8 @@ msgstr "Outra pessoa alterou o roteamento. Recarregue a página e tente de novo.
 
 #: includes/Core/Submission/AntiSpam/Guard.php:43
 #: includes/Core/Submission/AntiSpam/Guard.php:98
-#: includes/Rest/AjaxFallback.php:120
-#: includes/Rest/PublicController.php:139
+#: includes/Rest/AjaxFallback.php:131
+#: includes/Rest/PublicController.php:165
 msgid "This request was not accepted."
 msgstr "Esta solicitação não foi aceita."
 
@@ -1177,54 +1184,54 @@ msgstr "Sua sessão expirou. Recarregue a página e tente de novo."
 msgid "Too many requests."
 msgstr "Solicitações demais."
 
-#: includes/Core/Submission/Pipeline.php:46
-#: includes/Rest/PublicApi.php:146
+#: includes/Core/Submission/Pipeline.php:47
+#: includes/Rest/PublicApi.php:211
 msgid "This chat is not available."
 msgstr "Este chat não está disponível."
 
-#: includes/Core/Submission/Pipeline.php:72
+#: includes/Core/Submission/Pipeline.php:73
 msgid "Please check the highlighted fields."
 msgstr "Confira os campos destacados."
 
-#: includes/Core/Submission/Pipeline.php:167
+#: includes/Core/Submission/Pipeline.php:168
 msgid "We could not save your message. Please try again."
 msgstr "Não foi possível salvar sua mensagem. Tente novamente."
 
-#: includes/Core/Variables/Builder.php:163
+#: includes/Core/Variables/Builder.php:167
 msgid "All answers"
 msgstr "Todas as respostas"
 
-#: includes/Core/Variables/Builder.php:164
+#: includes/Core/Variables/Builder.php:181
 #: includes/Rest/RoutingController.php:102
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:330
+#: src/admin/editor/FlowTab.jsx:351
 msgid "Page address"
 msgstr "Endereço da página"
 
-#: includes/Core/Variables/Builder.php:166
+#: includes/Core/Variables/Builder.php:183
 #: includes/Rest/RoutingController.php:110
 #: assets/admin/admin.js:1
 #: src/admin/editor/LogicTab.jsx:10
 msgid "Campaign source"
 msgstr "Origem da campanha"
 
-#: includes/Core/Variables/Builder.php:167
+#: includes/Core/Variables/Builder.php:184
 #: includes/Rest/RoutingController.php:114
 msgid "Campaign medium"
 msgstr "Mídia da campanha"
 
-#: includes/Core/Variables/Builder.php:168
+#: includes/Core/Variables/Builder.php:185
 #: includes/Rest/RoutingController.php:118
 #: assets/admin/admin.js:1
 #: src/admin/editor/LogicTab.jsx:11
 msgid "Campaign name"
 msgstr "Nome da campanha"
 
-#: includes/Core/Variables/Builder.php:170
+#: includes/Core/Variables/Builder.php:187
 msgid "Site name"
 msgstr "Nome do site"
 
-#: includes/Core/Variables/Builder.php:171
+#: includes/Core/Variables/Builder.php:188
 msgid "Chat name"
 msgstr "Nome do chat"
 
@@ -1382,7 +1389,7 @@ msgstr "Selecione de 1 a 200 leads."
 msgid "Choose a status."
 msgstr "Escolha um status."
 
-#: includes/Rest/PublicController.php:156
+#: includes/Rest/PublicController.php:182
 msgid "The message is too large."
 msgstr "A mensagem é grande demais."
 
@@ -1447,74 +1454,74 @@ msgid "Krivo ChatFlow requires PHP %1$s and WordPress %2$s or newer. The plugin 
 msgstr "O Krivo ChatFlow exige PHP %1$s e WordPress %2$s ou mais recente. O plugin está inativo."
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:217
+#: src/admin/ui.jsx:249
 msgid "colour picker"
 msgstr "seletor de cor"
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/LeadsScreen.jsx:36
-#: src/admin/ui.jsx:363
+#: src/admin/ui.jsx:395
 msgid "Close"
 msgstr "Fechar"
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/IntegrationsScreen.jsx:110
-#: src/admin/ui.jsx:408
+#: src/admin/ui.jsx:440
 msgid "Cancel"
 msgstr "Cancelar"
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:410
+#: src/admin/ui.jsx:442
 msgid "Confirm"
 msgstr "Confirmar"
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:453
+#: src/admin/ui.jsx:485
 msgid "Copied"
 msgstr "Copiado"
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:453
+#: src/admin/ui.jsx:485
 msgid "Copy"
 msgstr "Copiar"
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:464
+#: src/admin/ui.jsx:496
 msgid "Pagination"
 msgstr "Paginação"
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:466
+#: src/admin/ui.jsx:498
 msgid "Previous"
 msgstr "Anterior"
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:472
+#: src/admin/ui.jsx:504
 msgid "Next"
 msgstr "Próxima"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:112
+#: src/admin/editor/Preview.jsx:162
 msgid "Live preview"
 msgstr "Prévia ao vivo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:128
+#: src/admin/editor/Preview.jsx:189
 msgid "Show only the bubble"
 msgstr "Mostrar só a bolha"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:128
+#: src/admin/editor/Preview.jsx:189
 msgid "Open the chat"
 msgstr "Abrir o chat"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:131
+#: src/admin/editor/Preview.jsx:192
 msgid "Preview of your chat"
 msgstr "Prévia do seu chat"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:134
+#: src/admin/editor/Preview.jsx:195
 msgid "This is the real chat. Nothing you type here is sent or saved."
 msgstr "Este é o chat de verdade. Nada do que você digitar aqui é enviado ou salvo."
 
@@ -1723,8 +1730,8 @@ msgstr "“%s” deixará de rodar para novos leads."
 #: assets/admin/admin.js:1
 #: src/admin/editor/AutomationsTab.jsx:50
 #: src/admin/editor/AutomationsTab.jsx:56
-#: src/admin/editor/FlowTab.jsx:58
-#: src/admin/editor/FlowTab.jsx:263
+#: src/admin/editor/FlowTab.jsx:66
+#: src/admin/editor/FlowTab.jsx:284
 #: src/admin/editor/LogicTab.jsx:63
 #: src/admin/screens/FlowsScreen.jsx:228
 #: src/admin/screens/IntegrationsScreen.jsx:231
@@ -1738,7 +1745,7 @@ msgstr "Excluir"
 #: assets/admin/admin.js:1
 #: src/admin/editor/AutomationsTab.jsx:62
 #: src/admin/editor/ConditionGroup.jsx:25
-#: src/admin/screens/Dashboard.jsx:126
+#: src/admin/screens/Dashboard.jsx:127
 #: src/admin/screens/IntegrationsScreen.jsx:375
 msgid "When"
 msgstr "Quando"
@@ -1820,317 +1827,317 @@ msgid "Remove"
 msgstr "Remover"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/editor/BubbleTab.jsx:8
 msgid "Headset"
 msgstr "Headset"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:18
+#: src/admin/editor/BubbleTab.jsx:19
 msgid "Icon and shape"
 msgstr "Ícone e formato"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:21
-#: src/admin/editor/BubbleTab.jsx:90
+#: src/admin/editor/BubbleTab.jsx:22
+#: src/admin/editor/BubbleTab.jsx:91
 msgid "Icon"
 msgstr "Ícone"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:33
+#: src/admin/editor/BubbleTab.jsx:34
 msgid "My SVG"
 msgstr "Meu SVG"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:33
+#: src/admin/editor/BubbleTab.jsx:34
 msgid "My image"
 msgstr "Minha imagem"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:40
+#: src/admin/editor/BubbleTab.jsx:41
 msgid "SVG code"
 msgstr "Código SVG"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:45
+#: src/admin/editor/BubbleTab.jsx:46
 msgid "Paste the SVG markup. It is cleaned automatically: scripts and external links are removed. Use fill=\"currentColor\" so it follows the icon colour."
 msgstr "Cole o código SVG. Ele é limpo automaticamente: scripts e links externos são removidos. Use fill=\"currentColor\" para que acompanhe a cor do ícone."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:48
+#: src/admin/editor/BubbleTab.jsx:49
 msgid "Icon image"
 msgstr "Imagem do ícone"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:50
+#: src/admin/editor/BubbleTab.jsx:51
 msgid "Button text and accessible name"
 msgstr "Texto do botão e nome acessível"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:50
+#: src/admin/editor/BubbleTab.jsx:51
 msgid "Read by screen readers, and shown next to the icon in the \"pill\" shape. Leave empty for \"Open chat\"."
 msgstr "Lido por leitores de tela e mostrado ao lado do ícone no formato “pílula”. Deixe vazio para “Abrir o chat”."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:53
+#: src/admin/editor/BubbleTab.jsx:54
 msgid "Shape"
 msgstr "Formato"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:57
+#: src/admin/editor/BubbleTab.jsx:58
 msgid "Circle"
 msgstr "Círculo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:58
+#: src/admin/editor/BubbleTab.jsx:59
 msgid "Rounded square"
 msgstr "Quadrado arredondado"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:59
+#: src/admin/editor/BubbleTab.jsx:60
 msgid "Pill with text"
 msgstr "Pílula com texto"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:60
+#: src/admin/editor/BubbleTab.jsx:61
 msgid "Custom corners"
 msgstr "Cantos personalizados"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:63
+#: src/admin/editor/BubbleTab.jsx:64
 msgid "Corner radius"
 msgstr "Raio dos cantos"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:67
+#: src/admin/editor/BubbleTab.jsx:68
 msgid "Position and size"
 msgstr "Posição e tamanho"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:70
+#: src/admin/editor/BubbleTab.jsx:71
 msgid "Side of the screen"
 msgstr "Lado da tela"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:74
+#: src/admin/editor/BubbleTab.jsx:75
 #: src/admin/screens/Onboarding.jsx:164
 msgid "Bottom right"
 msgstr "Canto inferior direito"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:75
+#: src/admin/editor/BubbleTab.jsx:76
 #: src/admin/screens/Onboarding.jsx:165
 msgid "Bottom left"
 msgstr "Canto inferior esquerdo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:79
+#: src/admin/editor/BubbleTab.jsx:80
 msgid "Distance from the side"
 msgstr "Distância da lateral"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:80
+#: src/admin/editor/BubbleTab.jsx:81
 msgid "Distance from the bottom"
 msgstr "Distância da base"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:81
+#: src/admin/editor/BubbleTab.jsx:82
 msgid "Size"
 msgstr "Tamanho"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:86
+#: src/admin/editor/BubbleTab.jsx:87
 msgid "Colours and effects"
 msgstr "Cores e efeitos"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:89
+#: src/admin/editor/BubbleTab.jsx:90
 msgid "Background"
 msgstr "Fundo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:91
+#: src/admin/editor/BubbleTab.jsx:92
 msgid "Border"
 msgstr "Borda"
 
 #. translators: %s: contrast ratio, for example 2.1.
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:93
+#: src/admin/editor/BubbleTab.jsx:94
 #, js-format
 msgid "The icon is hard to see on this background (contrast %s:1, at least 3:1 is recommended)."
 msgstr "O ícone é difícil de ver sobre este fundo (contraste %s:1; recomenda-se pelo menos 3:1)."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:94
+#: src/admin/editor/BubbleTab.jsx:95
 msgid "Soft shadow"
 msgstr "Sombra suave"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:96
+#: src/admin/editor/BubbleTab.jsx:97
 msgid "Attention animation"
 msgstr "Animação de chamada"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:100
+#: src/admin/editor/BubbleTab.jsx:101
 #: src/admin/screens/IntegrationsScreen.jsx:144
 #: src/admin/screens/SettingsScreen.jsx:230
 msgid "None"
 msgstr "Nenhuma"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:101
+#: src/admin/editor/BubbleTab.jsx:102
 msgid "Fade in"
 msgstr "Surgir suavemente"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:102
+#: src/admin/editor/BubbleTab.jsx:103
 msgid "Pulse"
 msgstr "Pulsar"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:103
+#: src/admin/editor/BubbleTab.jsx:104
 msgid "Gentle bounce"
 msgstr "Pulinho leve"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:105
+#: src/admin/editor/BubbleTab.jsx:106
 msgid "Animations are turned off for visitors who ask their device to reduce motion."
 msgstr "As animações ficam desativadas para visitantes que pedem ao dispositivo para reduzir movimento."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:110
+#: src/admin/editor/WelcomeCard.jsx:16
 msgid "Greeting bubble"
 msgstr "Bolha de boas-vindas"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:110
+#: src/admin/editor/WelcomeCard.jsx:17
 msgid "A short message next to the button."
 msgstr "Uma mensagem curta ao lado do botão."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:112
+#: src/admin/editor/WelcomeCard.jsx:20
 msgid "Show a greeting"
 msgstr "Mostrar uma saudação"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:115
-#: src/admin/editor/FlowTab.jsx:284
+#: src/admin/editor/FlowTab.jsx:305
 #: src/admin/editor/PublishTab.jsx:74
+#: src/admin/editor/WelcomeCard.jsx:25
 msgid "Text"
 msgstr "Texto"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:115
+#: src/admin/editor/WelcomeCard.jsx:30
 msgid "Leave empty for \"Need help?\"."
 msgstr "Deixe vazio para “Precisa de ajuda?”."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:117
-#: src/admin/editor/BubbleTab.jsx:133
+#: src/admin/editor/BubbleTab.jsx:119
+#: src/admin/editor/WelcomeCard.jsx:41
 msgid "Appears after"
 msgstr "Aparece depois de"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:117
-#: src/admin/editor/BubbleTab.jsx:118
-#: src/admin/editor/BubbleTab.jsx:133
-#: src/admin/editor/BubbleTab.jsx:150
+#: src/admin/editor/BubbleTab.jsx:119
+#: src/admin/editor/BubbleTab.jsx:136
+#: src/admin/editor/WelcomeCard.jsx:41
+#: src/admin/editor/WelcomeCard.jsx:42
 #: src/admin/screens/IntegrationsScreen.jsx:134
 #: src/admin/screens/SettingsScreen.jsx:111
 msgid "seconds"
 msgstr "segundos"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:118
+#: src/admin/editor/WelcomeCard.jsx:42
 msgid "Stays for"
 msgstr "Fica por"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:118
+#: src/admin/editor/WelcomeCard.jsx:42
 msgid "0 keeps it until dismissed."
 msgstr "0 mantém até ser dispensada."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:120
+#: src/admin/editor/WelcomeCard.jsx:44
 msgid "Show only once per visitor"
 msgstr "Mostrar só uma vez por visitante"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:120
+#: src/admin/editor/WelcomeCard.jsx:44
 msgid "Remembered in the visitor’s browser, without cookies."
 msgstr "Lembrado no navegador do visitante, sem cookies."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:121
+#: src/admin/editor/WelcomeCard.jsx:45
 msgid "Let the visitor close it"
 msgstr "Deixar o visitante fechar"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:127
+#: src/admin/editor/BubbleTab.jsx:113
 msgid "Notification badge"
 msgstr "Selo de notificação"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:129
+#: src/admin/editor/BubbleTab.jsx:115
 msgid "Show a small badge on the button"
 msgstr "Mostrar um selo pequeno no botão"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:132
+#: src/admin/editor/BubbleTab.jsx:118
 msgid "Badge text"
 msgstr "Texto do selo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:139
+#: src/admin/editor/BubbleTab.jsx:125
 msgid "When it appears"
 msgstr "Quando aparece"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:142
+#: src/admin/editor/BubbleTab.jsx:128
 msgid "Show the button"
 msgstr "Mostrar o botão"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:146
+#: src/admin/editor/BubbleTab.jsx:132
 msgid "After a delay"
 msgstr "Depois de um tempo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:147
+#: src/admin/editor/BubbleTab.jsx:133
 msgid "After the visitor scrolls"
 msgstr "Depois que o visitante rolar a página"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:150
+#: src/admin/editor/BubbleTab.jsx:136
 msgid "Delay"
 msgstr "Atraso"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:150
+#: src/admin/editor/BubbleTab.jsx:136
 msgid "0 shows it as soon as the page is idle."
 msgstr "0 mostra assim que a página estiver ociosa."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:151
+#: src/admin/editor/BubbleTab.jsx:137
 msgid "Scrolled"
 msgstr "Rolagem"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:151
+#: src/admin/editor/BubbleTab.jsx:137
 msgid "% of the page"
 msgstr "% da página"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:152
+#: src/admin/editor/BubbleTab.jsx:140
 msgid "Open the chat automatically"
 msgstr "Abrir o chat automaticamente"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:152
+#: src/admin/editor/BubbleTab.jsx:140
 msgid "It opens by itself after the button appears. Use with care: some visitors find it intrusive."
 msgstr "Ele abre sozinho depois que o botão aparece. Use com cuidado: alguns visitantes acham invasivo."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:153
+#: src/admin/editor/BubbleTab.jsx:141
 msgid "Only once per visit"
 msgstr "Só uma vez por visita"
 
@@ -2148,6 +2155,7 @@ msgstr "Janela do chat"
 
 #: assets/admin/admin.js:1
 #: src/admin/editor/DesignTab.jsx:28
+#: src/admin/editor/WelcomeCard.jsx:23
 msgid "Title"
 msgstr "Título"
 
@@ -2289,125 +2297,125 @@ msgid "E-mail settings"
 msgstr "Configurações de e-mail"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:29
+#: src/admin/editor/FlowTab.jsx:31
 msgid "Merge the steps?"
 msgstr "Juntar as etapas?"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:29
+#: src/admin/editor/FlowTab.jsx:31
 msgid "Only the \"Steps\" mode has separate steps. Switching will put all fields in one list. Logic rules that jump between steps will be removed."
 msgstr "Só o modo “Etapas” tem etapas separadas. Ao trocar, todos os campos ficarão em uma única lista. As regras de lógica que saltam entre etapas serão removidas."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:29
+#: src/admin/editor/FlowTab.jsx:31
 msgid "Merge steps"
 msgstr "Juntar etapas"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:56
+#: src/admin/editor/FlowTab.jsx:64
 msgid "Delete this field?"
 msgstr "Excluir este campo?"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:57
+#: src/admin/editor/FlowTab.jsx:65
 msgid "A logic rule uses this field. Deleting it will also remove the rule parts that depend on it."
 msgstr "Uma regra de lógica usa este campo. Excluí-lo também removerá as partes da regra que dependem dele."
 
 #. translators: %s: label of the field.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:57
+#: src/admin/editor/FlowTab.jsx:65
 #, js-format
 msgid "\"%s\" will be removed from the chat."
 msgstr "“%s” será removido do chat."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
+#: src/admin/editor/FlowTab.jsx:115
 msgid "Delete this step?"
 msgstr "Excluir esta etapa?"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
+#: src/admin/editor/FlowTab.jsx:115
 msgid "The fields inside it will be deleted too."
 msgstr "Os campos dentro dela também serão excluídos."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
+#: src/admin/editor/FlowTab.jsx:115
 msgid "The step is empty."
 msgstr "A etapa está vazia."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
-#: src/admin/editor/FlowTab.jsx:156
+#: src/admin/editor/FlowTab.jsx:115
+#: src/admin/editor/FlowTab.jsx:175
 msgid "Delete step"
 msgstr "Excluir etapa"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:115
+#: src/admin/editor/FlowTab.jsx:123
 msgid "About this chat"
 msgstr "Sobre este chat"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:117
+#: src/admin/editor/FlowTab.jsx:125
 #: src/admin/screens/FlowsScreen.jsx:98
 msgid "Only you see this name."
 msgstr "Só você vê este nome."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:119
+#: src/admin/editor/FlowTab.jsx:127
 msgid "How should it look to the visitor?"
 msgstr "Como o chat deve aparecer para o visitante?"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:123
+#: src/admin/editor/FlowTab.jsx:131
 msgid "One form"
 msgstr "Um formulário"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:124
+#: src/admin/editor/FlowTab.jsx:132
 msgid "Steps"
 msgstr "Etapas"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:125
+#: src/admin/editor/FlowTab.jsx:133
 msgid "Conversation"
 msgstr "Conversa"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:129
+#: src/admin/editor/FlowTab.jsx:138
 msgid "All questions on one screen."
 msgstr "Todas as perguntas em uma tela."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:130
+#: src/admin/editor/FlowTab.jsx:139
 msgid "Several screens with a progress bar. Good for longer forms."
 msgstr "Várias telas com barra de progresso. Bom para formulários mais longos."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:131
+#: src/admin/editor/FlowTab.jsx:140
 msgid "One question at a time, like a chat."
 msgstr "Uma pergunta por vez, como em um chat."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:139
+#: src/admin/editor/FlowTab.jsx:158
 msgid "Fields"
 msgstr "Campos"
 
 #. translators: 1: number of fields in the chat, 2: maximum allowed.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:140
+#: src/admin/editor/FlowTab.jsx:159
 #, js-format
 msgid "%1$d of %2$d fields"
 msgstr "%1$d de %2$d campos"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:144
+#: src/admin/editor/FlowTab.jsx:163
 msgid "Add step"
 msgstr "Adicionar etapa"
 
 #. translators: %d: position of the step.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:150
-#: src/admin/editor/FlowTab.jsx:352
+#: src/admin/editor/FlowTab.jsx:169
+#: src/admin/editor/FlowTab.jsx:373
 #: src/admin/editor/LogicTab.jsx:28
 #, js-format
 msgid "Step %d"
@@ -2415,300 +2423,301 @@ msgstr "Etapa %d"
 
 #. translators: %d: position of the step.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:153
+#: src/admin/editor/FlowTab.jsx:172
 #, js-format
 msgid "Step %d title"
 msgstr "Título da etapa %d"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:180
+#: src/admin/editor/FlowTab.jsx:199
 msgid "Add a field"
 msgstr "Adicionar um campo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:182
+#: src/admin/editor/FlowTab.jsx:201
 msgid "Field types"
 msgstr "Tipos de campo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:189
+#: src/admin/editor/FlowTab.jsx:208
 msgid "You reached the maximum number of fields."
 msgstr "Você atingiu o número máximo de campos."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:192
+#: src/admin/editor/FlowTab.jsx:211
 msgid "When the visitor finishes"
 msgstr "Quando o visitante termina"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:194
+#: src/admin/editor/FlowTab.jsx:213
+#: src/admin/editor/WelcomeCard.jsx:33
 msgid "Button text"
 msgstr "Texto do botão"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:194
+#: src/admin/editor/FlowTab.jsx:213
 msgid "Leave empty for the default (\"Continue on WhatsApp\" when WhatsApp is on, otherwise \"Send message\")."
 msgstr "Deixe vazio para o padrão (“Continuar no WhatsApp” quando o WhatsApp está ativo; senão “Enviar mensagem”)."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:195
+#: src/admin/editor/FlowTab.jsx:214
 msgid "Thank-you message"
 msgstr "Mensagem de agradecimento"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:195
+#: src/admin/editor/FlowTab.jsx:214
 msgid "You can use the visitor’s answers, for example {name}."
 msgstr "Você pode usar as respostas do visitante, por exemplo {name}."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:206
+#: src/admin/editor/FlowTab.jsx:227
 msgid "No fields yet. Add the first one below."
 msgstr "Ainda não há campos. Adicione o primeiro abaixo."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:237
+#: src/admin/editor/FlowTab.jsx:258
 msgid "Drag to reorder"
 msgstr "Arraste para reordenar"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:238
+#: src/admin/editor/FlowTab.jsx:259
 msgid "Drag to reorder (or use the arrows)"
 msgstr "Arraste para reordenar (ou use as setas)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:246
+#: src/admin/editor/FlowTab.jsx:267
 msgid "Text block"
 msgstr "Bloco de texto"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:246
+#: src/admin/editor/FlowTab.jsx:267
 msgid "(no label)"
 msgstr "(sem rótulo)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:249
+#: src/admin/editor/FlowTab.jsx:270
 msgid "required"
 msgstr "obrigatório"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:254
-#: src/admin/editor/FlowTab.jsx:368
+#: src/admin/editor/FlowTab.jsx:275
+#: src/admin/editor/FlowTab.jsx:389
 #: src/admin/screens/RoutingScreen.jsx:177
 msgid "Move up"
 msgstr "Subir"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:257
-#: src/admin/editor/FlowTab.jsx:371
+#: src/admin/editor/FlowTab.jsx:278
+#: src/admin/editor/FlowTab.jsx:392
 #: src/admin/screens/RoutingScreen.jsx:180
 msgid "Move down"
 msgstr "Descer"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:260
+#: src/admin/editor/FlowTab.jsx:281
 #: src/admin/screens/FlowsScreen.jsx:223
 msgid "Duplicate"
 msgstr "Duplicar"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:284
+#: src/admin/editor/FlowTab.jsx:305
 msgid "Allowed: bold, italic, links, lists and line breaks."
 msgstr "Permitido: negrito, itálico, links, listas e quebras de linha."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:287
+#: src/admin/editor/FlowTab.jsx:308
 msgid "Label (for you)"
 msgstr "Rótulo (para você)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:287
+#: src/admin/editor/FlowTab.jsx:308
 msgid "Label"
 msgstr "Rótulo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:288
+#: src/admin/editor/FlowTab.jsx:309
 msgid "Question in the conversation"
 msgstr "Pergunta na conversa"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:288
+#: src/admin/editor/FlowTab.jsx:309
 msgid "What the chat says before this field. You can use earlier answers, for example \"Nice to meet you, {name}!\"."
 msgstr "O que o chat diz antes deste campo. Você pode usar respostas anteriores, por exemplo “Prazer, {name}!”."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:289
+#: src/admin/editor/FlowTab.jsx:310
 msgid "Help text"
 msgstr "Texto de ajuda"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:290
+#: src/admin/editor/FlowTab.jsx:311
 msgid "Placeholder"
 msgstr "Texto de exemplo (placeholder)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:296
+#: src/admin/editor/FlowTab.jsx:317
 msgid "Variable name"
 msgstr "Nome da variável"
 
 #. translators: %s: variable name of the field.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:297
+#: src/admin/editor/FlowTab.jsx:318
 #, js-format
 msgid "Use {%s} in messages and e-mails. Letters, numbers and underscores."
 msgstr "Use {%s} em mensagens e e-mails. Letras, números e sublinhados."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:309
+#: src/admin/editor/FlowTab.jsx:330
 msgid "Minimum"
 msgstr "Mínimo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:310
+#: src/admin/editor/FlowTab.jsx:331
 msgid "Maximum"
 msgstr "Máximo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:313
+#: src/admin/editor/FlowTab.jsx:334
 msgid "Maximum length"
 msgstr "Tamanho máximo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:313
+#: src/admin/editor/FlowTab.jsx:334
 msgid "0 means the default."
 msgstr "0 significa o padrão."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:314
+#: src/admin/editor/FlowTab.jsx:335
 #: src/admin/screens/Onboarding.jsx:134
 #: src/admin/screens/RoutingScreen.jsx:27
 msgid "Country code"
 msgstr "Código do país"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:314
+#: src/admin/editor/FlowTab.jsx:335
 msgid "Added when the visitor types a local number, for example 55 for Brazil. Leave empty to use the site default."
 msgstr "Adicionado quando o visitante digita um número local, por exemplo 55 para o Brasil. Deixe vazio para usar o padrão do site."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:318
+#: src/admin/editor/FlowTab.jsx:339
 msgid "Consent text"
 msgstr "Texto do consentimento"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:318
+#: src/admin/editor/FlowTab.jsx:339
 msgid "What the visitor agrees to. Bold, italic and links are allowed."
 msgstr "Com o que o visitante concorda. Negrito, itálico e links são permitidos."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:319
+#: src/admin/editor/FlowTab.jsx:340
 msgid "Add a link to the site’s privacy policy"
 msgstr "Adicionar um link para a política de privacidade do site"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:319
+#: src/admin/editor/FlowTab.jsx:340
 msgid "Uses the page chosen in Settings → Privacy of WordPress."
 msgstr "Usa a página escolhida em Configurações → Privacidade do WordPress."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:326
+#: src/admin/editor/FlowTab.jsx:347
 msgid "Value comes from"
 msgstr "O valor vem de"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:332
+#: src/admin/editor/FlowTab.jsx:353
 msgid "Referring page"
 msgstr "Página de origem"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:333
+#: src/admin/editor/FlowTab.jsx:354
 msgid "Campaign source (utm_source)"
 msgstr "Origem da campanha (utm_source)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:334
+#: src/admin/editor/FlowTab.jsx:355
 msgid "Campaign medium (utm_medium)"
 msgstr "Mídia da campanha (utm_medium)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:335
+#: src/admin/editor/FlowTab.jsx:356
 msgid "Campaign name (utm_campaign)"
 msgstr "Nome da campanha (utm_campaign)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:336
+#: src/admin/editor/FlowTab.jsx:357
 msgid "Campaign content (utm_content)"
 msgstr "Conteúdo da campanha (utm_content)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:337
+#: src/admin/editor/FlowTab.jsx:358
 msgid "Campaign term (utm_term)"
 msgstr "Termo da campanha (utm_term)"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:338
+#: src/admin/editor/FlowTab.jsx:359
 msgid "A parameter in the page address"
 msgstr "Um parâmetro no endereço da página"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:339
+#: src/admin/editor/FlowTab.jsx:360
 msgid "A fixed value"
 msgstr "Um valor fixo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:342
+#: src/admin/editor/FlowTab.jsx:363
 msgid "Parameter name"
 msgstr "Nome do parâmetro"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:342
+#: src/admin/editor/FlowTab.jsx:363
 msgid "For example \"ref\" reads ?ref=abc from the address."
 msgstr "Por exemplo, “ref” lê ?ref=abc do endereço."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:343
+#: src/admin/editor/FlowTab.jsx:364
 msgid "Fixed value"
 msgstr "Valor fixo"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:347
+#: src/admin/editor/FlowTab.jsx:368
 msgid "Default value"
 msgstr "Valor padrão"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:350
+#: src/admin/editor/FlowTab.jsx:371
 msgid "Required"
 msgstr "Obrigatório"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:352
+#: src/admin/editor/FlowTab.jsx:373
 #: src/admin/screens/IntegrationsScreen.jsx:377
 msgid "Step"
 msgstr "Etapa"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:363
+#: src/admin/editor/FlowTab.jsx:384
 msgid "Options"
 msgstr "Opções"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:364
+#: src/admin/editor/FlowTab.jsx:385
 msgid "Add at least one option."
 msgstr "Adicione pelo menos uma opção."
 
 #. translators: %d: position of the option in the list.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:367
+#: src/admin/editor/FlowTab.jsx:388
 #, js-format
 msgid "Option %d"
 msgstr "Opção %d"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:374
+#: src/admin/editor/FlowTab.jsx:395
 msgid "Remove option"
 msgstr "Remover opção"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:381
+#: src/admin/editor/FlowTab.jsx:402
 msgid "Add option"
 msgstr "Adicionar opção"
 
@@ -3147,21 +3156,21 @@ msgid "Open"
 msgstr "Aberto"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/Editor.jsx:323
 #: src/admin/editor/PublishTab.jsx:153
 #: src/admin/screens/FlowsScreen.jsx:32
 msgid "Published"
 msgstr "Publicado"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/Editor.jsx:323
 #: src/admin/editor/PublishTab.jsx:153
 #: src/admin/screens/FlowsScreen.jsx:33
 msgid "Paused"
 msgstr "Pausado"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/Editor.jsx:323
 #: src/admin/editor/PublishTab.jsx:153
 #: src/admin/screens/FlowsScreen.jsx:34
 msgid "Draft"
@@ -3221,14 +3230,14 @@ msgid "Everything looks good."
 msgstr "Está tudo certo."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:303
+#: src/admin/editor/Editor.jsx:307
 #: src/admin/editor/PublishTab.jsx:200
 msgid "Publish changes"
 msgstr "Publicar alterações"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:242
-#: src/admin/editor/Editor.jsx:303
+#: src/admin/editor/Editor.jsx:244
+#: src/admin/editor/Editor.jsx:307
 #: src/admin/editor/PublishTab.jsx:200
 msgid "Publish"
 msgstr "Publicar"
@@ -3415,16 +3424,19 @@ msgid "Open WhatsApp after the form"
 msgstr "Abrir o WhatsApp depois do formulário"
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:37
 #: src/admin/editor/WhatsappTab.jsx:32
 msgid "Who receives the conversation"
 msgstr "Quem recebe a conversa"
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:40
 #: src/admin/editor/WhatsappTab.jsx:35
 msgid "Decided by routing (or the site default)"
 msgstr "Definido pelo roteamento (ou pelo padrão do site)"
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:40
 #: src/admin/editor/WhatsappTab.jsx:35
 msgid "no WhatsApp number"
 msgstr "sem número de WhatsApp"
@@ -3435,16 +3447,19 @@ msgid "Routing rules can still send some visitors to another person, for example
 msgstr "As regras de roteamento ainda podem enviar alguns visitantes a outra pessoa, por exemplo conforme o orçamento."
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:44
 #: src/admin/editor/WhatsappTab.jsx:39
 msgid "Add a destination"
 msgstr "Adicionar um destino"
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:45
 #: src/admin/editor/WhatsappTab.jsx:40
 msgid "There is no destination yet. Add the WhatsApp number that should receive the conversations."
 msgstr "Ainda não há destino. Adicione o número de WhatsApp que deve receber as conversas."
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:49
 #: src/admin/editor/WhatsappTab.jsx:49
 msgid "Text the visitor sends"
 msgstr "Texto que o visitante envia"
@@ -3455,6 +3470,7 @@ msgid "Leave empty to use a standard message with the name and all answers."
 msgstr "Deixe vazio para usar uma mensagem padrão com o nome e todas as respostas."
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:76
 #: src/admin/editor/WhatsappTab.jsx:60
 msgid "What the visitor will send"
 msgstr "O que o visitante vai enviar"
@@ -3465,6 +3481,7 @@ msgid "Preview with sample answers. This is the exact text and link the site bui
 msgstr "Prévia com respostas de exemplo. Este é exatamente o texto e o link que o site monta."
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:85
 #: src/admin/editor/WhatsappTab.jsx:69
 msgid "Link opened for the visitor"
 msgstr "Link aberto para o visitante"
@@ -3475,104 +3492,105 @@ msgid "WhatsApp is turned off for this chat."
 msgstr "O WhatsApp está desativado neste chat."
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:97
 #: src/admin/editor/WhatsappTab.jsx:83
 msgid "Destination in this preview:"
 msgstr "Destino nesta prévia:"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:35
+#: src/admin/editor/Editor.jsx:36
 msgid "Back to chats"
 msgstr "Voltar aos chats"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:158
+#: src/admin/editor/Editor.jsx:159
 msgid "Published. Your chat is live."
 msgstr "Publicado. Seu chat está no ar."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:177
+#: src/admin/editor/Editor.jsx:178
 msgid "Paused. Visitors no longer see this chat."
 msgstr "Pausado. Os visitantes não veem mais este chat."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:190
+#: src/admin/editor/Editor.jsx:191
 #: src/admin/screens/FlowsScreen.jsx:120
 msgid "Copy created as a draft."
 msgstr "Cópia criada como rascunho."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:201
+#: src/admin/editor/Editor.jsx:202
 msgid "Delete this chat?"
 msgstr "Excluir este chat?"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:202
+#: src/admin/editor/Editor.jsx:203
 msgid "The chat disappears from your site and its settings are removed. The leads it already collected are kept."
 msgstr "O chat some do seu site e as configurações dele são removidas. Os leads que ele já coletou são mantidos."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:203
+#: src/admin/editor/Editor.jsx:204
 #: src/admin/screens/FlowsScreen.jsx:132
 msgid "Delete chat"
 msgstr "Excluir chat"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:213
+#: src/admin/editor/Editor.jsx:214
 #: src/admin/screens/FlowsScreen.jsx:139
 msgid "Chat deleted."
 msgstr "Chat excluído."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:235
+#: src/admin/editor/Editor.jsx:237
 msgid "Questions"
 msgstr "Perguntas"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:236
+#: src/admin/editor/Editor.jsx:238
 msgid "Design"
 msgstr "Design"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:237
+#: src/admin/editor/Editor.jsx:239
 msgid "Bubble"
 msgstr "Bolha"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:240
+#: src/admin/editor/Editor.jsx:242
 msgid "Automations"
 msgstr "Automações"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:241
+#: src/admin/editor/Editor.jsx:243
 msgid "Logic"
 msgstr "Lógica"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:248
+#: src/admin/editor/Editor.jsx:252
 msgid "Needs attention"
 msgstr "Precisa de atenção"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:248
+#: src/admin/editor/Editor.jsx:252
 msgid "Worth a look"
 msgstr "Vale conferir"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:255
+#: src/admin/editor/Editor.jsx:259
 #: src/admin/screens/RoutingScreen.jsx:209
 #: src/admin/screens/SettingsScreen.jsx:137
 msgid "All changes saved"
 msgstr "Todas as alterações salvas"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:256
+#: src/admin/editor/Editor.jsx:260
 #: src/admin/screens/RoutingScreen.jsx:209
 #: src/admin/screens/SettingsScreen.jsx:137
 msgid "Saving…"
 msgstr "Salvando…"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:257
+#: src/admin/editor/Editor.jsx:261
 #: src/admin/screens/RoutingScreen.jsx:209
 #: src/admin/screens/SettingsScreen.jsx:137
 msgid "Unsaved changes"
@@ -3580,60 +3598,60 @@ msgstr "Alterações não salvas"
 
 #. translators: %s: the reason the server gave.
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:258
+#: src/admin/editor/Editor.jsx:262
 #, js-format
 msgid "Could not save: %s"
 msgstr "Não foi possível salvar: %s"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:258
+#: src/admin/editor/Editor.jsx:262
 msgid "Could not save"
 msgstr "Não foi possível salvar"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:259
+#: src/admin/editor/Editor.jsx:263
 msgid "Someone else changed this chat"
 msgstr "Outra pessoa alterou este chat"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:271
+#: src/admin/editor/Editor.jsx:275
 msgid "Load their version"
 msgstr "Carregar a versão dela"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:274
+#: src/admin/editor/Editor.jsx:278
 msgid "Keep mine"
 msgstr "Manter a minha"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:279
+#: src/admin/editor/Editor.jsx:283
 msgid "Another administrator saved changes to this chat while you were editing. Load their version (you lose your unsaved edits), or keep yours (you replace theirs)."
 msgstr "Outro administrador salvou alterações neste chat enquanto você editava. Carregue a versão dele (você perde suas edições não salvas) ou mantenha a sua (você substitui a dele)."
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:282
+#: src/admin/editor/Editor.jsx:286
 msgid "Chat settings"
 msgstr "Configurações do chat"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:300
+#: src/admin/editor/Editor.jsx:304
 msgid "Save now"
 msgstr "Salvar agora"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:316
-#: src/admin/screens/AnalyticsScreen.jsx:74
+#: src/admin/editor/Editor.jsx:320
+#: src/admin/screens/AnalyticsScreen.jsx:76
 #: src/admin/screens/RoutingScreen.jsx:194
 msgid "All chats"
 msgstr "Todos os chats"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:318
+#: src/admin/editor/Editor.jsx:322
 msgid "Untitled chat"
 msgstr "Chat sem título"
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:320
+#: src/admin/editor/Editor.jsx:324
 msgid "Changes not live"
 msgstr "Alterações fora do ar"
 
@@ -3920,7 +3938,7 @@ msgid "Open Settings"
 msgstr "Abrir Configurações"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:69
+#: src/admin/screens/AnalyticsScreen.jsx:71
 #: src/admin/screens/Dashboard.jsx:76
 msgid "Last 7 days"
 msgstr "Últimos 7 dias"
@@ -3937,13 +3955,13 @@ msgstr "Visitantes que viram a bolha"
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/AnalyticsScreen.jsx:10
-#: src/admin/screens/AnalyticsScreen.jsx:80
+#: src/admin/screens/AnalyticsScreen.jsx:82
 #: src/admin/screens/Dashboard.jsx:79
 msgid "Opened the chat"
 msgstr "Abriram o chat"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:79
+#: src/admin/screens/AnalyticsScreen.jsx:81
 #: src/admin/screens/Dashboard.jsx:79
 msgid "of visitors"
 msgstr "dos visitantes"
@@ -3960,89 +3978,89 @@ msgid "finish"
 msgstr "concluem"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:13
-#: src/admin/screens/AnalyticsScreen.jsx:82
-#: src/admin/screens/Dashboard.jsx:82
+#: src/admin/screens/AnalyticsScreen.jsx:14
+#: src/admin/screens/AnalyticsScreen.jsx:85
+#: src/admin/screens/Dashboard.jsx:83
 msgid "Went to WhatsApp"
 msgstr "Foram ao WhatsApp"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:89
+#: src/admin/screens/Dashboard.jsx:90
 msgid "First steps"
 msgstr "Primeiros passos"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:105
+#: src/admin/screens/Dashboard.jsx:106
 msgid "done"
 msgstr "concluído"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:115
+#: src/admin/screens/Dashboard.jsx:116
 msgid "Latest leads"
 msgstr "Últimos leads"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:115
+#: src/admin/screens/Dashboard.jsx:116
 msgid "All leads"
 msgstr "Todos os leads"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:117
+#: src/admin/screens/Dashboard.jsx:118
 msgid "No leads yet"
 msgstr "Ainda não há leads"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:117
+#: src/admin/screens/Dashboard.jsx:118
 #: src/admin/screens/LeadsScreen.jsx:269
 msgid "When a visitor finishes a chat, the lead appears here."
 msgstr "Quando um visitante termina um chat, o lead aparece aqui."
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:151
+#: src/admin/screens/Dashboard.jsx:152
 msgid "System"
 msgstr "Sistema"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:153
+#: src/admin/screens/Dashboard.jsx:154
 msgid "Automations queue"
 msgstr "Fila de automações"
 
 #. translators: 1: number of automations waiting, 2: number that failed.
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:155
+#: src/admin/screens/Dashboard.jsx:156
 #, js-format
 msgid "%1$d waiting, %2$d failed in the last 24 hours"
 msgstr "%1$d aguardando, %2$d com falha nas últimas 24 horas"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:157
+#: src/admin/screens/Dashboard.jsx:158
 msgid "Background tasks (WP-Cron)"
 msgstr "Tarefas em segundo plano (WP-Cron)"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:158
+#: src/admin/screens/Dashboard.jsx:159
 msgid "Turned off on this site"
 msgstr "Desativado neste site"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:158
+#: src/admin/screens/Dashboard.jsx:159
 #: src/admin/screens/IntegrationsScreen.jsx:25
 msgid "Running"
 msgstr "Funcionando"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:159
+#: src/admin/screens/Dashboard.jsx:160
 #: src/admin/screens/SettingsScreen.jsx:213
 msgid "E-mail delivery"
 msgstr "Envio de e-mails"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:160
+#: src/admin/screens/Dashboard.jsx:161
 msgid "Your own SMTP server"
 msgstr "Seu próprio servidor SMTP"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:160
+#: src/admin/screens/Dashboard.jsx:161
 msgid "WordPress mailer"
 msgstr "Envio padrão do WordPress"
 
@@ -4058,7 +4076,7 @@ msgstr "Contado no navegador do visitante, então bloqueadores de anúncios pode
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/AnalyticsScreen.jsx:10
-#: src/admin/screens/AnalyticsScreen.jsx:13
+#: src/admin/screens/AnalyticsScreen.jsx:14
 msgid "Counted by your server."
 msgstr "Contado pelo seu servidor."
 
@@ -4068,102 +4086,103 @@ msgid "Counted in the visitor’s browser."
 msgstr "Contado no navegador do visitante."
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:12
+#: src/admin/screens/AnalyticsScreen.jsx:13
 msgid "Counted by your server: this is exact."
 msgstr "Contado pelo seu servidor: é exato."
 
 #. translators: 1: name of the measure (for example "Leads"), 2: total in the period, 3: highest daily value. Read by screen readers as the description of the chart.
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:25
+#: src/admin/screens/AnalyticsScreen.jsx:22
 #, js-format
 msgid "%1$s per day: %2$d in total, at most %3$d in a day."
 msgstr "%1$s por dia: %2$d no total, no máximo %3$d em um dia."
 
 #. translators: 1: first day of the period, 2: last day of the period.
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:62
+#: src/admin/screens/AnalyticsScreen.jsx:64
 #, js-format
 msgid "From %1$s to %2$s"
 msgstr "De %1$s a %2$s"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:65
+#: src/admin/screens/AnalyticsScreen.jsx:67
 msgid "Period"
 msgstr "Período"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:70
+#: src/admin/screens/AnalyticsScreen.jsx:72
 msgid "Last 30 days"
 msgstr "Últimos 30 dias"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:71
+#: src/admin/screens/AnalyticsScreen.jsx:73
 msgid "Last 90 days"
 msgstr "Últimos 90 dias"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:80
+#: src/admin/screens/AnalyticsScreen.jsx:82
+#: src/admin/screens/AnalyticsScreen.jsx:84
 msgid "of those who saw the bubble"
 msgstr "dos que viram a bolha"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:81
+#: src/admin/screens/AnalyticsScreen.jsx:83
 msgid "Finished what they started"
 msgstr "Terminaram o que começaram"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:82
+#: src/admin/screens/AnalyticsScreen.jsx:85
 msgid "of the leads"
 msgstr "dos leads"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:87
+#: src/admin/screens/AnalyticsScreen.jsx:90
 msgid "No data in this period yet"
 msgstr "Ainda não há dados neste período"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:87
+#: src/admin/screens/AnalyticsScreen.jsx:90
 msgid "Numbers appear as visitors see and use your chat."
 msgstr "Os números aparecem conforme os visitantes veem e usam o seu chat."
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:91
+#: src/admin/screens/AnalyticsScreen.jsx:94
 msgid "Funnel"
 msgstr "Funil"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:91
+#: src/admin/screens/AnalyticsScreen.jsx:94
 msgid "How visitors move from seeing the bubble to talking to you."
 msgstr "Como os visitantes passam de ver a bolha a falar com você."
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:108
+#: src/admin/screens/AnalyticsScreen.jsx:111
 msgid "Day by day"
 msgstr "Dia a dia"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:108
+#: src/admin/screens/AnalyticsScreen.jsx:111
 msgid "Show chart"
 msgstr "Mostrar gráfico"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:108
+#: src/admin/screens/AnalyticsScreen.jsx:111
 msgid "Show as table"
 msgstr "Mostrar como tabela"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:110
+#: src/admin/screens/AnalyticsScreen.jsx:113
 #: src/admin/screens/IntegrationsScreen.jsx:362
 msgid "Show"
 msgstr "Mostrar"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:116
+#: src/admin/screens/AnalyticsScreen.jsx:119
 msgid "Day"
 msgstr "Dia"
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:145
+#: src/admin/screens/AnalyticsScreen.jsx:148
 msgid "These numbers are counted by your own site. Nothing is sent to anyone else."
 msgstr "Estes números são contados pelo seu próprio site. Nada é enviado a mais ninguém."
 
@@ -4487,6 +4506,7 @@ msgid "Webhooks send data to another service. Add one only if you need it."
 msgstr "Os webhooks enviam dados a outro serviço. Adicione um só se precisar."
 
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:61
 #: src/admin/screens/IntegrationsScreen.jsx:265
 msgid "Address"
 msgstr "Endereço"
@@ -5269,3 +5289,223 @@ msgstr "Último teste:"
 #: src/admin/screens/SettingsScreen.jsx:295
 msgid "Worked"
 msgstr "Funcionou"
+
+#: includes/Core/Flow/Manifest.php:85
+msgid "We could not open WhatsApp. Please try again in a moment."
+msgstr "Não foi possível abrir o WhatsApp. Tente novamente em instantes."
+
+#: includes/Core/Flow/Manifest.php:86
+msgid "Preview: on your site this button opens WhatsApp."
+msgstr "Prévia: no seu site este botão abre o WhatsApp."
+
+#: includes/Core/Flow/Manifest.php:86
+msgid "Preview: on your site this button opens your link."
+msgstr "Prévia: no seu site este botão abre o seu link."
+
+#: includes/Core/Flow/Manifest.php:171
+#: includes/Core/Flow/Manifest.php:173
+#: includes/Core/Flow/Templates.php:147
+#: includes/Core/Flow/Templates.php:150
+msgid "Chat on WhatsApp"
+msgstr "Conversar no WhatsApp"
+
+#: includes/Core/Flow/Manifest.php:172
+msgid "Hi! How can we help? Talk to us on WhatsApp."
+msgstr "Olá! Como podemos ajudar? Fale com a gente no WhatsApp."
+
+#: includes/Core/Flow/Manifest.php:177
+#: includes/Core/Flow/Manifest.php:179
+msgid "Contact us"
+msgstr "Fale conosco"
+
+#: includes/Core/Flow/Manifest.php:178
+msgid "Hi! How can we help?"
+msgstr "Olá! Como podemos ajudar?"
+
+#: includes/Core/Flow/Templates.php:141
+msgid "WhatsApp button"
+msgstr "Botão de WhatsApp"
+
+#: includes/Core/Flow/Templates.php:142
+msgid "No form: just a floating button with a welcome message that opens WhatsApp."
+msgstr "Sem formulário: só um botão flutuante com uma mensagem de boas-vindas que abre o WhatsApp."
+
+#: includes/Core/Flow/Templates.php:148
+msgid "Hello!"
+msgstr "Olá!"
+
+#: includes/Core/Flow/Templates.php:149
+msgid "How can we help? Talk to us on WhatsApp."
+msgstr "Como podemos ajudar? Fale com a gente no WhatsApp."
+
+#: includes/Core/Flow/Validator.php:189
+msgid "Enter the address the button opens: a web page, a phone number (tel:+5511999999999) or an e-mail (mailto:name@example.com)."
+msgstr "Informe o endereço que o botão abre: uma página da web, um telefone (tel:+5511999999999) ou um e-mail (mailto:nome@exemplo.com)."
+
+#. translators: %s: destination name.
+#: includes/Core/Flow/Validator.php:198
+#, php-format
+msgid "The destination \"%s\" has no WhatsApp number, so the button falls back to routing and the site default."
+msgstr "O destino \"%s\" não tem número de WhatsApp; por isso o botão usa o roteamento e o padrão do site."
+
+#: includes/Core/Whatsapp/ButtonLink.php:33
+msgid ""
+"Hello! I am visiting your website and would like to talk.\n"
+"\n"
+"Page: {page_url}"
+msgstr "Olá! Estou visitando o seu site e gostaria de conversar.\n\nPágina: {page_url}"
+
+#: includes/Core/Whatsapp/ButtonLink.php:55
+msgid "The destination chosen for this chat has no WhatsApp number."
+msgstr "O destino escolhido para este chat não tem número de WhatsApp."
+
+#: includes/Frontend/Renderer.php:64
+#: includes/Frontend/Renderer.php:69
+msgid "(opens in a new tab)"
+msgstr "(abre em uma nova aba)"
+
+#: includes/Rest/PublicApi.php:147
+msgid "WhatsApp is not available right now. Please try again in a moment."
+msgstr "O WhatsApp não está disponível agora. Tente novamente em instantes."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:189
+msgid "Hide the welcome message"
+msgstr "Ocultar a mensagem de boas-vindas"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:189
+msgid "Show the welcome message"
+msgstr "Mostrar a mensagem de boas-vindas"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:195
+msgid "This is the real button. Tapping it here only shows a note: nothing is opened or sent."
+msgstr "Este é o botão de verdade. Tocar nele aqui só mostra um aviso: nada é aberto nem enviado."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:16
+msgid "Welcome message"
+msgstr "Mensagem de boas-vindas"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:17
+msgid "A small card above the floating button. Visitors tap its button, or the floating button itself."
+msgstr "Um pequeno cartão acima do botão flutuante. Os visitantes tocam no botão dele ou no próprio botão flutuante."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:20
+msgid "Show a welcome message"
+msgstr "Mostrar uma mensagem de boas-vindas"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:23
+msgid "A short line in bold, for example \"Hello!\". Leave empty for no title."
+msgstr "Uma linha curta em negrito, por exemplo \"Olá!\". Deixe vazio para não ter título."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:30
+msgid "Leave empty for a standard greeting."
+msgstr "Deixe vazio para usar uma saudação padrão."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:38
+msgid "The button inside the card. Leave empty for the standard text."
+msgstr "O botão dentro do cartão. Deixe vazio para usar o texto padrão."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:38
+msgid "Adds a button to the greeting that opens the chat. Leave empty for no button."
+msgstr "Adiciona à saudação um botão que abre o chat. Deixe vazio para não ter botão."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:51
+msgid "Read by screen readers, and shown next to the icon in the \"pill\" shape. Leave empty for the standard text."
+msgstr "Lido por leitores de tela e mostrado ao lado do ícone no formato “pílula”. Deixe vazio para usar o texto padrão."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:21
+msgid "What the button does"
+msgstr "O que o botão faz"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:21
+msgid "There is no form: the visitor taps the button and goes straight there."
+msgstr "Não há formulário: o visitante toca no botão e vai direto para lá."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:24
+msgid "When the visitor taps it"
+msgstr "Quando o visitante toca nele"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:29
+msgid "Open a link"
+msgstr "Abrir um link"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:31
+msgid "Their browser opens WhatsApp with your message already written. Nothing is sent by your site, and no paid service is involved."
+msgstr "O navegador dele abre o WhatsApp com a sua mensagem já escrita. Nada é enviado pelo seu site e nenhum serviço pago é usado."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:31
+msgid "A page, a phone number or an e-mail address."
+msgstr "Uma página, um telefone ou um endereço de e-mail."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:41
+msgid "Routing rules can still send some visitors to another person, for example depending on the page they are on."
+msgstr "As regras de roteamento ainda podem enviar alguns visitantes a outra pessoa, por exemplo conforme a página em que estão."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:54
+msgid "Leave empty to use a standard message with the address of the page."
+msgstr "Deixe vazio para usar uma mensagem padrão com o endereço da página."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:66
+msgid "A web page (https://…), a page of this site (/contact/), a phone number (tel:+5511999999999) or an e-mail (mailto:name@example.com). The address is public: anyone can see it."
+msgstr "Uma página da web (https://…), uma página deste site (/contato/), um telefone (tel:+5511999999999) ou um e-mail (mailto:nome@exemplo.com). O endereço é público: qualquer pessoa pode vê-lo."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:69
+msgid "Open in a new tab"
+msgstr "Abrir em uma nova aba"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:69
+msgid "Only applies to web pages."
+msgstr "Vale só para páginas da web."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:76
+msgid "Preview for a visitor on a sample page. This is the exact text and link the site builds."
+msgstr "Prévia para um visitante em uma página de exemplo. Este é o texto e o link exatos que o site monta."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:134
+msgid "Only a button"
+msgstr "Só um botão"
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:141
+msgid "No form: a floating button with a welcome message that opens WhatsApp or a link."
+msgstr "Sem formulário: um botão flutuante com mensagem de boas-vindas que abre o WhatsApp ou um link."
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:237
+msgid "Button"
+msgstr "Botão"
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:12
+#: src/admin/screens/AnalyticsScreen.jsx:84
+#: src/admin/screens/Dashboard.jsx:82
+msgid "Tapped the button"
+msgstr "Tocaram no botão"
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:12
+msgid "Chats that are only a button. Counted by your server for WhatsApp, and in the visitor’s browser for links."
+msgstr "Chats que são só um botão. Contado pelo seu servidor para o WhatsApp e no navegador do visitante para links."

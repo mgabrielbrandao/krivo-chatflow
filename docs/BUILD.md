@@ -30,6 +30,8 @@ npm run build   # writes assets/frontend/* and assets/admin/*
 | `src/frontend/bubble.css` | `assets/frontend/bubble.css` | Same. |
 | `src/frontend/panel.js` (+ `src/shared/*`) | `assets/frontend/panel.js` | Only when a visitor shows interest in the chat. |
 | `src/frontend/panel.css` | `assets/frontend/panel.css` | Same. |
+| `src/frontend/button.js` (+ `src/frontend/api.js`) | `assets/frontend/button.js` | Only for chats that are just a button (no form): the WhatsApp tap. |
+| `assets/fonts/albert-sans/` | (shipped as is) | Albert Sans, SIL OFL 1.1, used by the admin screens only. Not built: copied from the `@fontsource-variable/albert-sans` package. |
 | `src/admin/index.jsx` (+ `src/admin/**`, `src/shared/*`) | `assets/admin/admin.js` | Only on the plugin's own admin screens. |
 | `src/admin/admin.css` | `assets/admin/admin.css` | Same. |
 

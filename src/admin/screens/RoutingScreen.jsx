@@ -3,7 +3,7 @@ import { api, config as boot } from '../api.js';
 import { ConditionGroup, newGroup } from '../editor/ConditionGroup.jsx';
 import { randomId, move } from '../editor/helpers.js';
 import { __, sprintf } from '../i18n.js';
-import { Badge, Button, Card, CheckField, Empty, Notice, SelectField, Spinner, TextField, Toggle, useApp, useLoad } from '../ui.jsx';
+import { Badge, Button, Card, CheckField, Empty, Icon, Notice, SelectField, Spinner, TextField, Toggle, useApp, useLoad } from '../ui.jsx';
 
 const emailsToText = (emails) => (emails || []).join(', ');
 const textToEmails = (text) => text.split(/[\s,;]+/).filter(Boolean);
@@ -175,10 +175,10 @@ export function RoutingScreen() {
 								<span>{rule.name || sprintf(__('Rule %d', 'krivo-chatflow'), index + 1)}</span>
 								<span className="kcf-row kcf-row--tight">
 									<Button small kind="ghost" aria-label={__('Move up', 'krivo-chatflow')} disabled={index === 0} onClick={() => set({ rules: move(rules, index, index - 1) })}>
-										↑
+										<Icon name="arrow-up" size={18} />
 									</Button>
 									<Button small kind="ghost" aria-label={__('Move down', 'krivo-chatflow')} disabled={index === rules.length - 1} onClick={() => set({ rules: move(rules, index, index + 1) })}>
-										↓
+										<Icon name="arrow-down" size={18} />
 									</Button>
 									<Button small kind="ghost" className="kcf-btn--danger-ghost" onClick={() => set({ rules: rules.filter((_, i) => i !== index) })}>
 										{__('Delete', 'krivo-chatflow')}

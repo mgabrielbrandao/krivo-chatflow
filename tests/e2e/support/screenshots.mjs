@@ -2,10 +2,11 @@
 // It seeds the (throw-away) test site with demo chats and demo leads, and says so in the file names.
 //
 //   KRIVO_E2E_URL=… KRIVO_E2E_WP=… KRIVO_E2E_SHOTS=/some/dir node tests/e2e/support/screenshots.mjs [pt_BR|en_US]
+import assert from 'node:assert/strict';
 import { mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { SMTPServer } from 'smtp-server';
-import { BASE, adminUrl, launch, login, restClient, sampleAnswers, submitLead, visitorContext, waitFor, wp } from '../helpers.mjs';
+import { BASE, adminUrl, createFlow, launch, login, restClient, sampleAnswers, submitLead, visitorContext, waitFor, wp } from '../helpers.mjs';
 
 const OUT = process.env.KRIVO_E2E_SHOTS || 'screenshots';
 const LOCALE = process.argv[2] || 'pt_BR';
@@ -54,6 +55,14 @@ wp('eval', `global $wpdb; $t = \\Krivo\\ChatFlow\\Infrastructure\\Db\\Tables::st
 await queueDrained();
 wp('option', 'update', 'krivo_test_locale', LOCALE);
 
+// A chat that is only a button (created now, so its texts come out in the language of the pictures).
+const button = await createFlow(rest, { template: 'whatsapp_button', name: LOCALE === 'pt_BR' ? 'Só o botão' : 'Button only' });
+button.config.display = { mode: 'only', include: [{ type: 'url', op: 'contains', value: 'kcf=button' }] };
+button.config.behavior.delay = 0;
+button.config.bubble.tooltip.delay = 1;
+await rest.put('flows/' + button.id, { config: button.config });
+await rest.post('flows/' + button.id + '/publish');
+
 // ----------------------------------------------------------------------------------------------- admin
 const admin = await adminCtx.newPage();
 async function shot(name, url, { wait = 1500, action, full = false } = {}) {
@@ -91,6 +100,7 @@ await shot('admin-13-integracoes', adminUrl('integrations'), { full: true });
 await shot('admin-14-analises', adminUrl('analytics'), { full: true });
 await shot('admin-15-configuracoes', adminUrl('settings'), { full: true });
 await shot('admin-16-editor-etapas', adminUrl('flows', '#/flow/' + ids.steps), { wait: 2500 });
+await shot('admin-17-editor-so-botao', adminUrl('flows', '#/flow/' + button.id), { wait: 3000 });
 
 // ----------------------------------------------------------------------------------------------- visitor
 const visitor = await visitorContext(browser, { viewport: { width: 1280, height: 820 } });
@@ -158,6 +168,15 @@ await v.screenshot({ path: `${OUT}/widget-10-tema-escuro.png` });
 await rest.put('flows/' + ids.form, { config: original });
 await rest.post('flows/' + ids.form + '/publish');
 
+// The chat that is only a button: the welcome card, then only the floating button.
+await v.goto(BASE + '/?kcf=button', { waitUntil: 'load' });
+await v.waitForSelector('.kcf-tooltip:not([hidden])');
+await v.waitForTimeout(700);
+await v.screenshot({ path: `${OUT}/widget-13-so-botao.png` });
+await v.click('.kcf-tooltip-close');
+await v.waitForTimeout(400);
+await v.screenshot({ path: `${OUT}/widget-14-so-botao-minimo.png` });
+
 const phone = await visitorContext(browser, { viewport: { width: 390, height: 780 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
 const mp = await phone.newPage();
 await mp.goto(BASE + '/?kcf=form', { waitUntil: 'load' });
@@ -172,6 +191,13 @@ await mp.screenshot({ path: `${OUT}/widget-12-celular-formulario.png` });
 await queueDrained();
 await rest.put('email', { settings: originalEmail });
 await new Promise((resolve) => mailbox.close(resolve));
+const tiny = await mp.goto(BASE + '/?kcf=button', { waitUntil: 'load' });
+await mp.waitForSelector('.kcf-tooltip:not([hidden])');
+await mp.waitForTimeout(700);
+await mp.screenshot({ path: `${OUT}/widget-15-so-botao-celular.png` });
+assert.ok(tiny);
+await rest.del('flows/' + button.id);
+
 wp('option', 'delete', 'krivo_test_locale');
 await browser.close();
 console.log('done ->', OUT);

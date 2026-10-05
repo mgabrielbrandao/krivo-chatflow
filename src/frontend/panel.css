@@ -7,9 +7,13 @@
 		--kcf-panel-bg: #fff;
 		--kcf-text: #171519;
 		--kcf-muted: rgba(23, 21, 25, 0.64);
-		--kcf-line: rgba(23, 21, 25, 0.16);
-		--kcf-soft: #f3eefb;
+		--kcf-line: rgba(23, 21, 25, 0.1);
+		--kcf-line-strong: rgba(23, 21, 25, 0.2);
+		--kcf-ctrl: rgba(23, 21, 25, 0.5); /* border of fields: keeps 3:1 against the panel (WCAG 1.4.11) */
+		--kcf-soft: #f7f4fc;
 		--kcf-field: #fff;
+		--kcf-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+		--kcf-font: "Albert Sans", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 		--kcf-danger: #b42318;
 		--kcf-danger-bg: rgba(180, 35, 24, 0.1);
 		--kcf-focus: #171519;
@@ -24,18 +28,18 @@
 		padding: 0;
 		overflow: hidden;
 		border: 1px solid var(--kcf-line);
-		border-radius: 18px;
+		border-radius: 24px;
 		background: var(--kcf-panel-bg);
 		color: var(--kcf-text);
-		font: 400 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		font: 400 15px/1.5 var(--kcf-font);
 		letter-spacing: normal;
 		word-spacing: normal;
 		text-indent: 0;
 		text-align: left;
 		text-transform: none;
 		color-scheme: light;
-		box-shadow: 0 16px 48px rgba(23, 21, 25, 0.26), 0 2px 8px rgba(23, 21, 25, 0.12);
-		animation: kcf-panel-in 0.2s ease both;
+		box-shadow: 0 18px 48px rgba(23, 21, 25, 0.1), 0 1px 3px rgba(23, 21, 25, 0.05);
+		animation: kcf-panel-in 0.32s var(--kcf-ease) both;
 		box-sizing: border-box;
 	}
 	&.kcf-preview .kcf-panel {
@@ -51,8 +55,10 @@
 		--kcf-panel-bg: #1c1a21;
 		--kcf-text: #f3f0f8;
 		--kcf-muted: rgba(243, 240, 248, 0.72);
-		--kcf-line: rgba(255, 255, 255, 0.2);
-		--kcf-soft: #2b2833;
+		--kcf-line: rgba(255, 255, 255, 0.12);
+		--kcf-line-strong: rgba(255, 255, 255, 0.24);
+		--kcf-ctrl: rgba(255, 255, 255, 0.52);
+		--kcf-soft: #26222d;
 		--kcf-field: #25222c;
 		--kcf-danger: #fda29b;
 		--kcf-danger-bg: rgba(253, 162, 155, 0.14);
@@ -99,10 +105,11 @@
 	.kcf-head {
 		display: flex;
 		align-items: center;
-		gap: 12px;
-		padding: 16px 12px 16px 18px;
-		background: var(--kcf-accent);
-		color: var(--kcf-on-accent);
+		gap: 14px;
+		padding: 20px 14px 18px 24px;
+		background: var(--kcf-soft);
+		border-bottom: 1px solid var(--kcf-line);
+		color: var(--kcf-text);
 	}
 	.kcf-avatar {
 		flex: none;
@@ -110,31 +117,31 @@
 		height: 40px !important;
 		border-radius: 50% !important;
 		object-fit: cover;
-		background: rgba(255, 255, 255, 0.3);
+		background: var(--kcf-line);
 	}
 	.kcf-head-text {
 		flex: 1;
 		min-width: 0;
 	}
 	.kcf-title {
-		font-size: 17px !important;
+		font-size: 19px !important;
 		font-weight: 650 !important;
-		line-height: 1.25 !important;
-		color: var(--kcf-on-accent) !important;
+		letter-spacing: -0.025em !important;
+		line-height: 1.2 !important;
+		color: var(--kcf-text) !important;
 	}
 	.kcf-title:focus {
 		outline: none;
 	}
 	.kcf-title:focus-visible {
-		outline: 2px solid var(--kcf-on-accent);
+		outline: 2px solid var(--kcf-text);
 		outline-offset: 2px;
 		border-radius: 4px;
 	}
 	.kcf-sub {
-		margin-top: 2px !important;
+		margin-top: 3px !important;
 		font-size: 13.5px;
-		opacity: 0.92;
-		color: var(--kcf-on-accent) !important;
+		color: var(--kcf-muted) !important;
 	}
 	.kcf-status {
 		display: flex;
@@ -142,8 +149,7 @@
 		gap: 6px;
 		margin-top: 4px !important;
 		font-size: 12.5px;
-		color: var(--kcf-on-accent) !important;
-		opacity: 0.95;
+		color: var(--kcf-muted) !important;
 	}
 	.kcf-status::before {
 		content: "";
@@ -152,7 +158,7 @@
 		height: 8px;
 		border-radius: 50%;
 		background: #9ca3af;
-		box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+		box-shadow: 0 0 0 3px var(--kcf-line);
 	}
 	.kcf-status[data-state="online"]::before {
 		background: #22c55e;
@@ -165,19 +171,20 @@
 		width: 44px !important;
 		height: 44px !important;
 		margin: 0 !important;
-		padding: 10px !important;
+		padding: 13px !important;
 		border: 0 !important;
 		border-radius: 50% !important;
 		background: transparent !important;
-		color: var(--kcf-on-accent) !important;
+		color: var(--kcf-text) !important;
 		cursor: pointer;
 		line-height: 0;
+		transition: background 0.2s var(--kcf-ease);
 	}
 	.kcf-close:hover {
-		background: rgba(255, 255, 255, 0.2) !important;
+		background: var(--kcf-line) !important;
 	}
 	.kcf-close:focus-visible {
-		outline: 2px solid var(--kcf-on-accent) !important;
+		outline: 2px solid var(--kcf-text) !important;
 		outline-offset: -2px;
 	}
 	.kcf-close svg {
@@ -190,7 +197,7 @@
 	.kcf-body {
 		flex: 1 1 auto;
 		min-height: 120px;
-		padding: 18px;
+		padding: 24px;
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		background: var(--kcf-panel-bg);
@@ -201,16 +208,18 @@
 	.kcf-fields {
 		display: flex;
 		flex-direction: column;
-		gap: 16px;
+		gap: 18px;
 	}
 	.kcf-unit {
 		display: flex;
 		flex-direction: column;
-		gap: 16px;
+		gap: 18px;
+		animation: kcf-rise 0.3s var(--kcf-ease) both;
 	}
 	.kcf-unit-title {
-		font-size: 16px !important;
+		font-size: 18px !important;
 		font-weight: 650 !important;
+		letter-spacing: -0.02em !important;
 		line-height: 1.3;
 		color: var(--kcf-text) !important;
 	}
@@ -248,15 +257,16 @@
 	.kcf-input {
 		display: block !important;
 		width: 100% !important;
-		height: 46px !important;
+		height: 50px !important;
 		margin: 0 !important;
-		padding: 0 14px !important;
-		border: 1px solid var(--kcf-line) !important;
-		border-radius: 10px !important;
+		padding: 0 16px !important;
+		border: 1px solid var(--kcf-ctrl) !important;
+		border-radius: 14px !important;
 		background: var(--kcf-field) !important;
 		color: var(--kcf-text) !important;
-		font: 400 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+		font: 400 16px/1.4 var(--kcf-font) !important;
 		box-shadow: none !important;
+		transition: border-color 0.2s var(--kcf-ease), box-shadow 0.2s var(--kcf-ease);
 		appearance: none;
 		-webkit-appearance: none;
 	}
@@ -266,8 +276,9 @@
 	}
 	.kcf-textarea {
 		height: auto !important;
-		min-height: 104px;
-		padding: 12px 14px !important;
+		min-height: 112px;
+		padding: 14px 16px !important;
+		border-radius: 18px !important;
 		resize: vertical;
 	}
 	.kcf-select {
@@ -281,7 +292,7 @@
 	.kcf-input:focus-visible {
 		border-color: var(--kcf-accent) !important;
 		outline: 2px solid var(--kcf-accent) !important;
-		outline-offset: 1px !important;
+		outline-offset: 2px !important;
 	}
 	.kcf-invalid .kcf-input {
 		border-color: var(--kcf-danger) !important;
@@ -364,16 +375,16 @@
 	}
 	.kcf-bar {
 		height: 4px;
-		border-radius: 2px;
+		border-radius: 999px;
 		background: var(--kcf-soft);
 		overflow: hidden;
 	}
 	.kcf-bar-fill {
 		display: block;
 		height: 100%;
-		border-radius: 2px;
+		border-radius: 999px;
 		background: var(--kcf-accent);
-		transition: width 0.25s ease;
+		transition: width 0.4s var(--kcf-ease);
 	}
 
 	/* Buttons */
@@ -387,12 +398,13 @@
 		display: inline-flex !important;
 		align-items: center;
 		justify-content: center;
-		min-height: 46px !important;
+		min-height: 50px !important;
 		margin: 0 !important;
-		padding: 0 20px !important;
+		padding: 0 26px !important;
 		border: 1px solid transparent !important;
-		border-radius: 10px !important;
-		font: 600 15.5px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+		border-radius: 999px !important;
+		font: 600 15.5px/1.2 var(--kcf-font) !important;
+		letter-spacing: -0.01em !important;
 		text-align: center;
 		text-decoration: none !important;
 		text-transform: none !important;
@@ -400,6 +412,10 @@
 		box-shadow: none !important;
 		appearance: none;
 		-webkit-appearance: none;
+		transition: filter 0.2s var(--kcf-ease), background 0.2s var(--kcf-ease), transform 0.2s var(--kcf-ease);
+	}
+	.kcf-btn:active {
+		transform: translateY(1px);
 	}
 	.kcf-btn-primary {
 		flex: 1;
@@ -415,7 +431,7 @@
 	}
 	.kcf-btn-ghost {
 		background: transparent !important;
-		border-color: var(--kcf-line) !important;
+		border-color: var(--kcf-line-strong) !important;
 		color: var(--kcf-text) !important;
 	}
 	.kcf-btn-ghost:hover {
@@ -445,9 +461,9 @@
 		cursor: pointer;
 	}
 	.kcf-banner {
-		margin-top: 14px;
-		padding: 10px 12px;
-		border-radius: 10px;
+		margin-top: 16px;
+		padding: 12px 16px;
+		border-radius: 16px;
 		background: var(--kcf-danger-bg);
 		color: var(--kcf-danger);
 		font-size: 14px;
@@ -459,8 +475,8 @@
 	.kcf-preview-note {
 		margin-top: 14px;
 		padding: 8px 10px;
-		border: 1px dashed var(--kcf-line);
-		border-radius: 8px;
+		border: 1px dashed var(--kcf-line-strong);
+		border-radius: 14px;
 		font-size: 12.5px;
 		color: var(--kcf-muted);
 		text-align: center;
@@ -474,21 +490,25 @@
 	}
 	.kcf-msg {
 		max-width: 86%;
-		padding: 10px 14px;
+		padding: 11px 16px;
 		font-size: 15px;
 		line-height: 1.45;
 		overflow-wrap: anywhere;
 		white-space: pre-line;
+		animation: kcf-rise 0.3s var(--kcf-ease) both;
+	}
+	.kcf-msg.kcf-seen {
+		animation: none;
 	}
 	.kcf-bot {
 		align-self: flex-start;
-		border-radius: 16px 16px 16px 4px;
+		border-radius: 20px 20px 20px 6px;
 		background: var(--kcf-soft) !important;
 		color: var(--kcf-text) !important;
 	}
 	.kcf-me {
 		align-self: flex-end;
-		border-radius: 16px 16px 4px 16px;
+		border-radius: 20px 20px 6px 20px;
 		background: var(--kcf-accent) !important;
 		color: var(--kcf-on-accent) !important;
 	}
@@ -536,16 +556,18 @@
 	.kcf-chip {
 		margin: 0 !important;
 		padding: 10px 16px !important;
-		border: 1.5px solid var(--kcf-accent) !important;
+		border: 1px solid var(--kcf-line-strong) !important;
 		border-radius: 999px !important;
 		background: transparent !important;
 		color: var(--kcf-text) !important;
-		font: 500 15px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+		font: 500 15px/1.2 var(--kcf-font) !important;
 		cursor: pointer;
+		transition: background 0.2s var(--kcf-ease), color 0.2s var(--kcf-ease), border-color 0.2s var(--kcf-ease);
 	}
 	.kcf-chip:hover,
 	.kcf-chip[aria-pressed="true"] {
 		background: var(--kcf-accent) !important;
+		border-color: var(--kcf-accent) !important;
 		color: var(--kcf-on-accent) !important;
 	}
 	.kcf-back {
@@ -558,7 +580,7 @@
 		border: 0 !important;
 		background: none !important;
 		color: var(--kcf-muted) !important;
-		font: 500 13px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+		font: 500 13px/1.2 var(--kcf-font) !important;
 		cursor: pointer;
 	}
 	.kcf-back svg {
@@ -581,9 +603,9 @@
 	}
 	.kcf-done-icon {
 		align-self: center;
-		width: 56px;
-		height: 56px;
-		padding: 14px;
+		width: 60px;
+		height: 60px;
+		padding: 16px;
 		border-radius: 50%;
 		background: var(--kcf-accent);
 		color: var(--kcf-on-accent);
@@ -603,7 +625,7 @@
 
 	/* Footer / signature (an ordinary visible element, never hidden) */
 	.kcf-foot {
-		padding: 10px 18px 12px;
+		padding: 12px 24px 14px;
 		border-top: 1px solid var(--kcf-line);
 		background: var(--kcf-panel-bg);
 		text-align: center;
@@ -637,7 +659,13 @@
 @keyframes kcf-panel-in {
 	from {
 		opacity: 0;
-		transform: translateY(10px) scale(0.98);
+		transform: translateY(12px) scale(0.985);
+	}
+}
+@keyframes kcf-rise {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
 	}
 }
 
@@ -657,11 +685,11 @@
 		width: auto;
 		max-width: none;
 		max-height: min(85vh, 85dvh, var(--kcf-vh, 100vh));
-		border-radius: 18px 18px 0 0;
+		border-radius: 24px 24px 0 0;
 		border-width: 1px 0 0;
 		padding-bottom: env(safe-area-inset-bottom, 0px);
 	}
 	#krivo-chatflow-root .kcf-body {
-		padding: 16px;
+		padding: 20px;
 	}
 }

@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 import { __, sprintf } from '../i18n.js';
-import { Button, Card, CheckField, Notice, NumberField, SelectField, Segmented, TextArea, TextField, Toggle, cx, useApp } from '../ui.jsx';
+import { Button, Card, CheckField, cx, Icon, Notice, NumberField, Segmented, SelectField, TextArea, TextField, Toggle, useApp } from '../ui.jsx';
 import { move, newField, randomId, setPath, slugKey } from './helpers.js';
 import { ButtonSettings } from './ButtonSettings.jsx';
 import { VariableChips } from './VariableChips.jsx';
@@ -261,7 +261,7 @@ function FieldList({ step, stepIndex, config, openId, setOpenId, types, onChange
 								onMouseUp={() => setDrag({ from: null, over: null })}
 								style={{ touchAction: 'none' }}
 							>
-								⠿
+								<Icon name="grip" size={18} />
 							</span>
 							<button type="button" className="kcf-fielditem__title" onClick={() => setOpenId(isOpen ? null : field.id)} aria-expanded={isOpen}>
 								<span className="kcf-fielditem__name">{field.label || (field.type === 'html' ? __('Text block', 'krivo-chatflow') : field.type === 'hidden' ? __('Hidden field', 'krivo-chatflow') : __('(no label)', 'krivo-chatflow'))}</span>
@@ -273,16 +273,16 @@ function FieldList({ step, stepIndex, config, openId, setOpenId, types, onChange
 							</button>
 							<div className="kcf-fielditem__tools">
 								<button type="button" className="kcf-icon-btn" onClick={() => onReorder(stepIndex, fieldIndex, fieldIndex - 1)} disabled={fieldIndex === 0} aria-label={__('Move up', 'krivo-chatflow')}>
-									↑
+									<Icon name="arrow-up" size={18} />
 								</button>
 								<button type="button" className="kcf-icon-btn" onClick={() => onReorder(stepIndex, fieldIndex, fieldIndex + 1)} disabled={fieldIndex === step.fields.length - 1} aria-label={__('Move down', 'krivo-chatflow')}>
-									↓
+									<Icon name="arrow-down" size={18} />
 								</button>
 								<button type="button" className="kcf-icon-btn" onClick={() => onDuplicate(stepIndex, fieldIndex)} aria-label={__('Duplicate', 'krivo-chatflow')} title={__('Duplicate', 'krivo-chatflow')}>
-									⧉
+									<Icon name="copy" size={18} />
 								</button>
 								<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" onClick={() => onRemove(stepIndex, fieldIndex)} aria-label={__('Delete', 'krivo-chatflow')} title={__('Delete', 'krivo-chatflow')}>
-									✕
+									<Icon name="x" size={18} />
 								</button>
 							</div>
 						</div>
@@ -387,13 +387,13 @@ function OptionsEditor({ options, onChange, max }) {
 				<div className="kcf-options__row" key={index}>
 					<input className="kcf-input" value={option.label} onChange={(event) => setOption(index, event.target.value)} aria-label={sprintf(/* translators: %d: position of the option in the list. */ __('Option %d', 'krivo-chatflow'), index + 1)} maxLength={120} />
 					<button type="button" className="kcf-icon-btn" disabled={index === 0} onClick={() => onChange(move(options, index, index - 1))} aria-label={__('Move up', 'krivo-chatflow')}>
-						↑
+						<Icon name="arrow-up" size={18} />
 					</button>
 					<button type="button" className="kcf-icon-btn" disabled={index === options.length - 1} onClick={() => onChange(move(options, index, index + 1))} aria-label={__('Move down', 'krivo-chatflow')}>
-						↓
+						<Icon name="arrow-down" size={18} />
 					</button>
 					<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" onClick={() => onChange(options.filter((_, i) => i !== index))} aria-label={__('Remove option', 'krivo-chatflow')}>
-						✕
+						<Icon name="x" size={18} />
 					</button>
 				</div>
 			))}

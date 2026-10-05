@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Krivo ChatFlow 0.1.0\n"
-"Report-Msgid-Bugs-To: https://github.com/mgabrielbrandao/krivo-chatflow/issues\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/krivo-chatflow\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-05T07:16:34+00:00\n"
+"POT-Creation-Date: 2026-10-05T08:17:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: krivo-chatflow\n"
@@ -52,8 +52,8 @@ msgstr ""
 #: assets/admin/admin.js:1
 #: assets/admin/admin.js:2
 #: src/admin/index.jsx:16
-#: src/admin/screens/AnalyticsScreen.jsx:12
-#: src/admin/screens/AnalyticsScreen.jsx:79
+#: src/admin/screens/AnalyticsScreen.jsx:13
+#: src/admin/screens/AnalyticsScreen.jsx:81
 #: src/admin/screens/Dashboard.jsx:81
 #: src/admin/screens/FlowsScreen.jsx:188
 #: src/admin/screens/LeadsScreen.jsx:221
@@ -80,7 +80,7 @@ msgstr ""
 #: assets/admin/admin.js:1
 #: assets/admin/admin.js:2
 #: src/admin/index.jsx:19
-#: src/admin/screens/AnalyticsScreen.jsx:62
+#: src/admin/screens/AnalyticsScreen.jsx:64
 msgid "Analytics"
 msgstr ""
 
@@ -110,9 +110,9 @@ msgid "Get started"
 msgstr ""
 
 #: includes/Admin/Notices.php:59
-#: includes/Frontend/Renderer.php:45
+#: includes/Frontend/Renderer.php:58
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:86
+#: src/admin/ui.jsx:92
 msgid "Dismiss"
 msgstr ""
 
@@ -140,7 +140,9 @@ msgid "Change lead status"
 msgstr ""
 
 #: includes/Automation/Actions/OpenWhatsapp.php:43
-#: includes/Core/Flow/Manifest.php:259
+#: includes/Core/Flow/Manifest.php:316
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:28
 msgid "Open WhatsApp"
 msgstr ""
 
@@ -149,11 +151,12 @@ msgid "The routed destination has no WhatsApp number."
 msgstr ""
 
 #: includes/Automation/Actions/OpenWhatsapp.php:131
+#: includes/Core/Whatsapp/ButtonLink.php:85
 msgid "The WhatsApp link was not generated."
 msgstr ""
 
 #: includes/Automation/Actions/OpenWhatsapp.php:178
-#: includes/Core/Flow/Templates.php:117
+#: includes/Core/Flow/Templates.php:156
 msgid ""
 "Hello! My name is {name}.\n"
 "\n"
@@ -219,10 +222,15 @@ msgstr ""
 msgid "The connection is turned off or was removed."
 msgstr ""
 
-#: includes/Automation/DryRun.php:73
-#: includes/Core/Flow/Manifest.php:164
-#: includes/Core/Submission/Pipeline.php:224
+#: includes/Automation/DryRun.php:77
+#: includes/Core/Flow/Manifest.php:221
+#: includes/Core/Submission/Pipeline.php:225
 msgid "Thank you! We received your message."
+msgstr ""
+
+#: includes/Automation/DryRun.php:153
+#: includes/Automation/SampleData.php:74
+msgid "Sample page"
 msgstr ""
 
 #: includes/Automation/Registry.php:55
@@ -251,10 +259,6 @@ msgstr ""
 
 #: includes/Automation/SampleData.php:67
 msgid "Sample destination"
-msgstr ""
-
-#: includes/Automation/SampleData.php:74
-msgid "Sample page"
 msgstr ""
 
 #: includes/Automation/SampleData.php:101
@@ -370,17 +374,17 @@ msgid "The maximum is {max}."
 msgstr ""
 
 #: includes/Core/Fields/Registry.php:254
-#: includes/Core/Flow/Templates.php:121
-#: includes/Core/Flow/Templates.php:144
-#: includes/Core/Flow/Templates.php:164
+#: includes/Core/Flow/Templates.php:160
 #: includes/Core/Flow/Templates.php:183
-#: includes/Core/Flow/Templates.php:202
+#: includes/Core/Flow/Templates.php:203
+#: includes/Core/Flow/Templates.php:222
+#: includes/Core/Flow/Templates.php:241
 #: includes/Core/Leads/CsvExporter.php:113
 #: includes/Core/Leads/PrivacyTools.php:89
-#: includes/Core/Variables/Builder.php:135
+#: includes/Core/Variables/Builder.php:138
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:117
-#: src/admin/screens/Dashboard.jsx:123
+#: src/admin/editor/FlowTab.jsx:125
+#: src/admin/screens/Dashboard.jsx:124
 #: src/admin/screens/FlowsScreen.jsx:98
 #: src/admin/screens/FlowsScreen.jsx:185
 #: src/admin/screens/IntegrationsScreen.jsx:120
@@ -392,24 +396,24 @@ msgid "Name"
 msgstr ""
 
 #: includes/Core/Fields/Registry.php:264
-#: includes/Core/Flow/Templates.php:165
+#: includes/Core/Flow/Templates.php:204
 #: includes/Core/Leads/CsvExporter.php:114
 #: includes/Core/Leads/PrivacyTools.php:93
-#: includes/Core/Variables/Builder.php:140
+#: includes/Core/Variables/Builder.php:143
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:239
+#: src/admin/editor/Editor.jsx:241
 #: src/admin/screens/LeadsScreen.jsx:88
 msgid "E-mail"
 msgstr ""
 
 #: includes/Core/Fields/Registry.php:274
-#: includes/Core/Flow/Templates.php:184
-#: includes/Core/Flow/Templates.php:203
+#: includes/Core/Flow/Templates.php:223
+#: includes/Core/Flow/Templates.php:242
 #: includes/Core/Leads/CsvExporter.php:115
 #: includes/Core/Leads/PrivacyTools.php:97
-#: includes/Core/Variables/Builder.php:145
+#: includes/Core/Variables/Builder.php:148
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/editor/BubbleTab.jsx:8
 #: src/admin/screens/LeadsScreen.jsx:96
 msgid "Phone"
 msgstr ""
@@ -448,12 +452,12 @@ msgstr ""
 #: includes/Core/Fields/Registry.php:354
 #: includes/Core/Leads/CsvExporter.php:111
 #: includes/Core/Leads/PrivacyTools.php:85
-#: includes/Core/Variables/Builder.php:172
+#: includes/Core/Variables/Builder.php:189
 msgid "Date"
 msgstr ""
 
 #: includes/Core/Fields/Registry.php:364
-#: includes/Core/Variables/Builder.php:173
+#: includes/Core/Variables/Builder.php:190
 msgid "Time"
 msgstr ""
 
@@ -467,7 +471,7 @@ msgstr ""
 
 #: includes/Core/Fields/Registry.php:394
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:246
+#: src/admin/editor/FlowTab.jsx:267
 msgid "Hidden field"
 msgstr ""
 
@@ -479,7 +483,7 @@ msgstr ""
 msgid "Not accepted"
 msgstr ""
 
-#: includes/Core/Flow/Defaults.php:39
+#: includes/Core/Flow/Defaults.php:40
 msgid "New ChatFlow"
 msgstr ""
 
@@ -499,428 +503,492 @@ msgstr ""
 #. translators: %s: flow name.
 #: includes/Core/Flow/FlowRepository.php:253
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:70
+#: src/admin/editor/FlowTab.jsx:78
 #, php-format,js-format
 msgid "%s (copy)"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:80
+#: includes/Core/Flow/Manifest.php:73
 msgid "Open chat"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:92
+#: includes/Core/Flow/Manifest.php:74
 msgid "Need help?"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:108
-msgid "Hello"
-msgstr ""
-
-#: includes/Core/Flow/Manifest.php:109
-msgid "How can we help you?"
-msgstr ""
-
-#: includes/Core/Flow/Manifest.php:117
-#: includes/Core/Flow/Manifest.php:253
+#: includes/Core/Flow/Manifest.php:79
+#: includes/Core/Flow/Manifest.php:310
 msgid "Close chat"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:118
+#: includes/Core/Flow/Manifest.php:80
 #: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:93
 #: src/admin/editor/WhatsappTab.jsx:79
 #: src/admin/ui.jsx:65
 msgid "Loading…"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:119
+#: includes/Core/Flow/Manifest.php:81
 msgid "We could not load the chat. Please try again."
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:120
-#: includes/Core/Flow/Manifest.php:255
+#: includes/Core/Flow/Manifest.php:82
+#: includes/Core/Flow/Manifest.php:312
 #: assets/admin/admin.js:1
 #: src/admin/screens/IntegrationsScreen.jsx:406
 msgid "Try again"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:163
+#: includes/Core/Flow/Manifest.php:85
+msgid "We could not open WhatsApp. Please try again in a moment."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:86
+msgid "Preview: on your site this button opens WhatsApp."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:86
+msgid "Preview: on your site this button opens your link."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:130
+msgid "Hello"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:131
+msgid "How can we help you?"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:171
+#: includes/Core/Flow/Manifest.php:173
+#: includes/Core/Flow/Templates.php:147
+#: includes/Core/Flow/Templates.php:150
+msgid "Chat on WhatsApp"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:172
+msgid "Hi! How can we help? Talk to us on WhatsApp."
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:177
+#: includes/Core/Flow/Manifest.php:179
+msgid "Contact us"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:178
+msgid "Hi! How can we help?"
+msgstr ""
+
+#: includes/Core/Flow/Manifest.php:220
 #: assets/admin/admin.js:1
 #: src/admin/editor/WhatsappTab.jsx:28
 msgid "Continue on WhatsApp"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:216
+#: includes/Core/Flow/Manifest.php:273
 msgid "Powered by"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:230
+#: includes/Core/Flow/Manifest.php:287
 msgid "We are online"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:231
+#: includes/Core/Flow/Manifest.php:288
 msgid "We are offline right now, but leave your message."
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:232
+#: includes/Core/Flow/Manifest.php:289
 msgid "Send message"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:233
+#: includes/Core/Flow/Manifest.php:290
 #: assets/admin/admin.js:1
 #: src/admin/screens/Onboarding.jsx:142
 #: src/admin/screens/Onboarding.jsx:170
 msgid "Continue"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:234
+#: includes/Core/Flow/Manifest.php:291
 #: assets/admin/admin.js:1
 #: src/admin/screens/FlowsScreen.jsx:87
 #: src/admin/screens/Onboarding.jsx:140
 msgid "Back"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:254
+#: includes/Core/Flow/Manifest.php:311
 msgid "Sending…"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:256
+#: includes/Core/Flow/Manifest.php:313
 msgid "We could not send your message. Please try again."
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:257
+#: includes/Core/Flow/Manifest.php:314
 msgid "Connection problem. Your answers were kept; please try again."
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:258
+#: includes/Core/Flow/Manifest.php:315
 #: includes/Core/Submission/AntiSpam/Guard.php:73
 msgid "Too many attempts. Please wait a few minutes and try again."
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:260
+#: includes/Core/Flow/Manifest.php:317
 msgid "You will be redirected to WhatsApp with your message ready."
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:261
+#: includes/Core/Flow/Manifest.php:318
 msgid "Select an option"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:262
+#: includes/Core/Flow/Manifest.php:319
 msgid "privacy policy"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:263
+#: includes/Core/Flow/Manifest.php:320
 msgid "Preview mode: nothing is sent or saved."
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:264
+#: includes/Core/Flow/Manifest.php:321
 msgid "Step {current} of {total}"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:265
+#: includes/Core/Flow/Manifest.php:322
 msgid "Your answer"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:266
+#: includes/Core/Flow/Manifest.php:323
 msgid "Type your answer…"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:267
+#: includes/Core/Flow/Manifest.php:324
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:102
+#: src/admin/ui.jsx:108
 msgid "(optional)"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:268
+#: includes/Core/Flow/Manifest.php:325
 msgid "Done"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:269
+#: includes/Core/Flow/Manifest.php:326
 msgid "I agree"
 msgstr ""
 
-#: includes/Core/Flow/Manifest.php:270
+#: includes/Core/Flow/Manifest.php:327
 msgid "Skip"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:63
+#: includes/Core/Flow/Templates.php:68
 msgid "Thank you, {name}! We received your message and will get back to you soon."
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:114
+#: includes/Core/Flow/Templates.php:141
+msgid "WhatsApp button"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:142
+msgid "No form: just a floating button with a welcome message that opens WhatsApp."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:148
+msgid "Hello!"
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:149
+msgid "How can we help? Talk to us on WhatsApp."
+msgstr ""
+
+#: includes/Core/Flow/Templates.php:153
 msgid "Simple contact"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:115
+#: includes/Core/Flow/Templates.php:154
 msgid "Name, WhatsApp and a message. The fastest way to start."
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:124
+#: includes/Core/Flow/Templates.php:163
 msgid "Your name"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:129
+#: includes/Core/Flow/Templates.php:168
 #: includes/Core/Leads/PrivacyTools.php:191
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:238
+#: src/admin/editor/Editor.jsx:240
 msgid "WhatsApp"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:132
+#: includes/Core/Flow/Templates.php:171
 msgid "(00) 00000-0000"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:135
-#: includes/Core/Flow/Templates.php:155
-#: includes/Core/Flow/Templates.php:193
+#: includes/Core/Flow/Templates.php:174
+#: includes/Core/Flow/Templates.php:194
+#: includes/Core/Flow/Templates.php:232
 #: assets/admin/admin.js:1
 #: src/admin/editor/AutomationForms.jsx:53
-#: src/admin/editor/BubbleTab.jsx:7
+#: src/admin/editor/BubbleTab.jsx:8
+#: src/admin/editor/WelcomeCard.jsx:25
 #: src/admin/editor/WhatsappTab.jsx:46
 msgid "Message"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:135
+#: includes/Core/Flow/Templates.php:174
 msgid "How can we help?"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:139
+#: includes/Core/Flow/Templates.php:178
 msgid "Request a quote"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:140
+#: includes/Core/Flow/Templates.php:179
 msgid "Qualify the project before the conversation: company, service and budget."
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:142
+#: includes/Core/Flow/Templates.php:181
 msgid ""
 "Hello! I'd like a quote. My name is {name}.\n"
 "\n"
 "{all_fields}"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:145
+#: includes/Core/Flow/Templates.php:184
 msgid "Company"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:148
+#: includes/Core/Flow/Templates.php:187
 #: assets/admin/admin.js:1
 #: src/admin/screens/IntegrationsScreen.jsx:121
 msgid "Service"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:151
+#: includes/Core/Flow/Templates.php:190
 msgid "Website"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:151
+#: includes/Core/Flow/Templates.php:190
 msgid "Automation"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:151
-#: includes/Core/Flow/Templates.php:159
+#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:198
 msgid "Support"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:151
 #: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "Other"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:154
+#: includes/Core/Flow/Templates.php:193
 msgid "Budget"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:154
+#: includes/Core/Flow/Templates.php:193
 msgid "Estimated amount"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:155
+#: includes/Core/Flow/Templates.php:194
 msgid "Tell us a bit about the project"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:160
+#: includes/Core/Flow/Templates.php:199
 msgid "Collect the product and the problem so the team can answer faster."
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:162
+#: includes/Core/Flow/Templates.php:201
 msgid ""
 "Hello! I need support. My name is {name}.\n"
 "\n"
 "{all_fields}"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:166
+#: includes/Core/Flow/Templates.php:205
 msgid "Product"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:169
+#: includes/Core/Flow/Templates.php:208
 msgid "Problem"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:172
+#: includes/Core/Flow/Templates.php:211
 msgid "Describe what is happening"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:178
+#: includes/Core/Flow/Templates.php:217
 msgid "Clinic"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:179
+#: includes/Core/Flow/Templates.php:218
 msgid "Appointment requests with the type of care."
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:181
+#: includes/Core/Flow/Templates.php:220
 msgid ""
 "Hello! I'd like to schedule an appointment. My name is {name}.\n"
 "\n"
 "{all_fields}"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:187
+#: includes/Core/Flow/Templates.php:226
 msgid "Type of care"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "First appointment"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "Return visit"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:190
+#: includes/Core/Flow/Templates.php:229
 msgid "Exam"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:197
+#: includes/Core/Flow/Templates.php:236
 msgid "Real estate"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:198
+#: includes/Core/Flow/Templates.php:237
 msgid "Property type and price range, so the broker calls with the right options."
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:200
+#: includes/Core/Flow/Templates.php:239
 msgid ""
 "Hello! I'm looking for a property. My name is {name}.\n"
 "\n"
 "{all_fields}"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:206
+#: includes/Core/Flow/Templates.php:245
 msgid "Property type"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "Apartment"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "House"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "Commercial"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:209
+#: includes/Core/Flow/Templates.php:248
 msgid "Land"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:214
+#: includes/Core/Flow/Templates.php:253
 msgid "Price range"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "Up to 300k"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "300k to 600k"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "600k to 1M"
 msgstr ""
 
-#: includes/Core/Flow/Templates.php:216
+#: includes/Core/Flow/Templates.php:255
 msgid "Above 1M"
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:46
+#: includes/Core/Flow/Validator.php:50
 msgid "A field has no label."
 msgstr ""
 
 #. translators: %s: field label.
-#: includes/Core/Flow/Validator.php:50
+#: includes/Core/Flow/Validator.php:54
 #, php-format
 msgid "The field \"%s\" needs at least one option."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:54
+#: includes/Core/Flow/Validator.php:58
 msgid "Add at least one field to the flow."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:59
+#: includes/Core/Flow/Validator.php:63
 msgid "A step has no fields and will be empty."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:72
+#: includes/Core/Flow/Validator.php:76
 msgid "A logic rule has no valid condition, so it always applies. Edit or remove it."
 msgstr ""
 
 #. translators: %s: field key.
-#: includes/Core/Flow/Validator.php:81
+#: includes/Core/Flow/Validator.php:85
 #, php-format
 msgid "A logic rule refers to the field \"%s\", which does not exist."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:87
+#: includes/Core/Flow/Validator.php:91
 msgid "A logic rule depends on a field that comes after the field it shows or hides, so it will not work. Move the field up."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:109
+#: includes/Core/Flow/Validator.php:113
 msgid "A \"Send webhook\" automation has no connection selected."
 msgstr ""
 
 #. translators: %s: connection name.
-#: includes/Core/Flow/Validator.php:112
+#: includes/Core/Flow/Validator.php:116
 #, php-format
 msgid "The connection \"%s\" is turned off, so no data will be sent to it."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:115
+#: includes/Core/Flow/Validator.php:119
 msgid "The custom webhook payload is not valid JSON."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:120
+#: includes/Core/Flow/Validator.php:124
+#: includes/Core/Flow/Validator.php:193
 msgid "WhatsApp is turned on, but there is no destination with a WhatsApp number. Add one in Routing."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:123
+#: includes/Core/Flow/Validator.php:127
 msgid "An e-mail is set to go to the destination, but no destination has an e-mail address."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:126
+#: includes/Core/Flow/Validator.php:130
 msgid "Nothing happens after the visitor sends the form except saving the lead. Add an e-mail notification or WhatsApp."
 msgstr ""
 
 #. translators: %s: variable name.
-#: includes/Core/Flow/Validator.php:148
+#: includes/Core/Flow/Validator.php:152
+#: includes/Core/Flow/Validator.php:204
 #, php-format
 msgid "The variable {%s} does not exist and will be empty."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:155
+#: includes/Core/Flow/Validator.php:159
+#: includes/Core/Flow/Validator.php:210
 msgid "The widget is set to show only on specific pages, but no page was added, so it will not appear anywhere."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:160
+#: includes/Core/Flow/Validator.php:164
+#: includes/Core/Flow/Validator.php:213
 msgid "The bubble icon is hard to see against the bubble colour. Pick colours with more contrast."
 msgstr ""
 
-#: includes/Core/Flow/Validator.php:163
+#: includes/Core/Flow/Validator.php:167
 msgid "White text on the panel accent colour is hard to read. Pick a darker accent colour."
+msgstr ""
+
+#: includes/Core/Flow/Validator.php:189
+msgid "Enter the address the button opens: a web page, a phone number (tel:+5511999999999) or an e-mail (mailto:name@example.com)."
+msgstr ""
+
+#. translators: %s: destination name.
+#: includes/Core/Flow/Validator.php:198
+#, php-format
+msgid "The destination \"%s\" has no WhatsApp number, so the button falls back to routing and the site default."
 msgstr ""
 
 #: includes/Core/Leads/CsvExporter.php:59
@@ -936,9 +1004,9 @@ msgstr ""
 #: includes/Core/Leads/CsvExporter.php:112
 #: includes/Core/Leads/PrivacyTools.php:81
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:7
-#: src/admin/screens/AnalyticsScreen.jsx:74
-#: src/admin/screens/Dashboard.jsx:124
+#: src/admin/editor/BubbleTab.jsx:8
+#: src/admin/screens/AnalyticsScreen.jsx:76
+#: src/admin/screens/Dashboard.jsx:125
 #: src/admin/screens/IntegrationsScreen.jsx:376
 #: src/admin/screens/LeadsScreen.jsx:84
 #: src/admin/screens/LeadsScreen.jsx:233
@@ -950,7 +1018,7 @@ msgstr ""
 #: includes/Core/Leads/PrivacyTools.php:101
 #: assets/admin/admin.js:1
 #: src/admin/editor/PublishTab.jsx:152
-#: src/admin/screens/Dashboard.jsx:125
+#: src/admin/screens/Dashboard.jsx:126
 #: src/admin/screens/FlowsScreen.jsx:186
 #: src/admin/screens/IntegrationsScreen.jsx:266
 #: src/admin/screens/LeadsScreen.jsx:80
@@ -965,7 +1033,7 @@ msgstr ""
 
 #: includes/Core/Leads/CsvExporter.php:118
 #: includes/Core/Routing/RoutingRepository.php:103
-#: includes/Core/Variables/Builder.php:169
+#: includes/Core/Variables/Builder.php:186
 #: assets/admin/admin.js:1
 #: src/admin/screens/RoutingScreen.jsx:16
 msgid "Destination"
@@ -991,9 +1059,9 @@ msgid "Page"
 msgstr ""
 
 #: includes/Core/Leads/CsvExporter.php:122
-#: includes/Core/Variables/Builder.php:165
+#: includes/Core/Variables/Builder.php:182
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:331
+#: src/admin/editor/FlowTab.jsx:352
 msgid "Page title"
 msgstr ""
 
@@ -1132,8 +1200,8 @@ msgstr ""
 
 #: includes/Core/Submission/AntiSpam/Guard.php:43
 #: includes/Core/Submission/AntiSpam/Guard.php:98
-#: includes/Rest/AjaxFallback.php:120
-#: includes/Rest/PublicController.php:139
+#: includes/Rest/AjaxFallback.php:131
+#: includes/Rest/PublicController.php:165
 msgid "This request was not accepted."
 msgstr ""
 
@@ -1149,55 +1217,71 @@ msgstr ""
 msgid "Too many requests."
 msgstr ""
 
-#: includes/Core/Submission/Pipeline.php:46
-#: includes/Rest/PublicApi.php:146
+#: includes/Core/Submission/Pipeline.php:47
+#: includes/Rest/PublicApi.php:211
 msgid "This chat is not available."
 msgstr ""
 
-#: includes/Core/Submission/Pipeline.php:72
+#: includes/Core/Submission/Pipeline.php:73
 msgid "Please check the highlighted fields."
 msgstr ""
 
-#: includes/Core/Submission/Pipeline.php:167
+#: includes/Core/Submission/Pipeline.php:168
 msgid "We could not save your message. Please try again."
 msgstr ""
 
-#: includes/Core/Variables/Builder.php:163
+#: includes/Core/Variables/Builder.php:167
 msgid "All answers"
 msgstr ""
 
-#: includes/Core/Variables/Builder.php:164
+#: includes/Core/Variables/Builder.php:181
 #: includes/Rest/RoutingController.php:102
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:330
+#: src/admin/editor/FlowTab.jsx:351
 msgid "Page address"
 msgstr ""
 
-#: includes/Core/Variables/Builder.php:166
+#: includes/Core/Variables/Builder.php:183
 #: includes/Rest/RoutingController.php:110
 #: assets/admin/admin.js:1
 #: src/admin/editor/LogicTab.jsx:10
 msgid "Campaign source"
 msgstr ""
 
-#: includes/Core/Variables/Builder.php:167
+#: includes/Core/Variables/Builder.php:184
 #: includes/Rest/RoutingController.php:114
 msgid "Campaign medium"
 msgstr ""
 
-#: includes/Core/Variables/Builder.php:168
+#: includes/Core/Variables/Builder.php:185
 #: includes/Rest/RoutingController.php:118
 #: assets/admin/admin.js:1
 #: src/admin/editor/LogicTab.jsx:11
 msgid "Campaign name"
 msgstr ""
 
-#: includes/Core/Variables/Builder.php:170
+#: includes/Core/Variables/Builder.php:187
 msgid "Site name"
 msgstr ""
 
-#: includes/Core/Variables/Builder.php:171
+#: includes/Core/Variables/Builder.php:188
 msgid "Chat name"
+msgstr ""
+
+#: includes/Core/Whatsapp/ButtonLink.php:33
+msgid ""
+"Hello! I am visiting your website and would like to talk.\n"
+"\n"
+"Page: {page_url}"
+msgstr ""
+
+#: includes/Core/Whatsapp/ButtonLink.php:55
+msgid "The destination chosen for this chat has no WhatsApp number."
+msgstr ""
+
+#: includes/Frontend/Renderer.php:64
+#: includes/Frontend/Renderer.php:69
+msgid "(opens in a new tab)"
 msgstr ""
 
 #: includes/Infrastructure/Http/SafeClient.php:147
@@ -1354,7 +1438,11 @@ msgstr ""
 msgid "Choose a status."
 msgstr ""
 
-#: includes/Rest/PublicController.php:156
+#: includes/Rest/PublicApi.php:147
+msgid "WhatsApp is not available right now. Please try again in a moment."
+msgstr ""
+
+#: includes/Rest/PublicController.php:182
 msgid "The message is too large."
 msgstr ""
 
@@ -1419,74 +1507,89 @@ msgid "Krivo ChatFlow requires PHP %1$s and WordPress %2$s or newer. The plugin 
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:217
+#: src/admin/ui.jsx:249
 msgid "colour picker"
 msgstr ""
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/LeadsScreen.jsx:36
-#: src/admin/ui.jsx:363
+#: src/admin/ui.jsx:395
 msgid "Close"
 msgstr ""
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/IntegrationsScreen.jsx:110
-#: src/admin/ui.jsx:408
+#: src/admin/ui.jsx:440
 msgid "Cancel"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:410
+#: src/admin/ui.jsx:442
 msgid "Confirm"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:453
+#: src/admin/ui.jsx:485
 msgid "Copied"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:453
+#: src/admin/ui.jsx:485
 msgid "Copy"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:464
+#: src/admin/ui.jsx:496
 msgid "Pagination"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:466
+#: src/admin/ui.jsx:498
 msgid "Previous"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/ui.jsx:472
+#: src/admin/ui.jsx:504
 msgid "Next"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:112
+#: src/admin/editor/Preview.jsx:162
 msgid "Live preview"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:128
+#: src/admin/editor/Preview.jsx:189
+msgid "Hide the welcome message"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:189
+msgid "Show the welcome message"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:189
 msgid "Show only the bubble"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:128
+#: src/admin/editor/Preview.jsx:189
 msgid "Open the chat"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:131
+#: src/admin/editor/Preview.jsx:192
 msgid "Preview of your chat"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Preview.jsx:134
+#: src/admin/editor/Preview.jsx:195
+msgid "This is the real button. Tapping it here only shows a note: nothing is opened or sent."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Preview.jsx:195
 msgid "This is the real chat. Nothing you type here is sent or saved."
 msgstr ""
 
@@ -1695,8 +1798,8 @@ msgstr ""
 #: assets/admin/admin.js:1
 #: src/admin/editor/AutomationsTab.jsx:50
 #: src/admin/editor/AutomationsTab.jsx:56
-#: src/admin/editor/FlowTab.jsx:58
-#: src/admin/editor/FlowTab.jsx:263
+#: src/admin/editor/FlowTab.jsx:66
+#: src/admin/editor/FlowTab.jsx:284
 #: src/admin/editor/LogicTab.jsx:63
 #: src/admin/screens/FlowsScreen.jsx:228
 #: src/admin/screens/IntegrationsScreen.jsx:231
@@ -1710,7 +1813,7 @@ msgstr ""
 #: assets/admin/admin.js:1
 #: src/admin/editor/AutomationsTab.jsx:62
 #: src/admin/editor/ConditionGroup.jsx:25
-#: src/admin/screens/Dashboard.jsx:126
+#: src/admin/screens/Dashboard.jsx:127
 #: src/admin/screens/IntegrationsScreen.jsx:375
 msgid "When"
 msgstr ""
@@ -1792,317 +1895,369 @@ msgid "Remove"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:7
-msgid "Headset"
+#: src/admin/editor/WelcomeCard.jsx:16
+msgid "Welcome message"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:18
-msgid "Icon and shape"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:21
-#: src/admin/editor/BubbleTab.jsx:90
-msgid "Icon"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:33
-msgid "My SVG"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:33
-msgid "My image"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:40
-msgid "SVG code"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:45
-msgid "Paste the SVG markup. It is cleaned automatically: scripts and external links are removed. Use fill=\"currentColor\" so it follows the icon colour."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:48
-msgid "Icon image"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:50
-msgid "Button text and accessible name"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:50
-msgid "Read by screen readers, and shown next to the icon in the \"pill\" shape. Leave empty for \"Open chat\"."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:53
-msgid "Shape"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:57
-msgid "Circle"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:58
-msgid "Rounded square"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:59
-msgid "Pill with text"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:60
-msgid "Custom corners"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:63
-msgid "Corner radius"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:67
-msgid "Position and size"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:70
-msgid "Side of the screen"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:74
-#: src/admin/screens/Onboarding.jsx:164
-msgid "Bottom right"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:75
-#: src/admin/screens/Onboarding.jsx:165
-msgid "Bottom left"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:79
-msgid "Distance from the side"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:80
-msgid "Distance from the bottom"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:81
-msgid "Size"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:86
-msgid "Colours and effects"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:89
-msgid "Background"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:91
-msgid "Border"
-msgstr ""
-
-#. translators: %s: contrast ratio, for example 2.1.
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:93
-#, js-format
-msgid "The icon is hard to see on this background (contrast %s:1, at least 3:1 is recommended)."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:94
-msgid "Soft shadow"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:96
-msgid "Attention animation"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:100
-#: src/admin/screens/IntegrationsScreen.jsx:144
-#: src/admin/screens/SettingsScreen.jsx:230
-msgid "None"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:101
-msgid "Fade in"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:102
-msgid "Pulse"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:103
-msgid "Gentle bounce"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:105
-msgid "Animations are turned off for visitors who ask their device to reduce motion."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:110
+#: src/admin/editor/WelcomeCard.jsx:16
 msgid "Greeting bubble"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:110
+#: src/admin/editor/WelcomeCard.jsx:17
+msgid "A small card above the floating button. Visitors tap its button, or the floating button itself."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:17
 msgid "A short message next to the button."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:112
+#: src/admin/editor/WelcomeCard.jsx:20
+msgid "Show a welcome message"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:20
 msgid "Show a greeting"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:115
-#: src/admin/editor/FlowTab.jsx:284
+#: src/admin/editor/DesignTab.jsx:28
+#: src/admin/editor/WelcomeCard.jsx:23
+msgid "Title"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:23
+msgid "A short line in bold, for example \"Hello!\". Leave empty for no title."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:305
 #: src/admin/editor/PublishTab.jsx:74
+#: src/admin/editor/WelcomeCard.jsx:25
 msgid "Text"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:115
+#: src/admin/editor/WelcomeCard.jsx:30
+msgid "Leave empty for a standard greeting."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:30
 msgid "Leave empty for \"Need help?\"."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:117
-#: src/admin/editor/BubbleTab.jsx:133
+#: src/admin/editor/FlowTab.jsx:213
+#: src/admin/editor/WelcomeCard.jsx:33
+msgid "Button text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:38
+msgid "The button inside the card. Leave empty for the standard text."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/WelcomeCard.jsx:38
+msgid "Adds a button to the greeting that opens the chat. Leave empty for no button."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:119
+#: src/admin/editor/WelcomeCard.jsx:41
 msgid "Appears after"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:117
-#: src/admin/editor/BubbleTab.jsx:118
-#: src/admin/editor/BubbleTab.jsx:133
-#: src/admin/editor/BubbleTab.jsx:150
+#: src/admin/editor/BubbleTab.jsx:119
+#: src/admin/editor/BubbleTab.jsx:136
+#: src/admin/editor/WelcomeCard.jsx:41
+#: src/admin/editor/WelcomeCard.jsx:42
 #: src/admin/screens/IntegrationsScreen.jsx:134
 #: src/admin/screens/SettingsScreen.jsx:111
 msgid "seconds"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:118
+#: src/admin/editor/WelcomeCard.jsx:42
 msgid "Stays for"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:118
+#: src/admin/editor/WelcomeCard.jsx:42
 msgid "0 keeps it until dismissed."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:120
+#: src/admin/editor/WelcomeCard.jsx:44
 msgid "Show only once per visitor"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:120
+#: src/admin/editor/WelcomeCard.jsx:44
 msgid "Remembered in the visitor’s browser, without cookies."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:121
+#: src/admin/editor/WelcomeCard.jsx:45
 msgid "Let the visitor close it"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:127
+#: src/admin/editor/BubbleTab.jsx:8
+msgid "Headset"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:19
+msgid "Icon and shape"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:22
+#: src/admin/editor/BubbleTab.jsx:91
+msgid "Icon"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:34
+msgid "My SVG"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:34
+msgid "My image"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:41
+msgid "SVG code"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:46
+msgid "Paste the SVG markup. It is cleaned automatically: scripts and external links are removed. Use fill=\"currentColor\" so it follows the icon colour."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:49
+msgid "Icon image"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:51
+msgid "Button text and accessible name"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:51
+msgid "Read by screen readers, and shown next to the icon in the \"pill\" shape. Leave empty for the standard text."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:51
+msgid "Read by screen readers, and shown next to the icon in the \"pill\" shape. Leave empty for \"Open chat\"."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:54
+msgid "Shape"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:58
+msgid "Circle"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:59
+msgid "Rounded square"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:60
+msgid "Pill with text"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:61
+msgid "Custom corners"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:64
+msgid "Corner radius"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:68
+msgid "Position and size"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:71
+msgid "Side of the screen"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:75
+#: src/admin/screens/Onboarding.jsx:164
+msgid "Bottom right"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:76
+#: src/admin/screens/Onboarding.jsx:165
+msgid "Bottom left"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:80
+msgid "Distance from the side"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:81
+msgid "Distance from the bottom"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:82
+msgid "Size"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:87
+msgid "Colours and effects"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:90
+msgid "Background"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:92
+msgid "Border"
+msgstr ""
+
+#. translators: %s: contrast ratio, for example 2.1.
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:94
+#, js-format
+msgid "The icon is hard to see on this background (contrast %s:1, at least 3:1 is recommended)."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:95
+msgid "Soft shadow"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:97
+msgid "Attention animation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:101
+#: src/admin/screens/IntegrationsScreen.jsx:144
+#: src/admin/screens/SettingsScreen.jsx:230
+msgid "None"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:102
+msgid "Fade in"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:103
+msgid "Pulse"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:104
+msgid "Gentle bounce"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:106
+msgid "Animations are turned off for visitors who ask their device to reduce motion."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/BubbleTab.jsx:113
 msgid "Notification badge"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:129
+#: src/admin/editor/BubbleTab.jsx:115
 msgid "Show a small badge on the button"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:132
+#: src/admin/editor/BubbleTab.jsx:118
 msgid "Badge text"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:139
+#: src/admin/editor/BubbleTab.jsx:125
 msgid "When it appears"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:142
+#: src/admin/editor/BubbleTab.jsx:128
 msgid "Show the button"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:146
+#: src/admin/editor/BubbleTab.jsx:132
 msgid "After a delay"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:147
+#: src/admin/editor/BubbleTab.jsx:133
 msgid "After the visitor scrolls"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:150
+#: src/admin/editor/BubbleTab.jsx:136
 msgid "Delay"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:150
+#: src/admin/editor/BubbleTab.jsx:136
 msgid "0 shows it as soon as the page is idle."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:151
+#: src/admin/editor/BubbleTab.jsx:137
 msgid "Scrolled"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:151
+#: src/admin/editor/BubbleTab.jsx:137
 msgid "% of the page"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:152
+#: src/admin/editor/BubbleTab.jsx:140
 msgid "Open the chat automatically"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:152
+#: src/admin/editor/BubbleTab.jsx:140
 msgid "It opens by itself after the button appears. Use with care: some visitors find it intrusive."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/BubbleTab.jsx:153
+#: src/admin/editor/BubbleTab.jsx:141
 msgid "Only once per visit"
 msgstr ""
 
@@ -2116,11 +2271,6 @@ msgstr ""
 #: assets/admin/admin.js:1
 #: src/admin/editor/DesignTab.jsx:26
 msgid "Chat window"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/DesignTab.jsx:28
-msgid "Title"
 msgstr ""
 
 #: assets/admin/admin.js:1
@@ -2261,125 +2411,255 @@ msgid "E-mail settings"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:29
+#: src/admin/editor/ButtonSettings.jsx:21
+msgid "What the button does"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:21
+msgid "There is no form: the visitor taps the button and goes straight there."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:24
+msgid "When the visitor taps it"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:29
+msgid "Open a link"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:31
+msgid "Their browser opens WhatsApp with your message already written. Nothing is sent by your site, and no paid service is involved."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:31
+msgid "A page, a phone number or an e-mail address."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:37
+#: src/admin/editor/WhatsappTab.jsx:32
+msgid "Who receives the conversation"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:40
+#: src/admin/editor/WhatsappTab.jsx:35
+msgid "Decided by routing (or the site default)"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:40
+#: src/admin/editor/WhatsappTab.jsx:35
+msgid "no WhatsApp number"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:41
+msgid "Routing rules can still send some visitors to another person, for example depending on the page they are on."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:44
+#: src/admin/editor/WhatsappTab.jsx:39
+msgid "Add a destination"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:45
+#: src/admin/editor/WhatsappTab.jsx:40
+msgid "There is no destination yet. Add the WhatsApp number that should receive the conversations."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:49
+#: src/admin/editor/WhatsappTab.jsx:49
+msgid "Text the visitor sends"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:54
+msgid "Leave empty to use a standard message with the address of the page."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:61
+#: src/admin/screens/IntegrationsScreen.jsx:265
+msgid "Address"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:66
+msgid "A web page (https://…), a page of this site (/contact/), a phone number (tel:+5511999999999) or an e-mail (mailto:name@example.com). The address is public: anyone can see it."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:69
+msgid "Open in a new tab"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:69
+msgid "Only applies to web pages."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:76
+#: src/admin/editor/WhatsappTab.jsx:60
+msgid "What the visitor will send"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:76
+msgid "Preview for a visitor on a sample page. This is the exact text and link the site builds."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:85
+#: src/admin/editor/WhatsappTab.jsx:69
+msgid "Link opened for the visitor"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/ButtonSettings.jsx:97
+#: src/admin/editor/WhatsappTab.jsx:83
+msgid "Destination in this preview:"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:31
 msgid "Merge the steps?"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:29
+#: src/admin/editor/FlowTab.jsx:31
 msgid "Only the \"Steps\" mode has separate steps. Switching will put all fields in one list. Logic rules that jump between steps will be removed."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:29
+#: src/admin/editor/FlowTab.jsx:31
 msgid "Merge steps"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:56
+#: src/admin/editor/FlowTab.jsx:64
 msgid "Delete this field?"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:57
+#: src/admin/editor/FlowTab.jsx:65
 msgid "A logic rule uses this field. Deleting it will also remove the rule parts that depend on it."
 msgstr ""
 
 #. translators: %s: label of the field.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:57
+#: src/admin/editor/FlowTab.jsx:65
 #, js-format
 msgid "\"%s\" will be removed from the chat."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
+#: src/admin/editor/FlowTab.jsx:115
 msgid "Delete this step?"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
+#: src/admin/editor/FlowTab.jsx:115
 msgid "The fields inside it will be deleted too."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
+#: src/admin/editor/FlowTab.jsx:115
 msgid "The step is empty."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:107
-#: src/admin/editor/FlowTab.jsx:156
+#: src/admin/editor/FlowTab.jsx:115
+#: src/admin/editor/FlowTab.jsx:175
 msgid "Delete step"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:115
+#: src/admin/editor/FlowTab.jsx:123
 msgid "About this chat"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:117
+#: src/admin/editor/FlowTab.jsx:125
 #: src/admin/screens/FlowsScreen.jsx:98
 msgid "Only you see this name."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:119
+#: src/admin/editor/FlowTab.jsx:127
 msgid "How should it look to the visitor?"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:123
+#: src/admin/editor/FlowTab.jsx:131
 msgid "One form"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:124
+#: src/admin/editor/FlowTab.jsx:132
 msgid "Steps"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:125
+#: src/admin/editor/FlowTab.jsx:133
 msgid "Conversation"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:129
+#: src/admin/editor/FlowTab.jsx:134
+msgid "Only a button"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:138
 msgid "All questions on one screen."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:130
+#: src/admin/editor/FlowTab.jsx:139
 msgid "Several screens with a progress bar. Good for longer forms."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:131
+#: src/admin/editor/FlowTab.jsx:140
 msgid "One question at a time, like a chat."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:139
+#: src/admin/editor/FlowTab.jsx:141
+msgid "No form: a floating button with a welcome message that opens WhatsApp or a link."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/FlowTab.jsx:158
 msgid "Fields"
 msgstr ""
 
 #. translators: 1: number of fields in the chat, 2: maximum allowed.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:140
+#: src/admin/editor/FlowTab.jsx:159
 #, js-format
 msgid "%1$d of %2$d fields"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:144
+#: src/admin/editor/FlowTab.jsx:163
 msgid "Add step"
 msgstr ""
 
 #. translators: %d: position of the step.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:150
-#: src/admin/editor/FlowTab.jsx:352
+#: src/admin/editor/FlowTab.jsx:169
+#: src/admin/editor/FlowTab.jsx:373
 #: src/admin/editor/LogicTab.jsx:28
 #, js-format
 msgid "Step %d"
@@ -2387,300 +2667,295 @@ msgstr ""
 
 #. translators: %d: position of the step.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:153
+#: src/admin/editor/FlowTab.jsx:172
 #, js-format
 msgid "Step %d title"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:180
+#: src/admin/editor/FlowTab.jsx:199
 msgid "Add a field"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:182
+#: src/admin/editor/FlowTab.jsx:201
 msgid "Field types"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:189
+#: src/admin/editor/FlowTab.jsx:208
 msgid "You reached the maximum number of fields."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:192
+#: src/admin/editor/FlowTab.jsx:211
 msgid "When the visitor finishes"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:194
-msgid "Button text"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:194
+#: src/admin/editor/FlowTab.jsx:213
 msgid "Leave empty for the default (\"Continue on WhatsApp\" when WhatsApp is on, otherwise \"Send message\")."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:195
+#: src/admin/editor/FlowTab.jsx:214
 msgid "Thank-you message"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:195
+#: src/admin/editor/FlowTab.jsx:214
 msgid "You can use the visitor’s answers, for example {name}."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:206
+#: src/admin/editor/FlowTab.jsx:227
 msgid "No fields yet. Add the first one below."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:237
+#: src/admin/editor/FlowTab.jsx:258
 msgid "Drag to reorder"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:238
+#: src/admin/editor/FlowTab.jsx:259
 msgid "Drag to reorder (or use the arrows)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:246
+#: src/admin/editor/FlowTab.jsx:267
 msgid "Text block"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:246
+#: src/admin/editor/FlowTab.jsx:267
 msgid "(no label)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:249
+#: src/admin/editor/FlowTab.jsx:270
 msgid "required"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:254
-#: src/admin/editor/FlowTab.jsx:368
+#: src/admin/editor/FlowTab.jsx:275
+#: src/admin/editor/FlowTab.jsx:389
 #: src/admin/screens/RoutingScreen.jsx:177
 msgid "Move up"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:257
-#: src/admin/editor/FlowTab.jsx:371
+#: src/admin/editor/FlowTab.jsx:278
+#: src/admin/editor/FlowTab.jsx:392
 #: src/admin/screens/RoutingScreen.jsx:180
 msgid "Move down"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:260
+#: src/admin/editor/FlowTab.jsx:281
 #: src/admin/screens/FlowsScreen.jsx:223
 msgid "Duplicate"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:284
+#: src/admin/editor/FlowTab.jsx:305
 msgid "Allowed: bold, italic, links, lists and line breaks."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:287
+#: src/admin/editor/FlowTab.jsx:308
 msgid "Label (for you)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:287
+#: src/admin/editor/FlowTab.jsx:308
 msgid "Label"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:288
+#: src/admin/editor/FlowTab.jsx:309
 msgid "Question in the conversation"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:288
+#: src/admin/editor/FlowTab.jsx:309
 msgid "What the chat says before this field. You can use earlier answers, for example \"Nice to meet you, {name}!\"."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:289
+#: src/admin/editor/FlowTab.jsx:310
 msgid "Help text"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:290
+#: src/admin/editor/FlowTab.jsx:311
 msgid "Placeholder"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:296
+#: src/admin/editor/FlowTab.jsx:317
 msgid "Variable name"
 msgstr ""
 
 #. translators: %s: variable name of the field.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:297
+#: src/admin/editor/FlowTab.jsx:318
 #, js-format
 msgid "Use {%s} in messages and e-mails. Letters, numbers and underscores."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:309
+#: src/admin/editor/FlowTab.jsx:330
 msgid "Minimum"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:310
+#: src/admin/editor/FlowTab.jsx:331
 msgid "Maximum"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:313
+#: src/admin/editor/FlowTab.jsx:334
 msgid "Maximum length"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:313
+#: src/admin/editor/FlowTab.jsx:334
 msgid "0 means the default."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:314
+#: src/admin/editor/FlowTab.jsx:335
 #: src/admin/screens/Onboarding.jsx:134
 #: src/admin/screens/RoutingScreen.jsx:27
 msgid "Country code"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:314
+#: src/admin/editor/FlowTab.jsx:335
 msgid "Added when the visitor types a local number, for example 55 for Brazil. Leave empty to use the site default."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:318
+#: src/admin/editor/FlowTab.jsx:339
 msgid "Consent text"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:318
+#: src/admin/editor/FlowTab.jsx:339
 msgid "What the visitor agrees to. Bold, italic and links are allowed."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:319
+#: src/admin/editor/FlowTab.jsx:340
 msgid "Add a link to the site’s privacy policy"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:319
+#: src/admin/editor/FlowTab.jsx:340
 msgid "Uses the page chosen in Settings → Privacy of WordPress."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:326
+#: src/admin/editor/FlowTab.jsx:347
 msgid "Value comes from"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:332
+#: src/admin/editor/FlowTab.jsx:353
 msgid "Referring page"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:333
+#: src/admin/editor/FlowTab.jsx:354
 msgid "Campaign source (utm_source)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:334
+#: src/admin/editor/FlowTab.jsx:355
 msgid "Campaign medium (utm_medium)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:335
+#: src/admin/editor/FlowTab.jsx:356
 msgid "Campaign name (utm_campaign)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:336
+#: src/admin/editor/FlowTab.jsx:357
 msgid "Campaign content (utm_content)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:337
+#: src/admin/editor/FlowTab.jsx:358
 msgid "Campaign term (utm_term)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:338
+#: src/admin/editor/FlowTab.jsx:359
 msgid "A parameter in the page address"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:339
+#: src/admin/editor/FlowTab.jsx:360
 msgid "A fixed value"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:342
+#: src/admin/editor/FlowTab.jsx:363
 msgid "Parameter name"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:342
+#: src/admin/editor/FlowTab.jsx:363
 msgid "For example \"ref\" reads ?ref=abc from the address."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:343
+#: src/admin/editor/FlowTab.jsx:364
 msgid "Fixed value"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:347
+#: src/admin/editor/FlowTab.jsx:368
 msgid "Default value"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:350
+#: src/admin/editor/FlowTab.jsx:371
 msgid "Required"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:352
+#: src/admin/editor/FlowTab.jsx:373
 #: src/admin/screens/IntegrationsScreen.jsx:377
 msgid "Step"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:363
+#: src/admin/editor/FlowTab.jsx:384
 msgid "Options"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:364
+#: src/admin/editor/FlowTab.jsx:385
 msgid "Add at least one option."
 msgstr ""
 
 #. translators: %d: position of the option in the list.
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:367
+#: src/admin/editor/FlowTab.jsx:388
 #, js-format
 msgid "Option %d"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:374
+#: src/admin/editor/FlowTab.jsx:395
 msgid "Remove option"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/FlowTab.jsx:381
+#: src/admin/editor/FlowTab.jsx:402
 msgid "Add option"
 msgstr ""
 
@@ -3119,21 +3394,21 @@ msgid "Open"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/Editor.jsx:323
 #: src/admin/editor/PublishTab.jsx:153
 #: src/admin/screens/FlowsScreen.jsx:32
 msgid "Published"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/Editor.jsx:323
 #: src/admin/editor/PublishTab.jsx:153
 #: src/admin/screens/FlowsScreen.jsx:33
 msgid "Paused"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:319
+#: src/admin/editor/Editor.jsx:323
 #: src/admin/editor/PublishTab.jsx:153
 #: src/admin/screens/FlowsScreen.jsx:34
 msgid "Draft"
@@ -3193,14 +3468,14 @@ msgid "Everything looks good."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:303
+#: src/admin/editor/Editor.jsx:307
 #: src/admin/editor/PublishTab.jsx:200
 msgid "Publish changes"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:242
-#: src/admin/editor/Editor.jsx:303
+#: src/admin/editor/Editor.jsx:244
+#: src/admin/editor/Editor.jsx:307
 #: src/admin/editor/PublishTab.jsx:200
 msgid "Publish"
 msgstr ""
@@ -3387,38 +3662,8 @@ msgid "Open WhatsApp after the form"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:32
-msgid "Who receives the conversation"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:35
-msgid "Decided by routing (or the site default)"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:35
-msgid "no WhatsApp number"
-msgstr ""
-
-#: assets/admin/admin.js:1
 #: src/admin/editor/WhatsappTab.jsx:36
 msgid "Routing rules can still send some visitors to another person, for example depending on their budget."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:39
-msgid "Add a destination"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:40
-msgid "There is no destination yet. Add the WhatsApp number that should receive the conversations."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:49
-msgid "Text the visitor sends"
 msgstr ""
 
 #: assets/admin/admin.js:1
@@ -3428,17 +3673,7 @@ msgstr ""
 
 #: assets/admin/admin.js:1
 #: src/admin/editor/WhatsappTab.jsx:60
-msgid "What the visitor will send"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:60
 msgid "Preview with sample answers. This is the exact text and link the site builds."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:69
-msgid "Link opened for the visitor"
 msgstr ""
 
 #: assets/admin/admin.js:1
@@ -3447,104 +3682,104 @@ msgid "WhatsApp is turned off for this chat."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/WhatsappTab.jsx:83
-msgid "Destination in this preview:"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:35
+#: src/admin/editor/Editor.jsx:36
 msgid "Back to chats"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:158
+#: src/admin/editor/Editor.jsx:159
 msgid "Published. Your chat is live."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:177
+#: src/admin/editor/Editor.jsx:178
 msgid "Paused. Visitors no longer see this chat."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:190
+#: src/admin/editor/Editor.jsx:191
 #: src/admin/screens/FlowsScreen.jsx:120
 msgid "Copy created as a draft."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:201
+#: src/admin/editor/Editor.jsx:202
 msgid "Delete this chat?"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:202
+#: src/admin/editor/Editor.jsx:203
 msgid "The chat disappears from your site and its settings are removed. The leads it already collected are kept."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:203
+#: src/admin/editor/Editor.jsx:204
 #: src/admin/screens/FlowsScreen.jsx:132
 msgid "Delete chat"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:213
+#: src/admin/editor/Editor.jsx:214
 #: src/admin/screens/FlowsScreen.jsx:139
 msgid "Chat deleted."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:235
-msgid "Questions"
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:236
-msgid "Design"
+#: src/admin/editor/Editor.jsx:237
+msgid "Button"
 msgstr ""
 
 #: assets/admin/admin.js:1
 #: src/admin/editor/Editor.jsx:237
+msgid "Questions"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:238
+msgid "Design"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/editor/Editor.jsx:239
 msgid "Bubble"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:240
+#: src/admin/editor/Editor.jsx:242
 msgid "Automations"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:241
+#: src/admin/editor/Editor.jsx:243
 msgid "Logic"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:248
+#: src/admin/editor/Editor.jsx:252
 msgid "Needs attention"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:248
+#: src/admin/editor/Editor.jsx:252
 msgid "Worth a look"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:255
+#: src/admin/editor/Editor.jsx:259
 #: src/admin/screens/RoutingScreen.jsx:209
 #: src/admin/screens/SettingsScreen.jsx:137
 msgid "All changes saved"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:256
+#: src/admin/editor/Editor.jsx:260
 #: src/admin/screens/RoutingScreen.jsx:209
 #: src/admin/screens/SettingsScreen.jsx:137
 msgid "Saving…"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:257
+#: src/admin/editor/Editor.jsx:261
 #: src/admin/screens/RoutingScreen.jsx:209
 #: src/admin/screens/SettingsScreen.jsx:137
 msgid "Unsaved changes"
@@ -3552,60 +3787,60 @@ msgstr ""
 
 #. translators: %s: the reason the server gave.
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:258
+#: src/admin/editor/Editor.jsx:262
 #, js-format
 msgid "Could not save: %s"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:258
+#: src/admin/editor/Editor.jsx:262
 msgid "Could not save"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:259
+#: src/admin/editor/Editor.jsx:263
 msgid "Someone else changed this chat"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:271
+#: src/admin/editor/Editor.jsx:275
 msgid "Load their version"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:274
+#: src/admin/editor/Editor.jsx:278
 msgid "Keep mine"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:279
+#: src/admin/editor/Editor.jsx:283
 msgid "Another administrator saved changes to this chat while you were editing. Load their version (you lose your unsaved edits), or keep yours (you replace theirs)."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:282
+#: src/admin/editor/Editor.jsx:286
 msgid "Chat settings"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:300
+#: src/admin/editor/Editor.jsx:304
 msgid "Save now"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:316
-#: src/admin/screens/AnalyticsScreen.jsx:74
+#: src/admin/editor/Editor.jsx:320
+#: src/admin/screens/AnalyticsScreen.jsx:76
 #: src/admin/screens/RoutingScreen.jsx:194
 msgid "All chats"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:318
+#: src/admin/editor/Editor.jsx:322
 msgid "Untitled chat"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/editor/Editor.jsx:320
+#: src/admin/editor/Editor.jsx:324
 msgid "Changes not live"
 msgstr ""
 
@@ -3892,7 +4127,7 @@ msgid "Open Settings"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:69
+#: src/admin/screens/AnalyticsScreen.jsx:71
 #: src/admin/screens/Dashboard.jsx:76
 msgid "Last 7 days"
 msgstr ""
@@ -3909,13 +4144,13 @@ msgstr ""
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/AnalyticsScreen.jsx:10
-#: src/admin/screens/AnalyticsScreen.jsx:80
+#: src/admin/screens/AnalyticsScreen.jsx:82
 #: src/admin/screens/Dashboard.jsx:79
 msgid "Opened the chat"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:79
+#: src/admin/screens/AnalyticsScreen.jsx:81
 #: src/admin/screens/Dashboard.jsx:79
 msgid "of visitors"
 msgstr ""
@@ -3932,89 +4167,96 @@ msgid "finish"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:13
-#: src/admin/screens/AnalyticsScreen.jsx:82
+#: src/admin/screens/AnalyticsScreen.jsx:12
+#: src/admin/screens/AnalyticsScreen.jsx:84
 #: src/admin/screens/Dashboard.jsx:82
+msgid "Tapped the button"
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:14
+#: src/admin/screens/AnalyticsScreen.jsx:85
+#: src/admin/screens/Dashboard.jsx:83
 msgid "Went to WhatsApp"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:89
+#: src/admin/screens/Dashboard.jsx:90
 msgid "First steps"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:105
+#: src/admin/screens/Dashboard.jsx:106
 msgid "done"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:115
+#: src/admin/screens/Dashboard.jsx:116
 msgid "Latest leads"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:115
+#: src/admin/screens/Dashboard.jsx:116
 msgid "All leads"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:117
+#: src/admin/screens/Dashboard.jsx:118
 msgid "No leads yet"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:117
+#: src/admin/screens/Dashboard.jsx:118
 #: src/admin/screens/LeadsScreen.jsx:269
 msgid "When a visitor finishes a chat, the lead appears here."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:151
+#: src/admin/screens/Dashboard.jsx:152
 msgid "System"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:153
+#: src/admin/screens/Dashboard.jsx:154
 msgid "Automations queue"
 msgstr ""
 
 #. translators: 1: number of automations waiting, 2: number that failed.
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:155
+#: src/admin/screens/Dashboard.jsx:156
 #, js-format
 msgid "%1$d waiting, %2$d failed in the last 24 hours"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:157
+#: src/admin/screens/Dashboard.jsx:158
 msgid "Background tasks (WP-Cron)"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:158
+#: src/admin/screens/Dashboard.jsx:159
 msgid "Turned off on this site"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:158
+#: src/admin/screens/Dashboard.jsx:159
 #: src/admin/screens/IntegrationsScreen.jsx:25
 msgid "Running"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:159
+#: src/admin/screens/Dashboard.jsx:160
 #: src/admin/screens/SettingsScreen.jsx:213
 msgid "E-mail delivery"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:160
+#: src/admin/screens/Dashboard.jsx:161
 msgid "Your own SMTP server"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/Dashboard.jsx:160
+#: src/admin/screens/Dashboard.jsx:161
 msgid "WordPress mailer"
 msgstr ""
 
@@ -4030,7 +4272,7 @@ msgstr ""
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/AnalyticsScreen.jsx:10
-#: src/admin/screens/AnalyticsScreen.jsx:13
+#: src/admin/screens/AnalyticsScreen.jsx:14
 msgid "Counted by your server."
 msgstr ""
 
@@ -4041,101 +4283,107 @@ msgstr ""
 
 #: assets/admin/admin.js:1
 #: src/admin/screens/AnalyticsScreen.jsx:12
+msgid "Chats that are only a button. Counted by your server for WhatsApp, and in the visitor’s browser for links."
+msgstr ""
+
+#: assets/admin/admin.js:1
+#: src/admin/screens/AnalyticsScreen.jsx:13
 msgid "Counted by your server: this is exact."
 msgstr ""
 
 #. translators: 1: name of the measure (for example "Leads"), 2: total in the period, 3: highest daily value. Read by screen readers as the description of the chart.
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:25
+#: src/admin/screens/AnalyticsScreen.jsx:22
 #, js-format
 msgid "%1$s per day: %2$d in total, at most %3$d in a day."
 msgstr ""
 
 #. translators: 1: first day of the period, 2: last day of the period.
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:62
+#: src/admin/screens/AnalyticsScreen.jsx:64
 #, js-format
 msgid "From %1$s to %2$s"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:65
+#: src/admin/screens/AnalyticsScreen.jsx:67
 msgid "Period"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:70
+#: src/admin/screens/AnalyticsScreen.jsx:72
 msgid "Last 30 days"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:71
+#: src/admin/screens/AnalyticsScreen.jsx:73
 msgid "Last 90 days"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:80
+#: src/admin/screens/AnalyticsScreen.jsx:82
+#: src/admin/screens/AnalyticsScreen.jsx:84
 msgid "of those who saw the bubble"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:81
+#: src/admin/screens/AnalyticsScreen.jsx:83
 msgid "Finished what they started"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:82
+#: src/admin/screens/AnalyticsScreen.jsx:85
 msgid "of the leads"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:87
+#: src/admin/screens/AnalyticsScreen.jsx:90
 msgid "No data in this period yet"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:87
+#: src/admin/screens/AnalyticsScreen.jsx:90
 msgid "Numbers appear as visitors see and use your chat."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:91
+#: src/admin/screens/AnalyticsScreen.jsx:94
 msgid "Funnel"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:91
+#: src/admin/screens/AnalyticsScreen.jsx:94
 msgid "How visitors move from seeing the bubble to talking to you."
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:108
+#: src/admin/screens/AnalyticsScreen.jsx:111
 msgid "Day by day"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:108
+#: src/admin/screens/AnalyticsScreen.jsx:111
 msgid "Show chart"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:108
+#: src/admin/screens/AnalyticsScreen.jsx:111
 msgid "Show as table"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:110
+#: src/admin/screens/AnalyticsScreen.jsx:113
 #: src/admin/screens/IntegrationsScreen.jsx:362
 msgid "Show"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:116
+#: src/admin/screens/AnalyticsScreen.jsx:119
 msgid "Day"
 msgstr ""
 
 #: assets/admin/admin.js:1
-#: src/admin/screens/AnalyticsScreen.jsx:145
+#: src/admin/screens/AnalyticsScreen.jsx:148
 msgid "These numbers are counted by your own site. Nothing is sent to anyone else."
 msgstr ""
 
@@ -4456,11 +4704,6 @@ msgstr ""
 #: assets/admin/admin.js:1
 #: src/admin/screens/IntegrationsScreen.jsx:258
 msgid "Webhooks send data to another service. Add one only if you need it."
-msgstr ""
-
-#: assets/admin/admin.js:1
-#: src/admin/screens/IntegrationsScreen.jsx:265
-msgid "Address"
 msgstr ""
 
 #: assets/admin/admin.js:1

@@ -3,7 +3,7 @@ import { api, can } from '../api.js';
 import { ago, number, percent } from '../format.js';
 import { __, sprintf } from '../i18n.js';
 import { screenUrl } from '../nav.js';
-import { Badge, Button, Card, Empty, LinkButton, Notice, Spinner, useApp, useLoad } from '../ui.jsx';
+import { Badge, Button, Card, Empty, Icon, LinkButton, Notice, Spinner, useApp, useLoad } from '../ui.jsx';
 import { Onboarding } from './Onboarding.jsx';
 
 const CHECKLIST = {
@@ -95,7 +95,7 @@ export function Dashboard() {
 								return (
 									<li key={item.key} className={item.done ? 'is-done' : ''}>
 										<span className="kcf-checklist__dot" aria-hidden="true">
-											{item.done ? '✓' : ''}
+											{item.done ? <Icon name="check" size={14} /> : null}
 										</span>
 										<span>
 											{item.done || !href ? (

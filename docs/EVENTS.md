@@ -29,7 +29,8 @@ const stop = window.KrivoChatFlow.on( 'open', ( detail ) => console.log( detail 
 | `krivo_chatflow_start` | The visitor answered the first question | `flowId`, `rev` |
 | `krivo_chatflow_step` | A new step or question was shown | `flowId`, `rev`, `step`, `stepCount`, `fieldKey` |
 | `krivo_chatflow_submit` | The visitor sent the form | `flowId`, `rev`, `channel` (`whatsapp` or `message`) |
-| `krivo_chatflow_whatsapp` | The browser was sent to WhatsApp | `flowId`, `rev` |
+| `krivo_chatflow_whatsapp` | The browser was sent to WhatsApp | `flowId`, `rev` (and `mode: 'button'` for a "button only" chat) |
+| `krivo_chatflow_button` | The visitor tapped a link button of a "button only" chat (address, phone or e-mail) | `flowId`, `rev`, `mode` |
 | `krivo_chatflow_complete` | The server accepted the lead | `flowId`, `rev`, `leadId` (an opaque UUID), `channel` |
 
 ### JavaScript API

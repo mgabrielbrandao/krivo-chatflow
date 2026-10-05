@@ -53,7 +53,7 @@ import { createApi } from './api.js';
 					} else {
 						window.location.href = url;
 					}
-					emit('whatsapp', { flow: boot.id, mode: 'button' });
+					emit('whatsapp', { flowId: boot.id, rev: boot.rev, mode: 'button' });
 					return;
 				}
 				if (tab) {

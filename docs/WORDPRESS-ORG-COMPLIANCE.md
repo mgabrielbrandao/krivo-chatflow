@@ -9,7 +9,7 @@ of view of a reviewer. Every claim below is backed by something that can be re-r
 | WordPress Coding Standards (WordPress-Extra, WordPress-Docs) and PHP 7.4+ compatibility | `composer lint` | No errors, no warnings |
 | Release check over the ZIP (security patterns, WordPress.org rules, regressions from an earlier Krivo plugin) | `php bin/build-zip.php && php bin/release-check.php` | All checks pass |
 | Reproducible build (the compiled files equal a rebuild of `src/`) | part of the release check | Identical, byte for byte |
-| PHP tests against real WordPress and MariaDB | `vendor/bin/phpunit` | 539 tests, all passing |
+| PHP tests against real WordPress and MariaDB | `vendor/bin/phpunit` | 590 tests, all passing |
 | Shared PHP/JS logic tests | `npm run test:js` | 144 tests, all passing |
 | Browser tests (Chromium, real WordPress, real SMTP server, webhook receiver, axe) | `npm run test:e2e` | All passing, also on a clean install made from the ZIP with `WP_DEBUG` on |
 | Size budget | `npm run size` | Within budget (front end loader 2.1 KB gzip) |
@@ -68,7 +68,8 @@ What this audit could **not** do is listed at the end ("Limits"). Please read it
 * **Verified by**: release check "no telemetry", "no hosts other than the documented ones"; `PrivacyTest`.
 
 ### 8. Plugins may not send executable code via third-party systems
-* No remote code, no remote updates, no CDN scripts, no remote fonts or styles. The webhook payload is data (JSON),
+* No remote code, no remote updates, no CDN scripts, no remote fonts or styles. The only font is Albert Sans (SIL Open Font
+  License 1.1, `assets/fonts/albert-sans/OFL.txt`), shipped in the plugin and served from the site itself on the plugin's admin screens. The webhook payload is data (JSON),
   never code. Verified by the release check (no external hosts in JS/CSS; no `eval`).
 
 ### 9. Developers and their plugins must not do anything illegal, dishonest or morally offensive

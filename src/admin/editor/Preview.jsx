@@ -67,7 +67,7 @@ export function Preview({ flowId, config }) {
 		}
 		root.hidden = false;
 		root.classList.add('kcf-preview', 'kcf-in');
-		Panel.applyBubbleStyle(root, manifest.boot.bubble);
+		Panel.applyBubbleStyle(root, manifest.boot.bubble, manifest.boot.design.accent);
 		const tooltip = root.querySelector('.kcf-tooltip');
 		if (tooltip) {
 			tooltip.hidden = false;

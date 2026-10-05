@@ -624,11 +624,18 @@ function create(opts) {
 		// Questions that logic removed after they were answered disappear from the conversation.
 		S.log = S.log.filter((entry) => path.indexOf(entry.unitId) !== -1);
 
+		// The log is rebuilt at every step; only the messages that were not there before fade in.
+		const already = logEl.children.length;
 		clear(logEl);
 		S.log.forEach((entry) => {
 			logEl.appendChild(entry.html ? botHtml(entry.html) : bot(entry.bot));
 			if (entry.me) {
 				logEl.appendChild(h('div', { class: 'kcf-msg kcf-me' }, entry.me));
+			}
+		});
+		Array.prototype.forEach.call(logEl.children, (node, index) => {
+			if (index < already) {
+				node.classList.add('kcf-seen');
 			}
 		});
 

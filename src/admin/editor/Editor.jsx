@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from '@wordpress/element';
 import { api, can } from '../api.js';
 import { __, sprintf } from '../i18n.js';
-import { Badge, Button, Notice, Spinner, Tabs, useApp, useLoad } from '../ui.jsx';
+import { Badge, Button, Icon, Notice, Spinner, Tabs, useApp, useLoad } from '../ui.jsx';
 import { AutomationsTab } from './AutomationsTab.jsx';
 import { BubbleTab } from './BubbleTab.jsx';
 import { DesignTab } from './DesignTab.jsx';
@@ -317,7 +317,7 @@ function EditorBody({ id, initial, meta, tab, onTab, onBack, onOpen, confirm, to
 		<div className="kcf-stack">
 			<div className="kcf-row kcf-row--tight" style={{ alignItems: 'center' }}>
 				<Button small kind="ghost" onClick={onBack}>
-					← {__('All chats', 'krivo-chatflow')}
+					<Icon name="arrow-left" size={16} /> {__('All chats', 'krivo-chatflow')}
 				</Button>
 				<strong style={{ fontSize: 18 }}>{config.name || __('Untitled chat', 'krivo-chatflow')}</strong>
 				<Badge tone={published ? 'ok' : paused ? 'warn' : 'neutral'}>{published ? __('Published', 'krivo-chatflow') : paused ? __('Paused', 'krivo-chatflow') : __('Draft', 'krivo-chatflow')}</Badge>

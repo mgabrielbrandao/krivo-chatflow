@@ -18,10 +18,10 @@ It is built for fast contact and conversion: small, accessible, and honest about
 
 = What you can do =
 
-* **Three ways to ask**: one form, several steps with a progress bar, or a conversation (one question at a time, like a chat).
+* **Four ways to show it**: one form, several steps with a progress bar, a conversation (one question at a time, like a chat), or **only a button**: a floating button with a customisable welcome message (title, text and button) that opens WhatsApp, a page, a phone call or an e-mail. No form, no lead, nothing stored about the visitor.
 * **Questions that adapt**: show or hide fields, jump to another step or finish early depending on the answers.
 * **Real routing**: send each lead to a different person by budget, service, device, page or campaign. Each destination has its own WhatsApp number and e-mail addresses.
-* **WhatsApp without a paid API**: when the visitor finishes, their browser opens a `wa.me` link with the message pre-filled. Your site never talks to WhatsApp.
+* **WhatsApp without a paid API**: when the visitor finishes (or taps the button), their browser opens a `wa.me` link with the message pre-filled. Your site never talks to WhatsApp, and the number is not printed in the page of a "button only" chat: it is resolved by your server, through your routing rules, when the visitor taps.
 * **E-mail**: a notification for your team and an optional confirmation for the visitor, sent in the background. Use WordPress's mailer, your SMTP plugin, or an SMTP server configured only for this plugin.
 * **Webhooks** for n8n, Make, Zapier or your own system: signed (HMAC), retried automatically, with a log and a "send a test" button.
 * **Leads inside WordPress**: search, filter, change status, bulk actions, CSV export that Excel opens correctly.
@@ -29,13 +29,13 @@ It is built for fast contact and conversion: small, accessible, and honest about
 * **Analytics from your own site**: how many saw the bubble, opened it, started, finished and went to WhatsApp. No third party.
 * **Privacy tools**: consent field, retention period, export and erase through WordPress's own privacy tools, suggested privacy-policy text.
 * **Live preview**: the editor shows the real chat, with your changes, as you type.
-* **Templates** to start in a minute: simple contact, request a quote, support, clinic, real estate.
+* **Templates** to start in a minute: WhatsApp button, simple contact, request a quote, support, clinic, real estate.
 * **Shortcode** `[krivo_chatflow id="123"]` to place a chat inside a page, and a small JavaScript API and events for developers.
 
 = Built to be light and safe =
 
 * The bubble is printed by the server and costs one small script and one small stylesheet. The chat window code is only downloaded when a visitor shows interest.
-* No jQuery, no web fonts, no CDN, no cookies set by the widget.
+* No jQuery, no CDN, no cookies set by the widget, and no web font on your visitors' pages. The admin screens of the plugin use a font that ships inside the plugin.
 * Works with keyboard and screen readers; tested with an automated accessibility checker and in a real browser.
 * Every admin action checks capabilities and nonces; SQL is prepared; output is escaped; the REST API has real permission callbacks.
 * No telemetry. The plugin never contacts Krivo Works or anyone else on its own. See "External services" below.
@@ -113,7 +113,7 @@ The widget is independent of any builder and does not use hacks for any of them.
 == Changelog ==
 
 = 0.1.0 =
-* First release.
+* First release. Includes the "button only" mode and the Krivo visual identity (admin and chat window).
 
 == Upgrade Notice ==
 
@@ -165,3 +165,5 @@ The compiled files in `assets/` are built from the readable sources in the plugi
 The development repository, with the same sources and the automated tests, is at https://github.com/mgabrielbrandao/krivo-chatflow
 
 Third-party libraries bundled in the plugin: none. The admin app uses the copies of React, `wp-i18n` and `wp-api-fetch` that ship with WordPress.
+
+Bundled font: **Albert Sans** (Copyright 2021 The Albert Sans Project Authors, https://github.com/usted/Albert-Sans), licensed under the SIL Open Font License 1.1. The two `.woff2` files and the licence text are in `assets/fonts/albert-sans/`. They are served from your own site, only on the plugin's admin screens; no font service is contacted.

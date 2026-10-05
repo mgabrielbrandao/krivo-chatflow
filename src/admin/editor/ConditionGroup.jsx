@@ -1,5 +1,5 @@
 import { __ } from '../i18n.js';
-import { Button, SelectField } from '../ui.jsx';
+import { Button, Icon, SelectField } from '../ui.jsx';
 
 export const OPERATORS = [
 	['eq', __('is', 'krivo-chatflow')],
@@ -88,7 +88,7 @@ export function ConditionGroup({ group, onChange, fields, context, max = 10, lab
 							<span />
 						)}
 						<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" aria-label={__('Remove condition', 'krivo-chatflow')} disabled={conditions.length <= 1} onClick={() => onChange({ ...group, conditions: conditions.filter((_, i) => i !== index) })}>
-							✕
+							<Icon name="x" size={18} />
 						</button>
 					</div>
 				);

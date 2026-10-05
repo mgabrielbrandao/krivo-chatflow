@@ -303,7 +303,7 @@ class FlowTest extends Krivo_TestCase {
 		$this->assertSame( 'circle', $b['shape'] );
 		$this->assertSame( 'bottom-right', $b['position'] );
 		$this->assertSame( 'none', $b['animation'] );
-		$this->assertSame( '#7B2FF7', $b['colors']['bg'], 'Invalid colour falls back to the default' );
+		$this->assertSame( '#171519', $b['colors']['bg'], 'Invalid colour falls back to the default' );
 		$this->assertSame( '#ABC', $b['colors']['icon'] );
 		$this->assertSame( '', $b['colors']['border'] );
 		$this->assertSame( 'Hi', $b['tooltip']['text'] );

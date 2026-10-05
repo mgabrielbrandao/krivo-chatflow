@@ -1,5 +1,5 @@
 import { __, sprintf } from '../i18n.js';
-import { Button, Card, Notice, SelectField, TextField, useApp } from '../ui.jsx';
+import { Button, Card, Icon, Notice, SelectField, TextField, useApp } from '../ui.jsx';
 import { ConditionGroup } from './ConditionGroup.jsx';
 import { allFields, randomId } from './helpers.js';
 
@@ -97,7 +97,7 @@ export function LogicTab({ config, update, meta }) {
 											/>
 										) : null}
 										<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" style={{ flex: '0 0 auto', marginBottom: 3 }} aria-label={__('Remove action', 'krivo-chatflow')} onClick={() => setRule(index, { ...rule, then: rule.then.filter((_, i) => i !== ai) })}>
-											✕
+											<Icon name="x" size={18} />
 										</button>
 									</div>
 								);

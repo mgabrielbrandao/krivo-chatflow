@@ -2,7 +2,7 @@ import { useState } from '@wordpress/element';
 import { api, can } from '../api.js';
 import { dateTime } from '../format.js';
 import { __, _n, sprintf } from '../i18n.js';
-import { Badge, Button, Card, CheckField, Empty, Modal, Notice, NumberField, Pagination, SelectField, Spinner, TextField, Toggle, useApp, useLoad } from '../ui.jsx';
+import { Badge, Button, Card, CheckField, Empty, Icon, Modal, Notice, NumberField, Pagination, SelectField, Spinner, TextField, Toggle, useApp, useLoad } from '../ui.jsx';
 
 const PRESETS = [
 	{ value: 'custom', label: __('Any webhook', 'krivo-chatflow') },
@@ -173,7 +173,7 @@ function ConnectionForm({ initial, notice, onClose, onSaved }) {
 									<TextField label={index === 0 ? __('Value', 'krivo-chatflow') : undefined} type={header.secret ? 'password' : 'text'} value={header.value} onChange={(value) => setHeader({ value })} placeholder={header.secret && header.has_value ? __('Saved. Leave empty to keep.', 'krivo-chatflow') : ''} autoComplete="off" maxLength={500} />
 									<CheckField label={__('Secret', 'krivo-chatflow')} checked={header.secret} onChange={(on) => setHeader({ secret: on })} />
 									<button type="button" className="kcf-icon-btn kcf-icon-btn--danger" aria-label={__('Remove header', 'krivo-chatflow')} onClick={() => set({ headers: c.headers.filter((_, i) => i !== index) })}>
-										✕
+										<Icon name="x" size={18} />
 									</button>
 								</div>
 							);

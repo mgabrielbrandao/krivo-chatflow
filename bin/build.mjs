@@ -47,7 +47,8 @@ try {
 				},
 			],
 		},
-		{ ...common, entryPoints: ['src/admin/admin.css'], outfile: join(outRoot, 'assets/admin/admin.css') }
+		// The font files are shipped in assets/fonts/ and referenced relative to the compiled stylesheet.
+		{ ...common, entryPoints: ['src/admin/admin.css'], outfile: join(outRoot, 'assets/admin/admin.css'), external: ['../fonts/*'] }
 	);
 } catch (e) {
 	/* no admin sources yet */
