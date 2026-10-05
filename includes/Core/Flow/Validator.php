@@ -32,9 +32,9 @@ final class Validator {
 		$errors   = array();
 		$warnings = array();
 
-		$fields = Builder::fields( $config );
-		$keys   = array();
-		$ids    = array();
+		$fields   = Builder::fields( $config );
+		$keys     = array();
+		$ids      = array();
 		$collects = 0;
 		foreach ( $fields as $field ) {
 			$ids[ $field['id'] ] = $field;
@@ -91,7 +91,7 @@ final class Validator {
 		}
 
 		// WhatsApp needs somewhere to send the visitor.
-		$uses_whatsapp = false;
+		$uses_whatsapp         = false;
 		$uses_destination_mail = false;
 		foreach ( $config['automations'] as $automation ) {
 			if ( ! $automation['enabled'] ) {
@@ -116,7 +116,7 @@ final class Validator {
 				}
 			}
 		}
-		if ( $uses_whatsapp && ! self::has_whatsapp_destination( $config ) ) {
+		if ( $uses_whatsapp && ! self::has_whatsapp_destination() ) {
 			$errors[] = self::item( 'no_whatsapp_destination', __( 'WhatsApp is turned on, but there is no destination with a WhatsApp number. Add one in Routing.', 'krivo-chatflow' ), '' );
 		}
 		if ( $uses_destination_mail && ! self::has_destination_email() ) {
@@ -172,10 +172,9 @@ final class Validator {
 	/**
 	 * Whether any destination that could receive this flow has a WhatsApp number.
 	 *
-	 * @param array $config Flow configuration.
 	 * @return bool
 	 */
-	private static function has_whatsapp_destination( array $config ): bool {
+	private static function has_whatsapp_destination(): bool {
 		$routing = RoutingRepository::get();
 		foreach ( $routing['destinations'] as $destination ) {
 			if ( '' !== (string) $destination['whatsapp'] ) {

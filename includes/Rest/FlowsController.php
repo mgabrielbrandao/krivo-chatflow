@@ -128,7 +128,11 @@ final class FlowsController extends AdminController {
 			)
 		);
 
-		foreach ( array( 'dry-run' => 'dry_run', 'preview' => 'preview', 'preview-link' => 'preview_link' ) as $path => $method ) {
+		foreach ( array(
+			'dry-run'      => 'dry_run',
+			'preview'      => 'preview',
+			'preview-link' => 'preview_link',
+		) as $path => $method ) {
 			register_rest_route(
 				self::NAMESPACE,
 				'/flows/(?P<id>\d+)/' . $path,
@@ -398,12 +402,12 @@ final class FlowsController extends AdminController {
 	public static function meta(): \WP_REST_Response {
 		return self::ok(
 			array(
-				'field_types' => FieldRegistry::describe(),
-				'operators'   => Evaluator::OPERATORS,
-				'automations' => AutomationRegistry::describe(),
-				'statuses'    => LeadRepository::STATUSES,
-				'defaults'    => Defaults::blank(),
-				'options'     => array(
+				'field_types'   => FieldRegistry::describe(),
+				'operators'     => Evaluator::OPERATORS,
+				'automations'   => AutomationRegistry::describe(),
+				'statuses'      => LeadRepository::STATUSES,
+				'defaults'      => Defaults::blank(),
+				'options'       => array(
 					'modes'      => Defaults::MODES,
 					'shapes'     => Defaults::SHAPES,
 					'positions'  => Defaults::POSITIONS,
@@ -412,7 +416,7 @@ final class FlowsController extends AdminController {
 					'themes'     => Defaults::THEMES,
 					'devices'    => Defaults::DEVICES,
 				),
-				'limits'      => array(
+				'limits'        => array(
 					'steps'       => Sanitizer::MAX_STEPS,
 					'fields'      => Sanitizer::MAX_FIELDS,
 					'options'     => Sanitizer::MAX_OPTIONS,
@@ -420,14 +424,14 @@ final class FlowsController extends AdminController {
 					'conditions'  => Sanitizer::MAX_CONDITIONS,
 					'automations' => Sanitizer::MAX_AUTOMATIONS,
 				),
-				'credit_url'  => KRIVO_CHATFLOW_CREDIT_URL,
+				'credit_url'    => KRIVO_CHATFLOW_CREDIT_URL,
 				// The built-in icons, rendered by PHP (the same markup the visitor gets).
-				'icons'       => array_combine(
+				'icons'         => array_combine(
 					\Krivo\ChatFlow\Frontend\Icons::names(),
 					array_map( array( \Krivo\ChatFlow\Frontend\Icons::class, 'svg' ), \Krivo\ChatFlow\Frontend\Icons::names() )
 				),
 				// Names only: enough to choose from, without numbers or e-mail addresses.
-				'destinations' => array_map(
+				'destinations'  => array_map(
 					static function ( $destination ) {
 						return array(
 							'id'       => $destination['id'],
@@ -438,7 +442,7 @@ final class FlowsController extends AdminController {
 					},
 					RoutingRepository::get()['destinations']
 				),
-				'connections'  => current_user_can( Capabilities::VIEW_INTEGRATIONS )
+				'connections'   => current_user_can( Capabilities::VIEW_INTEGRATIONS )
 					? array_map(
 						static function ( $connection ) {
 							return array(
@@ -452,8 +456,8 @@ final class FlowsController extends AdminController {
 					)
 					: array(),
 				'autoresponder' => \Krivo\ChatFlow\Automation\Actions\SendEmail::autoresponder_defaults(),
-				'admin_email'  => (string) get_option( 'admin_email' ),
-				'default_dial' => (string) \Krivo\ChatFlow\Core\Settings\Settings::get( 'general.default_dial_code', '' ),
+				'admin_email'   => (string) get_option( 'admin_email' ),
+				'default_dial'  => (string) \Krivo\ChatFlow\Core\Settings\Settings::get( 'general.default_dial_code', '' ),
 			)
 		);
 	}

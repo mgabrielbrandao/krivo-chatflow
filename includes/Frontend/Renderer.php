@@ -37,7 +37,7 @@ final class Renderer {
 			$classes[] = 'kcf-shadow';
 		}
 
-		$html  = '<div id="krivo-chatflow-root" class="kcf-root kcf-pos-' . esc_attr( sanitize_html_class( (string) $bubble['position'] ) ) . '" data-kcf-flow="' . esc_attr( (string) (int) $boot['id'] ) . '" hidden>';
+		$html = '<div id="krivo-chatflow-root" class="kcf-root kcf-pos-' . esc_attr( sanitize_html_class( (string) $bubble['position'] ) ) . '" data-kcf-flow="' . esc_attr( (string) (int) $boot['id'] ) . '" hidden>';
 		if ( ! empty( $tooltip['enabled'] ) ) {
 			$html .= '<div class="kcf-tooltip" role="status" hidden>';
 			$html .= '<span class="kcf-tooltip-text">' . esc_html( (string) $tooltip['text'] ) . '</span>';

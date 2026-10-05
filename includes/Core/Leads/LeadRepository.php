@@ -123,7 +123,7 @@ final class LeadRepository {
 
 		$sql_values = array_merge( $values, array( $per_page, $offset ) );
 		$rows       = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->prepare( "SELECT * FROM {$table} WHERE {$where} ORDER BY {$orderby} {$order}, id DESC LIMIT %d OFFSET %d", $sql_values ), // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->prepare( "SELECT * FROM {$table} WHERE {$where} ORDER BY {$orderby} {$order}, id DESC LIMIT %d OFFSET %d", $sql_values ), // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
 			ARRAY_A
 		);
 
@@ -143,17 +143,18 @@ final class LeadRepository {
 	 */
 	public static function each( array $args, callable $callback, int $batch = 500 ): void {
 		global $wpdb;
-		$table = Tables::leads();
+		$table                  = Tables::leads();
 		list( $where, $values ) = self::where( $args );
-		$last_id = PHP_INT_MAX;
+		$last_id                = PHP_INT_MAX;
 		do {
-			$sql  = $wpdb->prepare( "SELECT * FROM {$table} WHERE {$where} AND id < %d ORDER BY id DESC LIMIT %d", array_merge( $values, array( $last_id, $batch ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
-			$rows = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
+			$sql     = $wpdb->prepare( "SELECT * FROM {$table} WHERE {$where} AND id < %d ORDER BY id DESC LIMIT %d", array_merge( $values, array( $last_id, $batch ) ) ); // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
+			$rows    = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
+			$fetched = is_array( $rows ) ? count( $rows ) : 0;
 			foreach ( (array) $rows as $row ) {
 				$last_id = (int) $row['id'];
 				call_user_func( $callback, self::hydrate( $row ) );
 			}
-		} while ( is_array( $rows ) && count( $rows ) === $batch );
+		} while ( $fetched === $batch );
 	}
 
 	/**
@@ -170,7 +171,16 @@ final class LeadRepository {
 			return null;
 		}
 		if ( $lead['status'] !== $status ) {
-			$wpdb->update( Tables::leads(), array( 'status' => $status, 'updated_at' => Clock::now() ), array( 'id' => $id ), array( '%s', '%s' ), array( '%d' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->update(
+				Tables::leads(),
+				array(
+					'status'     => $status,
+					'updated_at' => Clock::now(),
+				),
+				array( 'id' => $id ),
+				array( '%s', '%s' ),
+				array( '%d' )
+			); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		}
 		return array(
 			'from' => $lead['status'],
@@ -188,7 +198,17 @@ final class LeadRepository {
 	 */
 	public static function update_destination( int $id, string $key, string $label ): void {
 		global $wpdb;
-		$wpdb->update( Tables::leads(), array( 'destination_key' => $key, 'destination_label' => $label, 'updated_at' => Clock::now() ), array( 'id' => $id ), array( '%s', '%s', '%s' ), array( '%d' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->update(
+			Tables::leads(),
+			array(
+				'destination_key'   => $key,
+				'destination_label' => $label,
+				'updated_at'        => Clock::now(),
+			),
+			array( 'id' => $id ),
+			array( '%s', '%s', '%s' ),
+			array( '%d' )
+		); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	}
 
 	/**
@@ -206,8 +226,8 @@ final class LeadRepository {
 		$placeholders = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
 		$runs         = Tables::runs();
 		$leads        = Tables::leads();
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$runs} WHERE lead_id IN ({$placeholders})", $ids ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
-		$deleted = $wpdb->query( $wpdb->prepare( "DELETE FROM {$leads} WHERE id IN ({$placeholders})", $ids ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$runs} WHERE lead_id IN ({$placeholders})", $ids ) ); // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
+		$deleted = $wpdb->query( $wpdb->prepare( "DELETE FROM {$leads} WHERE id IN ({$placeholders})", $ids ) ); // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
 		return (int) $deleted;
 	}
 

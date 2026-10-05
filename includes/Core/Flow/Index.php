@@ -71,7 +71,8 @@ final class Index {
 		uasort(
 			$index,
 			static function ( $a, $b ) {
-				return $b['priority'] <=> $a['priority'] ?: $a['id'] <=> $b['id'];
+				$by_priority = $b['priority'] <=> $a['priority'];
+				return 0 !== $by_priority ? $by_priority : $a['id'] <=> $b['id'];
 			}
 		);
 		update_option( self::OPTION, $index, true );

@@ -105,12 +105,12 @@ function create(opts) {
 	const status = h('p', { class: 'kcf-status', hidden: true });
 	const closeButton = h('button', { type: 'button', class: 'kcf-close', 'aria-label': bi18n.close || 'Close' }, icon(ICONS.close, true));
 	const body = h('div', { class: 'kcf-body' });
-	const foot = h('footer', { class: 'kcf-foot', hidden: true });
+	const foot = h('div', { class: 'kcf-foot', hidden: true });
 	const panel = h(
 		'section',
 		{ class: 'kcf-panel' + (inline ? ' kcf-inline' : ''), id: inline ? null : 'krivo-chatflow-panel', role: 'dialog', 'aria-labelledby': id + '-title', 'aria-modal': 'false', 'data-theme': theme, 'data-mode': boot.mode, hidden: !inline, tabindex: '-1' },
 		h(
-			'header',
+			'div', // Not <header>: that would be a second "banner" landmark on the page.
 			{ class: 'kcf-head' },
 			boot.design.avatar_url ? h('img', { class: 'kcf-avatar', src: boot.design.avatar_url, alt: '', width: 40, height: 40 }) : null,
 			h('div', { class: 'kcf-head-text' }, title, boot.design.subtitle ? h('p', { class: 'kcf-sub' }, boot.design.subtitle) : null, status),

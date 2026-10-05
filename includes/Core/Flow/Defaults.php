@@ -116,11 +116,11 @@ final class Defaults {
 				),
 			),
 			'behavior'    => array(
-				'trigger'          => 'delay',
-				'delay'            => 3,
-				'scroll_percent'   => 30,
-				'auto_open'        => false,
-				'auto_open_once'   => true,
+				'trigger'        => 'delay',
+				'delay'          => 3,
+				'scroll_percent' => 30,
+				'auto_open'      => false,
+				'auto_open_once' => true,
 			),
 			'display'     => array(
 				'priority' => 10,

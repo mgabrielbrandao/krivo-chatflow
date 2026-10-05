@@ -128,9 +128,9 @@ final class SystemController extends AdminController {
 			'health'    => self::health_report(),
 		);
 		if ( current_user_can( Capabilities::VIEW_ANALYTICS ) ) {
-			$to           = Clock::site_day();
-			$from         = wp_date( 'Y-m-d', Clock::time() - 6 * DAY_IN_SECONDS );
-			$totals       = StatsRepository::totals( $from, $to );
+			$to            = Clock::site_day();
+			$from          = wp_date( 'Y-m-d', Clock::time() - 6 * DAY_IN_SECONDS );
+			$totals        = StatsRepository::totals( $from, $to );
 			$out['funnel'] = array(
 				'from'   => $from,
 				'to'     => $to,
@@ -143,8 +143,13 @@ final class SystemController extends AdminController {
 			foreach ( FlowRepository::all() as $flow ) {
 				$titles[ $flow['id'] ] = $flow['title'];
 			}
-			$latest        = LeadRepository::query( array( 'per_page' => 5, 'status_not' => 'spam' ) );
-			$out['leads']  = array(
+			$latest       = LeadRepository::query(
+				array(
+					'per_page'   => 5,
+					'status_not' => 'spam',
+				)
+			);
+			$out['leads'] = array(
 				'total'  => $latest['total'],
 				'counts' => LeadRepository::status_counts(),
 				'latest' => array_map(
@@ -229,18 +234,23 @@ final class SystemController extends AdminController {
 	 * @return array[]
 	 */
 	private static function checklist(): array {
-		$flows      = FlowRepository::all();
-		$published  = array_filter(
+		$flows     = FlowRepository::all();
+		$published = array_filter(
 			$flows,
 			static function ( $flow ) {
 				return 'published' === $flow['status'];
 			}
 		);
-		$routing    = RoutingRepository::get();
-		$has_dest   = array() !== $routing['destinations'];
-		$leads      = LeadRepository::query( array( 'per_page' => 1, 'status_not' => 'spam' ) )['total'];
-		$last       = get_option( SettingsController::EMAIL_TEST_OPTION, array() );
-		$mail_ok    = is_array( $last ) && 'ok' === ( $last['status'] ?? '' );
+		$routing   = RoutingRepository::get();
+		$has_dest  = array() !== $routing['destinations'];
+		$leads     = LeadRepository::query(
+			array(
+				'per_page'   => 1,
+				'status_not' => 'spam',
+			)
+		)['total'];
+		$last      = get_option( SettingsController::EMAIL_TEST_OPTION, array() );
+		$mail_ok   = is_array( $last ) && 'ok' === ( $last['status'] ?? '' );
 
 		return array(
 			array(

@@ -77,15 +77,42 @@ final class PrivacyTools {
 		$data = array();
 		foreach ( $leads as $lead ) {
 			$item = array(
-				array( 'name' => __( 'Chat', 'krivo-chatflow' ), 'value' => $titles[ $lead['flow_id'] ] ?? (string) $lead['flow_id'] ),
-				array( 'name' => __( 'Date', 'krivo-chatflow' ), 'value' => Clock::iso( (string) $lead['created_at'] ) ),
-				array( 'name' => __( 'Name', 'krivo-chatflow' ), 'value' => (string) $lead['name'] ),
-				array( 'name' => __( 'E-mail', 'krivo-chatflow' ), 'value' => (string) $lead['email'] ),
-				array( 'name' => __( 'Phone', 'krivo-chatflow' ), 'value' => (string) $lead['phone'] ),
-				array( 'name' => __( 'Status', 'krivo-chatflow' ), 'value' => (string) $lead['status'] ),
-				array( 'name' => __( 'Page', 'krivo-chatflow' ), 'value' => (string) $lead['page_url'] ),
-				array( 'name' => __( 'Referrer', 'krivo-chatflow' ), 'value' => (string) $lead['referrer'] ),
-				array( 'name' => __( 'Campaign', 'krivo-chatflow' ), 'value' => trim( $lead['utm_source'] . ' ' . $lead['utm_medium'] . ' ' . $lead['utm_campaign'] ) ),
+				array(
+					'name'  => __( 'Chat', 'krivo-chatflow' ),
+					'value' => $titles[ $lead['flow_id'] ] ?? (string) $lead['flow_id'],
+				),
+				array(
+					'name'  => __( 'Date', 'krivo-chatflow' ),
+					'value' => Clock::iso( (string) $lead['created_at'] ),
+				),
+				array(
+					'name'  => __( 'Name', 'krivo-chatflow' ),
+					'value' => (string) $lead['name'],
+				),
+				array(
+					'name'  => __( 'E-mail', 'krivo-chatflow' ),
+					'value' => (string) $lead['email'],
+				),
+				array(
+					'name'  => __( 'Phone', 'krivo-chatflow' ),
+					'value' => (string) $lead['phone'],
+				),
+				array(
+					'name'  => __( 'Status', 'krivo-chatflow' ),
+					'value' => (string) $lead['status'],
+				),
+				array(
+					'name'  => __( 'Page', 'krivo-chatflow' ),
+					'value' => (string) $lead['page_url'],
+				),
+				array(
+					'name'  => __( 'Referrer', 'krivo-chatflow' ),
+					'value' => (string) $lead['referrer'],
+				),
+				array(
+					'name'  => __( 'Campaign', 'krivo-chatflow' ),
+					'value' => trim( $lead['utm_source'] . ' ' . $lead['utm_medium'] . ' ' . $lead['utm_campaign'] ),
+				),
 			);
 			foreach ( (array) $lead['answers'] as $answer ) {
 				if ( is_array( $answer ) ) {

@@ -93,14 +93,38 @@ final class RoutingController extends AdminController {
 				'flows'   => $flows,
 				'fields'  => array_values( $fields ),
 				'context' => array(
-					array( 'key' => 'page_path', 'label' => __( 'Page path', 'krivo-chatflow' ) ),
-					array( 'key' => 'page_url', 'label' => __( 'Page address', 'krivo-chatflow' ) ),
-					array( 'key' => 'referrer', 'label' => __( 'Referrer', 'krivo-chatflow' ) ),
-					array( 'key' => 'utm_source', 'label' => __( 'Campaign source', 'krivo-chatflow' ) ),
-					array( 'key' => 'utm_medium', 'label' => __( 'Campaign medium', 'krivo-chatflow' ) ),
-					array( 'key' => 'utm_campaign', 'label' => __( 'Campaign name', 'krivo-chatflow' ) ),
-					array( 'key' => 'device', 'label' => __( 'Device (desktop, tablet, mobile)', 'krivo-chatflow' ) ),
-					array( 'key' => 'in_hours', 'label' => __( 'Within business hours (yes/no)', 'krivo-chatflow' ) ),
+					array(
+						'key'   => 'page_path',
+						'label' => __( 'Page path', 'krivo-chatflow' ),
+					),
+					array(
+						'key'   => 'page_url',
+						'label' => __( 'Page address', 'krivo-chatflow' ),
+					),
+					array(
+						'key'   => 'referrer',
+						'label' => __( 'Referrer', 'krivo-chatflow' ),
+					),
+					array(
+						'key'   => 'utm_source',
+						'label' => __( 'Campaign source', 'krivo-chatflow' ),
+					),
+					array(
+						'key'   => 'utm_medium',
+						'label' => __( 'Campaign medium', 'krivo-chatflow' ),
+					),
+					array(
+						'key'   => 'utm_campaign',
+						'label' => __( 'Campaign name', 'krivo-chatflow' ),
+					),
+					array(
+						'key'   => 'device',
+						'label' => __( 'Device (desktop, tablet, mobile)', 'krivo-chatflow' ),
+					),
+					array(
+						'key'   => 'in_hours',
+						'label' => __( 'Within business hours (yes/no)', 'krivo-chatflow' ),
+					),
 				),
 			)
 		);

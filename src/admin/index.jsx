@@ -24,7 +24,7 @@ function App() {
 	const [title, Screen] = SCREENS[config.screen] || SCREENS.dashboard;
 	return (
 		<Providers>
-			<header className="kcf-head">
+			<div className="kcf-head">
 				<img className="kcf-head__logo" src={config.images.symbol} alt="" width="36" height="36" />
 				<div className="kcf-head__titles">
 					<div className="kcf-head__brand">Krivo ChatFlow</div>
@@ -32,7 +32,7 @@ function App() {
 						{title()}
 					</div>
 				</div>
-			</header>
+			</div>
 			<Screen />
 		</Providers>
 	);

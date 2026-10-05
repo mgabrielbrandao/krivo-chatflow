@@ -42,14 +42,14 @@ final class Mailer {
 
 		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 		if ( ! empty( $options['reply_to'] ) && is_email( $options['reply_to'] ) ) {
-			$name = trim( (string) preg_replace( '/["<>,;\r\n]+/', ' ', (string) ( $options['reply_to_name'] ?? '' ) ) );
-			$name = Text::limit( Text::single_line( $name ), 80 );
+			$name      = trim( (string) preg_replace( '/["<>,;\r\n]+/', ' ', (string) ( $options['reply_to_name'] ?? '' ) ) );
+			$name      = Text::limit( Text::single_line( $name ), 80 );
 			$headers[] = 'Reply-To: ' . ( '' !== $name ? $name . ' ' : '' ) . '<' . $options['reply_to'] . '>'; // wp_mail() and PHPMailer quote the display name.
 		} elseif ( '' !== $config['reply_to'] ) {
 			$headers[] = 'Reply-To: <' . $config['reply_to'] . '>';
 		}
 
-		$on_init = static function ( $phpmailer ) use ( $config, $custom, $text, $options, $capture ) {
+		$on_init    = static function ( $phpmailer ) use ( $config, $custom, $text, $options, $capture ) {
 			$phpmailer->AltBody = $text;
 			if ( ! $custom ) {
 				return;
@@ -72,7 +72,7 @@ final class Mailer {
 				};
 			}
 		};
-		$on_failed = static function ( $error ) use ( $capture ) {
+		$on_failed  = static function ( $error ) use ( $capture ) {
 			if ( $error instanceof \WP_Error ) {
 				$capture->error = $error->get_error_message();
 			}
@@ -85,7 +85,7 @@ final class Mailer {
 			// valid address and PHPMailer refuses to send. Only then, use the administrator's address.
 			return \PHPMailer\PHPMailer\PHPMailer::validateAddress( (string) $email ) ? $email : (string) get_option( 'admin_email' );
 		};
-		$from_name = static function ( $name ) use ( $config, $custom ) {
+		$from_name  = static function ( $name ) use ( $config, $custom ) {
 			return $custom && '' !== $config['from_name'] ? $config['from_name'] : $name;
 		};
 

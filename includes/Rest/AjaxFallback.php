@@ -1,6 +1,6 @@
 <?php
 /**
- * admin-ajax fallback for the public endpoints.
+ * The admin-ajax fallback for the public endpoints.
  *
  * @package Krivo\ChatFlow
  */

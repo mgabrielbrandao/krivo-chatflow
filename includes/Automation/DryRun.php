@@ -115,9 +115,9 @@ final class DryRun {
 					'reason'        => null === $composed['skip'] ? '' : $composed['skip']->error_message,
 				);
 				if ( null !== $composed['args'] ) {
-					$entry['to']      = array_values( (array) $composed['args']['to'] );
-					$entry['subject'] = (string) $composed['args']['subject'];
-					$entry['text']    = (string) $composed['args']['text'];
+					$entry['to']       = array_values( (array) $composed['args']['to'] );
+					$entry['subject']  = (string) $composed['args']['subject'];
+					$entry['text']     = (string) $composed['args']['text'];
 					$entry['reply_to'] = (string) ( $composed['args']['options']['reply_to'] ?? '' );
 				}
 				$report['emails'][] = $entry;

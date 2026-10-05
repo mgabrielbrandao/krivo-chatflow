@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Holds the CREATE TABLE statements for dbDelta().
  *
- * dbDelta is picky: two spaces after PRIMARY KEY, one column per line, no trailing comma,
+ * The dbDelta function is picky: two spaces after PRIMARY KEY, one column per line, no trailing comma,
  * index prefixes for utf8mb4 columns, and JSON stored in longtext (MySQL 5.5.5 / MariaDB compatible).
  */
 final class Schema {

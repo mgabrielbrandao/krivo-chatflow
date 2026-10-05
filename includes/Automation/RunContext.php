@@ -92,6 +92,7 @@ final class RunContext {
 	 */
 	public function vars(): array {
 		if ( null === $this->vars ) {
+			$created    = strtotime( ( $this->lead['created_at'] ?? 'now' ) . ' UTC' );
 			$this->vars = Builder::build(
 				$this->flow,
 				$this->answers(),
@@ -99,7 +100,7 @@ final class RunContext {
 					'tracking'    => $this->tracking(),
 					'lead_id'     => $this->lead['id'] ?? '',
 					'destination' => $this->lead['destination_label'] ?? '',
-					'timestamp'   => strtotime( ( $this->lead['created_at'] ?? 'now' ) . ' UTC' ) ?: time(),
+					'timestamp'   => $created ? $created : time(),
 				)
 			);
 		}

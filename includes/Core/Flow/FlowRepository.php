@@ -205,7 +205,16 @@ final class FlowRepository {
 		if ( null === $flow || self::PUBLISHED !== $flow['status'] ) {
 			return false;
 		}
-		$wpdb->update( Tables::flows(), array( 'status' => self::PAUSED, 'updated_at' => Clock::now() ), array( 'id' => $id ), array( '%s', '%s' ), array( '%d' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->update(
+			Tables::flows(),
+			array(
+				'status'     => self::PAUSED,
+				'updated_at' => Clock::now(),
+			),
+			array( 'id' => $id ),
+			array( '%s', '%s' ),
+			array( '%d' )
+		); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		Index::rebuild();
 		return true;
 	}
@@ -239,7 +248,7 @@ final class FlowRepository {
 		if ( null === $flow ) {
 			return 0;
 		}
-		$config         = $flow['draft'];
+		$config = $flow['draft'];
 		/* translators: %s: flow name. */
 		$config['name'] = sprintf( __( '%s (copy)', 'krivo-chatflow' ), $config['name'] );
 		// Fresh ids avoid two flows sharing ids in logs and logic.

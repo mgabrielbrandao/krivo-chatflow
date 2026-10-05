@@ -12,7 +12,8 @@
 		"build:dev": "node bin/build.mjs --dev",
 		"watch": "node bin/build.mjs --dev --watch",
 		"test:js": "node --test tests/js/*.test.mjs",
-		"test:e2e": "node tests/e2e/run.mjs"
+		"test:e2e": "node tests/e2e/run.mjs",
+		"size": "node bin/size-budget.mjs"
 	},
 	"devDependencies": {
 		"axe-core": "^4.10.0",

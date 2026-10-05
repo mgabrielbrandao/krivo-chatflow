@@ -20,8 +20,8 @@ final class LeadPresenter {
 	/**
 	 * Compact form for tables.
 	 *
-	 * @param array                $lead        Stored lead.
-	 * @param array<int,string>    $flow_titles Flow id => title.
+	 * @param array             $lead        Stored lead.
+	 * @param array<int,string> $flow_titles Flow id => title.
 	 * @return array
 	 */
 	public static function summary( array $lead, array $flow_titles = array() ): array {

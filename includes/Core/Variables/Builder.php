@@ -63,20 +63,20 @@ final class Builder {
 		$timestamp = isset( $meta['timestamp'] ) ? (int) $meta['timestamp'] : time();
 
 		$vars = array(
-			'page_url'      => (string) ( $tracking['page_url'] ?? '' ),
-			'page_title'    => (string) ( $tracking['page_title'] ?? '' ),
-			'referrer'      => (string) ( $tracking['referrer'] ?? '' ),
-			'utm_source'    => (string) ( $tracking['utm_source'] ?? '' ),
-			'utm_medium'    => (string) ( $tracking['utm_medium'] ?? '' ),
-			'utm_campaign'  => (string) ( $tracking['utm_campaign'] ?? '' ),
-			'utm_content'   => (string) ( $tracking['utm_content'] ?? '' ),
-			'utm_term'      => (string) ( $tracking['utm_term'] ?? '' ),
-			'site_name'     => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
-			'flow_name'     => (string) ( $flow['name'] ?? '' ),
-			'date'          => wp_date( (string) get_option( 'date_format', 'Y-m-d' ), $timestamp ),
-			'time'          => wp_date( (string) get_option( 'time_format', 'H:i' ), $timestamp ),
-			'lead_id'       => isset( $meta['lead_id'] ) ? (string) $meta['lead_id'] : '',
-			'destination'   => (string) ( $meta['destination'] ?? '' ),
+			'page_url'     => (string) ( $tracking['page_url'] ?? '' ),
+			'page_title'   => (string) ( $tracking['page_title'] ?? '' ),
+			'referrer'     => (string) ( $tracking['referrer'] ?? '' ),
+			'utm_source'   => (string) ( $tracking['utm_source'] ?? '' ),
+			'utm_medium'   => (string) ( $tracking['utm_medium'] ?? '' ),
+			'utm_campaign' => (string) ( $tracking['utm_campaign'] ?? '' ),
+			'utm_content'  => (string) ( $tracking['utm_content'] ?? '' ),
+			'utm_term'     => (string) ( $tracking['utm_term'] ?? '' ),
+			'site_name'    => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+			'flow_name'    => (string) ( $flow['name'] ?? '' ),
+			'date'         => wp_date( (string) get_option( 'date_format', 'Y-m-d' ), $timestamp ),
+			'time'         => wp_date( (string) get_option( 'time_format', 'H:i' ), $timestamp ),
+			'lead_id'      => isset( $meta['lead_id'] ) ? (string) $meta['lead_id'] : '',
+			'destination'  => (string) ( $meta['destination'] ?? '' ),
 		);
 
 		// Role variables: the first field of each kind, so templates work with any flow.

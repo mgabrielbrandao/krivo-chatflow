@@ -58,11 +58,11 @@ final class Templates {
 		$whatsapp = array_key_exists( 'whatsapp', $opts ) ? (bool) $opts['whatsapp'] : $def['whatsapp'];
 		$config   = Defaults::blank( isset( $opts['name'] ) && '' !== $opts['name'] ? (string) $opts['name'] : $def['name'] );
 
-		$config['steps'][0]['fields']   = $def['fields'];
-		$config['whatsapp']['message']  = $def['message'];
+		$config['steps'][0]['fields']        = $def['fields'];
+		$config['whatsapp']['message']       = $def['message'];
 		$config['finish']['success_message'] = __( 'Thank you, {name}! We received your message and will get back to you soon.', 'krivo-chatflow' );
 
-		$email = ( new SendEmail() )->defaults();
+		$email                 = ( new SendEmail() )->defaults();
 		$config['automations'] = array(
 			array(
 				'id'      => 'a_notify',
@@ -92,7 +92,7 @@ final class Templates {
 	 * @return array<string,array>
 	 */
 	private static function definitions(): array {
-		$f = static function ( string $type, string $label, array $extra = array() ): array {
+		$f      = static function ( string $type, string $label, array $extra = array() ): array {
 			return array_merge(
 				array(
 					'type'  => $type,
@@ -116,8 +116,22 @@ final class Templates {
 				'whatsapp'    => true,
 				'message'     => __( "Hello! My name is {name}.\n\n{all_fields}\n\nPage: {page_url}", 'krivo-chatflow' ),
 				'fields'      => array(
-					$f( 'name', __( 'Name', 'krivo-chatflow' ), array( 'required' => true, 'placeholder' => __( 'Your name', 'krivo-chatflow' ) ) ),
-					$f( 'whatsapp', __( 'WhatsApp', 'krivo-chatflow' ), array( 'required' => true, 'placeholder' => __( '(00) 00000-0000', 'krivo-chatflow' ) ) ),
+					$f(
+						'name',
+						__( 'Name', 'krivo-chatflow' ),
+						array(
+							'required'    => true,
+							'placeholder' => __( 'Your name', 'krivo-chatflow' ),
+						)
+					),
+					$f(
+						'whatsapp',
+						__( 'WhatsApp', 'krivo-chatflow' ),
+						array(
+							'required'    => true,
+							'placeholder' => __( '(00) 00000-0000', 'krivo-chatflow' ),
+						)
+					),
 					$f( 'textarea', __( 'Message', 'krivo-chatflow' ), array( 'placeholder' => __( 'How can we help?', 'krivo-chatflow' ) ) ),
 				),
 			),
@@ -150,7 +164,14 @@ final class Templates {
 					$f( 'name', __( 'Name', 'krivo-chatflow' ), array( 'required' => true ) ),
 					$f( 'email', __( 'E-mail', 'krivo-chatflow' ), array( 'required' => true ) ),
 					$f( 'text', __( 'Product', 'krivo-chatflow' ) ),
-					$f( 'textarea', __( 'Problem', 'krivo-chatflow' ), array( 'required' => true, 'placeholder' => __( 'Describe what is happening', 'krivo-chatflow' ) ) ),
+					$f(
+						'textarea',
+						__( 'Problem', 'krivo-chatflow' ),
+						array(
+							'required'    => true,
+							'placeholder' => __( 'Describe what is happening', 'krivo-chatflow' ),
+						)
+					),
 				),
 			),
 			'clinic'      => array(

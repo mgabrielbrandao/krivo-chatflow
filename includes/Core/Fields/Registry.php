@@ -181,10 +181,9 @@ final class Registry {
 	 *
 	 * @param string $code  Error code.
 	 * @param array  $args  Message arguments (min, max).
-	 * @param array  $field Field definition.
 	 * @return string
 	 */
-	public static function message( string $code, array $args = array(), array $field = array() ): string {
+	public static function message( string $code, array $args = array() ): string {
 		$messages = self::messages();
 		$text     = isset( $messages[ $code ] ) ? $messages[ $code ] : $messages['invalid'];
 		foreach ( $args as $name => $value ) {

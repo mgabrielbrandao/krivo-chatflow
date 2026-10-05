@@ -86,7 +86,14 @@ final class Worker {
 		$flow_row = FlowRepository::get( $run['flow_id'] );
 		$lead     = LeadRepository::get( $run['lead_id'] );
 		if ( null === $flow_row || null === $lead ) {
-			RunRepository::finish( $id, RunRepository::CANCELLED, array( 'error_code' => 'gone', 'error_message' => 'The flow or the lead no longer exists.' ) );
+			RunRepository::finish(
+				$id,
+				RunRepository::CANCELLED,
+				array(
+					'error_code'    => 'gone',
+					'error_message' => 'The flow or the lead no longer exists.',
+				)
+			);
 			return;
 		}
 
@@ -99,7 +106,14 @@ final class Worker {
 		}
 		$action = null === $automation ? null : Registry::action( (string) $automation['type'] );
 		if ( null === $automation || null === $action || empty( $automation['enabled'] ) ) {
-			RunRepository::finish( $id, RunRepository::CANCELLED, array( 'error_code' => 'removed', 'error_message' => 'The automation was removed or turned off.' ) );
+			RunRepository::finish(
+				$id,
+				RunRepository::CANCELLED,
+				array(
+					'error_code'    => 'removed',
+					'error_message' => 'The automation was removed or turned off.',
+				)
+			);
 			return;
 		}
 

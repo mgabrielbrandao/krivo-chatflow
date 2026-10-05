@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<ruleset name="Krivo ChatFlow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+	<description>WordPress coding standards, security and escaping rules, and PHP 7.4+ compatibility for the shipped plugin code.</description>
+
+	<file>krivo-chatflow.php</file>
+	<file>uninstall.php</file>
+	<file>includes</file>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="ps"/>
+	<arg name="parallel" value="8"/>
+
+	<config name="minimum_wp_version" value="6.5"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="krivo-chatflow"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="krivo_chatflow"/>
+				<element value="KRIVO_CHATFLOW"/>
+				<element value="Krivo\ChatFlow"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Properties of PHP's DOM classes and of PHPMailer, which are not ours to rename. -->
+	<rule ref="WordPress.NamingConventions.ValidVariableName">
+		<properties>
+			<property name="allowed_custom_properties" type="array">
+				<element value="documentElement"/>
+				<element value="namespaceURI"/>
+				<element value="nodeName"/>
+				<element value="nodeValue"/>
+				<element value="childNodes"/>
+				<element value="AltBody"/>
+				<element value="Host"/>
+				<element value="Port"/>
+				<element value="SMTPAuth"/>
+				<element value="SMTPSecure"/>
+				<element value="SMTPAutoTLS"/>
+				<element value="SMTPDebug"/>
+				<element value="Debugoutput"/>
+				<element value="Timeout"/>
+				<element value="Username"/>
+				<element value="Password"/>
+				<element value="Mailer"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- The code is organised as PSR-4 classes (one class per file, file named after the class). -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+	</rule>
+
+	<!-- Short array syntax is not used; the code follows the WordPress style. Nothing is excluded for it. -->
+</ruleset>

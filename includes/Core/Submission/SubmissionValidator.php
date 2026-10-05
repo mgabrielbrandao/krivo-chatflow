@@ -49,8 +49,8 @@ final class SubmissionValidator {
 			if ( ! Registry::collects( $field['type'] ) ) {
 				continue;
 			}
-			$raw                       = $answers[ $field['key'] ] ?? null;
-			$result                    = Registry::normalize( array_merge( $field, array( 'required' => false ) ), $raw, $ctx );
+			$raw                      = $answers[ $field['key'] ] ?? null;
+			$result                   = Registry::normalize( array_merge( $field, array( 'required' => false ) ), $raw, $ctx );
 			$lenient[ $field['key'] ] = null !== $result['error'] ? '' : $result['value'];
 		}
 
@@ -68,7 +68,7 @@ final class SubmissionValidator {
 			}
 			$result = Registry::normalize( $field, $answers[ $field['key'] ] ?? null, $ctx );
 			if ( null !== $result['error'] ) {
-				$errors[ $field['key'] ] = Registry::message( $result['error'], (array) ( $result['args'] ?? array() ), $field );
+				$errors[ $field['key'] ] = Registry::message( $result['error'], (array) ( $result['args'] ?? array() ) );
 				continue;
 			}
 			$values[ $field['key'] ] = $result['value'];

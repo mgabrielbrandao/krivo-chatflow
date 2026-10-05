@@ -42,10 +42,10 @@ final class Redactor {
 		);
 
 		$patterns = array(
-			'/\bBearer\s+[A-Za-z0-9._~+\/=-]{6,}/i'  => 'Bearer [redacted]',
-			'/\bBasic\s+[A-Za-z0-9+\/=]{6,}/i'       => 'Basic [redacted]',
+			'/\bBearer\s+[A-Za-z0-9._~+\/=-]{6,}/i' => 'Bearer [redacted]',
+			'/\bBasic\s+[A-Za-z0-9+\/=]{6,}/i'      => 'Basic [redacted]',
 			'/\b(password|passwd|pwd|secret|token|api[_-]?key|authorization|signature)\b(\s*[=:]\s*)[^\s,;&"\']+/i' => '$1$2[redacted]',
-			'/\b[A-Za-z0-9+\/]{40,}={0,2}\b/'        => '[redacted]',
+			'/\b[A-Za-z0-9+\/]{40,}={0,2}\b/'       => '[redacted]',
 		);
 		foreach ( $patterns as $pattern => $replacement ) {
 			$text = (string) preg_replace( $pattern, $replacement, $text );

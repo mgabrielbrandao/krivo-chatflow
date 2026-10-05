@@ -53,8 +53,8 @@ final class Renderer {
 	public static function render( string $template, array $vars, string $mode = 'text' ): string {
 		$result = (string) preg_replace_callback(
 			'/\{([a-z0-9_]+)\}/',
-			static function ( array $match ) use ( $vars, $mode ): string {
-				$name = $match[1];
+			static function ( array $found ) use ( $vars, $mode ): string {
+				$name = $found[1];
 				if ( isset( self::ALIASES[ $name ] ) && ! array_key_exists( $name, $vars ) ) {
 					$name = self::ALIASES[ $name ];
 				}

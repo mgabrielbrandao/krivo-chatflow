@@ -49,7 +49,7 @@ final class Sanitizer {
 		$ids          = array();
 		$out['steps'] = self::steps( $raw['steps'] ?? array(), $ids );
 
-		$out['logic']       = array( 'rules' => self::rules( $raw['logic']['rules'] ?? array(), $out['mode'], $out['steps'], $ids ) );
+		$out['logic']       = array( 'rules' => self::rules( $raw['logic']['rules'] ?? array(), $out['mode'], $out['steps'] ) );
 		$out['finish']      = array(
 			'button_label'    => self::str( $raw['finish']['button_label'] ?? '', 60 ),
 			'success_message' => self::textarea( $raw['finish']['success_message'] ?? '', 500 ),
@@ -226,7 +226,7 @@ final class Sanitizer {
 			$base = $value;
 			$n    = 2;
 			while ( isset( $used[ $value ] ) ) {
-				$value = $base . '_' . $n++;
+				$value = $base . '_' . ( $n++ );
 			}
 			$used[ $value ] = true;
 			$options[]      = array(
@@ -282,10 +282,9 @@ final class Sanitizer {
 	 * @param mixed  $raw   Raw rules.
 	 * @param string $mode  Flow mode.
 	 * @param array  $steps Sanitised steps.
-	 * @param array  $ids   Known ids.
 	 * @return array[]
 	 */
-	private static function rules( $raw, string $mode, array $steps, array $ids ): array {
+	private static function rules( $raw, string $mode, array $steps ): array {
 		$field_ids = array();
 		$unit_ids  = array();
 		foreach ( $steps as $step ) {
@@ -445,7 +444,7 @@ final class Sanitizer {
 		$svg = '';
 		$att = 0;
 		if ( 'custom_svg' === $type ) {
-			$svg = SvgSanitizer::sanitize( (string) ( $icon['svg'] ?? '' ) );
+			$svg  = SvgSanitizer::sanitize( (string) ( $icon['svg'] ?? '' ) );
 			$type = '' === $svg ? 'chat' : $type;
 		} elseif ( 'custom_image' === $type ) {
 			$att  = self::attachment( $icon['attachment_id'] ?? 0 );
@@ -457,15 +456,15 @@ final class Sanitizer {
 			'attachment_id' => $att,
 		);
 
-		$out['label']    = self::str( $raw['label'] ?? '', 80 );
-		$out['shape']    = self::enum( $raw['shape'] ?? '', Defaults::SHAPES, 'circle' );
-		$out['radius']   = self::int( $raw['radius'] ?? $defaults['radius'], 0, 60, $defaults['radius'] );
-		$out['position'] = self::enum( $raw['position'] ?? '', Defaults::POSITIONS, 'bottom-right' );
-		$out['offset_x'] = self::int( $raw['offset_x'] ?? $defaults['offset_x'], 0, 300, $defaults['offset_x'] );
-		$out['offset_y'] = self::int( $raw['offset_y'] ?? $defaults['offset_y'], 0, 300, $defaults['offset_y'] );
-		$out['size']     = self::int( $raw['size'] ?? $defaults['size'], 40, 96, $defaults['size'] );
-		$colors          = is_array( $raw['colors'] ?? null ) ? $raw['colors'] : array();
-		$out['colors']   = array(
+		$out['label']     = self::str( $raw['label'] ?? '', 80 );
+		$out['shape']     = self::enum( $raw['shape'] ?? '', Defaults::SHAPES, 'circle' );
+		$out['radius']    = self::int( $raw['radius'] ?? $defaults['radius'], 0, 60, $defaults['radius'] );
+		$out['position']  = self::enum( $raw['position'] ?? '', Defaults::POSITIONS, 'bottom-right' );
+		$out['offset_x']  = self::int( $raw['offset_x'] ?? $defaults['offset_x'], 0, 300, $defaults['offset_x'] );
+		$out['offset_y']  = self::int( $raw['offset_y'] ?? $defaults['offset_y'], 0, 300, $defaults['offset_y'] );
+		$out['size']      = self::int( $raw['size'] ?? $defaults['size'], 40, 96, $defaults['size'] );
+		$colors           = is_array( $raw['colors'] ?? null ) ? $raw['colors'] : array();
+		$out['colors']    = array(
 			'bg'     => self::color( $colors['bg'] ?? '', $defaults['colors']['bg'] ),
 			'icon'   => self::color( $colors['icon'] ?? '', $defaults['colors']['icon'] ),
 			'border' => self::color( $colors['border'] ?? '', '', true ),
@@ -727,7 +726,7 @@ final class Sanitizer {
 	/**
 	 * A strictly valid e-mail address, or an empty string.
 	 *
-	 * sanitize_email() silently drops illegal characters, so "a@b.com\r\nBcc: x@y.com" would come out
+	 * The sanitize_email() function silently drops illegal characters, so "a@b.com\r\nBcc: x@y.com" would come out
 	 * as a different, valid-looking address. Mutating what a person typed is wrong (and a header
 	 * injection vector), so anything the sanitiser changes is rejected instead of "repaired".
 	 *
@@ -846,7 +845,7 @@ final class Sanitizer {
 		$base = $key;
 		$n    = 2;
 		while ( in_array( $key, $used_keys, true ) ) {
-			$key = $base . '_' . $n++;
+			$key = $base . '_' . ( $n++ );
 		}
 		$used_keys[] = $key;
 		return $key;

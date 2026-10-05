@@ -7,16 +7,19 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+// KRIVO_BUILD_OUT=<dir> writes the files there instead of into assets/ (the release check rebuilds into a
+// temporary folder and compares, to prove that the shipped files come from the shipped sources).
+const outRoot = process.env.KRIVO_BUILD_OUT || root;
 const dev = process.argv.includes('--dev');
 const watch = process.argv.includes('--watch');
 
 const common = { absWorkingDir: root, bundle: true, minify: !dev, sourcemap: false, legalComments: 'none', logLevel: 'warning', target: ['chrome90', 'safari14', 'firefox90', 'edge90'] };
 
 const jobs = [
-	{ ...common, entryPoints: ['src/frontend/loader.js'], outfile: 'assets/frontend/loader.js', format: 'iife' },
-	{ ...common, entryPoints: ['src/frontend/panel.js'], outfile: 'assets/frontend/panel.js', format: 'iife' },
-	{ ...common, entryPoints: ['src/frontend/bubble.css'], outfile: 'assets/frontend/bubble.css' },
-	{ ...common, entryPoints: ['src/frontend/panel.css'], outfile: 'assets/frontend/panel.css' },
+	{ ...common, entryPoints: ['src/frontend/loader.js'], outfile: join(outRoot, 'assets/frontend/loader.js'), format: 'iife' },
+	{ ...common, entryPoints: ['src/frontend/panel.js'], outfile: join(outRoot, 'assets/frontend/panel.js'), format: 'iife' },
+	{ ...common, entryPoints: ['src/frontend/bubble.css'], outfile: join(outRoot, 'assets/frontend/bubble.css') },
+	{ ...common, entryPoints: ['src/frontend/panel.css'], outfile: join(outRoot, 'assets/frontend/panel.css') },
 ];
 
 // The admin app is optional until it exists.
@@ -26,7 +29,7 @@ try {
 		{
 			...common,
 			entryPoints: ['src/admin/index.jsx'],
-			outfile: 'assets/admin/admin.js',
+			outfile: join(outRoot, 'assets/admin/admin.js'),
 			format: 'iife',
 			jsx: 'transform',
 			jsxFactory: 'wp.element.createElement',
@@ -43,13 +46,14 @@ try {
 				},
 			],
 		},
-		{ ...common, entryPoints: ['src/admin/admin.css'], outfile: 'assets/admin/admin.css' }
+		{ ...common, entryPoints: ['src/admin/admin.css'], outfile: join(outRoot, 'assets/admin/admin.css') }
 	);
 } catch (e) {
 	/* no admin sources yet */
 }
 
-mkdirSync(join(root, 'assets/frontend'), { recursive: true });
+mkdirSync(join(outRoot, 'assets/frontend'), { recursive: true });
+mkdirSync(join(outRoot, 'assets/admin'), { recursive: true });
 
 if (watch) {
 	for (const job of jobs) {
@@ -58,9 +62,8 @@ if (watch) {
 } else {
 	for (const job of jobs) {
 		await build(job);
-		const file = join(root, job.outfile);
-		const raw = statSync(file).size;
-		const gz = gzipSync(readFileSync(file)).length;
-		console.log(`${job.outfile.padEnd(32)} ${String(raw).padStart(7)} B   gzip ${String(gz).padStart(6)} B`);
+		const raw = statSync(job.outfile).size;
+		const gz = gzipSync(readFileSync(job.outfile)).length;
+		console.log(`${job.outfile.slice(outRoot.length + 1).padEnd(32)} ${String(raw).padStart(7)} B   gzip ${String(gz).padStart(6)} B`);
 	}
 }

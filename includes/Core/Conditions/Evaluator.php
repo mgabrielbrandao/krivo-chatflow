@@ -170,12 +170,12 @@ final class Evaluator {
 	/**
 	 * Normalised items of a list value.
 	 *
-	 * @param array $list List.
+	 * @param array $values Values.
 	 * @return string[]
 	 */
-	private static function items( array $list ): array {
+	private static function items( array $values ): array {
 		$items = array();
-		foreach ( $list as $item ) {
+		foreach ( $values as $item ) {
 			if ( is_scalar( $item ) || is_bool( $item ) ) {
 				$items[] = self::norm( $item );
 			}

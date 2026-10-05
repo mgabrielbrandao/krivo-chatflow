@@ -358,14 +358,14 @@ export function Modal({ title, onClose, children, footer, wide }) {
 	return (
 		<div className="kcf-modal" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
 			<div className={cx('kcf-modal__box', wide && 'kcf-modal__box--wide')} role="dialog" aria-modal="true" aria-labelledby={id} ref={ref} tabIndex={-1}>
-				<header className="kcf-modal__head">
+				<div className="kcf-modal__head">
 					<h2 id={id}>{title}</h2>
 					<button type="button" className="kcf-modal__x" onClick={onClose} aria-label={__('Close')}>
 						×
 					</button>
-				</header>
+				</div>
 				<div className="kcf-modal__body">{children}</div>
-				{footer ? <footer className="kcf-modal__foot">{footer}</footer> : null}
+				{footer ? <div className="kcf-modal__foot">{footer}</div> : null}
 			</div>
 		</div>
 	);

@@ -67,9 +67,9 @@ final class PayloadBuilder {
 		$values  = array();
 		$labeled = array();
 		foreach ( $answers as $key => $answer ) {
-			$value            = is_array( $answer ) && array_key_exists( 'value', $answer ) ? $answer['value'] : $answer;
-			$values[ $key ]   = $value;
-			$labeled[]        = array(
+			$value          = is_array( $answer ) && array_key_exists( 'value', $answer ) ? $answer['value'] : $answer;
+			$values[ $key ] = $value;
+			$labeled[]      = array(
 				'key'     => (string) $key,
 				'label'   => (string) ( $answer['label'] ?? $key ),
 				'value'   => $value,
@@ -130,10 +130,10 @@ final class PayloadBuilder {
 		if ( ! is_array( $decoded ) ) {
 			return null;
 		}
-		$vars               = $ctx->vars();
-		$vars['event']      = $event;
-		$vars['flow_id']    = (string) $ctx->flow_id;
-		$vars['lead_uuid']  = (string) ( $ctx->lead['public_id'] ?? '' );
+		$vars              = $ctx->vars();
+		$vars['event']     = $event;
+		$vars['flow_id']   = (string) $ctx->flow_id;
+		$vars['lead_uuid'] = (string) ( $ctx->lead['public_id'] ?? '' );
 		return self::walk( $decoded, $vars );
 	}
 

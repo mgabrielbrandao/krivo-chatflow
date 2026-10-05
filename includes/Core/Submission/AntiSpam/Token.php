@@ -40,14 +40,16 @@ final class Token {
 	 * @return string
 	 */
 	public static function issue( int $flow_id ): string {
-		$payload = self::b64( (string) wp_json_encode(
-			array(
-				'f' => $flow_id,
-				't' => Clock::time(),
-				'r' => bin2hex( random_bytes( 6 ) ),
-				'v' => 1,
+		$payload = self::b64(
+			(string) wp_json_encode(
+				array(
+					'f' => $flow_id,
+					't' => Clock::time(),
+					'r' => bin2hex( random_bytes( 6 ) ),
+					'v' => 1,
+				)
 			)
-		) );
+		);
 		return $payload . '.' . self::b64( hash_hmac( 'sha256', $payload, self::key(), true ) );
 	}
 

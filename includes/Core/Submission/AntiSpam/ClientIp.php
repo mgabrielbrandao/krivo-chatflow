@@ -31,7 +31,8 @@ final class ClientIp {
 
 		switch ( (string) Settings::get( 'antispam.proxy_header', 'none' ) ) {
 			case 'cloudflare':
-				$ip = self::header( 'HTTP_CF_CONNECTING_IP' ) ?: $remote;
+				$cloudflare = self::header( 'HTTP_CF_CONNECTING_IP' );
+				$ip         = '' !== $cloudflare ? $cloudflare : $remote;
 				break;
 			case 'x-forwarded-for':
 				$forwarded = self::header( 'HTTP_X_FORWARDED_FOR' );

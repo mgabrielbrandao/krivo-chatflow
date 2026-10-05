@@ -223,7 +223,7 @@ final class Pipeline {
 	private static function response( array $flow, array $lead, array $validated, array $directives, ?array $duplicate ): array {
 		$message = '' !== $flow['finish']['success_message'] ? $flow['finish']['success_message'] : __( 'Thank you! We received your message.', 'krivo-chatflow' );
 		if ( array() !== $lead ) {
-			$vars = Builder::build(
+			$vars    = Builder::build(
 				$flow,
 				(array) $lead['answers'],
 				array(

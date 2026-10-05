@@ -440,6 +440,28 @@ class QueueTest extends Krivo_TestCase {
 		$this->assertSame( array(), $this->blocked_http, 'A retry later does not hit wp-cron now' );
 	}
 
+	public function test_a_new_lead_is_not_held_back_by_a_retry_that_is_scheduled_for_later(): void {
+		// A failed webhook is retried in 5 minutes. WordPress refuses to schedule a second identical event
+		// within 10 minutes, so a plain wp_schedule_single_event() for "now" would silently do nothing and
+		// the next lead's e-mail would wait for the retry.
+		Scheduler::kick( 300 );
+		$this->assertGreaterThanOrEqual( time() + 295, wp_next_scheduled( Events::QUEUE ) );
+
+		Scheduler::kick();
+		$this->assertLessThanOrEqual( time() + 5, wp_next_scheduled( Events::QUEUE ), 'the worker is due now' );
+		$count = 0;
+		foreach ( _get_cron_array() as $events ) {
+			$count += isset( $events[ Events::QUEUE ] ) ? count( $events[ Events::QUEUE ] ) : 0;
+		}
+		$this->assertSame( 1, $count, 'and there is still a single event' );
+	}
+
+	public function test_a_retry_is_not_pushed_back_by_an_earlier_one(): void {
+		Scheduler::kick( 60 );
+		Scheduler::kick( 1800 );
+		$this->assertLessThanOrEqual( time() + 65, wp_next_scheduled( Events::QUEUE ), 'the earlier wake-up stays' );
+	}
+
 	public function test_visitor_request_never_waits_for_delivery(): void {
 		$connection = $this->hook( '/slow' );
 		$flow       = $this->flow(

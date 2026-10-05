@@ -29,6 +29,8 @@
 		color: var(--kcf-text);
 		font: 400 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 		letter-spacing: normal;
+		word-spacing: normal;
+		text-indent: 0;
 		text-align: left;
 		text-transform: none;
 		box-shadow: 0 16px 48px rgba(23, 21, 25, 0.26), 0 2px 8px rgba(23, 21, 25, 0.12);
@@ -74,8 +76,21 @@
 		letter-spacing: inherit;
 		text-transform: none;
 		text-shadow: none;
+		text-align: inherit;
+		text-indent: inherit;
+		word-spacing: inherit;
+		line-height: inherit;
 		float: none;
 		min-width: 0;
+	}
+	/* Controls and links: a theme that styles every button or input must not change their text. */
+	.kcf-panel :where(input, select, textarea, button, a, h1, h3) {
+		letter-spacing: normal;
+		text-transform: none;
+		text-shadow: none;
+		text-indent: 0;
+		word-spacing: normal;
+		float: none;
 	}
 
 	/* Header */

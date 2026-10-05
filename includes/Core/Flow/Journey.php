@@ -110,8 +110,8 @@ final class Journey {
 			$visited[] = $unit['id'];
 
 			foreach ( $unit['fields'] as $field ) {
-				$id          = (string) ( $field['id'] ?? '' );
-				$is_visible  = self::field_visible( $field, $rules, $seen, $ctx );
+				$id             = (string) ( $field['id'] ?? '' );
+				$is_visible     = self::field_visible( $field, $rules, $seen, $ctx );
 				$visible[ $id ] = $is_visible;
 				if ( $is_visible && Registry::collects( (string) ( $field['type'] ?? '' ) ) ) {
 					$key          = (string) ( $field['key'] ?? '' );
@@ -160,10 +160,10 @@ final class Journey {
 	 * @return bool
 	 */
 	private static function field_visible( array $field, array $rules, array $seen, array $ctx ): bool {
-		$id        = (string) ( $field['id'] ?? '' );
-		$has_show  = false;
-		$show_hit  = false;
-		$hide_hit  = false;
+		$id       = (string) ( $field['id'] ?? '' );
+		$has_show = false;
+		$show_hit = false;
+		$hide_hit = false;
 
 		foreach ( $rules as $rule ) {
 			foreach ( (array) ( $rule['then'] ?? array() ) as $action ) {

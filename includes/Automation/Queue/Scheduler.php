@@ -37,6 +37,12 @@ final class Scheduler {
 		$when = time() + max( 0, $delay );
 		$next = wp_next_scheduled( Events::QUEUE );
 		if ( false === $next || $next > $when + 5 ) {
+			// WordPress refuses a second identical event within 10 minutes of an existing one, so a later
+			// wake-up (a retry in 5 minutes) would silently swallow this earlier one. Replace it: the worker
+			// schedules the next retry again from the database when it finishes a pass.
+			if ( false !== $next ) {
+				wp_unschedule_event( $next, Events::QUEUE );
+			}
 			wp_schedule_single_event( $when, Events::QUEUE );
 		}
 		if ( 0 === $delay && ! ( defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON ) ) {

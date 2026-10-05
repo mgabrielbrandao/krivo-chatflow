@@ -47,21 +47,21 @@ final class Settings {
 	 */
 	public static function schema(): array {
 		return array(
-			'branding.signature_enabled'  => array(
+			'branding.signature_enabled'   => array(
 				'type'    => 'bool',
 				'default' => false,
 			),
-			'branding.signature_link'     => array(
+			'branding.signature_link'      => array(
 				'type'    => 'bool',
 				'default' => false,
 			),
-			'branding.authorized_by'      => array(
+			'branding.authorized_by'       => array(
 				'type'    => 'int',
 				'default' => 0,
 				'min'     => 0,
 				'max'     => PHP_INT_MAX,
 			),
-			'branding.authorized_at'      => array(
+			'branding.authorized_at'       => array(
 				'type'    => 'string',
 				'default' => '',
 				'max'     => 30,
@@ -72,62 +72,62 @@ final class Settings {
 				'min'     => 0,
 				'max'     => 3650,
 			),
-			'privacy.retention_logs_days' => array(
+			'privacy.retention_logs_days'  => array(
 				'type'    => 'int',
 				'default' => 30,
 				'min'     => 1,
 				'max'     => 365,
 			),
-			'privacy.delete_on_uninstall' => array(
+			'privacy.delete_on_uninstall'  => array(
 				'type'    => 'bool',
 				'default' => false,
 			),
-			'tracking.capture_utm'        => array(
+			'tracking.capture_utm'         => array(
 				'type'    => 'bool',
 				'default' => true,
 			),
-			'tracking.capture_referrer'   => array(
+			'tracking.capture_referrer'    => array(
 				'type'    => 'bool',
 				'default' => true,
 			),
-			'events.datalayer'            => array(
+			'events.datalayer'             => array(
 				'type'    => 'bool',
 				'default' => false,
 			),
-			'analytics.count_views'       => array(
+			'analytics.count_views'        => array(
 				'type'    => 'bool',
 				'default' => true,
 			),
-			'antispam.rate_limit_max'     => array(
+			'antispam.rate_limit_max'      => array(
 				'type'    => 'int',
 				'default' => 8,
 				'min'     => 1,
 				'max'     => 1000,
 			),
-			'antispam.rate_limit_window'  => array(
+			'antispam.rate_limit_window'   => array(
 				'type'    => 'int',
 				'default' => 900,
 				'min'     => 60,
 				'max'     => 86400,
 			),
-			'antispam.min_seconds'        => array(
+			'antispam.min_seconds'         => array(
 				'type'    => 'int',
 				'default' => 3,
 				'min'     => 0,
 				'max'     => 60,
 			),
-			'antispam.breaker_per_minute' => array(
+			'antispam.breaker_per_minute'  => array(
 				'type'    => 'int',
 				'default' => 30,
 				'min'     => 1,
 				'max'     => 10000,
 			),
-			'antispam.proxy_header'       => array(
+			'antispam.proxy_header'        => array(
 				'type'    => 'enum',
 				'default' => 'none',
 				'values'  => array( 'none', 'cloudflare', 'x-forwarded-for' ),
 			),
-			'general.default_dial_code'   => array(
+			'general.default_dial_code'    => array(
 				'type'    => 'digits',
 				'default' => null, // Locale dependent, resolved in defaults().
 				'max'     => 4,

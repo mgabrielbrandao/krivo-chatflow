@@ -6,15 +6,44 @@
 //   KRIVO_E2E_WP    command that runs WP-CLI for that site (optional; some tests need it)
 import { chromium } from 'playwright-core';
 import { execFileSync } from 'node:child_process';
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
 export const BASE = (process.env.KRIVO_E2E_URL || 'http://localhost:8080').replace(/\/$/, '');
 export const USER = process.env.KRIVO_E2E_USER || 'admin';
 export const PASS = process.env.KRIVO_E2E_PASS || 'Krivo-Test-2026!';
-export const CHROMIUM = process.env.KRIVO_E2E_CHROMIUM || '/opt/pw-browsers/chromium';
 export const API = '/?rest_route=/krivo-chatflow/v1/';
 
-export async function launch() {
-	return chromium.launch({ executablePath: CHROMIUM, args: ['--no-sandbox'] });
+export function chromiumPath() {
+	if (process.env.KRIVO_E2E_CHROMIUM) {
+		return process.env.KRIVO_E2E_CHROMIUM;
+	}
+	const base = process.env.PLAYWRIGHT_BROWSERS_PATH || '/opt/pw-browsers';
+	if (existsSync(join(base, 'chromium'))) {
+		return join(base, 'chromium');
+	}
+	const dir = existsSync(base) ? readdirSync(base).find((d) => d.startsWith('chromium')) : null;
+	for (const rel of ['chrome-linux/chrome', 'chrome-linux64/chrome']) {
+		if (dir && existsSync(join(base, dir, rel))) {
+			return join(base, dir, rel);
+		}
+	}
+	throw new Error('Chromium not found: set KRIVO_E2E_CHROMIUM');
+}
+
+export async function launch(options = {}) {
+	return chromium.launch({ executablePath: chromiumPath(), args: ['--no-sandbox', '--disable-dev-shm-usage'], ...options });
+}
+
+/** A context that cannot reach the internet (WhatsApp is answered by a stand-in page) and logs the requests it makes. */
+export async function visitorContext(browser, options = {}) {
+	const context = await browser.newContext({ viewport: { width: 1280, height: 820 }, ...options });
+	const requests = [];
+	context.on('request', (request) => requests.push(request.url()));
+	await context.route((url) => url.hostname !== new URL(BASE).hostname && url.hostname !== 'wa.me', (route) => route.abort());
+	await context.route('https://wa.me/**', (route) => route.fulfill({ status: 200, contentType: 'text/html', body: '<h1>wa.me stand-in</h1>' }));
+	context.requests = requests;
+	return context;
 }
 
 /** Console problems worth failing a test for (the sandbox has no internet: avatars and fonts are ignored). */
@@ -30,11 +59,11 @@ export function collectProblems(page) {
 	return problems;
 }
 
-export async function login(context) {
+export async function login(context, user = USER, pass = PASS) {
 	const page = await context.newPage();
 	await page.goto(BASE + '/wp-login.php', { waitUntil: 'load' });
-	await page.fill('#user_login', USER);
-	await page.fill('#user_pass', PASS);
+	await page.fill('#user_login', user);
+	await page.fill('#user_pass', pass);
 	await Promise.all([page.waitForURL(/wp-admin/), page.click('#wp-submit')]);
 	await page.close();
 }

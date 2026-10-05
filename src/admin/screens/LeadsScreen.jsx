@@ -29,7 +29,7 @@ function Drawer({ title, onClose, children }) {
 		};
 	}, []);
 	return (
-		<aside className="kcf-drawer" role="dialog" aria-label={title} ref={ref} tabIndex={-1}>
+		<div className="kcf-drawer" role="dialog" aria-label={title} ref={ref} tabIndex={-1}>
 			<div className="kcf-row" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
 				<h2 style={{ fontSize: 18 }}>{title}</h2>
 				<Button small onClick={onClose}>
@@ -37,7 +37,7 @@ function Drawer({ title, onClose, children }) {
 				</Button>
 			</div>
 			{children}
-		</aside>
+		</div>
 	);
 }
 

@@ -38,10 +38,10 @@ final class Executor {
 
 		$body    = Json::encode( $payload );
 		$headers = array(
-			'Content-Type'              => 'application/json; charset=utf-8',
-			'Accept'                    => 'application/json',
-			'X-KrivoChatFlow-Event'     => $event,
-			'X-KrivoChatFlow-Delivery'  => $delivery_id,
+			'Content-Type'             => 'application/json; charset=utf-8',
+			'Accept'                   => 'application/json',
+			'X-KrivoChatFlow-Event'    => $event,
+			'X-KrivoChatFlow-Delivery' => $delivery_id,
 		);
 
 		switch ( $connection['auth_mode'] ) {

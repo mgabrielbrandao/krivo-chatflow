@@ -17,13 +17,13 @@ final class Arr {
 	/**
 	 * Reads a nested value using dot notation.
 	 *
-	 * @param array  $array    Source array.
+	 * @param array  $data    Source array.
 	 * @param string $path     Dot path, e.g. "privacy.retention_leads_days".
 	 * @param mixed  $fallback Value returned when the path does not exist.
 	 * @return mixed
 	 */
-	public static function get( array $array, string $path, $fallback = null ) {
-		$current = $array;
+	public static function get( array $data, string $path, $fallback = null ) {
+		$current = $data;
 		foreach ( explode( '.', $path ) as $segment ) {
 			if ( ! is_array( $current ) || ! array_key_exists( $segment, $current ) ) {
 				return $fallback;
@@ -36,14 +36,14 @@ final class Arr {
 	/**
 	 * Writes a nested value using dot notation.
 	 *
-	 * @param array  $array Target array (modified).
+	 * @param array  $data Target array (modified).
 	 * @param string $path  Dot path.
 	 * @param mixed  $value Value to set.
 	 * @return void
 	 */
-	public static function set( array &$array, string $path, $value ): void {
+	public static function set( array &$data, string $path, $value ): void {
 		$segments = explode( '.', $path );
-		$current  = &$array;
+		$current  = &$data;
 		foreach ( $segments as $segment ) {
 			if ( ! isset( $current[ $segment ] ) || ! is_array( $current[ $segment ] ) ) {
 				$current[ $segment ] = array();

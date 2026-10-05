@@ -75,8 +75,8 @@ final class StatsRepository {
 			$where .= ' AND flow_id = %d';
 			$args[] = $flow_id;
 		}
-		$rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->prepare( "SELECT metric, SUM(total) AS total FROM {$table} WHERE {$where} GROUP BY metric", $args ), // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
+		$rows   = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prepare( "SELECT metric, SUM(total) AS total FROM {$table} WHERE {$where} GROUP BY metric", $args ), // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
 			ARRAY_A
 		);
 		$totals = array_fill_keys( self::metrics(), 0 );
@@ -105,8 +105,8 @@ final class StatsRepository {
 			$where .= ' AND flow_id = %d';
 			$args[] = $flow_id;
 		}
-		$rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->prepare( "SELECT day, metric, SUM(total) AS total FROM {$table} WHERE {$where} GROUP BY day, metric ORDER BY day ASC", $args ), // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
+		$rows   = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prepare( "SELECT day, metric, SUM(total) AS total FROM {$table} WHERE {$where} GROUP BY day, metric ORDER BY day ASC", $args ), // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared
 			ARRAY_A
 		);
 		$series = array();

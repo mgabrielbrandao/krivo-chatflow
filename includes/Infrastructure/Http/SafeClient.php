@@ -90,8 +90,8 @@ final class SafeClient {
 		$duration = (int) round( ( microtime( true ) - $start ) * 1000 );
 
 		if ( is_wp_error( $response ) ) {
-			$result                = self::failure( self::categorize( $response ), $duration );
-			$result['retry']       = in_array( $result['category'], array( 'timeout', 'dns', 'connection', 'network' ), true );
+			$result          = self::failure( self::categorize( $response ), $duration );
+			$result['retry'] = in_array( $result['category'], array( 'timeout', 'dns', 'connection', 'network' ), true );
 			return $result;
 		}
 

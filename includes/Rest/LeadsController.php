@@ -142,7 +142,7 @@ final class LeadsController extends AdminController {
 	 * @return \WP_REST_Response
 	 */
 	public static function index( \WP_REST_Request $request ): \WP_REST_Response {
-		$args = array(
+		$args   = array(
 			'search'   => (string) $request['search'],
 			'status'   => (string) $request['status'],
 			'flow_id'  => (int) $request['flow'],
@@ -183,7 +183,12 @@ final class LeadsController extends AdminController {
 		if ( null === $lead ) {
 			return self::not_found( __( 'Lead not found.', 'krivo-chatflow' ) );
 		}
-		$runs = current_user_can( Capabilities::VIEW_INTEGRATIONS ) ? RunRepository::query( array( 'lead_id' => $lead['id'], 'per_page' => 50 ) )['items'] : array();
+		$runs = current_user_can( Capabilities::VIEW_INTEGRATIONS ) ? RunRepository::query(
+			array(
+				'lead_id'  => $lead['id'],
+				'per_page' => 50,
+			)
+		)['items'] : array();
 		return self::ok( LeadPresenter::detail( $lead, self::flow_titles(), $runs ) );
 	}
 
