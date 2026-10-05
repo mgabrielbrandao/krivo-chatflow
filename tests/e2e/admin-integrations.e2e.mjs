@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHmac } from 'node:crypto';
 import { after, before, describe, it } from 'node:test';
-import { clearLeads, collectProblems, createFlow, launch, login, openScreen, restClient, sampleAnswers, startReceiver, submitLead, waitFor } from './helpers.mjs';
+import { clearLeads, collectProblems, createFlow, launch, login, openScreen, restClient, sampleAnswers, startReceiver, submitLead, waitFor, wp } from './helpers.mjs';
 
 describe('admin: integrations (webhooks) end to end', () => {
 	let browser, context, page, rest, problems, receiver, flow, connectionId;
@@ -95,7 +95,13 @@ describe('admin: integrations (webhooks) end to end', () => {
 		const res = await submitLead(context, flow.id, sampleAnswers(flow.config, { name: 'Webhook Wanda' }));
 		assert.equal(res.status, 200, JSON.stringify(res.body));
 
-		await waitFor(() => receiver.requests.length > before, { message: 'the webhook to arrive', timeout: 30000 });
+		try {
+			await waitFor(() => receiver.requests.length > before, { message: 'the webhook to arrive', timeout: 30000 });
+		} catch (error) {
+			// Say why, so a slow or stuck queue is not mistaken for a broken webhook.
+			console.log('QUEUE DIAGNOSTICS', wp('eval', 'global $wpdb; $t = \\Krivo\\ChatFlow\\Infrastructure\\Db\\Tables::runs(); echo json_encode( array( "now" => time(), "runs" => $wpdb->get_results( "SELECT id, action_type, status, attempts, next_attempt_at, error_code FROM $t ORDER BY id DESC LIMIT 6" ), "cron" => wp_next_scheduled( "krivo_chatflow_process_queue" ), "lock" => get_option( "krivo_chatflow_queue_lock" ), "doing_cron" => get_transient( "doing_cron" ) ) );'));
+			throw error;
+		}
 		const request = receiver.requests.at(-1);
 		assert.equal(request.json.lead.name, 'Webhook Wanda');
 		assert.equal(request.json.event, 'form.submitted');

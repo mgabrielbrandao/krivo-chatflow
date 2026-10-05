@@ -36,10 +36,14 @@ final class Scheduler {
 	public static function kick( int $delay = 0 ): void {
 		$when = time() + max( 0, $delay );
 		$next = wp_next_scheduled( Events::QUEUE );
-		if ( false === $next || $next > $when + 5 ) {
-			// WordPress refuses a second identical event within 10 minutes of an existing one, so a later
-			// wake-up (a retry in 5 minutes) would silently swallow this earlier one. Replace it: the worker
-			// schedules the next retry again from the database when it finishes a pass.
+		// A wake-up that is a few seconds late is fine for a retry, but an immediate kick must be due now: spawn_cron()
+		// starts nothing while the next event is still in the future, and on a quiet site no other request would come
+		// along to run it.
+		$tolerance = 0 === $delay ? 0 : 5;
+		if ( false === $next || $next > $when + $tolerance ) {
+			// WordPress refuses a second identical event within 10 minutes of an existing one, so a later wake-up
+			// (a retry in 5 minutes) would silently swallow this earlier one. Replace it: the worker schedules the
+			// next retry again from the database when it finishes a pass.
 			if ( false !== $next ) {
 				wp_unschedule_event( $next, Events::QUEUE );
 			}

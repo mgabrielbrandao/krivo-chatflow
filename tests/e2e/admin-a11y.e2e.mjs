@@ -27,9 +27,9 @@ describe('admin: accessibility (axe, WCAG 2.1 A/AA and best practices) on every 
 		page = await context.newPage();
 		collectProblems(page);
 		await clearLeads(rest);
-		flow = await createFlow(rest, { template: 'quote', name: 'E2E a11y', whatsapp: true });
-		await rest.post('flows/' + flow.id + '/publish');
-		await submitLead(context, flow.id, sampleAnswers(flow.config));
+		flow = await createFlow(rest, { template: 'quote', name: 'E2E a11y', whatsapp: false });
+		assert.equal((await rest.post('flows/' + flow.id + '/publish')).status, 200);
+		assert.equal((await submitLead(context, flow.id, sampleAnswers(flow.config))).status, 200);
 	});
 	after(async () => {
 		await rest.del('flows/' + flow.id);

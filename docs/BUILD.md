@@ -47,6 +47,25 @@ php bin/build-zip.php && php bin/release-check.php
 The release check rebuilds `src/` into a temporary folder and compares every compiled file, byte for byte,
 with the one in the ZIP.
 
+## Translations
+
+The text domain is `krivo-chatflow`; translations live in `languages/`. Every translatable string in the admin app
+passes the domain explicitly (`__( 'Text', 'krivo-chatflow' )`), so WordPress's tools and translate.wordpress.org can
+find them in `src/` and in the compiled `assets/admin/admin.js`.
+
+```bash
+# 1. Extract the strings (PHP, the JS sources and the compiled admin script) into the template.
+wp i18n make-pot . languages/krivo-chatflow.pot --slug=krivo-chatflow --domain=krivo-chatflow \
+  --include=krivo-chatflow.php,uninstall.php,includes,src,assets/admin --exclude=node_modules,vendor,tests
+
+# 2. Translate languages/krivo-chatflow-pt_BR.po (Poedit, or any editor), then build the binary files:
+wp i18n make-mo languages          # krivo-chatflow-pt_BR.mo for PHP
+node bin/make-json.mjs             # the JSON WordPress loads for assets/admin/admin.js
+```
+
+Brazilian Portuguese (`pt_BR`) is bundled. Other languages are served by WordPress.org language packs.
+The default texts of the visitor's chat (for example "Open chat") follow the language of each request.
+
 ## Development environment
 
 ```bash

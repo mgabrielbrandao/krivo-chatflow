@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { after, before, describe, it } from 'node:test';
-import { collectProblems, launch, login, openScreen, restClient } from './helpers.mjs';
+import { collectProblems, launch, login, openScreen, restClient, waitFor } from './helpers.mjs';
 
 describe('admin: routing', () => {
 	let browser, context, page, rest, problems, original;
@@ -55,6 +55,19 @@ describe('admin: routing', () => {
 	});
 
 	it('reorders and deletes rules', async () => {
+		// Reordering needs another rule above "Phones" (a clean site has none).
+		const now = await stored();
+		const phonesRule = now.rules.find((r) => r.name === 'Phones');
+		if (now.rules[0] && now.rules[0].id === phonesRule.id) {
+			const other = { id: 'rl_e2e_other', name: 'Desktop', enabled: true, flows: [], when: { match: 'all', conditions: [{ left: 'ctx:device', op: 'eq', right: 'desktop' }] }, destination: phonesRule.destination };
+			assert.equal((await rest.put('routing', { destinations: now.destinations, rules: [other].concat(now.rules), default_destination: now.default_destination })).status, 200);
+			await page.reload({ waitUntil: 'load' });
+			await page.waitForSelector('#krivo-chatflow-admin .kcf-head');
+			// Put "Phones" below it, so that moving it up is a real change.
+			await page.locator('.kcf-rule').filter({ hasText: 'Phones' }).filter({ has: page.getByLabel('Then send the lead to') }).getByRole('button', { name: 'Move down' }).click();
+			await page.getByRole('button', { name: 'Save routing' }).click();
+			await waitFor(async () => (await stored()).rules.findIndex((r) => r.name === 'Phones') === 1, { message: 'Phones to move below the other rule' });
+		}
 		const before = (await stored()).rules.length;
 		const phones = page.locator('.kcf-rule').filter({ hasText: 'Phones' }).filter({ has: page.getByLabel('Then send the lead to') });
 		await phones.getByRole('button', { name: 'Move up' }).click();

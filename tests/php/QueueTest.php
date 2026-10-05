@@ -456,6 +456,15 @@ class QueueTest extends Krivo_TestCase {
 		$this->assertSame( 1, $count, 'and there is still a single event' );
 	}
 
+	public function test_an_immediate_kick_is_due_now_even_when_a_retry_is_only_seconds_away(): void {
+		// spawn_cron() runs nothing while the next event is still in the future, and a quiet site gets no other
+		// request to run it: the lead's e-mail would wait for the next visitor.
+		Scheduler::kick( 3 );
+		$this->assertGreaterThan( time(), wp_next_scheduled( Events::QUEUE ) );
+		Scheduler::kick();
+		$this->assertLessThanOrEqual( time(), wp_next_scheduled( Events::QUEUE ) );
+	}
+
 	public function test_a_retry_is_not_pushed_back_by_an_earlier_one(): void {
 		Scheduler::kick( 60 );
 		Scheduler::kick( 1800 );
