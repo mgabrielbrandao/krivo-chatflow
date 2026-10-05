@@ -110,7 +110,7 @@ describe('admin: chat editor', () => {
 		await hex.fill('#0B6B3A');
 		await waitSaved(page);
 		assert.equal((await stored()).config.design.accent.toUpperCase(), '#0B6B3A');
-		const bg = await page.locator('.kcf-stage .kcf-panel').first().evaluate((node) => getComputedStyle(node.querySelector('header, .kcf-head') || node).backgroundColor);
+		const bg = await page.locator('.kcf-stage .kcf-panel .kcf-btn-primary').first().evaluate((node) => getComputedStyle(node).backgroundColor);
 		assert.equal(bg, 'rgb(11, 107, 58)');
 	});
 

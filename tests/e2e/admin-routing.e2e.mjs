@@ -63,10 +63,8 @@ describe('admin: routing', () => {
 			assert.equal((await rest.put('routing', { destinations: now.destinations, rules: [other].concat(now.rules), default_destination: now.default_destination })).status, 200);
 			await page.reload({ waitUntil: 'load' });
 			await page.waitForSelector('#krivo-chatflow-admin .kcf-head');
-			// Put "Phones" below it, so that moving it up is a real change.
-			await page.locator('.kcf-rule').filter({ hasText: 'Phones' }).filter({ has: page.getByLabel('Then send the lead to') }).getByRole('button', { name: 'Move down' }).click();
-			await page.getByRole('button', { name: 'Save routing' }).click();
-			await waitFor(async () => (await stored()).rules.findIndex((r) => r.name === 'Phones') === 1, { message: 'Phones to move below the other rule' });
+			// "Phones" now sits below it, so that moving it up is a real change.
+			assert.equal((await stored()).rules.findIndex((r) => r.name === 'Phones'), 1);
 		}
 		const before = (await stored()).rules.length;
 		const phones = page.locator('.kcf-rule').filter({ hasText: 'Phones' }).filter({ has: page.getByLabel('Then send the lead to') });

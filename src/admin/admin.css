@@ -210,7 +210,8 @@
 	border: 1px solid var(--kcf-line);
 	border-radius: var(--kcf-r3);
 	box-shadow: var(--kcf-shadow);
-	animation: kcf-reveal 0.4s var(--kcf-ease) both;
+	/* "backwards", not "both": a finished animation must not leave a stacking context that traps the modals rendered inside a card. */
+	animation: kcf-reveal 0.4s var(--kcf-ease) backwards;
 }
 .kcf-stack > .kcf-card:nth-child(2) {
 	animation-delay: 0.04s;

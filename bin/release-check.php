@@ -302,7 +302,8 @@ foreach ( $php_files as $relative => $absolute ) {
 $allowed_hosts = array( 'www.w3.org', 'wa.me', 'krivo.works', 'www.gnu.org', 'wordpress.org', 'api.w.org', 'localhost', 'example.invalid' );
 $unknown       = array();
 foreach ( $hosts as $host => $in ) {
-	if ( '' !== $host && ! in_array( $host, $allowed_hosts, true ) ) {
+	// A sentence that ends with "https://." is punctuation, not a host: a host has at least one letter or digit.
+	if ( 1 === preg_match( '/[A-Za-z0-9]/', (string) $host ) && ! in_array( $host, $allowed_hosts, true ) ) {
 		$unknown[] = $host . '  (' . implode( ', ', array_unique( $in ) ) . ')';
 	}
 }

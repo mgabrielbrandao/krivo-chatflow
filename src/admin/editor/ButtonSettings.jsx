@@ -62,7 +62,7 @@ export function ButtonSettings({ flowId, config, update, meta, variables }) {
 								value={config.button.url}
 								onChange={(value) => set('button.url', value)}
 								maxLength={500}
-								placeholder="https://example.com/contact"
+								placeholder="/contact/"
 								help={__('A web page (https://…), a page of this site (/contact/), a phone number (tel:+5511999999999) or an e-mail (mailto:name@example.com). The address is public: anyone can see it.', 'krivo-chatflow')}
 								spellCheck="false"
 							/>
